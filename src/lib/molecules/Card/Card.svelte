@@ -9,6 +9,7 @@
 	export let buttonName: string;
 	export let buttonLink: string;
 	export let backgroundColor: `#${string}`;
+	export let mixColor: boolean = false;
 
 	$: withDetails = Boolean(overview || buttonName || buttonLink);
 </script>
@@ -29,8 +30,8 @@
 						alt={title}
 						loading="lazy"
 						class={[
-							'absolute inset-0 object-cover object-center md:object-top',
-							'mix-blend-screen rounded-xl aspect-[9/16] md:aspect-[4/3]',
+							`absolute inset-0 object-cover object-center md:object-top`,
+							`${mixColor && 'mix-blend-screen'} rounded-xl aspect-[9/16] md:aspect-[4/3]`,
 							`${withDetails ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'}`
 						].join(' ')}
 					/>

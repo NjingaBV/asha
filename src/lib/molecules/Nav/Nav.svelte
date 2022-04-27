@@ -12,7 +12,7 @@
 		`${
 			headerMenu
 				? 'no-underline whitespace-nowrap mr-4 hidden md:inline-block'
-				: 'md:hidden pb-5 fixed h-screen flex-shrink-0 w-full md:w-64 md:sticky z-20'
+				: 'md:hidden pb-5 fixed h-screen flex-shrink-0 w-full md:w-64 md:sticky z-40'
 		}`
 	].join(' ')}
 	transition:fly={{ y: -200, duration: 400 }}

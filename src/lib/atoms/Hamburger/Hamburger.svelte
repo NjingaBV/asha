@@ -17,7 +17,7 @@
 	on:click={onClick}
 	aria-expanded={open}
 	aria-label={ariaLabel}
-	class=" cursor-pointer flex items-center overflow-hidden"
+	class="cursor-pointer flex items-center overflow-hidden md:hidden"
 >
 	<svg class:open viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" {width}>
 		<path class="top" d={hamburger} />

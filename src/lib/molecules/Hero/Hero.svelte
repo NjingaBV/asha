@@ -44,10 +44,10 @@
 		style="--tw-gradient-stops: {backgroundColor}, {backgroundColor}, rgb(15 23 42 / 0)"
 	/>
 	<div
-		class="flex flex-col items-center md:items-start absolute bottom-0 w-full p-4 h-fit z-20 gap-2"
+		class="flex flex-col items-center md:items-start absolute bottom-0 w-full p-4 h-fit z-20 gap-4"
 		style="color: var(--text-color);"
 	>
-		{#if title}<h1 class="text-color font-black text-3xl md:text-6xl">{title}</h1>{/if}
+		{#if title}<h1 class="text-color text-center font-black text-3xl md:text-6xl">{title}</h1>{/if}
 		{#if details}<h3 class="text-color text-xs opacity-80">{details}</h3>{/if}
 		<div class="w-1/2">
 			<Button color="#ffffff" size="large">

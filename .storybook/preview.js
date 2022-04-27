@@ -9,6 +9,7 @@ export const parameters = {
 			date: /Date$/
 		}
 	},
+	layout: 'fullscreen',
 	viewport: {
 		viewports: INITIAL_VIEWPORTS,
 		defaultViewport: 'iphone6'

@@ -27,7 +27,7 @@
 
 <header
 	class={[
-		`flex items-center top-0 z-20 px-2 md:px-0 sticky h-[var(--header-height)]`,
+		`flex items-center top-0 z-50 px-2 md:px-0 sticky h-[var(--header-height)]`,
 		`container bg-surface-1/50 text-lg backdrop-blur-sm transition-transform ease-in `
 	].join(' ')}
 	class:motion-safe:-translate-y-full={offscreen}
@@ -35,5 +35,6 @@
 >
 	<Logo {...logo} />
 	<Nav headerMenu={true} links={navLinks} />
+	<slot/>
 	<Hamburger {onClick} {open} />
 </header>

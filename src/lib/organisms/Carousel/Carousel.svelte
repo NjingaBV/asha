@@ -10,11 +10,11 @@
 	$: isEven = cards.length % 2 === 0;
 </script>
 
-<div>
+<div class="p-4">
 	{#if title}
 		{#if category}<h5 class="font-black text-base tracking-tighter category-color" style="--text-color: {color}; color: var(--text-color);">{category}</h5>{/if}
-		<h2 class="font-black text-3xl md:text-4xl mb-3 md:mb-5">{title}</h2>
-		{#if overview}<p class="text-base md:text-lg mb-4">{overview}</p>{/if}
+		<h2 class="font-black text-3xl md:text-4xl mb-5 md:mb-7">{title}</h2>
+		{#if overview}<p class="text-base md:text-lg mb-5">{overview}</p>{/if}
 	{/if}
 	<ul
 		class={['flex gap-4 w-full', `${isEven && 'lg:flex-wrap'}`, 'overflow-x-auto snap-x'].join(' ')}
