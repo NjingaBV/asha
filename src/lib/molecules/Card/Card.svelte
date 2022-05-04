@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Button from '$lib/atoms/Button/Button.svelte';
-	import type { IImage } from '@djfacemaker/core';
+	import type { ImageType } from '$types';
 
 	export let title: string;
 	export let subtitle: string;
 	export let overview: string;
-	export let imgSrc: IImage;
+	export let imgSrc: ImageType;
 	export let buttonName: string;
 	export let buttonLink: string;
 	export let backgroundColor: `#${string}`;
@@ -52,7 +52,11 @@
 					</h4>
 				{/if}
 				{#if title}
-					<h2 class={`text-slate-100 text-3xl md:text-4xl mb-4 ${subtitle ? 'text-left' : 'text-center'} font-black`}>
+					<h2
+						class={`text-slate-100 text-3xl md:text-4xl mb-4 ${
+							subtitle ? 'text-left' : 'text-center'
+						} font-black`}
+					>
 						{title}
 					</h2>
 				{/if}

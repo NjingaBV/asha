@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Button from '$lib/atoms/Button/Button.svelte';
-	import type { IImage } from '@djfacemaker/core';
+	import type { ImageType } from '../../../types';
 
 	export let title: string;
 	export let overview: string;
 	export let details: string;
-	export let imgSrc: IImage;
+	export let imgSrc: ImageType;
 	export let backgroundColor: `#${string}` = '#000000';
 
 	const play = 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z';

@@ -6,10 +6,10 @@
 	import Nav from '$lib/molecules/Nav/Nav.svelte';
 	import HeroTile from '$lib/organisms/HeroTile/HeroTile.svelte';
 
-	import type { ILink, ILogo, ISlice } from '@djfacemaker/core';
+	import type { LinkType, LogoType } from '../../../types';
 
-	export let navLinks: ILink[] = [];
-	export let logo: ILogo;
+	export let navLinks: LinkType[] = [];
+	export let logo: LogoType;
 	export let slices = [];
 	export let open = false;
 	export let onClick = () => {
@@ -17,6 +17,7 @@
 	};
 	export let alternateColor = false;
 	export let cta;
+
 	$: isCta = cta && cta.url && (cta.label || cta.icon);
 
 	const bgColor = (index: number) => {
@@ -40,7 +41,7 @@
 	{#each slices as slice, index}
 		<section class="w-full h-full" style="background-color:{bgColor(index)}">
 			{#if slice.type === 'carousel'}
-				<div class="container py-10 mx-auto">
+				<div class="container mx-auto">
 					<Carousel {...slice} />
 				</div>
 			{/if}
@@ -57,3 +58,4 @@
 		</section>
 	{/each}
 </main>
+

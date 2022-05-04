@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { ILink } from '@djfacemaker/core';
+	import type { LinkType } from '../../../types';
 	import { fly } from 'svelte/transition';
 
 	export let headerMenu = false;
-	export let links: ILink[] = [];
+	export let links: LinkType[] = [];
 </script>
 
 <nav

@@ -20,7 +20,7 @@ const config = {
 			emitTypes: true,
 			exports: (filepath) => !/^_|\/_|\.d\.ts$|\.stories\.svelte$/.test(filepath),
 			files: () => true
-		}
+		},
 	}
 };
 

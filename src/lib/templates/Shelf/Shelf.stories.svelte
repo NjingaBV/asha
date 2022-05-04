@@ -39,6 +39,7 @@
 				'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format'
 		},
 		open: false,
+		alternateColor: true,
 		navLinks: [
 			{
 				label: 'Home',
@@ -125,6 +126,62 @@
 						buttonName: 'Entrez dans la danse',
 						buttonLink: 'https://audioboom.com/channels/4993780/episodes',
 						backgroundColor: '#024a99',
+						mixColor: true
+					}
+				]
+			},
+			{
+				type: 'carousel',
+				title: 'Dans les backs',
+				category: 'Music',
+				cards: [
+					{
+						imgSrc: {
+							desktop:
+								'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format',
+							mobile:
+								'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format',
+							tablet:
+								'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format'
+						},
+					}
+				]
+			},
+			{
+				type: 'carousel',
+				title: 'Emissions',
+				category: 'Show',
+				cards: [
+					{
+						title: 'Sagacité',
+						overview:
+							'Le programme pour les entrepreneurs d\'Afrique et de la diaspora. Relever des défis, résoudre des problèmes et apporter des solutions n\'a plus aucun secret pour eux.',
+						imgSrc: {
+							desktop:
+								'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format',
+							mobile:
+								'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format',
+							tablet:
+								'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format'
+						},
+						backgroundColor: '#C48C3B',
+						mixColor: true
+					},
+					{
+						title: "1 Question Pour 2.",
+						overview:
+							"Les céréales, c'est avant ou après le lait ? La capsule de Daphné vous interroge sur les questions essentielles du quotidien en duo et ce n'est pas toujours très conventionnel.",
+						imgSrc: {
+							desktop:
+								'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format',
+							mobile:
+								'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format',
+							tablet:
+								'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format'
+						},
+						buttonName: 'Foire aux questions',
+						buttonLink: 'https://youtube.com/playlist?list=PL4H1Npa0YXqYJkl25FzX-A08dI-LSnAb8',
+						backgroundColor: '#FF7BBF',
 						mixColor: true
 					}
 				]

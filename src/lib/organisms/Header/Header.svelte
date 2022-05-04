@@ -1,10 +1,12 @@
 <script lang="ts">
-	export let logo: ILogo
 	import Hamburger from '$lib/atoms/Hamburger/Hamburger.svelte';
 	import Logo from '$lib/molecules/Logo/Logo.svelte';
 	import Nav from '$lib/molecules/Nav/Nav.svelte';
-	import type { ILink, ILogo } from '@djfacemaker/core';
-	export let navLinks: ILink[] = [];
+	
+	import type { LinkType, LogoType } from '../../../types';
+	
+	export let logo: LogoType;
+	export let navLinks: LinkType[] = [];
 	export let open = false;
 	export let onClick = () => {
 		open = !open;

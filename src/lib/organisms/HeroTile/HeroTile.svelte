@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Tile from '$lib/molecules/Tile/Tile.svelte';
-	import type { ILogo } from '@djfacemaker/core';
+	import type { LogoType } from '../../../types';
+	
 	export let images: string[] = [];
-	export let logo: ILogo;
+	export let logo: LogoType;
 </script>
 
 <div
