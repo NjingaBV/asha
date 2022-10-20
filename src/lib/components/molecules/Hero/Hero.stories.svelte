@@ -28,7 +28,9 @@
 			mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
 			tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
 		},
-        backgroundColor: '#6c00e2'
+        backgroundColor: '#6c00e2',
+		ctaLabel: 'Regarder',
+		ctaIcon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
 	}}
 />
 
@@ -43,7 +45,9 @@
 			mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 			tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
 		},
-        backgroundColor: '#990505'
+        backgroundColor: '#990505',
+		ctaLabel: 'Regarder',
+		ctaIcon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
 	}}
 />
 
@@ -57,7 +61,8 @@
 			mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 			tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
 		},
-        backgroundColor: '#024a99'
+        backgroundColor: '#024a99',
+		ctaLabel: 'En savoir plus',
 	}}
 />
 

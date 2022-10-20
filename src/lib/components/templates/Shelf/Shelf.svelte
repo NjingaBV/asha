@@ -4,11 +4,10 @@
 	import Nav from '$lib/components/molecules/Nav/Nav.svelte';
 	import HeroTile from '$lib/components/organisms/HeroTile/HeroTile.svelte';
 
-	import type { LinkType, LogoType } from '$lib/models';
+	import type { LinkType, SliceType } from '$lib/models';
 
 	export let navLinks: LinkType[] = [];
-	export let logo: LogoType;
-	export let slices = [];
+	export let slices: SliceType[] = [];
 	export let open = false;
 	export let onClick = () => {
 		open = !open;
@@ -29,17 +28,17 @@
 	{/if}
 	{#each slices as slice, index}
 		<section class="w-full h-full" style="background-color:{bgColor(index)}">
-			{#if slice.type === 'carousel'}
+			{#if slice.name === 'carousel'}
 				<div class="container mx-auto">
 					<Carousel {...slice} />
 				</div>
 			{/if}
-			{#if slice.type === 'hero'}
+			{#if slice.name === 'hero'}
 				<div>
 					<Hero {...slice} />
 				</div>
 			{/if}
-			{#if slice.type === 'tiles'}
+			{#if slice.name === 'tiles'}
 				<div class="relative overflow-hidden h-[30vh] md:h-[50vh]">
 					<HeroTile {...slice} />
 				</div>

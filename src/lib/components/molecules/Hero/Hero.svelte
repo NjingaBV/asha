@@ -6,9 +6,9 @@
 	export let overview: string;
 	export let details: string;
 	export let imgSrc: ImageType;
+	export let ctaLabel: string;
+	export let ctaIcon: string;
 	export let backgroundColor: `#${string}` = '#000000';
-
-	const play = 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z';
 
 	$: rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i
 		.exec(backgroundColor)
@@ -49,16 +49,20 @@
 	>
 		{#if title}<h1 class="text-color text-center font-black text-3xl md:text-6xl">{title}</h1>{/if}
 		{#if details}<h3 class="text-color text-xs opacity-80">{details}</h3>{/if}
+		{#if ctaLabel}
 		<div class="w-1/2">
 			<Button color="#ffffff" size="large">
 				<h3 class="flex items-center gap-2 text-xl">
+					{#if ctaIcon}
 					<svg class="flex-none stroke-[5] h-6 w-6" stroke-width="2" viewBox="0 0 50 50">
-						<path d={play} />
+						<path d={ctaIcon} />
 					</svg>
-					<span>Regarder</span>
+					{/if}
+					<span>{ctaLabel}</span>
 				</h3>
 			</Button>
 		</div>
+		{/if}
 		{#if overview}<p class="text-color font-light line-clamp-3">{overview}</p>{/if}
 	</div>
 </div>

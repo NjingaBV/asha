@@ -56,7 +56,7 @@
 		],
 		slices: [
 			{
-				type: 'tiles',
+				name: 'tiles',
 				logo: {
 					imgUrl:
 						'https://images.prismic.io/djfacemakerv2/f8e0f24e-8600-4867-9691-9efb20be9ea9_fmk+transition+blanc.png?auto=compress,format'
@@ -73,7 +73,7 @@
 				]
 			},
 			{
-				type: 'carousel',
+				name: 'carousel',
 				title: 'Les dernières nouveautés',
 				category: 'Podcast',
 				cards: [
@@ -131,7 +131,7 @@
 				]
 			},
 			{
-				type: 'carousel',
+				name: 'carousel',
 				title: 'Dans les backs',
 				category: 'Music',
 				cards: [
@@ -148,7 +148,7 @@
 				]
 			},
 			{
-				type: 'carousel',
+				name: 'carousel',
 				title: 'Emissions',
 				category: 'Show',
 				cards: [
@@ -223,7 +223,7 @@
 		],
 		slices: [
 			{
-				type: 'hero',
+				name: 'hero',
 				title: "Des accessoires chics et malins pour avoir de l'allure.",
 				overview: "Et si être élégante au quotidien n'était qu'une affaire de secondes?",
 				imgSrc: {
@@ -238,7 +238,7 @@
 				buttonLink: 'https://njinga.fr'
 			},
 			{
-				type: 'carousel',
+				name: 'carousel',
 				title: 'Décontracté. Jour et nuit.',
 				category: 'Bonnet nuit et jour',
 				overview:
@@ -257,7 +257,7 @@
 				]
 			},
 			{
-				type: 'carousel',
+				name: 'carousel',
 				title: 'Itérations. Améliorations.',
 				category: 'Turbans modulables',
 				overview:
@@ -276,7 +276,7 @@
 				]
 			},
 			{
-				type: 'carousel',
+				name: 'carousel',
 				title: 'Turbans Modulables',
 				category: 'Accessoire de cheveux',
 				cards: [
@@ -319,7 +319,7 @@
 				]
 			},
 			{
-				type: 'carousel',
+				name: 'carousel',
 				title: 'Headbands Modulables',
 				category: 'Accessoire de cheveux',
 				cards: [
@@ -408,7 +408,7 @@
 		],
 		slices: [
 			{
-				type: 'tiles',
+				name: 'tiles',
 				logo: {
 					imgUrl:
 						'https://images.prismic.io/djfacemakerv2/f8e0f24e-8600-4867-9691-9efb20be9ea9_fmk+transition+blanc.png?auto=compress,format'
@@ -425,7 +425,7 @@
 				]
 			},
 			{
-				type: 'carousel',
+				name: 'carousel',
 				title: 'Les dernières nouveautés',
 				category: 'Podcast',
 				cards: [

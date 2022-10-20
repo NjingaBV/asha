@@ -1,6 +1,7 @@
 import type { ImageType } from "./image.type";
 
 export type CardType = {
+    name: 'card';
     title: string;
     subtitle: string;
     overview: string;
