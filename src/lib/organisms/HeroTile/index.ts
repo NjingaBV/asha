@@ -1,1 +1,0 @@
-export { default as HeroTile } from './HeroTile.svelte';

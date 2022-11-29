@@ -13,14 +13,13 @@ const config = {
 			]
 		}
 	}),
-
 	kit: {
 		adapter: adapter(),
 		package: {
 			emitTypes: true,
 			exports: (filepath) => !/^_|\/_|\.d\.ts$|\.stories\.svelte$/.test(filepath),
 			files: () => true
-		}
+		},
 	}
 };
 
