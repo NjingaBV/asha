@@ -8,7 +8,6 @@ jobs:
     environment: PROD
     steps:
       - uses: actions/checkout@v3
-      # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
         with:
           node-version: lts/*
@@ -20,7 +19,7 @@ jobs:
       - run: pnpm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
-      - run: cd package
       - run: npm publish
+        working-directory: ./package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
