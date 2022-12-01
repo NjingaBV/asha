@@ -10,10 +10,13 @@ jobs:
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: lts/*
           registry-url: 'https://npm.pkg.github.com'
-      - run: npm install
-      - run: npm run package
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.17.1
+      - run: pnpm i
+      - run: pnpm package
       - run: cd package
       - run: npm publish
         env:
