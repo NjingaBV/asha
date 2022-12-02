@@ -5,15 +5,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: PROD
     steps:
       - uses: actions/checkout@v3
-      # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: lts/*
           registry-url: 'https://npm.pkg.github.com'
-      - run: npm run package
-      - run: cd package
-      - run: npm publish
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.17.1
+      - run: pnpm i
+      - run: pnpm package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+      - run: npm publish
+        working-directory: ./package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
