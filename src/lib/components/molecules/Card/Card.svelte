@@ -18,13 +18,12 @@
 	<a href={buttonLink} class="cursor-pointer">
 		<div
 			class={`relative ${
-				withDetails && imgSrc ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'
+				imgSrc ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'
 			} max-h-screen border rounded-xl`}
 		>
 			<div class="flex flex-col h-full">
 				<div
-					class="relative h-full w-full rounded-xl"
-					style={`background-color:${backgroundColor};`}
+					class="bg relative h-full w-full rounded-xl" style="--bg-color: {backgroundColor}"
 				>
 					{#if imgSrc}
 						<picture>
@@ -36,8 +35,7 @@
 								loading="lazy"
 								class={[
 									`absolute inset-0 object-cover object-center md:object-top`,
-									`${mixColor && 'mix-blend-screen'} rounded-xl aspect-[9/16] md:aspect-[4/3]`,
-									`${withDetails ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'}`
+									`${mixColor && 'mix-blend-screen'} rounded-xl h-full w-full`,
 								].join(' ')}
 							/>
 						</picture>
@@ -82,7 +80,7 @@
 		} max-h-screen border rounded-xl`}
 	>
 		<div class="flex flex-col h-full">
-			<div class="relative h-full w-full rounded-xl" style={`background-color:${backgroundColor};`}>
+			<div class="bg relative h-full w-full rounded-xl" style="--bg-color: {backgroundColor}">
 				{#if imgSrc}
 					<picture>
 						{#if imgSrc.desktop}<source media="(min-width: 950px)" srcset={imgSrc.desktop} />{/if}
@@ -93,8 +91,7 @@
 							loading="lazy"
 							class={[
 								`absolute inset-0 object-cover object-center md:object-top`,
-								`${mixColor && 'mix-blend-screen'} rounded-xl aspect-[9/16] md:aspect-[4/3]`,
-								`${withDetails ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'}`
+								`${mixColor && 'mix-blend-screen'} rounded-xl h-full w-full`,
 							].join(' ')}
 						/>
 					</picture>
@@ -139,3 +136,10 @@
 		</div>
 	</div>
 {/if}
+
+
+<style>
+	.bg {
+		background-color: var(--bg-color);
+	}
+</style>

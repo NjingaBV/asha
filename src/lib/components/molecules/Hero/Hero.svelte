@@ -35,7 +35,7 @@
 			loading="lazy"
 			class={[
 				'absolute inset-0 object-cover object-top', 
-				'aspect-[9/13] md:aspect-[16/9]'
+				'h-full w-full'
 			].join(' ')}
 		/>
 	</picture>
