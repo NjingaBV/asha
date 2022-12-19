@@ -4,6 +4,7 @@
 	export let title: string;
 	export let category: string;
 	export let overview: string;
+	export let size: 'sm' | 'md' | 'lg' = 'lg';
 	export let color: `#${string}` = '#6b6b6b';
 	export let cards: Array<CardType> = [];
 	$: onlyOneItem = cards.length === 1;
@@ -12,7 +13,12 @@
 
 <div class="p-4">
 	{#if title}
-		{#if category}<h5 class="font-black text-base tracking-tighter category-color" style="--text-color: {color};">{category}</h5>{/if}
+		{#if category}<h5
+				class="font-black text-base tracking-tighter category-color"
+				style="--text-color: {color};"
+			>
+				{category}
+			</h5>{/if}
 		<h2 class="font-black text-3xl md:text-4xl mb-5 md:mb-7">{title}</h2>
 		{#if overview}<p class="text-base md:text-lg mb-5">{overview}</p>{/if}
 	{/if}
@@ -25,6 +31,8 @@
 					'flex-none h-full',
 					`${onlyOneItem ? 'w-full' : 'w-10/12'}`,
 					`${isEven ? 'lg:w-[49%]' : 'lg:w-[45%]'}`,
+					`${size == 'sm' && 'lg:w-[25%]'}`,
+					`${size == 'md' && 'lg:w-[35%]'}`,
 					'snap-center md:snap-none'
 				].join(' ')}
 			>
