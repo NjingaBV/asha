@@ -31,7 +31,7 @@ specifiers:
   svelte: ^3.53.1
   svelte-check: ^3.0.0
   svelte-loader: ^3.1.4
-  svelte-preprocess: ^4.10.7
+  svelte-preprocess: ^5.0.0
   svelte2tsx: ^0.6.0
   tailwindcss: ^3.2.4
   tslib: ^2.4.1
@@ -69,7 +69,7 @@ devDependencies:
   svelte: 3.53.1
   svelte-check: 3.0.1_vcoft6nb6omccywevsnfdtm7zm
   svelte-loader: 3.1.4_svelte@3.53.1
-  svelte-preprocess: 4.10.7_kxc5u27vnhklijxkxhl6oubdfi
+  svelte-preprocess: 5.0.0_kxc5u27vnhklijxkxhl6oubdfi
   svelte2tsx: 0.6.0_7dvewpees4iyn2tkw2qzal77a4
   tailwindcss: 3.2.4_postcss@8.4.19
   tslib: 2.4.1
@@ -11327,6 +11327,7 @@ packages:
 
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+    deprecated: Please use @jridgewell/sourcemap-codec instead
     dev: true
 
   /space-separated-tokens/1.1.5:
@@ -11769,6 +11770,7 @@ packages:
       svelte: 3.53.1
       typescript: 4.9.3
     dev: true
+
 
   /svelte-preprocess/5.0.0_tvgwcqdqnnkex7dbo5hud4sj5q:
     resolution: {integrity: sha512-q7lpa7i2FBu8Pa+G0MmuQQWETBwCKgsGmuq1Sf6n8q4uaG9ZLcLP0Y+etC6bF4sE6EbLxfiI38zV6RfPe3RSfg==}
