@@ -32,7 +32,7 @@ specifiers:
   svelte-check: ^2.10.0
   svelte-loader: ^3.1.4
   svelte-preprocess: ^4.10.7
-  svelte2tsx: ^0.5.21
+  svelte2tsx: ^0.6.0
   tailwindcss: ^3.2.4
   tslib: ^2.4.1
   typescript: ^4.9.3
@@ -70,7 +70,7 @@ devDependencies:
   svelte-check: 2.10.0_vcoft6nb6omccywevsnfdtm7zm
   svelte-loader: 3.1.4_svelte@3.53.1
   svelte-preprocess: 4.10.7_kxc5u27vnhklijxkxhl6oubdfi
-  svelte2tsx: 0.5.21_7dvewpees4iyn2tkw2qzal77a4
+  svelte2tsx: 0.6.0_7dvewpees4iyn2tkw2qzal77a4
   tailwindcss: 3.2.4_postcss@8.4.19
   tslib: 2.4.1
   typescript: 4.9.3
@@ -4698,6 +4698,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     dev: true
@@ -6907,6 +6908,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -9086,6 +9088,7 @@ packages:
 
   /nan/2.16.0:
     resolution: {integrity: sha512-UdAqHyFngu7TfQKsCBgAA6pWDkT8MAO7d0jyOecVhN5354xbLqdn8mV9Tat9gepAupm0bt2DbeaSC8vS52MuFA==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -11825,6 +11828,18 @@ packages:
     peerDependencies:
       svelte: ^3.24
       typescript: ^4.1.2
+    dependencies:
+      dedent-js: 1.0.1
+      pascal-case: 3.1.2
+      svelte: 3.53.1
+      typescript: 4.9.3
+    dev: true
+
+  /svelte2tsx/0.6.0_7dvewpees4iyn2tkw2qzal77a4:
+    resolution: {integrity: sha512-TrxfQkO7CKi8Pu2eC/FyteDCdk3OOeQV5u6z7OjYAsOhsd0ClzAKqxJdvp6xxNQLrbFzf/XvCi9Fy8MQ1MleFA==}
+    peerDependencies:
+      svelte: ^3.55
+      typescript: ^4.9.4
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
