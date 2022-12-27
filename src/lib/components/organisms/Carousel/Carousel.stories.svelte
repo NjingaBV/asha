@@ -298,6 +298,7 @@
 	args={{
 		title: 'Turbans Modulables',
 		category: 'Accessoire de cheveux',
+        size: 'md',
 		cards: [
 			{
 				title: 'Doré',
