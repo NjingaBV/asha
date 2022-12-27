@@ -12,6 +12,10 @@
 		"type": "git",
 		"url": "https://github.com/NjingaBV/asha.git"
 	},
+	"packageManager": "pnpm@7.20.0",
+	"engines": {
+		"pnpm": "^7.0.0"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -30,6 +34,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.5",
+		"@changesets/cli": "^2.26.0",
 		"@storybook/addon-actions": "^6.5.13",
 		"@storybook/addon-essentials": "^6.5.13",
 		"@storybook/addon-links": "^6.5.13",
