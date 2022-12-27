@@ -1,7 +1,7 @@
 export type LogoType = {
-    title?: string;
+	title?: string;
 	subtitle?: string;
 	imgUrl?: string;
 	imgAlt?: string;
 	showTitle?: boolean;
-}
+};

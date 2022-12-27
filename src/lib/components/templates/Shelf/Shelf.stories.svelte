@@ -143,7 +143,7 @@
 								'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format',
 							tablet:
 								'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format'
-						},
+						}
 					}
 				]
 			},
@@ -155,7 +155,7 @@
 					{
 						title: 'Sagacité',
 						overview:
-							'Le programme pour les entrepreneurs d\'Afrique et de la diaspora. Relever des défis, résoudre des problèmes et apporter des solutions n\'a plus aucun secret pour eux.',
+							"Le programme pour les entrepreneurs d'Afrique et de la diaspora. Relever des défis, résoudre des problèmes et apporter des solutions n'a plus aucun secret pour eux.",
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format',
@@ -168,7 +168,7 @@
 						mixColor: true
 					},
 					{
-						title: "1 Question Pour 2.",
+						title: '1 Question Pour 2.',
 						overview:
 							"Les céréales, c'est avant ou après le lait ? La capsule de Daphné vous interroge sur les questions essentielles du quotidien en duo et ce n'est pas toujours très conventionnel.",
 						imgSrc: {

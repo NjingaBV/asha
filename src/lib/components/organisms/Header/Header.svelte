@@ -2,9 +2,9 @@
 	import Hamburger from '$lib/components/atoms/Hamburger/Hamburger.svelte';
 	import Logo from '$lib/components/molecules/Logo/Logo.svelte';
 	import Nav from '$lib/components/molecules/Nav/Nav.svelte';
-	
+
 	import type { LinkType, LogoType } from '$lib/models';
-	
+
 	export let logo: LogoType;
 	export let navLinks: LinkType[] = [];
 	export let open = false;
@@ -12,17 +12,16 @@
 		open = !open;
 	};
 
-	let previousY: number
-	let currentY: number
-	let clientHeight: number
+	let previousY: number;
+	let currentY: number;
+	let clientHeight: number;
 	const deriveDirection = (y: number) => {
-		const direction = !previousY || previousY < y ? 'down' : 'up'
-		previousY = y
-		return direction
-	}
-	$: scrollDirection = deriveDirection(currentY)
-	$: offscreen = scrollDirection === 'down' && currentY > clientHeight * 4
-
+		const direction = !previousY || previousY < y ? 'down' : 'up';
+		previousY = y;
+		return direction;
+	};
+	$: scrollDirection = deriveDirection(currentY);
+	$: offscreen = scrollDirection === 'down' && currentY > clientHeight * 4;
 </script>
 
 <svelte:window bind:scrollY={currentY} />
@@ -37,6 +36,6 @@
 >
 	<Logo {...logo} />
 	<Nav headerMenu={true} links={navLinks} />
-	<slot/>
+	<slot />
 	<Hamburger {onClick} {open} />
 </header>

@@ -22,9 +22,7 @@
 			} max-h-screen border rounded-xl`}
 		>
 			<div class="flex flex-col h-full">
-				<div
-					class="bg relative h-full w-full rounded-xl" style="--bg-color: {backgroundColor}"
-				>
+				<div class="bg relative h-full w-full rounded-xl" style="--bg-color: {backgroundColor}">
 					{#if imgSrc}
 						<picture>
 							{#if imgSrc.desktop}<source media="(min-width: 950px)" srcset={imgSrc.desktop} />{/if}
@@ -35,7 +33,7 @@
 								loading="lazy"
 								class={[
 									`absolute inset-0 object-cover object-center md:object-top`,
-									`${mixColor && 'mix-blend-screen'} rounded-xl h-full w-full`,
+									`${mixColor && 'mix-blend-screen'} rounded-xl h-full w-full`
 								].join(' ')}
 							/>
 						</picture>
@@ -91,7 +89,7 @@
 							loading="lazy"
 							class={[
 								`absolute inset-0 object-cover object-center md:object-top`,
-								`${mixColor && 'mix-blend-screen'} rounded-xl h-full w-full`,
+								`${mixColor && 'mix-blend-screen'} rounded-xl h-full w-full`
 							].join(' ')}
 						/>
 					</picture>
@@ -136,7 +134,6 @@
 		</div>
 	</div>
 {/if}
-
 
 <style>
 	.bg {

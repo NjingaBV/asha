@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let color = '#ff9800';
-    export let position = 'top';
+	export let position = 'top';
 </script>
 
 <div class="w-1/2 md:w-1/3 h-full">

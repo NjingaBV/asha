@@ -9,9 +9,9 @@
 <div class="flex flex-col w-full py-2">
 	<div class="flex items-center justify-start">
 		{#if imgUrl}
-		<div class="h-full flex items-center">
-			<img src={imgUrl} alt={imgAlt || title} class="h-10" loading="lazy" />
-		</div>
+			<div class="h-full flex items-center">
+				<img src={imgUrl} alt={imgAlt || title} class="h-10" loading="lazy" />
+			</div>
 		{/if}
 		{#if showTitle && title}
 			<div>
