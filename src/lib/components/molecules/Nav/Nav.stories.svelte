@@ -17,11 +17,11 @@
 
 <Story
 	name="Header Navigation"
-    parameters={{
-        viewport: {
-          defaultViewport: 'desktop',
-        },
-    }}
+	parameters={{
+		viewport: {
+			defaultViewport: 'desktop'
+		}
+	}}
 	args={{
 		headerMenu: true,
 		links: [

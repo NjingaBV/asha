@@ -6,9 +6,9 @@
 <Meta
 	title="Molecules/Blob"
 	component={Blob}
-    argTypes={{
-        color: { control: 'color' }
-    }}
+	argTypes={{
+		color: { control: 'color' }
+	}}
 />
 
 <Template let:args>
@@ -17,7 +17,7 @@
 
 <Story
 	name="Purple Blob"
-    args={{
-        color: '#6c00e2'
-    }}
+	args={{
+		color: '#6c00e2'
+	}}
 />

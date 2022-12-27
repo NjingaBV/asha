@@ -22,7 +22,7 @@
 		(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
 	);
 
-	$: textColor = (brightness > 125) ? '#000000' : '#ffffff';
+	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
 
 	let onClick = (event) => {
 		dispatch('click', event);
@@ -32,7 +32,9 @@
 <button
 	type="button"
 	class={[
-		`w-full flex justify-center ${rounded ? 'rounded-full' : 'rounded-md'} px-4 py-2 ${border && 'border'} font-medium ${size === 'small' && 'text-base'} ${size === 'medium' && 'text-lg'} ${
+		`w-full flex justify-center ${rounded ? 'rounded-full' : 'rounded-md'} px-4 py-2 ${
+			border && 'border'
+		} font-medium ${size === 'small' && 'text-base'} ${size === 'medium' && 'text-lg'} ${
 			size === 'large' && 'text-xl'
 		}`
 	].join(' ')}

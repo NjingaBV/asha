@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Tile from '$lib/components/molecules/Tile/Tile.svelte';
 	import type { LogoType } from '$lib/models';
-	
+
 	export let images: string[] = [];
 	export let logo: LogoType;
 </script>

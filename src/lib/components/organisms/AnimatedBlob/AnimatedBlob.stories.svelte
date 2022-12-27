@@ -7,7 +7,7 @@
 	title="Organisms/AnimatedBlob"
 	component={AnimatedBlob}
 	argTypes={{
-		colors: { control: 'object' },
+		colors: { control: 'object' }
 	}}
 />
 
@@ -18,6 +18,6 @@
 <Story
 	name="Animated"
 	args={{
-		colors: ['#6c00e2', '#ff00e2', '#00e2ff'],
+		colors: ['#6c00e2', '#ff00e2', '#00e2ff']
 	}}
 />

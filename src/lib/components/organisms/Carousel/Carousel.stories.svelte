@@ -144,8 +144,8 @@
 	name="Three items desktop"
 	parameters={{
 		viewport: {
-		  defaultViewport: 'desktop',
-		},
+			defaultViewport: 'desktop'
+		}
 	}}
 	args={{
 		cards: [
@@ -292,13 +292,13 @@
 	name="Njinga - Collections Desktop"
 	parameters={{
 		viewport: {
-		  defaultViewport: 'desktop',
-		},
+			defaultViewport: 'desktop'
+		}
 	}}
 	args={{
 		title: 'Turbans Modulables',
 		category: 'Accessoire de cheveux',
-        size: 'md',
+		size: 'md',
 		cards: [
 			{
 				title: 'Doré',
@@ -342,5 +342,3 @@
 		]
 	}}
 />
-
-

@@ -7,7 +7,7 @@
 	title="Atoms/Hamburger"
 	component={Hamburger}
 	argTypes={{
-		open: { control: 'boolean' },
+		open: { control: 'boolean' }
 	}}
 />
 
@@ -28,4 +28,3 @@
 		open: true
 	}}
 />
-

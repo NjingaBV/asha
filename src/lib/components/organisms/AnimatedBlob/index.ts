@@ -1,1 +1,1 @@
-export {default as AnimatedBlob} from './AnimatedBlob.svelte';
+export { default as AnimatedBlob } from './AnimatedBlob.svelte';
