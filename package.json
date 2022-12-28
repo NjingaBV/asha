@@ -10,7 +10,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/NjingaBV/asha.git"
+		"url": "git+https://github.com/NjingaBV/asha.git"
+	},
+	"bugs": {
+		"url": "https://github.com/NjingaBV/asha/issues"
 	},
 	"packageManager": "pnpm@7.20.0",
 	"engines": {
@@ -27,6 +30,8 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook",
+		"release": "changeset publish",
+		"precommit": "precommit",
 		"publish": "npm publish"
 	},
 	"exports": {
