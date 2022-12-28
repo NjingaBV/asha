@@ -342,3 +342,61 @@
 		]
 	}}
 />
+
+<Story
+	name="Njinga - Collections Desktop Variant"
+	parameters={{
+		viewport: {
+			defaultViewport: 'desktop'
+		}
+	}}
+	args={{
+		title: 'Turbans Modulables',
+		category: 'Accessoire de cheveux',
+		size: 'md',
+		cards: [
+			{
+				title: 'Doré',
+				subtitle: '€49,99',
+				imgSrc: {
+					desktop:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+					mobile:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+					tablet:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269'
+				},
+				buttonLink: 'https://njinga.fr',
+				textOnImage: false
+			},
+			{
+				title: 'Panthère',
+				subtitle: '€49,99',
+				imgSrc: {
+					desktop:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
+					mobile:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
+					tablet:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957'
+				},
+				buttonLink: 'https://njinga.fr',
+				textOnImage: false
+			},
+			{
+				title: 'Malabo',
+				subtitle: '€49,99',
+				imgSrc: {
+					desktop:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
+					mobile:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
+					tablet:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836'
+				},
+				buttonLink: 'https://njinga.fr',
+				textOnImage: false
+			}
+		]
+	}}
+/>
