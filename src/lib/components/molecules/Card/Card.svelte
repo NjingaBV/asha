@@ -10,7 +10,7 @@
 	export let buttonName: string;
 	export let buttonLink: string;
 	export let backgroundColor: `#${string}`;
-	export let mixColor: boolean = false;
+	export let mixColor = false;
 	export let textOnImage = true;
 
 	$: withDetails = overview || buttonName;

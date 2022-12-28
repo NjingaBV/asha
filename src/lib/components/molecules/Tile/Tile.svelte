@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let images = [];
-	export let speed: number = 0.5;
+	export let speed = 0.5;
 	let scroll;
 </script>
 

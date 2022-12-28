@@ -4,7 +4,7 @@
 </script>
 
 {#if isLinkable}
-	<a href={link} target="_blank" class="cursor-pointer"><slot /></a>
+	<a href={link} target="_blank" rel="noreferrer" class="cursor-pointer"><slot /></a>
 {:else}
 	<slot />
 {/if}
