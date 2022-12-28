@@ -10,7 +10,7 @@
 	export let buttonName: string;
 	export let buttonLink: string;
 	export let backgroundColor: `#${string}`;
-	export let mixColor: boolean = false;
+	export let mixColor = false;
 	export let textOnImage = true;
 
 	$: withDetails = overview || buttonName;
@@ -80,11 +80,7 @@
 	</div>
 </Linkable>
 {#if (withDetails || title) && !textOnImage}
-	<div
-		class={[
-			'p-4 rounded-b-xl flex flex-col'
-		].join(' ')}
-	>
+	<div class={['p-4 rounded-b-xl flex flex-col'].join(' ')}>
 		{#if subtitle}
 			<h4 class="text-slate-700 text-lg text-left font-black">
 				{subtitle}
