@@ -5,7 +5,7 @@
 
 	import type { LinkType, LogoType, SliceType } from '$lib/models';
 
-	export let uiService;
+	export let uiService: any;
 	uiService.start();
 
 	export let slices: SliceType[] = [];
@@ -14,7 +14,7 @@
 	export let alternateColor = false;
 	export let onClick = () => uiService.send('TOGGLE_MENU');
 	export let open = $uiService.matches('menu.opened');
-	export let cta;
+	export let cta: { label: string; url: string; icon: string; href: string };
 	$: isCta = cta && cta.url && (cta.label || cta.icon);
 </script>
 
@@ -23,4 +23,4 @@
 		<a href={cta.href}><Button>{cta.label}</Button></a>
 	{/if}
 </Header>
-<Shelf {slices} {logo} {open} {onClick} {navLinks} {alternateColor} />
+<Shelf {slices} {open} {navLinks} {alternateColor} />

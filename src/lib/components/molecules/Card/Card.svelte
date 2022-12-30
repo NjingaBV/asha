@@ -10,13 +10,14 @@
 	export let buttonName: string;
 	export let buttonLink: string;
 	export let backgroundColor: `#${string}`;
-	export let mixColor = false;
+	export let mixColor: boolean;
 	export let textOnImage = true;
 
 	$: withDetails = overview || buttonName;
+	$: isLinkable = Boolean(!buttonName && buttonLink);
 </script>
 
-<Linkable isLinkable={!buttonName && buttonLink} link={buttonLink}>
+<Linkable {isLinkable} link={buttonLink}>
 	<div
 		class={`relative ${
 			withDetails && imgSrc ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'

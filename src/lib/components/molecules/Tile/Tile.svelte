@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let images = [];
+	export let images: string[] = [];
 	export let speed = 0.5;
-	let scroll;
+	let scroll: number;
 </script>
 
 <svelte:window bind:scrollY={scroll} />

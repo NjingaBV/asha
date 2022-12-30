@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let isLinkable = false;
-	export let link: string;
+	export let link: string | undefined;
 </script>
 
 {#if isLinkable}

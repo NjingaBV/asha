@@ -8,13 +8,12 @@
 
 	const dispatch = createEventDispatcher();
 
-	$: rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i
-		.exec(color)
-		.slice(1)
-		.reduce((acc, val, i) => {
-			acc[i] = parseInt(val, 16);
+	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color) as RegExpExecArray;
+	$: rgb =
+		regex.slice(1).reduce((acc: string[], val, i) => {
+			acc[i] = `${parseInt(val, 16)}`;
 			return acc;
-		}, []);
+		}, []) || [];
 
 	$: backgroundColor = rgb.join();
 
@@ -24,7 +23,7 @@
 
 	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
 
-	let onClick = (event) => {
+	let onClick = (event: Event) => {
 		dispatch('click', event);
 	};
 </script>
