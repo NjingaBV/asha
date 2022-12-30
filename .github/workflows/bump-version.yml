@@ -31,9 +31,6 @@ jobs:
       - run: pnpm lint
       - run: pnpm check
 
-      - name: Install npm packages
-        run: pnpm ci
-
       - name: Setup Git
         run: |
           git config user.name 'Guy MANDINA'
