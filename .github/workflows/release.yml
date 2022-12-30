@@ -16,6 +16,15 @@ jobs:
         with:
           version: 7.17.1
       - run: pnpm install
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            engine-strict=true
+            @NjingaBV:registry=https://npm.pkg.github.com
+            //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          EOF
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
       - run: pnpm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
