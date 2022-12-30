@@ -6,12 +6,12 @@
 
 	import type { LinkType, SliceType } from '$lib/models';
 
+	import type { ComponentType } from 'svelte';
+
 	export let navLinks: LinkType[] = [];
 	export let slices: SliceType[] = [];
 	export let open = false;
-	export let onClick = () => {
-		open = !open;
-	};
+
 	export let alternateColor = false;
 
 	const bgColor = (index: number) => {
@@ -19,6 +19,17 @@
 			return index % 2 === 1 ? '#f5f5f5' : '#ffffff';
 		}
 		return '#ffffff';
+	};
+
+	const getComponent = (slice: SliceType): ComponentType | undefined => {
+		switch (slice.name) {
+			case 'carousel':
+				return Carousel;
+			case 'hero':
+				return Hero;
+			case 'tiles':
+				return HeroTile;
+		}
 	};
 </script>
 
@@ -28,21 +39,7 @@
 	{/if}
 	{#each slices as slice, index}
 		<section class="w-full h-full" style="background-color:{bgColor(index)}">
-			{#if slice.name === 'carousel'}
-				<div class="container mx-auto">
-					<Carousel {...slice} />
-				</div>
-			{/if}
-			{#if slice.name === 'hero'}
-				<div>
-					<Hero {...slice} />
-				</div>
-			{/if}
-			{#if slice.name === 'tiles'}
-				<div class="relative overflow-hidden h-[30vh] md:h-[50vh]">
-					<HeroTile {...slice} />
-				</div>
-			{/if}
+			<svelte:component this={getComponent(slice)} {...slice} />
 		</section>
 	{/each}
 </main>

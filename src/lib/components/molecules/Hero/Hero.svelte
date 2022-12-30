@@ -10,13 +10,12 @@
 	export let ctaIcon: string;
 	export let backgroundColor: `#${string}` = '#000000';
 
-	$: rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i
-		.exec(backgroundColor)
-		.slice(1)
-		.reduce((acc, val, i) => {
-			acc[i] = parseInt(val, 16);
+	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray;
+	$: rgb =
+		regex.slice(1).reduce((acc: string[], val, i) => {
+			acc[i] = `${parseInt(val, 16)}`;
 			return acc;
-		}, []);
+		}, []) || [];
 
 	$: brightness = Math.round(
 		(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000

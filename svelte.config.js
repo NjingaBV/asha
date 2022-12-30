@@ -1,22 +1,22 @@
 import adapter from '@sveltejs/adapter-auto';
-import preprocess from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 import tailwind from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: preprocess({
+	preprocess: vitePreprocess({
 		postcss: {
 			plugins: [tailwind, autoprefixer]
 		}
 	}),
 	kit: {
-		adapter: adapter(),
-		package: {
-			emitTypes: true,
-			exports: (filepath) => !/^_|\/_|\.d\.ts$|\.stories\.svelte$/.test(filepath),
-			files: () => true
-		}
+		adapter: adapter()
+	},
+	package: {
+		emitTypes: true,
+		exports: (filepath) => !/^_|\/_|\.d\.ts$|\.stories\.svelte$/.test(filepath),
+		files: () => true
 	}
 };
 
