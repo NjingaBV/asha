@@ -27,8 +27,14 @@
 			<div class="bg relative h-full w-full rounded-xl" style="--bg-color: {backgroundColor}">
 				{#if imgSrc}
 					<picture>
-						{#if imgSrc.desktop}<source media="(min-width: 950px)" srcset={imgSrc.desktop} />{/if}
-						{#if imgSrc.tablet}<source media="(min-width: 650px)" srcset={imgSrc.tablet} />{/if}
+						{#if imgSrc.desktop}<source
+								media="(min-width: 950px)"
+								srcset={imgSrc.desktop}
+							/>{/if}
+						{#if imgSrc.tablet}<source
+								media="(min-width: 650px)"
+								srcset={imgSrc.tablet}
+							/>{/if}
 						<img
 							src={imgSrc.mobile}
 							alt={title}
@@ -45,7 +51,9 @@
 				<div
 					class={[
 						'absolute w-full h-fit bottom-0',
-						`bg-gradient-to-t from-stone-900 ${withDetails && imgSrc && 'via-stone-900'}`,
+						`bg-gradient-to-t from-stone-900 ${
+							withDetails && imgSrc && 'via-stone-900'
+						}`,
 						'p-4 rounded-b-xl flex flex-col'
 					].join(' ')}
 				>

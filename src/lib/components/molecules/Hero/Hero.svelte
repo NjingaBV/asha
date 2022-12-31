@@ -46,14 +46,20 @@
 		class="flex flex-col items-center md:items-start absolute bottom-0 w-full p-4 h-fit z-20 gap-4"
 		style="color: var(--text-color);"
 	>
-		{#if title}<h1 class="text-color text-center font-black text-3xl md:text-6xl">{title}</h1>{/if}
+		{#if title}<h1 class="text-color text-center font-black text-3xl md:text-6xl">
+				{title}
+			</h1>{/if}
 		{#if details}<h3 class="text-color text-xs opacity-80">{details}</h3>{/if}
 		{#if ctaLabel}
 			<div class="w-1/2">
 				<Button color="#ffffff" size="large">
 					<h3 class="flex items-center gap-2 text-xl">
 						{#if ctaIcon}
-							<svg class="flex-none stroke-[5] h-6 w-6" stroke-width="2" viewBox="0 0 50 50">
+							<svg
+								class="flex-none stroke-[5] h-6 w-6"
+								stroke-width="2"
+								viewBox="0 0 50 50"
+							>
 								<path d={ctaIcon} />
 							</svg>
 						{/if}

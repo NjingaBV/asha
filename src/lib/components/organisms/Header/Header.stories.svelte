@@ -29,8 +29,7 @@
 	name="Menu Close"
 	args={{
 		logo: {
-			imgUrl:
-				'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format'
+			imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format'
 		},
 		open: false,
 		navLinks: [
@@ -46,8 +45,7 @@
 	args={{
 		logo: {
 			title: 'DJ FMK',
-			imgUrl:
-				'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format'
+			imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format'
 		},
 		open: true,
 		navLinks: [
