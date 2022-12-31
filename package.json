@@ -30,7 +30,6 @@
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook",
 		"release": "changeset publish",
-		"precommit": "precommit",
 		"publish": "npm publish"
 	},
 	"exports": {

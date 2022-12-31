@@ -35,8 +35,7 @@
 	name="DJ FMK - Home"
 	args={{
 		logo: {
-			imgUrl:
-				'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format'
+			imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format'
 		},
 		open: false,
 		alternateColor: true,
@@ -58,8 +57,7 @@
 			{
 				name: 'tiles',
 				logo: {
-					imgUrl:
-						'https://images.prismic.io/djfacemakerv2/f8e0f24e-8600-4867-9691-9efb20be9ea9_fmk+transition+blanc.png?auto=compress,format'
+					imgUrl: 'https://images.prismic.io/djfacemakerv2/f8e0f24e-8600-4867-9691-9efb20be9ea9_fmk+transition+blanc.png?auto=compress,format'
 				},
 				images: [
 					'https://images.prismic.io/djfacemakerv2/4a7327bf-a1e4-4767-aab1-d77b2a3d8391_FMK_Home.jpg?auto=compress,format',
@@ -84,10 +82,8 @@
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-							mobile:
-								'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-							tablet:
-								'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
+							mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
+							tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
 						},
 						buttonName: 'Boostez votre quotidien',
 						buttonLink: 'https://djfacemaker.com/simples-therapies/',
@@ -101,10 +97,8 @@
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-							mobile:
-								'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-							tablet:
-								'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
+							mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+							tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
 						},
 						buttonName: 'Entrez dans le club',
 						buttonLink: 'https://musique.rfi.fr/tag/auteur/herve-mandina',
@@ -118,10 +112,8 @@
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-							mobile:
-								'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-							tablet:
-								'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
+							mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+							tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
 						},
 						buttonName: 'Entrez dans la danse',
 						buttonLink: 'https://audioboom.com/channels/4993780/episodes',
@@ -139,10 +131,8 @@
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format',
-							mobile:
-								'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format',
-							tablet:
-								'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format'
+							mobile: 'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format',
+							tablet: 'https://images.prismic.io/djfacemakerv2/77f12aba-a888-4ce2-8b08-c6c8ffa71835_ACAL+cover.jpg?auto=compress,format'
 						}
 					}
 				]
@@ -159,10 +149,8 @@
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format',
-							mobile:
-								'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format',
-							tablet:
-								'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format'
+							mobile: 'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format',
+							tablet: 'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format'
 						},
 						backgroundColor: '#C48C3B',
 						mixColor: true
@@ -174,13 +162,12 @@
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format',
-							mobile:
-								'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format',
-							tablet:
-								'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format'
+							mobile: 'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format',
+							tablet: 'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format'
 						},
 						buttonName: 'Foire aux questions',
-						buttonLink: 'https://youtube.com/playlist?list=PL4H1Npa0YXqYJkl25FzX-A08dI-LSnAb8',
+						buttonLink:
+							'https://youtube.com/playlist?list=PL4H1Npa0YXqYJkl25FzX-A08dI-LSnAb8',
 						backgroundColor: '#FF7BBF',
 						mixColor: true
 					}
@@ -194,8 +181,7 @@
 	name="Njinga - Home"
 	args={{
 		logo: {
-			imgUrl:
-				'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Logo_njinga_raccourci_540x.png?v=1645790543'
+			imgUrl: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Logo_njinga_raccourci_540x.png?v=1645790543'
 		},
 		open: false,
 		alternateColor: true,
@@ -229,10 +215,8 @@
 				imgSrc: {
 					desktop:
 						'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_102_720x.jpg?v=1645793759',
-					mobile:
-						'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_102_720x.jpg?v=1645793759',
-					tablet:
-						'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_102_720x.jpg?v=1645793759'
+					mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_102_720x.jpg?v=1645793759',
+					tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_102_720x.jpg?v=1645793759'
 				},
 				buttonName: 'Découvrez comment',
 				buttonLink: 'https://njinga.fr'
@@ -248,10 +232,8 @@
 						imgSrc: {
 							desktop:
 								'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291',
-							mobile:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291',
-							tablet:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291'
+							mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291',
+							tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291'
 						}
 					}
 				]
@@ -267,10 +249,8 @@
 						imgSrc: {
 							desktop:
 								'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_89_24428b6f-c0e4-4b10-8738-263442c1ed6b_1080x.jpg?v=1645654449',
-							mobile:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_89_24428b6f-c0e4-4b10-8738-263442c1ed6b_1080x.jpg?v=1645654449',
-							tablet:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_89_24428b6f-c0e4-4b10-8738-263442c1ed6b_1080x.jpg?v=1645654449'
+							mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_89_24428b6f-c0e4-4b10-8738-263442c1ed6b_1080x.jpg?v=1645654449',
+							tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_89_24428b6f-c0e4-4b10-8738-263442c1ed6b_1080x.jpg?v=1645654449'
 						}
 					}
 				]
@@ -286,10 +266,8 @@
 						imgSrc: {
 							desktop:
 								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
-							mobile:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
-							tablet:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269'
+							mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+							tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269'
 						}
 					},
 					{
@@ -298,10 +276,8 @@
 						imgSrc: {
 							desktop:
 								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
-							mobile:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
-							tablet:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957'
+							mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
+							tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957'
 						}
 					},
 					{
@@ -310,10 +286,8 @@
 						imgSrc: {
 							desktop:
 								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
-							mobile:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
-							tablet:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836'
+							mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
+							tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836'
 						}
 					}
 				]
@@ -329,10 +303,8 @@
 						imgSrc: {
 							desktop:
 								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_101_large.jpg?v=1621177160',
-							mobile:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_101_large.jpg?v=1621177160',
-							tablet:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_101_large.jpg?v=1621177160'
+							mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_101_large.jpg?v=1621177160',
+							tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_101_large.jpg?v=1621177160'
 						}
 					},
 					{
@@ -341,10 +313,8 @@
 						imgSrc: {
 							desktop:
 								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_46_large.jpg?v=1621177619',
-							mobile:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_46_large.jpg?v=1621177619',
-							tablet:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_46_large.jpg?v=1621177619'
+							mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_46_large.jpg?v=1621177619',
+							tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_46_large.jpg?v=1621177619'
 						}
 					},
 					{
@@ -353,10 +323,8 @@
 						imgSrc: {
 							desktop:
 								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_132_large.jpg?v=1621177375',
-							mobile:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_132_large.jpg?v=1621177375',
-							tablet:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_132_large.jpg?v=1621177375'
+							mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_132_large.jpg?v=1621177375',
+							tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_132_large.jpg?v=1621177375'
 						}
 					},
 					{
@@ -365,10 +333,8 @@
 						imgSrc: {
 							desktop:
 								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_41_large.jpg?v=1621178350',
-							mobile:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_41_large.jpg?v=1621178350',
-							tablet:
-								'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_41_large.jpg?v=1621178350'
+							mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_41_large.jpg?v=1621178350',
+							tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_41_large.jpg?v=1621178350'
 						}
 					}
 				]
@@ -384,8 +350,7 @@
 			title: 'uranos',
 			subtitle: "Courtier d'assurances",
 			showTitle: true,
-			imgUrl:
-				'https://images.prismic.io/ouranos/5f910072-4e6d-4b5e-b47a-5649dc9312fe_O.png?Fauto=compress,format'
+			imgUrl: 'https://images.prismic.io/ouranos/5f910072-4e6d-4b5e-b47a-5649dc9312fe_O.png?Fauto=compress,format'
 		},
 		cta: {
 			label: 'Souscrire',
@@ -410,8 +375,7 @@
 			{
 				name: 'tiles',
 				logo: {
-					imgUrl:
-						'https://images.prismic.io/djfacemakerv2/f8e0f24e-8600-4867-9691-9efb20be9ea9_fmk+transition+blanc.png?auto=compress,format'
+					imgUrl: 'https://images.prismic.io/djfacemakerv2/f8e0f24e-8600-4867-9691-9efb20be9ea9_fmk+transition+blanc.png?auto=compress,format'
 				},
 				images: [
 					'https://images.prismic.io/djfacemakerv2/4a7327bf-a1e4-4767-aab1-d77b2a3d8391_FMK_Home.jpg?auto=compress,format',
@@ -436,10 +400,8 @@
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-							mobile:
-								'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-							tablet:
-								'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
+							mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
+							tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
 						},
 						buttonName: 'Boostez votre quotidien',
 						buttonLink: 'https://djfacemaker.com/simples-therapies/',
@@ -452,10 +414,8 @@
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-							mobile:
-								'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-							tablet:
-								'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
+							mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+							tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
 						},
 						buttonName: 'Entrez dans le club',
 						buttonLink: 'https://musique.rfi.fr/tag/auteur/herve-mandina',
@@ -468,10 +428,8 @@
 						imgSrc: {
 							desktop:
 								'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-							mobile:
-								'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-							tablet:
-								'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
+							mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+							tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
 						},
 						buttonName: 'Entrez dans la danse',
 						buttonLink: 'https://audioboom.com/channels/4993780/episodes',

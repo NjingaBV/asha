@@ -2,41 +2,45 @@ name: Bump version
 
 # Workflow runs when manually triggered using the UI or API.
 on:
-  workflow_dispatch:
-    # Inputs the workflow accepts.
-    inputs:
-      version:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Semver type of new version (major / minor / patch)'
-        # Input has to be provided for the workflow to run
-        required: true
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
+    workflow_dispatch:
+        # Inputs the workflow accepts.
+        inputs:
+            version:
+                # Friendly description to be shown in the UI instead of 'name'
+                description: 'Semver type of new version (major / minor / patch)'
+                # Input has to be provided for the workflow to run
+                required: true
+                type: choice
+                options:
+                    - patch
+                    - minor
+                    - major
 
 jobs:
-  bump-version:
-    runs-on: ubuntu-latest
+    bump-version:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
-      - run: pnpm check
+        steps:
+            - name: Check out source
+              uses: actions/checkout@v2
+              with:
+                  ssh-key: ${{ secrets.DEPLOY_KEY }}
+            - uses: actions/checkout@v3
+            - uses: pnpm/action-setup@v2.2.4
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: '16.x'
+                  cache: pnpm
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm lint
+            - run: pnpm check
 
-      - name: Setup Git
-        run: |
-          git config user.name 'Guy MANDINA'
-          git config user.email 'guyghost@gmail.com'
-      - name: bump version
-        run: npm version ${{ github.event.inputs.version }}
+            - name: Setup Git
+              run: |
+                  git config user.name 'Guy MANDINA'
+                  git config user.email 'guyghost@gmail.com'
+            - name: bump version
+              run: npm version ${{ github.event.inputs.version }}
 
-      - name: Push latest version
-        run: git push origin main --follow-tags
+            - name: Push latest version
+              run: git push origin main --follow-tags

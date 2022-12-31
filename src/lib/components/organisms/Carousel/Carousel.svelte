@@ -24,7 +24,9 @@
 		{#if overview}<p class="text-base md:text-lg mb-5">{overview}</p>{/if}
 	{/if}
 	<ul
-		class={['flex gap-4 w-full', `${isEven && 'lg:flex-wrap'}`, 'overflow-x-auto snap-x'].join(' ')}
+		class={['flex gap-4 w-full', `${isEven && 'lg:flex-wrap'}`, 'overflow-x-auto snap-x'].join(
+			' '
+		)}
 	>
 		{#each cards as card}
 			<li
