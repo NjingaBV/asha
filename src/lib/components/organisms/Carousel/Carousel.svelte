@@ -35,7 +35,7 @@
 					`${onlyOneItem ? 'w-full' : 'w-10/12'}`,
 					`${isEven ? 'lg:w-[39%]' : 'lg:w-[35%]'}`,
 					`${size == 'sm' && 'lg:w-[23%]'}`,
-                    `${size == 'md' && 'lg:w-[33%]'}`,
+					`${size == 'md' && 'lg:w-[33%]'}`,
 					'snap-center md:snap-none'
 				].join(' ')}
 			>
