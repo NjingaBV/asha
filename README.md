@@ -47,10 +47,4 @@ To use the git hooks in the repo, which will save you waiting for CI to tell you
 git config core.hookspath .githooks
 ```
 
-To use the git hooks in the repo, which will save you waiting for CI to tell you that you forgot to lint, run this:
-
-```bash
-git config core.hookspath .githooks
-```
-
 # asha
