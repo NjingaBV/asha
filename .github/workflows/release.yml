@@ -1,9 +1,8 @@
 name: Publish to GitHub Packages
 on:
-    workflow_run:
-        workflows: ['Bump version']
-        types:
-            - completed
+    push:
+        tags:
+            - 'v*'
 jobs:
     publish:
         runs-on: ubuntu-latest
