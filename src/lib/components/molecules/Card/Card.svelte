@@ -13,14 +13,13 @@
 	export let mixColor: boolean;
 	export let textOnImage = true;
 
-	$: withDetails = overview || buttonName;
 	$: isLinkable = Boolean(!buttonName && buttonLink);
 </script>
 
 <Linkable {isLinkable} link={buttonLink}>
 	<div
 		class={`relative ${
-			withDetails && imgSrc ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'
+			buttonName && imgSrc ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'
 		} max-h-screen border rounded-xl`}
 	>
 		<div class="flex flex-col h-full">
@@ -47,12 +46,12 @@
 					</picture>
 				{/if}
 			</div>
-			{#if (withDetails || title) && textOnImage}
+			{#if (buttonName || title) && textOnImage}
 				<div
 					class={[
 						'absolute w-full h-fit bottom-0',
 						`bg-gradient-to-t from-stone-900 ${
-							withDetails && imgSrc && 'via-stone-900'
+							buttonName && imgSrc && 'via-stone-900'
 						}`,
 						'p-4 rounded-b-xl flex flex-col'
 					].join(' ')}
@@ -88,7 +87,7 @@
 		</div>
 	</div>
 </Linkable>
-{#if (withDetails || title) && !textOnImage}
+{#if (buttonName || title) && !textOnImage}
 	<div class={['p-4 rounded-b-xl flex flex-col'].join(' ')}>
 		{#if subtitle}
 			<h4 class="text-slate-700 text-lg text-left font-black">
