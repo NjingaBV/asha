@@ -3,10 +3,7 @@
 	import Youtube from './Youtube.svelte';
 </script>
 
-<Meta
-	title="Atoms/Youtube"
-	component={Youtube}
-/>
+<Meta title="Atoms/Youtube" component={Youtube} />
 
 <Template let:args>
 	<Youtube {...args} />
@@ -15,6 +12,6 @@
 <Story
 	name="Youtube Player"
 	args={{
-		videoId: "G-ECTntZYtk"
+		videoId: 'G-ECTntZYtk'
 	}}
 />
