@@ -22,6 +22,7 @@
 	);
 
 	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
+    $: hasDetails = Boolean(title || details);
 </script>
 
 <div
@@ -39,7 +40,7 @@
 		/>
 	</picture>
 	<div
-		class="absolute bottom-0 h-3/4 w-full bg-gradient-to-t z-10 flex flex-col"
+		class={[`absolute bottom-0  w-full bg-gradient-to-t z-10 flex flex-col`, `${hasDetails ? "h-3/4" : "h-2/5"}`].join(' ')}
 		style="--tw-gradient-stops: {backgroundColor}, {backgroundColor}, rgb(15 23 42 / 0)"
 	/>
 	<div
