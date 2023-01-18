@@ -50,9 +50,11 @@
 		class="flex flex-col items-center md:items-start absolute bottom-0 w-full p-4 h-fit z-20 gap-4"
 		style="color: var(--text-color);"
 	>
-		{#if title}<h1 class="text-color text-center font-black text-3xl md:text-6xl">
+		{#if title}
+			<h1 class="text-color text-center font-black text-3xl md:text-6xl">
 				{title}
-			</h1>{/if}
+			</h1>
+		{/if}
 		{#if details}<h3 class="text-color text-xs opacity-80">{details}</h3>{/if}
 		{#if ctaLabel}
 			<div class="w-1/2">
