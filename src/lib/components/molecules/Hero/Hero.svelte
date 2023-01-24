@@ -10,6 +10,18 @@
 	export let ctaIcon: string;
 	export let backgroundColor: `#${string}` = '#000000';
 
+	let lineClampEnabled = true;
+	let lines = 5;
+
+	$: truncated = overview && overview.length > lines * 50;
+
+	const toggleLineClamp = () => {
+		if (truncated) {
+			lineClampEnabled = !lineClampEnabled;
+			dispatch('lineClampToggled', { lineClampEnabled });
+		}
+	};
+
 	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray;
 	$: rgb =
 		regex.slice(1).reduce((acc: string[], val, i) => {
@@ -47,7 +59,7 @@
 		style="--tw-gradient-stops: {backgroundColor}, {backgroundColor}, rgb(15 23 42 / 0)"
 	/>
 	<div
-		class="flex flex-col items-center md:items-start absolute bottom-0 w-full p-4 h-fit z-20 gap-4"
+		class="flex flex-col items-center absolute bottom-0 md:w-1/3 p-4 h-fit z-20 gap-4"
 		style="color: var(--text-color);"
 	>
 		{#if title}
@@ -57,7 +69,7 @@
 		{/if}
 		{#if details}<h3 class="text-color text-xs opacity-80">{details}</h3>{/if}
 		{#if ctaLabel}
-			<div class="w-1/2">
+			<div class="w-1/2 md:w-full">
 				<Button color="#ffffff" size="large">
 					<h3 class="flex items-center gap-2 text-xl">
 						{#if ctaIcon}
@@ -74,6 +86,19 @@
 				</Button>
 			</div>
 		{/if}
-		{#if overview}<p class="text-color font-light line-clamp-3">{overview}</p>{/if}
+		{#if overview}
+			<button
+				class={`relative flex flex-col ${!truncated && 'cursor-default'}`}
+				on:click={toggleLineClamp}
+			>
+				<p
+					class={`flex-1 text-color text-justify font-light ${
+						lineClampEnabled && 'line-clamp-5'
+					}`}
+				>
+					{overview}
+				</p>
+			</button>
+		{/if}
 	</div>
 </div>

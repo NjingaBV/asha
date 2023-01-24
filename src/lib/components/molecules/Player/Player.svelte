@@ -31,7 +31,7 @@
 
 	const youtubeRegExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
 
-	$: truncated = overview.length > lines * 45;
+	$: truncated = overview && overview.length > lines * 45;
 	$: match = url.match(youtubeRegExp);
 	$: videoId = match && match[2].length === 11 ? match[2] : null;
 
