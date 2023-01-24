@@ -6,12 +6,12 @@
 	export let imgUrl = '';
 	export let imgAlt = '';
 	export let showTitle = false;
-    export let link: string;
+	export let link: string;
 
-    $: isLinkable = Boolean(link);
+	$: isLinkable = Boolean(link);
 </script>
 
-<Linkable {isLinkable} link={link}>
+<Linkable {isLinkable} {link}>
 	<div class="flex flex-col w-full py-2">
 		<div class="flex items-center justify-start">
 			{#if imgUrl}
