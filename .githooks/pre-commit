@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ ... ]
+then
+  echo "Pre-commit hook failed because..."
+  exit 1
+fi
+
+pnpm install --frozen-lockfile
+echo "Pre-commit hook executed successfully"
+exit 0
