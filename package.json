@@ -32,10 +32,6 @@
 		"release": "changeset publish",
 		"publish": "npm publish"
 	},
-    "pre-commit": [
-        "format",
-        "test:unit"
-    ],
 	"exports": {
 		"./asha.css": "./asha.css"
 	},
