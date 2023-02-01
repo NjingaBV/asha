@@ -9,23 +9,22 @@
 
 	onMount(() => {
 		window.onYouTubeIframeAPIReady = () => {
-			player = new YT.Player('player', {
+			player = new window.YT.Player('player', {
 				events: {
 					onReady: onPlayerReady,
 					onStateChange: onPlayerStateChange
 				}
 			});
-			console.log('player: ', player);
 		};
 	});
 
-	const onPlayerReady = (event: YT.PlayerEvent) => {
+	const onPlayerReady = (event: window.YT.PlayerEvent) => {
 		event.target.playVideo();
 	};
 
-	const onPlayerStateChange = (event: YT.OnStateChangeEvent) => {
-		if (event.data === YT.PlayerState.PLAYING) {
-			console.log('video is playing');
+	const onPlayerStateChange = (event: window.YT.OnStateChangeEvent) => {
+		if (event.data === window.YT.PlayerState.PLAYING) {
+			dispatch('isPlaying');
 		}
 	};
 </script>
