@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
 	export let videoId: string;
 
@@ -15,7 +15,7 @@
 					onStateChange: onPlayerStateChange
 				}
 			});
-            console.log('player: ',player)
+			console.log('player: ', player);
 		};
 	});
 

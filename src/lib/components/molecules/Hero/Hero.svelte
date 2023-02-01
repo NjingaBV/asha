@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 	import type { ImageType } from '$lib/models';
 
@@ -10,6 +11,7 @@
 	export let ctaIcon: string;
 	export let backgroundColor: `#${string}` = '#000000';
 
+	const dispatch = createEventDispatcher();
 	let lineClampEnabled = true;
 	let lines = 5;
 

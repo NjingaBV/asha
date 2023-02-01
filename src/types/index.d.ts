@@ -1,7 +1,7 @@
 export {};
 
 declare global {
-    interface Window {
-        onYouTubeIframeAPIReady: any;
-    }
+	interface Window {
+		onYouTubeIframeAPIReady: any;
+	}
 }
