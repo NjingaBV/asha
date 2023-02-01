@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import type { ComponentType } from 'svelte';
 	import Youtube from '$lib/components/atoms/Youtube/Youtube.svelte';
 
 	export let url: string;
@@ -12,13 +13,7 @@
 	let lines = 5;
 
 	let showThumbnail = true;
-	let timeoutId;
-
-	const handleIframeLoad = () => {
-		timeoutId = setTimeout(() => {
-			showThumbnail = false;
-		}, 1000);
-	};
+	let timeoutId: number;
 
 	$: if (timeoutId) clearTimeout(timeoutId);
 
@@ -27,6 +22,11 @@
 	const toggleLineClamp = () => {
 		lineClampEnabled = !lineClampEnabled;
 		dispatch('lineClampToggled', { lineClampEnabled });
+	};
+
+	const togglePlay = () => {
+		showThumbnail = !showThumbnail;
+		dispatch('play');
 	};
 
 	const youtubeRegExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -44,9 +44,14 @@
 	};
 </script>
 
-<div class="relative w-full aspect-[16/9] sticky top-0 z-10">
+<div class="relative flex w-full aspect-[16/9] sticky top-0 z-10 items-center justify-center">
 	{#if showThumbnail}
-		<img src={thumbnail} class="w-full h-full object-cover" on:load={handleIframeLoad} />
+		<img src={thumbnail} alt="video thumbnail" class="absolute w-full h-full object-cover" />
+		<button class="absolute w-1/4 opacity-90" on:click={togglePlay}>
+			<svg class="stroke-[5] h-full fill-white" stroke-width="2" viewBox="0 0 50 50">
+				<path d="M 10 5.25 L 10 44.746094 L 43.570313 25 Z" />
+			</svg>
+		</button>
 	{:else}
 		<svelte:component this={getComponent(url)} {videoId} />
 	{/if}

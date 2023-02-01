@@ -1,84 +1,48 @@
-<script context="module">
-	import { setContext, onMount } from 'svelte';
-
-	let iframeApiReady = false;
-
-	var tag = document.createElement('script');
-	tag.src = 'https://www.youtube.com/iframe_api';
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-	window.onYouTubeIframeAPIReady = () => window.dispatchEvent(new Event('iframeApiReady'));
-</script>
-
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import { getContext } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 
-	export let videoId;
+    const dispatch = createEventDispatcher();
+
+	export let videoId: string;
 
 	let player;
-	let divId = 'player_' + parseInt(Math.random() * 109999);
 
-	export const play = () => {
-		player.playVideo();
-	};
-
-	const dispatch = createEventDispatcher();
-
-	window.addEventListener('iframeApiReady', function (e) {
-		player = new YT.Player(divId, {
-			videoId,
-			events: {
-				onReady: playerIsReady,
-				onStateChange: playerStateChange
-			},
-			playerVars: {
-				autoplay: 0,
-				controls: 1,
-				rel: 0,
-				showinfo: 0,
-				enablejsapi: 1,
-				modestbranding: 0,
-				iv_load_policy: 3,
-				playsinline: 1
-			}
-		});
+	onMount(() => {
+		window.onYouTubeIframeAPIReady = () => {
+			player = new YT.Player('player', {
+				events: {
+					onReady: onPlayerReady,
+					onStateChange: onPlayerStateChange
+				}
+			});
+            console.log('player: ',player)
+		};
 	});
 
-	const playerStateChange = ({ data }) => {
-		dispatch('PlayerStateChange', data);
-		console.log(data);
-		let strReturn = '';
-		if (data == -1) {
-			strReturn = '(unstarted)';
-		}
-		if (data == 0) {
-			strReturn = '(ended)';
-		}
-		if (data == 1) {
-			strReturn = '(playing)';
-		}
-		if (data == 2) {
-			strReturn = '(paused)';
-		}
-		if (data == 3) {
-			strReturn = '(buffering)';
-		}
-		if (data == 5) {
-			strReturn = '(video cued).';
-		}
-		dispatch('PlayerStateChangeString', strReturn);
+	const onPlayerReady = (event: YT.PlayerEvent) => {
+		event.target.playVideo();
 	};
 
-	const playerIsReady = () => {
-		dispatch('Ready');
-		setInterval(() => {
-			dispatch('currentPlayTime', player.getCurrentTime());
-		}, 1000);
+	const onPlayerStateChange = (event: YT.OnStateChangeEvent) => {
+		if (event.data === YT.PlayerState.PLAYING) {
+			console.log('video is playing');
+		}
 	};
 </script>
 
+<svelte:head>
+	<script src="https://www.youtube.com/iframe_api"></script>
+</svelte:head>
+
 <div class="relative w-full aspect-[16/9]">
-	<div id={divId} class="w-full h-full" />
+	<iframe
+		id="player"
+		title="Player"
+		loading="lazy"
+		class="w-full h-full"
+		src="http://www.youtube.com/embed/{videoId}?enablejsapi=1&rel=0&showinfo=0&modestbranding=0&playsinline=1&controls=1&autoplay=0&iv_load_policy=1&origin=http://localhost:6006"
+		frameborder="0"
+		allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen
+	/>
 </div>
