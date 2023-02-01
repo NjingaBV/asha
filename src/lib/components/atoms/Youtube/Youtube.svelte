@@ -9,7 +9,8 @@
 
 	onMount(() => {
 		window.onYouTubeIframeAPIReady = () => {
-			player = new window.YT.Player('player', {
+			/* eslint-disable */
+			player = new YT.Player('player', {
 				events: {
 					onReady: onPlayerReady,
 					onStateChange: onPlayerStateChange
@@ -18,12 +19,14 @@
 		};
 	});
 
-	const onPlayerReady = (event: window.YT.PlayerEvent) => {
+	/* eslint-disable */
+	const onPlayerReady = (event: YT.PlayerEvent) => {
 		event.target.playVideo();
 	};
 
-	const onPlayerStateChange = (event: window.YT.OnStateChangeEvent) => {
-		if (event.data === window.YT.PlayerState.PLAYING) {
+	/* eslint-disable */
+	const onPlayerStateChange = (event: YT.OnStateChangeEvent) => {
+		if (event.data === YT.PlayerState.PLAYING) {
 			dispatch('isPlaying');
 		}
 	};
