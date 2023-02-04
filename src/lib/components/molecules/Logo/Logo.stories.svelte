@@ -29,6 +29,15 @@
 />
 
 <Story
+	name="DJ FMK Linkable"
+	args={{
+		title: 'DJ FMK Logo',
+		imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format',
+		link: 'https://www.djfacemaker.com'
+	}}
+/>
+
+<Story
 	name="Njinga"
 	args={{
 		title: 'Njinga Logo',

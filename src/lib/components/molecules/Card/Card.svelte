@@ -12,18 +12,23 @@
 	export let backgroundColor: `#${string}`;
 	export let mixColor: boolean;
 	export let textOnImage = true;
+	export let rounded = true;
 
 	$: isLinkable = Boolean(!buttonName && buttonLink);
 </script>
 
 <Linkable {isLinkable} link={buttonLink}>
 	<div
-		class={`relative ${
-			buttonName && imgSrc ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'
-		} max-h-screen border rounded-xl`}
+		class={[
+			`relative max-h-screen ${rounded && 'rounded-xl'}`,
+			`${buttonName && imgSrc ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'}`
+		].join(' ')}
 	>
 		<div class="flex flex-col h-full">
-			<div class="bg relative h-full w-full rounded-xl" style="--bg-color: {backgroundColor}">
+			<div
+				class={`bg relative h-full w-full ${rounded && 'rounded-xl'}`}
+				style="--bg-color: {backgroundColor}"
+			>
 				{#if imgSrc}
 					<picture>
 						{#if imgSrc.desktop}<source
@@ -39,8 +44,8 @@
 							alt={title}
 							loading="lazy"
 							class={[
-								`absolute inset-0 object-cover object-center md:object-top`,
-								`${mixColor && 'mix-blend-screen'} rounded-xl h-full w-full`
+								`absolute inset-0 object-cover object-center md:object-top h-full w-full`,
+								`${mixColor && 'mix-blend-screen'} ${rounded && 'rounded-xl'}`
 							].join(' ')}
 						/>
 					</picture>
@@ -53,7 +58,7 @@
 						`bg-gradient-to-t from-stone-900 ${
 							buttonName && imgSrc && 'via-stone-900'
 						}`,
-						'p-4 rounded-b-xl flex flex-col'
+						`p-4 ${rounded && 'rounded-b-xl'} flex flex-col`
 					].join(' ')}
 				>
 					{#if subtitle}

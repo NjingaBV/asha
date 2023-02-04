@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 	import type { ImageType } from '$lib/models';
 
@@ -9,6 +10,19 @@
 	export let ctaLabel: string;
 	export let ctaIcon: string;
 	export let backgroundColor: `#${string}` = '#000000';
+
+	const dispatch = createEventDispatcher();
+	let lineClampEnabled = true;
+	let lines = 5;
+
+	$: truncated = overview && overview.length > lines * 50;
+
+	const toggleLineClamp = () => {
+		if (truncated) {
+			lineClampEnabled = !lineClampEnabled;
+			dispatch('lineClampToggled', { lineClampEnabled });
+		}
+	};
 
 	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray;
 	$: rgb =
@@ -22,6 +36,7 @@
 	);
 
 	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
+	$: hasDetails = Boolean(title || details);
 </script>
 
 <div
@@ -39,19 +54,24 @@
 		/>
 	</picture>
 	<div
-		class="absolute bottom-0 h-3/4 w-full bg-gradient-to-t z-10 flex flex-col"
+		class={[
+			`absolute bottom-0  w-full bg-gradient-to-t z-10 flex flex-col`,
+			`${hasDetails ? 'h-3/4' : 'h-2/5'}`
+		].join(' ')}
 		style="--tw-gradient-stops: {backgroundColor}, {backgroundColor}, rgb(15 23 42 / 0)"
 	/>
 	<div
-		class="flex flex-col items-center md:items-start absolute bottom-0 w-full p-4 h-fit z-20 gap-4"
+		class="flex flex-col items-center absolute bottom-0 md:w-1/3 p-4 h-fit z-20 gap-4"
 		style="color: var(--text-color);"
 	>
-		{#if title}<h1 class="text-color text-center font-black text-3xl md:text-6xl">
+		{#if title}
+			<h1 class="text-color text-center font-black text-3xl md:text-6xl">
 				{title}
-			</h1>{/if}
+			</h1>
+		{/if}
 		{#if details}<h3 class="text-color text-xs opacity-80">{details}</h3>{/if}
 		{#if ctaLabel}
-			<div class="w-1/2">
+			<div class="w-1/2 md:w-full">
 				<Button color="#ffffff" size="large">
 					<h3 class="flex items-center gap-2 text-xl">
 						{#if ctaIcon}
@@ -68,6 +88,19 @@
 				</Button>
 			</div>
 		{/if}
-		{#if overview}<p class="text-color font-light line-clamp-3">{overview}</p>{/if}
+		{#if overview}
+			<button
+				class={`relative flex flex-col ${!truncated && 'cursor-default'}`}
+				on:click={toggleLineClamp}
+			>
+				<p
+					class={`flex-1 text-color text-justify font-light ${
+						lineClampEnabled && 'line-clamp-5'
+					}`}
+				>
+					{overview}
+				</p>
+			</button>
+		{/if}
 	</div>
 </div>

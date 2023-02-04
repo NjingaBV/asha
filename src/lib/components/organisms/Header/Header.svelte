@@ -6,6 +6,7 @@
 	import type { LinkType, LogoType } from '$lib/models';
 
 	export let logo: LogoType;
+	export let link = '/';
 	export let navLinks: LinkType[] = [];
 	export let open = false;
 	export let onClick = () => {
@@ -34,7 +35,7 @@
 	class:motion-safe:-translate-y-full={offscreen}
 	bind:clientHeight
 >
-	<Logo {...logo} />
+	<Logo {...logo} {link} />
 	<Nav headerMenu={true} links={navLinks} />
 	<slot />
 	<Hamburger {onClick} {open} />

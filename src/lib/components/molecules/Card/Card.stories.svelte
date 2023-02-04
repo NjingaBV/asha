@@ -52,7 +52,8 @@
 		},
 		buttonName: 'Entrez dans le club',
 		buttonLink: 'https://musique.rfi.fr/tag/auteur/herve-mandina',
-		backgroundColor: '#990505'
+		backgroundColor: '#990505',
+		rounded: false
 	}}
 />
 
@@ -155,6 +156,7 @@
 			mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
 			tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836'
 		},
-		textOnImage: false
+		textOnImage: false,
+		rounded: false
 	}}
 />
