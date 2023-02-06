@@ -25,17 +25,17 @@ jobs:
             - name: Configure 1Password Connect
               uses: 1password/load-secrets-action/configure@v1
               with:
-                  connect-host: https://guyghost.1password.com
+                  connect-host: ${{ secrets.OP_CONNECT_HOST }}
                   connect-token: ${{ secrets.OP_CONNECT_TOKEN }}
-            - name: Load secret
+            - name: Load authentication token
               uses: 1password/load-secrets-action@v1
               env:
-                  SECRET: op://IT/GitHub/token
+                  AUTH_TOKEN: op://IT/GitHub/token
 
             - name: Check out source
               uses: actions/checkout@v3
               with:
-                  ssh-key: op://IT/GitHub/token
+                  ssh-key: ${{ env.AUTH_TOKEN }}
             - uses: actions/checkout@v3
             - uses: pnpm/action-setup@v2.2.4
             - uses: actions/setup-node@v3
