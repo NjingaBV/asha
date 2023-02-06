@@ -21,10 +21,21 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+            - uses: actions/checkout@v2
+            - name: Configure 1Password Connect
+              uses: 1password/load-secrets-action/configure@v1
+              with:
+                  connect-host: https://guyghost.1password.com
+                  connect-token: ${{ secrets.OP_CONNECT_TOKEN }}
+            - name: Load secret
+              uses: 1password/load-secrets-action@v1
+              env:
+                  SECRET: op://IT/GitHub/token
+
             - name: Check out source
               uses: actions/checkout@v3
               with:
-                  ssh-key: ${{ secrets.DEPLOY_KEY }}
+                  ssh-key: op://IT/GitHub/token
             - uses: actions/checkout@v3
             - uses: pnpm/action-setup@v2.2.4
             - uses: actions/setup-node@v3
