@@ -30,7 +30,7 @@ jobs:
             - name: Load authentication token
               uses: 1password/load-secrets-action@v1
               env:
-                  AUTH_TOKEN: op://IT/GitHub/token
+                  AUTH_TOKEN: op://IT/GitHub/Section_3382B9DFAA2C41F19E8B4AC39A9394C4/token
 
             - name: Check out source
               uses: actions/checkout@v3
