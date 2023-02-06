@@ -22,14 +22,11 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
-            - name: Configure 1Password Connect
-              uses: 1password/load-secrets-action/configure@v1
-              with:
-                  connect-host: ${{ secrets.OP_CONNECT_HOST }}
-                  connect-token: ${{ secrets.OP_CONNECT_TOKEN }}
             - name: Load authentication token
               uses: 1password/load-secrets-action@v1
               env:
+                  OP_CONNECT_HOST: ${{ secrets.OP_CONNECT_HOST }}
+                  OP_CONNECT_TOKEN: ${{ secrets.OP_CONNECT_TOKEN }}
                   AUTH_TOKEN: op://IT/GitHub/CREDENTIALS/personal_token
 
             - name: Check out source
