@@ -21,18 +21,10 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v2
-            - name: Load authentication token
-              uses: 1password/load-secrets-action@v1
-              env:
-                  OP_CONNECT_HOST: ${{ secrets.OP_CONNECT_HOST }}
-                  OP_CONNECT_TOKEN: ${{ secrets.OP_CONNECT_TOKEN }}
-                  AUTH_TOKEN: op://IT/GitHub/CREDENTIALS/personal_token
-
             - name: Check out source
               uses: actions/checkout@v3
               with:
-                  ssh-key: ${{ env.AUTH_TOKEN }}
+                  ssh-key: ${{ secrets.AUTH_TOKEN }}
             - uses: actions/checkout@v3
             - uses: pnpm/action-setup@v2.2.4
             - uses: actions/setup-node@v3
