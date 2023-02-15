@@ -41,8 +41,5 @@ jobs:
                   git config user.email 'guyghost@gmail.com'
             - name: bump version
               run: npm version ${{ github.event.inputs.version }}
-
             - name: Push latest version
-              run: git push origin main --follow-tags
-              env:
-                  GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+              run: git push --tags
