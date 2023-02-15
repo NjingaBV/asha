@@ -44,7 +44,7 @@
 		"@storybook/addon-svelte-csf": "^2.0.10",
 		"@storybook/addon-viewport": "^6.5.15",
 		"@storybook/svelte": "^6.5.15",
-		"@sveltejs/adapter-auto": "^1.0.0",
+		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.0.1",
 		"@sveltejs/package": "^1.0.1",
 		"@sveltejs/vite-plugin-svelte": "^2.0.2",
