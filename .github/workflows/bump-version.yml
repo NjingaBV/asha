@@ -24,7 +24,7 @@ jobs:
             - name: Check out source
               uses: actions/checkout@v3
               with:
-                  ssh-key: ${{ secrets.AUTH_TOKEN }}
+                  ssh-key: ${{ secrets.DEPLOY_KEY }}
             - uses: actions/checkout@v3
             - uses: pnpm/action-setup@v2.2.4
             - uses: actions/setup-node@v3
