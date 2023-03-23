@@ -43,6 +43,9 @@ jobs:
               run: npm version ${{ github.event.inputs.version }}
             - name: Push the tag
               run: git push --follow-tags
+            - name: Get the latest tag
+              run: git describe --tags --abbrev=0
+              id: latest_tag
 
     create-github-release:
         name: Create GitHub Release
@@ -51,9 +54,6 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
-            - name: Get the latest tag
-              run: git describe --tags --abbrev=0
-              id: latest_tag
             - name: Create Release
               run: gh release create ${{ steps.latest_tag.outputs.stdout }} --generate-notes
               env:
