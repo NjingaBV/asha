@@ -55,6 +55,6 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
             - name: Create Release
-              run: gh release create ${{ steps.latest_tag.outputs.stdout }} --generate-notes
+              run: gh release create ${{needs.bump-version.outputs.latest_tag}} --generate-notes
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
