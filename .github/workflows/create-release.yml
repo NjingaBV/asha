@@ -47,6 +47,6 @@ jobs:
               run: git describe --tags --abbrev=0
               id: latest_tag
             - name: Create Release
-              run: gh release create ${{needs.bump-version.outputs.latest_tag}} --generate-notes
+              run: gh release create ${{ steps.latest_tag.outputs.stdout }} --generate-notes
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
