@@ -1,4 +1,4 @@
-name: Bump version
+name: Create release
 
 # Workflow runs when manually triggered using the UI or API.
 on:
@@ -42,7 +42,7 @@ jobs:
             - name: bump version
               run: npm version ${{ github.event.inputs.version }}
             - name: Push the tag
-              run: git push --tag
+              run: git push --follow-tags
 
     create-github-release:
         name: Create GitHub Release
@@ -51,7 +51,10 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
+            - name: Get the latest tag
+              run: git describe --tags --abbrev=0
+              id: latest_tag
             - name: Create Release
-              run: gh release create ${{ github.event.inputs.version }} --generate-notes
+              run: gh release create ${{ steps.latest_tag.outputs.stdout }} --generate-notes
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
