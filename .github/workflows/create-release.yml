@@ -16,49 +16,49 @@ on:
                     - major
 
 jobs:
-  tag-and-release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      
-      - name: Set up Node.js and pnpm
-        uses: pnpm/setup-pnpm@v1
-        with:
-          node-version: '16.x'
+    tag-and-release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+            - name: Set up Node.js and pnpm
+              uses: pnpm/setup-pnpm@v1
+              with:
+                  node-version: '16.x'
 
-      - name: Lint code
-        run: pnpm lint
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
 
-      - name: Check code
-        run: pnpm check
-      - name: Set up Git
-        run: |
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+            - name: Lint code
+              run: pnpm lint
 
-      - name: Bump version in package.json
-        id: bump_version
-        run: |
-          current_version=$(node -p -e "require('./package.json').version")
-          new_version=$(pnpm version ${{ github.event.inputs.version }})
-          echo "::set-output name=version::${new_version//v/}"
+            - name: Check code
+              run: pnpm check
+            - name: Set up Git
+              run: |
+                  git config --global user.name "${{ github.actor }}"
+                  git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Create tag and push it
-        id: create_tag
-        run: |
-          tag=v${{ steps.bump_version.outputs.version }}
-          git tag $tag
-          git push origin $tag
+            - name: Bump version in package.json
+              id: bump_version
+              run: |
+                  current_version=$(node -p -e "require('./package.json').version")
+                  new_version=$(pnpm version ${{ github.event.inputs.version }})
+                  echo "::set-output name=version::${new_version//v/}"
 
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create v${{ steps.bump_version.outputs.version }} \
-            --generate-notes \
-            --title "Release v${{ steps.bump_version.outputs.version }}" \
-            --target main
+            - name: Create tag and push it
+              id: create_tag
+              run: |
+                  tag=v${{ steps.bump_version.outputs.version }}
+                  git tag $tag
+                  git push origin $tag
+
+            - name: Create release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  gh release create v${{ steps.bump_version.outputs.version }} \
+                    --generate-notes \
+                    --title "Release v${{ steps.bump_version.outputs.version }}" \
+                    --target main
