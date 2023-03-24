@@ -45,15 +45,12 @@ jobs:
 
             - name: Bump version in package.json
               id: bump_version
-              run: |
-                  current_version=$(node -p -e "require('./package.json').version")
-                  new_version=$(pnpm version ${{ github.event.inputs.version }})
-                  echo "::set-output name=version::${new_version//v/}"
+              run: npm version ${{ github.event.inputs.version }}
 
             - name: Create tag and push it
               id: create_tag
               run: |
-                  tag=v${{ steps.bump_version.outputs.version }}
+                  tag=${{ steps.bump_version.outputs.version }}
                   git tag $tag
                   git push origin $tag
 
