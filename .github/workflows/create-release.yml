@@ -19,13 +19,16 @@ jobs:
     tag-and-release:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
-
-            - name: Set up Node.js and pnpm
-              uses: pnpm/setup-pnpm@v1
+            - name: Checkout source
+              uses: actions/checkout@v3
+              with:
+                  ssh-key: ${{ secrets.DEPLOY_KEY }}
+            - uses: actions/checkout@v3
+            - uses: pnpm/action-setup@v2.2.4
+            - uses: actions/setup-node@v3
               with:
                   node-version: '16.x'
+                  cache: pnpm
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
