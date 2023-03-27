@@ -47,7 +47,6 @@ jobs:
               id: bump_version
               run: |
                   npm version ${{ github.event.inputs.version }}
-                  echo "::set-output name=version::$(npm view version)"
 
             - name: Create tag and push it
               id: create_tag
@@ -60,7 +59,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  gh release create v${{ steps.bump_version.outputs.version }} \
+                  gh release create ${{ steps.bump_version.outputs.version }} \
                     --generate-notes \
-                    --title "Release v${{ steps.bump_version.outputs.version }}" \
+                    --title "Release ${{ steps.bump_version.outputs.version }}" \
                     --target main
