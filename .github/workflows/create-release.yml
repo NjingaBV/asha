@@ -47,6 +47,7 @@ jobs:
               id: bump_version
               run: |
                   npm version ${{ github.event.inputs.version }}
+                  echo "::set-output name=version::$(npm view version)"
 
             - name: Create tag and push it
               id: create_tag
@@ -54,13 +55,23 @@ jobs:
                   tag=${{ steps.bump_version.outputs.version }}
                   git tag $tag
                   git push origin $tag
-
-            - name: Create release
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  VERSION: ${{ steps.bump_version.outputs.version }}
-              run: |
-                  gh release create ${{ env.VERSION }} \
-                    --generate-notes \
-                    --title "Release ${{ env.VERSION }}" \
-                    --target main
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    create-release:
+        runs-on: ubuntu-latest
+        needs: bump-version
+        steps:
+          - name: Set up Git
+            run: |
+              git config --global user.name "${{ github.actor }}"
+              git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          - name: Create release
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              VERSION: ${{ needs.bump-version.outputs.version }}
+            run: |
+              gh release create v${{ env.VERSION }} \
+                --generate-notes \
+                --title "Release v${{ env.VERSION }}" \
+                --target main
