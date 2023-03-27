@@ -47,18 +47,18 @@ jobs:
               id: bump_version
               run: |
                   npm version ${{ github.event.inputs.version }}
-                  echo "VERSION=${{ env.npm_package_version }}" >> $GITHUB_ENV
 
             - name: Create tag and push it
               id: create_tag
               run: |
-                  tag=${{ env.VERSION }}
+                  tag=${{ steps.bump_version.outputs.version }}
                   git tag $tag
                   git push origin $tag
 
             - name: Create release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  VERSION: ${{ steps.bump_version.outputs.version }}
               run: |
                   gh release create ${{ env.VERSION }} \
                     --generate-notes \
