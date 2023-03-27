@@ -45,7 +45,9 @@ jobs:
 
             - name: Bump version in package.json
               id: bump_version
-              run: npm version ${{ github.event.inputs.version }}
+              run: |
+                npm version ${{ github.event.inputs.version }}
+                echo "::set-output name=version::$(npm view version)"
 
             - name: Create tag and push it
               id: create_tag
