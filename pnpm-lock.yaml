@@ -6,7 +6,7 @@ specifiers:
   '@storybook/addon-essentials': ^6.5.15
   '@storybook/addon-links': ^6.5.15
   '@storybook/addon-postcss': ^2.0.0
-  '@storybook/addon-svelte-csf': ^2.0.10
+  '@storybook/addon-svelte-csf': ^3.0.0
   '@storybook/addon-viewport': ^6.5.15
   '@storybook/svelte': ^6.5.15
   '@sveltejs/adapter-auto': ^2.0.0
@@ -48,7 +48,7 @@ devDependencies:
   '@storybook/addon-essentials': 6.5.15_7q7ncy3dg5j6jd3gwd7jaxojku
   '@storybook/addon-links': 6.5.15
   '@storybook/addon-postcss': 2.0.0
-  '@storybook/addon-svelte-csf': 2.0.10_tqtaogsliagxxeldtt4iqfa4cq
+  '@storybook/addon-svelte-csf': 3.0.0_mrzktpdmyg2trgbazmpl7kd2a4
   '@storybook/addon-viewport': 6.5.15
   '@storybook/svelte': 6.5.15_brryj7liyxtbhlszn5uhoswuxe
   '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.0.1
@@ -1439,8 +1439,8 @@ packages:
       source-map-support: 0.5.21
     dev: true
 
-  /@babel/runtime/7.20.7:
-    resolution: {integrity: sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==}
+  /@babel/runtime/7.21.0:
+    resolution: {integrity: sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
@@ -2229,20 +2229,32 @@ packages:
       - webpack
     dev: true
 
-  /@storybook/addon-svelte-csf/2.0.10_tqtaogsliagxxeldtt4iqfa4cq:
-    resolution: {integrity: sha512-0cmUBRuzyHUGOrgz/2eQNyRmWB262jFGyN1W7ZO1p7zUOJbtlNFK9LAuHzlsvcY0k6mzTXDSJuKl8e99jNQ6LA==}
+  /@storybook/addon-svelte-csf/3.0.0_mrzktpdmyg2trgbazmpl7kd2a4:
+    resolution: {integrity: sha512-M2cRx19n2d7qtIj9dSzZGPQLX2n1Gnv8oXIQT54j/F9Kf6vKKZZ018jgTNRYv/njSm2sxDNC35miOmhKjwXDPw==}
     peerDependencies:
-      '@storybook/svelte': '>=6.4.20'
-      svelte: ^3.46.6
+      '@storybook/svelte': ^7.0.0-beta.0 || ^7.0.0-rc.0 || ^7.0.0
+      '@storybook/theming': ^7.0.0-beta.0 || ^7.0.0-rc.0 || ^7.0.0
+      '@sveltejs/vite-plugin-svelte': ^1.0.0 || ^2.0.0
+      svelte: ^3.50.0
       svelte-loader: ^3.1.2
+      vite: ^3.0.0 || ^4.0.0
     peerDependenciesMeta:
+      '@sveltejs/vite-plugin-svelte':
+        optional: true
       svelte-loader:
         optional: true
+      vite:
+        optional: true
     dependencies:
+      '@babel/runtime': 7.21.0
       '@storybook/svelte': 6.5.15_brryj7liyxtbhlszn5uhoswuxe
+      '@sveltejs/vite-plugin-svelte': 2.0.2_svelte@3.55.0+vite@4.0.3
+      fs-extra: 11.1.1
+      magic-string: 0.30.0
       svelte: 3.55.0
       svelte-loader: 3.1.4_svelte@3.55.0
       ts-dedent: 2.2.0
+      vite: 4.0.3
     dev: true
 
   /@storybook/addon-toolbars/6.5.15:
@@ -4569,7 +4581,7 @@ packages:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.21.0
       cosmiconfig: 7.0.1
       resolve: 1.22.1
     dev: true
@@ -6898,6 +6910,15 @@ packages:
       universalify: 2.0.0
     dev: true
 
+  /fs-extra/11.1.1:
+    resolution: {integrity: sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ==}
+    engines: {node: '>=14.14'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: true
+
   /fs-extra/9.1.0:
     resolution: {integrity: sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==}
     engines: {node: '>=10'}
@@ -8187,7 +8208,7 @@ packages:
     resolution: {integrity: sha512-prXSYk799h3GY3iOWnC6ZigYzMPjxN2svgjJ9shk7oMadSNX3wXy0B6F32PMJv7qtMnrIbUxoEHzbutvxR2LBQ==}
     engines: {node: '>=6.0.0', npm: '>=6.0.0', yarn: '>=1.0.0'}
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.21.0
       app-root-dir: 1.0.2
       core-js: 3.22.7
       dotenv: 8.6.0
@@ -8354,6 +8375,13 @@ packages:
 
   /magic-string/0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.14
+    dev: true
+
+  /magic-string/0.30.0:
+    resolution: {integrity: sha512-LA+31JYDJLs82r2ScLrlz1GjSgu66ZV518eyWT+S8VhyQn/JL0u9MeBOvQMGYiPk1DBiSN9DDMOcXvigJZaViQ==}
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.14
@@ -9435,7 +9463,7 @@ packages:
     resolution: {integrity: sha512-Sz2Lkdxz6F2Pgnpi9U5Ng/WdWAUZxmHrNPoVlm3aAemxoy2Qy7LGjQg4uf8qKelDAUW94F4np3iH2YPf2qefcQ==}
     engines: {node: '>=10'}
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.21.0
     dev: true
 
   /posix-character-classes/0.1.1:
@@ -10200,7 +10228,7 @@ packages:
     peerDependencies:
       react: ^16.8.4 || ^17.0.0
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.21.0
       is-dom: 1.1.0
       prop-types: 15.8.1
     dev: true
@@ -10333,7 +10361,7 @@ packages:
   /regenerator-transform/0.15.0:
     resolution: {integrity: sha512-LsrGtPmbYg19bcPHwdtmXwbW+TqNvtY4riE3P83foeHRroMbH6/2ddFBfab3t7kbzc7v7p4wbkIecHImqt0QNg==}
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.21.0
     dev: true
 
   /regex-not/1.0.2:
