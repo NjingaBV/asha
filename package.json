@@ -15,9 +15,9 @@
 	"bugs": {
 		"url": "https://github.com/NjingaBV/asha/issues"
 	},
-	"packageManager": "pnpm@7.32.2",
+	"packageManager": "pnpm@8.3.1",
 	"engines": {
-		"pnpm": "^7.25.0"
+		"pnpm": "^8.0.0"
 	},
 	"scripts": {
 		"dev": "vite dev",
