@@ -1,5 +1,4 @@
 const path = require('path');
-
 module.exports = {
 	stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx|svelte)'],
 	addons: [
@@ -13,11 +12,12 @@ module.exports = {
 					implementation: require('postcss')
 				}
 			}
-		}
+		},
+		'@storybook/addon-mdx-gfm'
 	],
-	framework: '@storybook/svelte',
-	svelteOptions: {
-		preprocess: import('../svelte.config.js').preprocess
+	framework: {
+		name: '@storybook/sveltekit',
+		options: {}
 	},
 	webpackFinal: async (config) => {
 		const svelteLoader = config.module.rules.find(
@@ -35,5 +35,8 @@ module.exports = {
 			$lib: path.resolve(__dirname, '../src/lib')
 		};
 		return config;
+	},
+	docs: {
+		autodocs: true
 	}
 };
