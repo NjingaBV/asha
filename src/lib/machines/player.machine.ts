@@ -1,4 +1,5 @@
 import { createMachine } from 'xstate';
+import type { MachineConfig } from 'xstate';
 
 export type PlayerEvents =
 	| { type: 'SUCCESS' }
@@ -19,8 +20,7 @@ export interface PlayerContext {
 	videoViews: number;
 }
 
-export const playerMachine = createMachine({
-	tsTypes: {} as import('./player.machine.typegen').Typegen0,
+export const playerMachineConfig: MachineConfig<PlayerContext, any, PlayerEvents> = {
 	schema: { context: {} as PlayerContext, events: {} as PlayerEvents },
 	id: 'playerMachine',
 	initial: 'waiting',
@@ -40,55 +40,30 @@ export const playerMachine = createMachine({
 					on: {
 						PLAY: {
 							target: 'playing',
-							actions: ['playVideo'] //fire actions when the transition happen
+							actions: ['playVideo']
 						}
 					}
 				},
 				playing: {
 					on: {
-						PAUSE: {
-							target: 'paused',
-							actions: ['pauseVideo']
-						},
-						RESET: {
-							target: 'playing',
-							actions: ['resetVideo']
-						},
-						END: {
-							target: 'ended',
-							actions: ['stopVideo']
-						}
+						PAUSE: 'paused',
+						END: 'ended'
 					}
 				},
 				paused: {
 					on: {
-						PLAY: {
-							target: 'playing',
-							actions: ['playVideo']
-						},
-						RESET: {
-							target: 'playing',
-							actions: ['resetVideo']
-						},
-						END: {
-							target: 'ended',
-							actions: ['stopVideo']
-						}
+						PLAY: 'playing',
+						END: 'ended'
 					}
 				},
 				ended: {
 					on: {
-						RESET: {
-							target: 'playing',
-							actions: ['resetVideo']
-						},
-						PLAY: {
-							target: 'playing',
-							actions: ['resetVideo']
-						}
+						RESET: 'ready'
 					}
 				}
 			}
 		}
 	}
-});
+};
+
+export const playerMachine = createMachine(playerMachineConfig);

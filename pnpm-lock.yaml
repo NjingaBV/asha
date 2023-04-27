@@ -64,6 +64,9 @@ devDependencies:
   '@xstate/svelte':
     specifier: ^2.0.1
     version: 2.0.1(svelte@3.55.0)(xstate@4.37.1)
+  '@xstate/test':
+    specifier: ^0.5.1
+    version: 0.5.1(xstate@4.37.1)
   autoprefixer:
     specifier: ^10.4.13
     version: 10.4.13(postcss@8.4.20)
@@ -4583,6 +4586,14 @@ packages:
       - supports-color
     dev: true
 
+  /@xstate/graph@1.4.2(xstate@4.37.1):
+    resolution: {integrity: sha512-XIh6opCf9ukXRj4dXe2fv2kwFFUl15B5Ob8ELNOOqDXB2BPyNwp6TaLe5KJn/na3gzC9B7LyOo+2d0dPkC8PWQ==}
+    peerDependencies:
+      xstate: ^4.30.3
+    dependencies:
+      xstate: 4.37.1
+    dev: true
+
   /@xstate/machine-extractor@0.9.1(xstate@4.37.1):
     resolution: {integrity: sha512-0Oe1WDvMj22k6mEuZiOZsEKbt5VyghzEyu9kTzFipjyCeXkXjZhNX6GrxNBMk3ze0FPdx90aAQDrZ1HVNOPzcA==}
     peerDependencies:
@@ -4610,6 +4621,16 @@ packages:
         optional: true
     dependencies:
       svelte: 3.55.0
+      xstate: 4.37.1
+    dev: true
+
+  /@xstate/test@0.5.1(xstate@4.37.1):
+    resolution: {integrity: sha512-Ltz46QR9QvEuhlNy+zvs+5ylfpGXzDBh+jVC1/WL8w88uEbN+Wf1bJ/Bi5OWVWWEgXJxfcmlavN4hJOqtQuqgQ==}
+    peerDependencies:
+      xstate: ^4.29.0
+    dependencies:
+      '@xstate/graph': 1.4.2(xstate@4.37.1)
+      chalk: 2.4.2
       xstate: 4.37.1
     dev: true
 
@@ -6928,7 +6949,7 @@ packages:
   /has-property-descriptors@1.0.0:
     resolution: {integrity: sha512-62DVLZGoiEBDHQyqG4w9xCuZ7eJEwNmJRWw2VY84Oedb7WFcA27fiEVe8oUQx9hAUJ4ekurquucTGwsyO1XGdQ==}
     dependencies:
-      get-intrinsic: 1.1.1
+      get-intrinsic: 1.2.0
     dev: true
 
   /has-symbols@1.0.3:
