@@ -5,8 +5,6 @@ Asha means "The Life" in Swahili . It's also the name of my daughter.
 
 ## Features
 
-
-
 ## Githooks
 
 To use the git hooks in the repo, which will save you waiting for CI to tell you that you forgot to lint, run this:
@@ -14,4 +12,3 @@ To use the git hooks in the repo, which will save you waiting for CI to tell you
 ```bash
 git config core.hookspath .githooks
 ```
-
