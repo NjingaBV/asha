@@ -30,7 +30,8 @@
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"release": "changeset publish",
-		"publish": "npm publish"
+		"publish": "npm publish",
+		"postinstall": "xstate typegen \"./src/**/*.ts?(x)\""
 	},
 	"exports": {
 		"./asha.css": "./asha.css"
@@ -52,10 +53,11 @@
 		"@sveltejs/vite-plugin-svelte": "^2.0.2",
 		"@tailwindcss/line-clamp": "^0.4.2",
 		"@tsconfig/svelte": "^4.0.0",
-        "@types/youtube": "^0.0.47",
+		"@types/youtube": "^0.0.47",
 		"@typescript-eslint/eslint-plugin": "^5.47.1",
 		"@typescript-eslint/parser": "^5.47.1",
-        "@xstate/svelte": "^2.0.1",
+		"@xstate/cli": "^0.4.2",
+		"@xstate/svelte": "^2.0.1",
 		"autoprefixer": "^10.4.13",
 		"babel-loader": "^9.1.0",
 		"cssnano": "^6.0.0",
@@ -80,6 +82,6 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.0.3",
 		"vitest": "^0.32.0",
-        "xstate": "^4.37.1"
+		"xstate": "^4.37.1"
 	}
 }

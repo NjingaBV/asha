@@ -8,11 +8,20 @@ export type PlayerEvents =
     | { type: "RESET"}
     | { type: "END"};
 
-    export interface AppContext {}
+export interface PlayerContext {
+    videoId: string;
+    videoUrl: string;
+    videoTitle: string;
+    videoDescription: string;
+    videoDuration: number;
+    videoCurrentTime: number;
+    videoThumbnail: string;
+    videoViews: number;
+}
 
-const playerMachine = createMachine({
+export const playerMachine = createMachine({
     tsTypes: {} as import("./player.machine.typegen").Typegen0,
-    schema: { context: {} as PlayerContext, events: {} as PlayerEvents}
+    schema: { context: {} as PlayerContext, events: {} as PlayerEvents},
     id: "playerMachine",
     initial: "waiting",
     states: {
