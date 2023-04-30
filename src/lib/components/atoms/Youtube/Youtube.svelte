@@ -1,5 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
+	import { useMachine } from '@xstate/svelte';
+	import { playerMachine } from '$lib/machines';
+
+	const { state, send } = useMachine(playerMachine);
 
 	const dispatch = createEventDispatcher();
 

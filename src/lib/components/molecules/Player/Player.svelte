@@ -44,7 +44,7 @@
 	};
 </script>
 
-<div class="relative flex w-full aspect-[16/9] sticky top-0 z-10 items-center justify-center">
+<div class="relative flex w-full aspect-[16/9] top-0 z-10 items-center justify-center">
 	{#if showThumbnail}
 		<img src={thumbnail} alt="video thumbnail" class="absolute w-full h-full object-cover" />
 		<button class="absolute w-1/4 opacity-90" on:click={togglePlay}>
