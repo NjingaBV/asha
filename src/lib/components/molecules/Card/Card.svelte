@@ -82,9 +82,11 @@
 					{/if}
 					{#if buttonName && buttonLink}
 						<div class=" w-3/4 self-center">
-							<a href={buttonLink}>
-								<Button color={backgroundColor} rounded={true}>{buttonName}</Button>
-							</a>
+							<Button
+								color={backgroundColor}
+								rounded={true}
+								onClick={() => (location.href = buttonLink)}>{buttonName}</Button
+							>
 						</div>
 					{/if}
 				</div>
@@ -115,9 +117,11 @@
 		{/if}
 		{#if buttonName && buttonLink}
 			<div class=" w-3/4 self-center">
-				<a href={buttonLink}>
-					<Button color={backgroundColor} rounded={true}>{buttonName}</Button>
-				</a>
+				<Button
+					color={backgroundColor}
+					rounded={true}
+					onClick={() => (location.href = buttonLink)}>{buttonName}</Button
+				>
 			</div>
 		{/if}
 	</div>

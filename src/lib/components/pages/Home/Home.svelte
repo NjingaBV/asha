@@ -29,7 +29,7 @@
 
 <Header {navLinks} {open} {logo} {eventName} on:message={handleMessage}>
 	{#if isCta}
-		<a href={cta.href}><Button>{cta.label}</Button></a>
+		<a href={cta.href}><Button onClick={()=> location.href = cta.url}>{cta.label}</Button></a>
 	{/if}
 </Header>
 <Shelf {slices} {open} {navLinks} {alternateColor} on:message={handleMessage} />
