@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-
 	export let size = 'medium';
 	export let color = '#000000';
 	export let rounded = false;
 	export let border = false;
-
-	const dispatch = createEventDispatcher();
+	export let onClick: (event: Event) => void;
 
 	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color) as RegExpExecArray;
 	$: rgb =
@@ -22,10 +19,6 @@
 	);
 
 	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
-
-	let onClick = (event: Event) => {
-		dispatch('click', event);
-	};
 </script>
 
 <button

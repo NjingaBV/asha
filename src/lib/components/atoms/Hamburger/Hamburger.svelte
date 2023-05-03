@@ -1,10 +1,13 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
 	export let open = false;
-	export let onClick = () => {
-		open = !open;
-	};
+
 	export let ariaLabel = 'toggle menu';
 	export let width = 60;
+	export let eventName: string;
+
+	const dispatch = createEventDispatcher();
 
 	const hamburger =
 		'm 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20';
@@ -14,7 +17,7 @@
 </script>
 
 <button
-	on:click={onClick}
+	on:click={() => dispatch('message', { eventName })}
 	aria-expanded={open}
 	aria-label={ariaLabel}
 	class="cursor-pointer flex items-center overflow-hidden md:hidden"

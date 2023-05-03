@@ -32,7 +32,9 @@
 		},
 		backgroundColor: '#6c00e2',
 		ctaLabel: 'Regarder',
-		ctaIcon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
+		ctaIcon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
+		ctaEventName: 'PLAY_MEDIA',
+		ctaUrl: 'https://www.youtube.com/watch?v=7e90gBu4pas'
 	}}
 />
 

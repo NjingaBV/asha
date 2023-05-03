@@ -8,10 +8,13 @@
 	export let details: string;
 	export let imgSrc: ImageType;
 	export let ctaLabel: string;
+	export let ctaEventName: string;
+	export let ctaUrl: string;
 	export let ctaIcon: string;
 	export let backgroundColor: `#${string}` = '#000000';
 
 	const dispatch = createEventDispatcher();
+
 	let lineClampEnabled = true;
 	let lines = 5;
 
@@ -37,6 +40,10 @@
 
 	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
 	$: hasDetails = Boolean(title || details);
+
+	const onClick = (event: Event) => {
+		dispatch(ctaEventName, { url: ctaUrl, event });
+	};
 </script>
 
 <div
@@ -72,7 +79,7 @@
 		{#if details}<h3 class="text-color text-xs opacity-80">{details}</h3>{/if}
 		{#if ctaLabel}
 			<div class="w-1/2 md:w-full">
-				<Button color="#ffffff" size="large">
+				<Button color="#ffffff" size="large" {onClick}>
 					<h3 class="flex items-center gap-2 text-xl">
 						{#if ctaIcon}
 							<svg

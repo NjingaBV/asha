@@ -9,7 +9,7 @@
 	export let link = '/';
 	export let navLinks: LinkType[] = [];
 	export let open = false;
-	export let onClick: () => void;
+	export let eventName: string;
 
 	let previousY: number;
 	let currentY: number;
@@ -36,5 +36,5 @@
 	<Logo {...logo} {link} />
 	<Nav headerMenu={true} links={navLinks} />
 	<slot />
-	<Hamburger {onClick} {open} />
+	<Hamburger {eventName} {open} on:message />
 </header>
