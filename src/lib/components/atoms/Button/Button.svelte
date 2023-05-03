@@ -3,7 +3,7 @@
 	export let color = '#000000';
 	export let rounded = false;
 	export let border = false;
-	export let onClick: (event: Event) => void;
+	export let onClick: () => void;
 
 	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color) as RegExpExecArray;
 	$: rgb =

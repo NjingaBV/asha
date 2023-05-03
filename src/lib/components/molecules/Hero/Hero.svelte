@@ -41,8 +41,8 @@
 	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
 	$: hasDetails = Boolean(title || details);
 
-	const onClick = (event: Event) => {
-		dispatch(ctaEventName, { url: ctaUrl, event });
+	const onClick = () => {
+		dispatch('message', { eventName: ctaEventName, mediaUrl: ctaUrl });
 	};
 </script>
 

@@ -1,15 +1,16 @@
-import { createMachine } from 'xstate';
-import type { MachineConfig } from 'xstate';
+import { createMachine, spawn, type MachineConfig, type ActorRef } from 'xstate';
+import { playerMachine, type PlayerContext, type PlayerEvents } from './player.machine';
 
 export type UIEvents =
 	| { type: 'TOGGLE_MENU' }
-	| { type: 'MEDIA_PLAYING' }
-	| { type: 'MEDIA_PAUSE' }
-	| { type: 'MEDIA_STOP' };
+	| { type: 'OPEN_PLAYER'; mediaUrl: string }
+	| { type: 'CLOSE_PLAYER' };
 
 export interface UIContext {
 	isMenuOpen: boolean;
 	isPlaying: boolean;
+	playerMachineRef?: ActorRef<PlayerContext, PlayerEvents>;
+	type: 'uiContext';
 }
 
 export const uiMachineConfig: MachineConfig<UIContext, any, UIEvents> = {
@@ -37,19 +38,20 @@ export const uiMachineConfig: MachineConfig<UIContext, any, UIEvents> = {
 			states: {
 				idle: {
 					on: {
-						MEDIA_PLAYING: 'playing'
+						OPEN_PLAYER: 'playing'
 					}
 				},
 				playing: {
+					entry: (_, event: { type: 'OPEN_PLAYER'; mediaUrl: string }) => ({
+						playerMachineRef: spawn(
+							playerMachine.withContext({
+								...playerMachine.context,
+								mediaUrl: event.mediaUrl
+							})
+						)
+					}),
 					on: {
-						MEDIA_PAUSE: 'paused',
-						MEDIA_STOP: 'idle'
-					}
-				},
-				paused: {
-					on: {
-						MEDIA_PLAYING: 'playing',
-						MEDIA_STOP: 'idle'
+						CLOSE_PLAYER: 'idle'
 					}
 				}
 			}

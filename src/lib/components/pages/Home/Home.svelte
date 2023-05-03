@@ -7,6 +7,7 @@
 	import type { UIEvents } from '$lib/machines';
 
 	import type { LinkType, LogoType, SliceType } from '$lib/models';
+	import AnimatedBlob from '$lib/components/organisms/AnimatedBlob/AnimatedBlob.svelte';
 
 	const { state, send } = useMachine(uiMachine);
 
@@ -19,8 +20,9 @@
 
 	export const handleMessage = (event: CustomEvent<{ eventName: UIEvents }>) => {
 		console.log('event: ', event.detail);
-		const { eventName } = event.detail;
-		send(eventName);
+		const { detail } = event;
+		const { eventName } = detail;
+		send(eventName, { ...detail });
 	};
 
 	$: isCta = Boolean(cta) && Boolean(cta.url) && Boolean(cta.label || cta.icon);
@@ -29,8 +31,7 @@
 
 <Header {navLinks} {open} {logo} {eventName} on:message={handleMessage}>
 	{#if isCta}
-		<a href={cta.href}><Button onClick={() => (location.href = cta.url)}>{cta.label}</Button></a
-		>
+		<Button onClick={() => (location.href = cta.url)}>{cta.label}</Button>
 	{/if}
 </Header>
 <Shelf {slices} {open} {navLinks} {alternateColor} on:message={handleMessage} />

@@ -10,14 +10,15 @@ export type PlayerEvents =
 	| { type: 'END' };
 
 export interface PlayerContext {
-	videoId: string;
-	videoUrl: string;
-	videoTitle: string;
-	videoDescription: string;
-	videoDuration: number;
-	videoCurrentTime: number;
-	videoThumbnail: string;
-	videoViews: number;
+	mediaId: string;
+	mediaUrl: string;
+	mediaTitle: string;
+	mediaDescription: string;
+	mediaDuration: number;
+	mediaCurrentTime: number;
+	mediaThumbnail: string;
+	mediaViews: number;
+	type: 'playerContext';
 }
 
 export const playerMachineConfig: MachineConfig<PlayerContext, any, PlayerEvents> = {
@@ -40,7 +41,7 @@ export const playerMachineConfig: MachineConfig<PlayerContext, any, PlayerEvents
 					on: {
 						PLAY: {
 							target: 'playing',
-							actions: ['playVideo']
+							actions: ['playMedia']
 						}
 					}
 				},
