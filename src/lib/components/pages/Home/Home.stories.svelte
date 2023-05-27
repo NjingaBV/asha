@@ -143,7 +143,6 @@
 							mobile: 'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format',
 							tablet: 'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format'
 						},
-						buttonName: 'Foire aux questions',
 						buttonLink:
 							'https://youtube.com/playlist?list=PL4H1Npa0YXqYJkl25FzX-A08dI-LSnAb8',
 						backgroundColor: '#FF7BBF',
@@ -190,10 +189,10 @@
 					tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
 				},
 				backgroundColor: '#6c00e2',
-				ctaLabel: 'Regarder',
+				ctaLabel: 'Dernier épisode',
 				ctaIcon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
 				ctaEventName: 'OPEN_PLAYER',
-				ctaUrl: 'https://www.youtube.com/watch?v=7e90gBu4pas'
+				ctaUrl: 'https://www.youtube.com/watch?v=G-ECTntZYtk'
 			},
 			{
 				name: 'carousel',
@@ -206,7 +205,9 @@
 							mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
 							tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
 						},
-						backgroundColor: '#6c00e2'
+						backgroundColor: '#6c00e2',
+						mixColor: true,
+						isVideo: true
 					},
 					{
 						imgSrc: {
@@ -215,7 +216,9 @@
 							mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 							tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
 						},
-						backgroundColor: '#990505'
+						backgroundColor: '#6c00e2',
+						mixColor: true,
+						isVideo: true
 					},
 					{
 						imgSrc: {
@@ -224,7 +227,9 @@
 							mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 							tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
 						},
-						backgroundColor: '#024a99'
+						backgroundColor: '#6c00e2',
+						mixColor: true,
+						isVideo: true
 					}
 				]
 			},
@@ -271,7 +276,6 @@
 							mobile: 'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format',
 							tablet: 'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format'
 						},
-						buttonName: 'Foire aux questions',
 						buttonLink:
 							'https://youtube.com/playlist?list=PL4H1Npa0YXqYJkl25FzX-A08dI-LSnAb8',
 						backgroundColor: '#FF7BBF',

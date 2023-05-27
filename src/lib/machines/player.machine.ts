@@ -1,9 +1,6 @@
 import { createMachine } from 'xstate';
-import type { MachineConfig } from 'xstate';
 
 export type PlayerEvents =
-	| { type: 'SUCCESS' }
-	| { type: 'FAILED' }
 	| { type: 'PLAY' }
 	| { type: 'PAUSE' }
 	| { type: 'RESET' }
@@ -21,50 +18,39 @@ export interface PlayerContext {
 	type: 'playerContext';
 }
 
-export const playerMachineConfig: MachineConfig<PlayerContext, any, PlayerEvents> = {
-	schema: { context: {} as PlayerContext, events: {} as PlayerEvents },
+export const playerMachine = createMachine({
 	id: 'playerMachine',
-	initial: 'waiting',
+	initial: 'ready',
+	schema: {
+		context: {} as PlayerContext,
+		events: {} as PlayerEvents
+	},
 	states: {
-		waiting: {
+		ready: {
+			entry: () => console.log('ready'),
 			on: {
-				SUCCESS: 'ready',
-				FAILED: 'failed'
+				PLAY: {
+					target: 'playing',
+					actions: ['playMedia']
+				}
 			}
 		},
-		failed: {},
-		ready: {
-			id: 'readyMachine',
-			initial: 'ready',
-			states: {
-				ready: {
-					on: {
-						PLAY: {
-							target: 'playing',
-							actions: ['playMedia']
-						}
-					}
-				},
-				playing: {
-					on: {
-						PAUSE: 'paused',
-						END: 'ended'
-					}
-				},
-				paused: {
-					on: {
-						PLAY: 'playing',
-						END: 'ended'
-					}
-				},
-				ended: {
-					on: {
-						RESET: 'ready'
-					}
-				}
+		playing: {
+			on: {
+				PAUSE: 'paused',
+				END: 'ended'
+			}
+		},
+		paused: {
+			on: {
+				PLAY: 'playing',
+				END: 'ended'
+			}
+		},
+		ended: {
+			on: {
+				RESET: 'ready'
 			}
 		}
 	}
-};
-
-export const playerMachine = createMachine(playerMachineConfig);
+});

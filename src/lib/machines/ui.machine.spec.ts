@@ -4,9 +4,8 @@ import { uiMachine } from './ui.machine';
 
 const uiModel = createModel(uiMachine).withEvents({
 	TOGGLE_MENU: {},
-	MEDIA_PLAYING: {},
-	MEDIA_PAUSE: {},
-	MEDIA_STOP: {}
+	OPEN_PLAYER: {},
+	CLOSE_PLAYER: {}
 });
 
 describe('uiMachine', () => {

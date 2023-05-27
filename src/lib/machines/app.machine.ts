@@ -1,5 +1,4 @@
-import { assign, createMachine, sendTo } from 'xstate';
-import type { MachineConfig } from 'xstate';
+import { assign, createMachine, sendTo, type MachineConfig } from 'xstate';
 
 export type AppEvents =
 	| { type: 'PAGE_LOADED'; pathname: string }

@@ -1,22 +1,22 @@
-import { createMachine, spawn, type MachineConfig, type ActorRef } from 'xstate';
-import { playerMachine, type PlayerContext, type PlayerEvents } from './player.machine';
+import { assign, createMachine } from 'xstate';
+import { playerMachine } from './player.machine';
+
+export interface UIContext {
+	mediaUrl: string;
+}
 
 export type UIEvents =
 	| { type: 'TOGGLE_MENU' }
 	| { type: 'OPEN_PLAYER'; mediaUrl: string }
 	| { type: 'CLOSE_PLAYER' };
 
-export interface UIContext {
-	isMenuOpen: boolean;
-	isPlaying: boolean;
-	playerMachineRef?: ActorRef<PlayerContext, PlayerEvents>;
-	type: 'uiContext';
-}
-
-export const uiMachineConfig: MachineConfig<UIContext, any, UIEvents> = {
-	schema: { context: {} as UIContext, events: {} as UIEvents },
+export const uiMachine = createMachine({
 	id: 'uiMachine',
 	type: 'parallel',
+	schema: {
+		context: {} as UIContext,
+		events: {} as UIEvents
+	},
 	states: {
 		menu: {
 			initial: 'closed',
@@ -34,29 +34,33 @@ export const uiMachineConfig: MachineConfig<UIContext, any, UIEvents> = {
 			}
 		},
 		player: {
-			initial: 'idle',
+			initial: 'closed',
 			states: {
-				idle: {
+				closed: {
 					on: {
-						OPEN_PLAYER: 'playing'
+						OPEN_PLAYER: {
+							target: 'open',
+							actions: assign({
+								mediaUrl: (_, event) => event.mediaUrl
+							})
+						}
 					}
 				},
-				playing: {
-					entry: (_, event: { type: 'OPEN_PLAYER'; mediaUrl: string }) => ({
-						playerMachineRef: spawn(
-							playerMachine.withContext({
-								...playerMachine.context,
-								mediaUrl: event.mediaUrl
-							})
-						)
-					}),
+				open: {
+					invoke: {
+						id: 'playerActor',
+						src: playerMachine,
+						data: (context) => ({
+							mediaUrl: context.mediaUrl
+						}),
+						onDone: 'closed',
+						onError: 'closed'
+					},
 					on: {
-						CLOSE_PLAYER: 'idle'
+						CLOSE_PLAYER: 'closed'
 					}
 				}
 			}
 		}
 	}
-};
-
-export const uiMachine = createMachine(uiMachineConfig);
+});

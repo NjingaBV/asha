@@ -3,8 +3,6 @@ import { createModel } from '@xstate/test';
 import { playerMachine } from './player.machine';
 
 const playerModel = createModel(playerMachine).withEvents({
-	SUCCESS: {},
-	FAILED: {},
 	PLAY: {},
 	PAUSE: {},
 	RESET: {},
