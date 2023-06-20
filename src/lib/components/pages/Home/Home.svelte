@@ -32,7 +32,7 @@
 
 {#if isPlaying}
 	<div class="fixed w-full z-30 top-0">
-		<div class="bg-white flex justify-between items-center  px-2 md:px-0">
+		<div class="bg-white flex justify-between items-center px-2 md:px-0">
 			<Logo {...logo} link="/" />
 			<Hamburger eventName="CLOSE_PLAYER" open={true} on:message={handleMessage} />
 		</div>

@@ -5,26 +5,30 @@
 	export let title: string;
 	export let category: string;
 	export let overview: string;
-	export let size: 'sm' | 'md' | 'lg' = 'lg';
 	export let color: `#${string}` = '#6b6b6b';
 	export let cards: Array<CardType> = [];
 	$: onlyOneItem = cards.length === 1;
 	$: isEven = cards.length % 2 === 0;
 </script>
 
-<div class="p-4">
+<div class={['p-4', `${onlyOneItem && 'md:flex md:items-center md:justify-between'}`].join(' ')}>
 	{#if title}
-		{#if category}<h5
-				class="font-black text-base tracking-tighter category-color"
-				style="--text-color: {color};"
-			>
-				{category}
-			</h5>{/if}
-		<h2 class="font-black text-3xl md:text-4xl mb-5 md:mb-7">{title}</h2>
-		{#if overview}<p class="text-base md:text-lg mb-5">{overview}</p>{/if}
+		<div>
+			{#if category}
+				<h5
+					class="font-black text-base tracking-tighter category-color"
+					style="--text-color: {color};"
+				>
+					{category}
+				</h5>{/if}
+			<h2 class="font-black text-3xl md:text-4xl mb-5 md:mb-7">{title}</h2>
+			{#if overview}
+				<p class="text-base md:text-lg mb-5">{overview}</p>
+			{/if}
+		</div>
 	{/if}
 	<ul
-		class={['flex gap-4 w-full', `${isEven && 'lg:flex-wrap'}`, 'overflow-x-auto snap-x'].join(
+		class={['flex gap-4 w-full', 'overflow-x-auto snap-x', `${isEven && 'lg:flex-wrap'}`].join(
 			' '
 		)}
 	>
