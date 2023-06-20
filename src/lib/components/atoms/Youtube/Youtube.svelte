@@ -19,9 +19,9 @@
 		};
 	});
 
-	/* eslint-disable */
 	const onPlayerReady = (event: YT.PlayerEvent) => {
-		event.target.playVideo();
+		dispatch('message', { eventName: 'PLAY', player: event.target });
+		//event.target.playVideo();
 	};
 
 	/* eslint-disable */

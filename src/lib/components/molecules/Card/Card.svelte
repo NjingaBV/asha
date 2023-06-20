@@ -13,6 +13,7 @@
 	export let mixColor: boolean;
 	export let textOnImage = true;
 	export let rounded = true;
+	export let isVideo = false;
 
 	$: isLinkable = Boolean(!buttonName && buttonLink);
 </script>
@@ -21,7 +22,11 @@
 	<div
 		class={[
 			`relative max-h-screen ${rounded && 'rounded-xl'}`,
-			`${buttonName && imgSrc ? 'aspect-[9/16] md:aspect-[4/3]' : 'aspect-square'}`
+			`${
+				buttonName && imgSrc
+					? 'aspect-[9/16]'
+					: `${isVideo ? 'aspect-video' : 'aspect-square'}`
+			}`
 		].join(' ')}
 	>
 		<div class="flex flex-col h-full">
@@ -68,7 +73,7 @@
 					{/if}
 					{#if title}
 						<h2
-							class={`text-slate-100 text-3xl md:text-4xl mb-4 ${
+							class={`text-slate-100 text-xl md:text-4xl mb-4 ${
 								subtitle ? 'text-left' : 'text-center'
 							} font-black`}
 						>
@@ -76,15 +81,19 @@
 						</h2>
 					{/if}
 					{#if overview}
-						<h3 class="text-stone-100 font-thin text-left mb-4 line-clamp-5">
+						<h3
+							class="text-stone-100 font-thin text-left md:text-center mb-4 line-clamp-5"
+						>
 							{overview}
 						</h3>
 					{/if}
 					{#if buttonName && buttonLink}
 						<div class=" w-3/4 self-center">
-							<a href={buttonLink}>
-								<Button color={backgroundColor} rounded={true}>{buttonName}</Button>
-							</a>
+							<Button
+								color={backgroundColor}
+								rounded={true}
+								onClick={() => (location.href = buttonLink)}>{buttonName}</Button
+							>
 						</div>
 					{/if}
 				</div>
@@ -101,7 +110,7 @@
 		{/if}
 		{#if title}
 			<h2
-				class={`text-black text-3xl md:text-4xl mb-4 ${
+				class={`text-black text-lg md:text-2xl mb-4 ${
 					subtitle ? 'text-left' : 'text-center'
 				} font-black`}
 			>
@@ -115,9 +124,11 @@
 		{/if}
 		{#if buttonName && buttonLink}
 			<div class=" w-3/4 self-center">
-				<a href={buttonLink}>
-					<Button color={backgroundColor} rounded={true}>{buttonName}</Button>
-				</a>
+				<Button
+					color={backgroundColor}
+					rounded={true}
+					onClick={() => (location.href = buttonLink)}>{buttonName}</Button
+				>
 			</div>
 		{/if}
 	</div>

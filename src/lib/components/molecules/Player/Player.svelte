@@ -8,6 +8,7 @@
 	export let subtitle: string;
 	export let overview: string;
 	export let thumbnail: string;
+	export let isPlaying = false;
 
 	let lineClampEnabled = true;
 	let lines = 5;
@@ -44,8 +45,8 @@
 	};
 </script>
 
-<div class="relative flex w-full aspect-[16/9] sticky top-0 z-10 items-center justify-center">
-	{#if showThumbnail}
+<div class="relative flex w-full aspect-[16/9] top-0 z-10 items-center justify-center">
+	{#if !isPlaying}
 		<img src={thumbnail} alt="video thumbnail" class="absolute w-full h-full object-cover" />
 		<button class="absolute w-1/4 opacity-90" on:click={togglePlay}>
 			<svg class="stroke-[5] h-full fill-white" stroke-width="2" viewBox="0 0 50 50">
@@ -53,7 +54,7 @@
 			</svg>
 		</button>
 	{:else}
-		<svelte:component this={getComponent(url)} {videoId} />
+		<svelte:component this={getComponent(url)} {videoId} on:message />
 	{/if}
 </div>
 <div class={['p-4 rounded-b-xl flex flex-col'].join(' ')}>

@@ -152,6 +152,7 @@
 							mobile: 'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format',
 							tablet: 'https://images.prismic.io/djfacemakerv2/605984ce-c535-46cd-801a-bc67fd548db6_Sagacite%CC%81.jpg?auto=compress,format'
 						},
+						buttonLink: 'https://www.youtube.com/watch?v=UnJ05tL_MNM',
 						backgroundColor: '#C48C3B',
 						mixColor: true
 					},
@@ -165,7 +166,6 @@
 							mobile: 'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format',
 							tablet: 'https://images.prismic.io/djfacemakerv2/4b213e73-25c8-4a5a-895e-f382832fbfde_1QP2.jpg?auto=compress,format'
 						},
-						buttonName: 'Foire aux questions',
 						buttonLink:
 							'https://youtube.com/playlist?list=PL4H1Npa0YXqYJkl25FzX-A08dI-LSnAb8',
 						backgroundColor: '#FF7BBF',

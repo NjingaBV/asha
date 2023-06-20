@@ -9,9 +9,7 @@
 	export let link = '/';
 	export let navLinks: LinkType[] = [];
 	export let open = false;
-	export let onClick = () => {
-		open = !open;
-	};
+	export let eventName: string;
 
 	let previousY: number;
 	let currentY: number;
@@ -29,7 +27,7 @@
 
 <header
 	class={[
-		`flex items-center top-0 z-50 px-2 md:px-0 sticky h-[var(--header-height)]`,
+		`flex justify-between items-center top-0 z-50 px-2 md:px-0 sticky h-[var(--header-height)]`,
 		`container bg-surface-1/50 text-lg backdrop-blur-sm transition-transform ease-in `
 	].join(' ')}
 	class:motion-safe:-translate-y-full={offscreen}
@@ -38,5 +36,5 @@
 	<Logo {...logo} {link} />
 	<Nav headerMenu={true} links={navLinks} />
 	<slot />
-	<Hamburger {onClick} {open} />
+	<Hamburger {eventName} {open} on:message />
 </header>
