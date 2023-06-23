@@ -15,12 +15,19 @@ jobs:
                   registry-url: 'https://npm.pkg.github.com'
             - uses: pnpm/action-setup@v2
               with:
-                  version: 7.17.1
+                  version: 8.6.3
+            - name: Configure 1Password Service Account
+              uses: 1password/load-secrets-action/configure@v1
+              with:
+                  service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+            - name: Load secret
+              uses: 1password/load-secrets-action@v1
+              env:
+                  AUTH_TOKEN: op://IT/GitHub/CREDENTIALS/personal_token
             - run: pnpm install
             - run: pnpm build
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
-            - run: npm publish
-              working-directory: ./package
+                  NODE_AUTH_TOKEN: ${{ env.AUTH_TOKEN }}
+            - run: pnpm publish
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ env.AUTH_TOKEN }}
