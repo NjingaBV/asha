@@ -50,7 +50,7 @@
 				<path d="M 10 5.25 L 10 44.746094 L 43.570313 25 Z" />
 			</svg>
 		</button>
-	{:else}	
+	{:else}
 		<svelte:component this={getComponent(url)} {videoId} bind:isPlayerReady />
 	{/if}
 </div>

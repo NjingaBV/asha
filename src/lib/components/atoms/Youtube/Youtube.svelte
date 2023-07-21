@@ -19,7 +19,7 @@
 					controls: 1,
 					autoplay: 0,
 					iv_load_policy: 3
-          		},
+				},
 				events: {
 					onReady: onPlayerReady
 				}
@@ -31,8 +31,6 @@
 		isPlayerReady = true;
 		event.target.playVideo();
 	};
-
-
 </script>
 
 <svelte:head>
@@ -40,5 +38,5 @@
 </svelte:head>
 
 <div class="relative w-full aspect-[16/9]">
-	<div id="player" class="absolute inset-0 w-full h-full"></div>
+	<div id="player" class="absolute inset-0 w-full h-full" />
 </div>
