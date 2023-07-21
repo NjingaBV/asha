@@ -1,6 +1,6 @@
 {
 	"name": "@njingabv/asha",
-	"version": "0.0.43",
+	"version": "0.0.44",
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
