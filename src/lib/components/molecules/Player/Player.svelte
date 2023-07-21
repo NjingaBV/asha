@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import type { ComponentType } from 'svelte';
 	import Youtube from '$lib/components/atoms/Youtube/Youtube.svelte';
 
@@ -9,8 +8,9 @@
 	export let overview: string;
 	export let thumbnail: string;
 	export let isPlaying = false;
+	export let isPlayerReady = false;
+	export let lineClampEnabled = true;
 
-	let lineClampEnabled = true;
 	let lines = 5;
 
 	let showThumbnail = true;
@@ -18,16 +18,13 @@
 
 	$: if (timeoutId) clearTimeout(timeoutId);
 
-	const dispatch = createEventDispatcher();
-
 	const toggleLineClamp = () => {
 		lineClampEnabled = !lineClampEnabled;
-		dispatch('lineClampToggled', { lineClampEnabled });
 	};
 
 	const togglePlay = () => {
 		showThumbnail = !showThumbnail;
-		dispatch('play');
+		isPlaying = true;
 	};
 
 	const youtubeRegExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -53,8 +50,8 @@
 				<path d="M 10 5.25 L 10 44.746094 L 43.570313 25 Z" />
 			</svg>
 		</button>
-	{:else}
-		<svelte:component this={getComponent(url)} {videoId} on:message />
+	{:else}	
+		<svelte:component this={getComponent(url)} {videoId} bind:isPlayerReady />
 	{/if}
 </div>
 <div class={['p-4 rounded-b-xl flex flex-col'].join(' ')}>
