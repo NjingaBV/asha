@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 devDependencies:
   '@babel/core':
     specifier: ^7.22.5
@@ -101,8 +105,8 @@ devDependencies:
     specifier: ^2.10.1
     version: 2.10.1(prettier@2.8.8)(svelte@3.59.1)
   publint:
-    specifier: ^0.1.12
-    version: 0.1.12
+    specifier: ^0.2.0
+    version: 0.2.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -9055,8 +9059,8 @@ packages:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
     dev: true
 
-  /publint@0.1.12:
-    resolution: {integrity: sha512-8LxkO430t/SOhUl0qXQWdXq34m6oyLcPhE4Kc8eXhOEnB82vCHcShPQ2kH53n/ksC7jWdRWDP7MPGxKJbntQfg==}
+  /publint@0.2.0:
+    resolution: {integrity: sha512-h8lxdjhQjpDw+A4BgY4sE7Z4CU3x5tCGGpERVdKGDQmWMtr1P7kvptJS2P10HhmNnS7Yeny37zfQE5+xRZ6nig==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
