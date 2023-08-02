@@ -2,10 +2,10 @@
 	import type { ComponentType } from 'svelte';
 	import Youtube from '$lib/components/atoms/Youtube/Youtube.svelte';
 
-	export let url: string;
 	export let title: string;
 	export let subtitle: string;
 	export let overview: string;
+	export let url: string;
 	export let thumbnail: string;
 	export let isPlaying = false;
 	export let isPlayerReady = false;

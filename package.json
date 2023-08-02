@@ -1,6 +1,6 @@
 {
 	"name": "@njingabv/asha",
-	"version": "0.0.42",
+	"version": "0.0.46",
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
@@ -31,15 +31,7 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"release": "changeset publish",
-		"publish": "npm publish",
-		"postinstall": "xstate typegen \"./src/**/*.ts?(x)\""
-	},
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
-		}
+		"release": "changeset publish"
 	},
 	"files": [
 		"dist",

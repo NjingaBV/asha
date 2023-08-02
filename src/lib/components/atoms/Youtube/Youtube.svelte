@@ -29,7 +29,7 @@
 
 	const onPlayerReady = (event: YT.PlayerEvent) => {
 		isPlayerReady = true;
-		event.target.playVideo();
+		player.playVideo();
 	};
 </script>
 
