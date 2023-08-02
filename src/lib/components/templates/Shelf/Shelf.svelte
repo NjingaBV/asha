@@ -39,7 +39,7 @@
 	{/if}
 	{#each slices as slice, index}
 		<section class="w-full h-full" style="background-color:{bgColor(index)}">
-			<svelte:component this={getComponent(slice)} {...slice} on:message />
+			<svelte:component this={getComponent(slice)} {...slice} />
 		</section>
 	{/each}
 </main>
