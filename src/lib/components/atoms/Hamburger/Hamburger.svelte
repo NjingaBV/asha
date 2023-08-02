@@ -12,7 +12,7 @@
 </script>
 
 <button
-	on:click={() => open = !open}
+	on:click={() => (open = !open)}
 	aria-expanded={open}
 	aria-label={ariaLabel}
 	class="cursor-pointer flex items-center overflow-hidden md:hidden"

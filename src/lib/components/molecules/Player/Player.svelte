@@ -6,7 +6,7 @@
 	export let subtitle: string;
 	export let overview: string;
 	export let url: string;
-    export let thumbnail: string;
+	export let thumbnail: string;
 	export let isPlaying = false;
 	export let isPlayerReady = false;
 	export let lineClampEnabled = true;

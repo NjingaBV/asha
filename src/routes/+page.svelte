@@ -1,3 +1,3 @@
 <script>
-    import './dist/asha.css'
+	import './dist/asha.css';
 </script>
