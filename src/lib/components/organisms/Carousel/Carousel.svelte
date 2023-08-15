@@ -11,7 +11,9 @@
 	$: isEven = cards.length % 2 === 0;
 </script>
 
-<div class={['p-4', `${onlyOneItem && 'md:flex md:items-center md:justify-between'}`].join(' ')}>
+<section
+	class={['p-4', `${onlyOneItem && 'md:flex md:items-center md:justify-between'}`].join(' ')}
+>
 	{#if title}
 		<div>
 			{#if category}
@@ -45,7 +47,7 @@
 			</li>
 		{/each}
 	</ul>
-</div>
+</section>
 
 <style>
 	.category-color {
