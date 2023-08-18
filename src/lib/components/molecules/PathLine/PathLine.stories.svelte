@@ -20,7 +20,7 @@
 <Story
 	name="Green PathLine"
 	args={{
-        title: 'Simple',
+		title: 'Simple',
 		order: '1',
 		color: '#22c55e'
 	}}
@@ -29,17 +29,17 @@
 <Story
 	name="Yellow PathLine"
 	args={{
-        title: 'Transparente',
-        order: '2',
-        color: '#eab308'
-    }}
+		title: 'Transparente',
+		order: '2',
+		color: '#eab308'
+	}}
 />
 
 <Story
 	name="Blue PathLine"
 	args={{
-        title: 'Révolutionnaire',
-        order: '3',
-        color: '#3b82f6'
-    }}
+		title: 'Révolutionnaire',
+		order: '3',
+		color: '#3b82f6'
+	}}
 />

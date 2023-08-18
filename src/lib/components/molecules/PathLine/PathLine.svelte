@@ -3,25 +3,30 @@
 	export let title: string;
 	export let color: `#${string}`;
 
-    const hexToRgb = (hex) => {
-        let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        hex = hex.replace(shorthandRegex, function(m, r, g, b) {
-            return r + r + g + g + b + b;
-        });
+	const hexToRgb = (hex) => {
+		let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+		hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+			return r + r + g + g + b + b;
+		});
 
-        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)} / 0)` : null;
-    }
+		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+		return result
+			? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(
+					result[3],
+					16
+			  )} / 0)`
+			: null;
+	};
 
 	const adjustColor = (initialColor: string, amount = 20) => {
 		let usePound = false;
 
-        if (initialColor[0] == '#') {
-            initialColor = initialColor.slice(1);
+		if (initialColor[0] == '#') {
+			initialColor = initialColor.slice(1);
 			usePound = true;
 		}
 
-        let num = parseInt(initialColor, 16);
+		let num = parseInt(initialColor, 16);
 
 		let r = (num >> 16) + amount;
 
@@ -43,15 +48,15 @@
 
 	$: lightenColor = adjustColor(color, 10); // lighten the color by 20
 	$: darkenColor = adjustColor(color, 60);
-    $: rgbColor = hexToRgb(color);
-    $: darkRgb = hexToRgb(darkenColor);
+	$: rgbColor = hexToRgb(color);
+	$: darkRgb = hexToRgb(darkenColor);
 </script>
 
-<div class="relative flex flex-col justify-start items-stretch font-bold"
-     style="--init-color: {color}; --light-color: {lightenColor}; --dark-color: {darkenColor}; --rgb-init-color: {rgbColor}; --rgb-dark-color: {darkRgb}">
-	<span
-		class="h-24 w-[1px] self-center bg-gradient-to-b from via to"
-	/>
+<div
+	class="relative flex flex-col justify-start items-stretch font-bold"
+	style="--init-color: {color}; --light-color: {lightenColor}; --dark-color: {darkenColor}; --rgb-init-color: {rgbColor}; --rgb-dark-color: {darkRgb}"
+>
+	<span class="h-24 w-[1px] self-center bg-gradient-to-b from via to" />
 	<div class="text-center text-white mb-4">
 		<span
 			class="rounded-full h-10 w-10 items-center justify-center inline-flex bg-gradient-to-r from via to"
@@ -66,18 +71,18 @@
 	</h3>
 </div>
 
-
 <style>
-    .from {
-        --tw-gradient-from: var(--dark-color) var(--tw-gradient-from-position);
-        --tw-gradient-to: var(--rgb-dark-color) var(--tw-gradient-to-position);
-        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-    }
-    .via {
-        --tw-gradient-to: var(--rgb-init-color)  var(--tw-gradient-to-position);
-        --tw-gradient-stops: var(--tw-gradient-from), var(--init-color) var(--tw-gradient-via-position), var(--tw-gradient-to);
-    }
-    .to {
-        --tw-gradient-to: var(--light-color) var(--tw-gradient-to-position);
-    }
+	.from {
+		--tw-gradient-from: var(--dark-color) var(--tw-gradient-from-position);
+		--tw-gradient-to: var(--rgb-dark-color) var(--tw-gradient-to-position);
+		--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+	}
+	.via {
+		--tw-gradient-to: var(--rgb-init-color) var(--tw-gradient-to-position);
+		--tw-gradient-stops: var(--tw-gradient-from),
+			var(--init-color) var(--tw-gradient-via-position), var(--tw-gradient-to);
+	}
+	.to {
+		--tw-gradient-to: var(--light-color) var(--tw-gradient-to-position);
+	}
 </style>
