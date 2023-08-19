@@ -1,11 +1,11 @@
 <script lang="ts">
-	export let order: string;
+	export let order: number;
 	export let title: string;
-	export let color: `#${string}`;
+	export let color: string;
 
-	const hexToRgb = (hex) => {
+	const hexToRgb = (hex: string) => {
 		let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-		hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+		hex = hex.replace(shorthandRegex, function (m: string, r: string, g: string, b: string) {
 			return r + r + g + g + b + b;
 		});
 
@@ -46,8 +46,8 @@
 		return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
 	};
 
-	$: lightenColor = adjustColor(color, 10); // lighten the color by 20
-	$: darkenColor = adjustColor(color, 60);
+	$: lightenColor = adjustColor(color, 40); // lighten the color by 20
+	$: darkenColor = adjustColor(color, -40);
 	$: rgbColor = hexToRgb(color);
 	$: darkRgb = hexToRgb(darkenColor);
 </script>
