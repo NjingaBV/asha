@@ -3,9 +3,14 @@ module.exports = {
 	theme: {
 		extend: {
 			animation: {
+				blink: 'blink 7s linear infinite',
 				blob: 'blob 7s infinite'
 			},
 			keyframes: {
+				blink: {
+					'0%, 100%': { opacity: 1 },
+					'50%': { opacity: 0 }
+				},
 				blob: {
 					'0%': {
 						transform: 'translate(0px, 0px) scale(1)'
