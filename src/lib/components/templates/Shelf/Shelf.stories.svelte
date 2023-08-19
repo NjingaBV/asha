@@ -373,67 +373,88 @@
 		],
 		slices: [
 			{
-				name: 'tiles',
-				logo: {
-					imgUrl: 'https://images.prismic.io/djfacemakerv2/f8e0f24e-8600-4867-9691-9efb20be9ea9_fmk+transition+blanc.png?auto=compress,format'
-				},
-				images: [
-					'https://images.prismic.io/djfacemakerv2/4a7327bf-a1e4-4767-aab1-d77b2a3d8391_FMK_Home.jpg?auto=compress,format',
-					'https://images.prismic.io/djfacemakerv2/ecdf7fa2-f35e-4824-9ccc-7229b1977fe1_A65B51FA-DCEA-46EE-AB42-DFB9DA659ABD.JPG?auto=compress,format',
-					'https://images.prismic.io/djfacemakerv2/4a7327bf-a1e4-4767-aab1-d77b2a3d8391_FMK_Home.jpg?auto=compress,format',
-					'https://images.prismic.io/djfacemakerv2/ecdf7fa2-f35e-4824-9ccc-7229b1977fe1_A65B51FA-DCEA-46EE-AB42-DFB9DA659ABD.JPG?auto=compress,format',
-					'https://images.prismic.io/djfacemakerv2/4a7327bf-a1e4-4767-aab1-d77b2a3d8391_FMK_Home.jpg?auto=compress,format',
-					'https://images.prismic.io/djfacemakerv2/ecdf7fa2-f35e-4824-9ccc-7229b1977fe1_A65B51FA-DCEA-46EE-AB42-DFB9DA659ABD.JPG?auto=compress,format',
-					'https://images.prismic.io/djfacemakerv2/4a7327bf-a1e4-4767-aab1-d77b2a3d8391_FMK_Home.jpg?auto=compress,format',
-					'https://images.prismic.io/djfacemakerv2/ecdf7fa2-f35e-4824-9ccc-7229b1977fe1_A65B51FA-DCEA-46EE-AB42-DFB9DA659ABD.JPG?auto=compress,format'
+				name: 'text-animation',
+				labels: [
+					{
+						color: '#22c55e',
+						title: 'Simple'
+					},
+					{
+						color: '#eab308',
+						title: 'Transparente'
+					},
+					{
+						color: '#3b82f6',
+						title: 'Révolutionnaire'
+					}
 				]
 			},
 			{
-				name: 'carousel',
-				title: 'Les dernières nouveautés',
-				category: 'Podcast',
-				cards: [
+				name: 'features',
+				title: 'Découvrez comment ?',
+				features: [
 					{
-						title: 'Simples Thérapies',
-						overview:
-							'Leurs succès, leurs échecs et leurs doutes les ont conduits sur le chemin de leur destinée.',
-						imgSrc: {
-							desktop:
-								'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-							mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-							tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
-						},
-						buttonName: 'Boostez votre quotidien',
-						buttonLink: 'https://djfacemaker.com/simples-therapies/',
-						backgroundColor: '#6c00e2'
+						color: '#22c55e',
+						title: 'Simple',
+						subtitle: 'L’assurance en toute simplicité.',
+						description:
+							'Ouranos réinvente complètement l’approche de l’assurance. Vos informations d’assuré dans le creux de votre main grâce à votre smartphone, magnifiquement disposées et faciles à comprendre.',
+						details: {
+							cover: {
+								url: 'https://images.prismic.io/ouranos/3f508aca-4bba-4975-899c-cfa85646553a_couple-sits-relaxing-in-living-room.jpg?auto=compress,format'
+							},
+							description:
+								'<p><strong>Où vous voulez, quand vous le souhaitez.</strong><br>Que vous soyez devant votre TV, en plein jogging ou en train de cuisiner, il vous suffit d’un smartphone pour vous assurer.<br><br><strong>Bye bye la paperasse. Bonjour la liberté.</strong><br>Il suffit de répondre à quelques questions pour définir vos besoins, pour découvrir la proposition qui vous correspond.</p>'
+						}
 					},
 					{
-						title: "L'Afro Club",
-						overview:
-							"Chaque semaine, sur RFI Musique, faites le tour des tendances afro-urbaines avec DJ Face Maker dans l'Afro Club. À cette sélection, s'ajoute désormais une session acoustique Live avec les artistes phares et émergents de la scène africaine francophone.",
-						imgSrc: {
-							desktop:
-								'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-							mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-							tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
-						},
-						buttonName: 'Entrez dans le club',
-						buttonLink: 'https://musique.rfi.fr/tag/auteur/herve-mandina',
-						backgroundColor: '#990505'
+						color: '#eab308',
+						title: 'Transparente',
+						subtitle: 'Des offres adaptées et transparentes.',
+						description: 'Nous offrons des prix compétitifs et adaptés à vos besoins.',
+						details: {
+							cover: {
+								url: 'https://images.prismic.io/ouranos/256b6214-43d8-4850-a47b-5df1b7db6e6a_hand-shake-on-yellow.jpg?auto=compress,format'
+							},
+							description:
+								'<p><strong>Oubliez tout ce que vous connaissez des assurances</strong><br>Et découvrez des offres adaptées et transparentes</p>'
+						}
 					},
 					{
-						title: 'Urban Xra',
-						overview:
-							'Les dernières sorties afro, hip hop, r&b, baile funk, amapiano et punjabi sont dans le show de la radio. Disponible du lundi au vendredi sur Urban FM 104.5 à Libreville et également sur toutes vos plateformes préférées de podcast.',
-						imgSrc: {
-							desktop:
-								'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-							mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-							tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
-						},
-						buttonName: 'Entrez dans la danse',
-						buttonLink: 'https://audioboom.com/channels/4993780/episodes',
-						backgroundColor: '#024a99'
+						color: '#3b82f6',
+						title: 'Révolutionnaire',
+						subtitle: 'Une interface complète, facile à utiliser.',
+						description: 'Courtier en assurances nouvelle génération.',
+						details: {
+							cover: {
+								url: 'https://images.prismic.io/ouranos/c92dd038-7b63-4a4a-8aaa-4fd26d6ca3da_office-work-tools-on-the-white-desk.jpg?auto=compress,format'
+							},
+							description:
+								"<p><strong>Quand l’assurance rencontre le téléphone</strong><br>Souscrivez en quelques minutes seulement depuis votre application Ouranos. Gérez vos polices d'assurances sur votre téléphone simplement et sans paperasse.<br><br><strong>Réactive<br></strong>Toujours à vos côtés : disponible 7j/7 (même le dimanche!)</p>"
+						}
+					}
+				]
+			},
+			{
+				name: 'slogan',
+				cta: {
+					url: '/',
+					label: 'Souscrire',
+					color: '#0284c7'
+				},
+				backgroundColor: '#000000',
+				slogans: [
+					{
+						title: 'Simple.',
+						subtitle: '0% prise de tête'
+					},
+					{
+						title: 'Transparente.',
+						subtitle: 'Au juste prix'
+					},
+					{
+						title: 'Révolutionnaire.',
+						subtitle: '100% mobile et flexible'
 					}
 				]
 			}

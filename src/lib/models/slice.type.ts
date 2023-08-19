@@ -29,4 +29,28 @@ export type TileType = {
 	logo: LogoType;
 };
 
-export type SliceType = CarouselType | HeroType | TileType;
+export type FeaturesType = {
+	name: 'features';
+	title: string;
+	logo: LogoType;
+};
+
+export type SloganType = {
+	name: 'slogan';
+	cta: { url: string; label: string; color: string };
+	backgroundColor: string;
+	slogans: Array<{ title: string; subtitle: string }>;
+};
+
+export type TextAnimationType = {
+	name: 'text-animation';
+	labels: Array<{ title: string; color: string }>;
+};
+
+export type SliceType =
+	| CarouselType
+	| FeaturesType
+	| HeroType
+	| TileType
+	| SloganType
+	| TextAnimationType;
