@@ -14,11 +14,11 @@
 			'scroll-smooth'
 		].join(' ')}
 	>
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={-0.5} />
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={0.5} />
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={-0.5} />
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={0.5} />
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={-0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={-0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={-0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={-0.5} />
 	</div>
 	{#if logo}
 		<div class="absolute bg-stone-900/50 w-full h-full" />

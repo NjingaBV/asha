@@ -10,7 +10,7 @@ export interface AppContext {
 	pathname: string;
 }
 
-export const appMachineConfig: MachineConfig<AppContext, any, AppEvents> = {
+export const appMachineConfig: MachineConfig<AppContext, never, AppEvents> = {
 	schema: { context: {} as AppContext, events: {} as AppEvents },
 	id: 'appMachine',
 	initial: 'idle',
@@ -20,7 +20,7 @@ export const appMachineConfig: MachineConfig<AppContext, any, AppEvents> = {
 				PAGE_LOADED: {
 					target: 'browsing',
 					actions: assign({
-						pathname: (_, event) => event.pathname
+						pathname: (_, event) => event.type
 					})
 				}
 			}

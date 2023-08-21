@@ -52,8 +52,12 @@
 			tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
 		},
 		backgroundColor: '#990505',
-		ctaLabel: 'Regarder',
-		ctaIcon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
+		callToActions: [
+			{
+				label: 'Regarder',
+				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
+			}
+		]
 	}}
 />
 
@@ -70,7 +74,12 @@
 			tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
 		},
 		backgroundColor: '#024a99',
-		ctaLabel: 'En savoir plus'
+		callToActions: [
+			{
+				label: 'En savoir plus',
+				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
+			}
+		]
 	}}
 />
 
@@ -83,5 +92,38 @@
 			mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 			tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
 		}
+	}}
+/>
+
+<Story
+	name="Urban Xra Without Image"
+	args={{
+		title: 'Urban Xra',
+		overview:
+			'Les dernières sorties afro, hip hop, r&b, baile funk, amapiano et punjabi sont dans le show de la radio. Disponible du lundi au vendredi sur Urban FM 104.5 à Libreville et également sur toutes vos plateformes préférées de podcast.',
+		backgroundColor: '#024a99',
+		callToActions: [
+			{
+				label: 'En savoir plus'
+			}
+		]
+	}}
+/>
+
+<Story
+	name="Ouranos"
+	args={{
+		overview:
+			'Ouranos combine les meilleures offres d’assurance du marché avec la meilleure expérience utilisateur. Notre plateforme vous libère de la paperasse.',
+		callToActions: [
+			{
+				label: 'En savoir plus',
+				color: '#0284c7'
+			},
+			{
+				label: "Contacter l'equipe",
+				color: '#1c1917'
+			}
+		]
 	}}
 />
