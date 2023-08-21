@@ -6,7 +6,7 @@
 	export let logo: LogoType;
 </script>
 
-<div class="relative overflow-hidden h-[30vh] md:h-[50vh]">
+<section class="relative overflow-hidden h-[30vh] md:h-[50vh]">
 	<div
 		class={[
 			'absolute flex justify-center items-center max-w-full left-[50%] top-[50%]',
@@ -14,11 +14,11 @@
 			'scroll-smooth'
 		].join(' ')}
 	>
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={-0.5} />
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={0.5} />
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={-0.5} />
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={0.5} />
-		<Tile images={images.sort((a, b) => 0.5 - Math.random()).slice(3)} speed={-0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={-0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={-0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={0.5} />
+		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={-0.5} />
 	</div>
 	{#if logo}
 		<div class="absolute bg-stone-900/50 w-full h-full" />
@@ -30,4 +30,4 @@
 			/>
 		</div>
 	{/if}
-</div>
+</section>

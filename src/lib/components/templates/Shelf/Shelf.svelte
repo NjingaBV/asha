@@ -1,11 +1,14 @@
 <script lang="ts">
-	import Carousel from '$lib/components/organisms/Carousel/Carousel.svelte';
-	import Hero from '$lib/components/molecules/Hero/Hero.svelte';
-	import Nav from '$lib/components/molecules/Nav/Nav.svelte';
-	import HeroTile from '$lib/components/organisms/HeroTile/HeroTile.svelte';
-
+	import {
+		Carousel,
+		Features,
+		Hero,
+		Nav,
+		HeroTile,
+		Slogan,
+		TextAnimation
+	} from '$lib/components';
 	import type { LinkType, SliceType } from '$lib/models';
-
 	import type { ComponentType } from 'svelte';
 
 	export let navLinks: LinkType[] = [];
@@ -27,6 +30,12 @@
 				return Carousel;
 			case 'hero':
 				return Hero;
+			case 'slogan':
+				return Slogan;
+			case 'features':
+				return Features;
+			case 'text-animation':
+				return TextAnimation;
 			case 'tiles':
 				return HeroTile;
 		}

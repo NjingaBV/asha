@@ -7,11 +7,8 @@
 	export let overview: string;
 	export let details: string;
 	export let imgSrc: ImageType;
-	export let ctaLabel: string;
-	export let ctaEventName: string;
-	export let ctaUrl: string;
-	export let ctaIcon: string;
-	export let backgroundColor: `#${string}` = '#000000';
+	export let callToActions: Array<{ label: string; url: string; icon: string; color: string }>;
+	export let backgroundColor: `#${string}` = '#ffffff';
 
 	const dispatch = createEventDispatcher();
 
@@ -40,26 +37,27 @@
 
 	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
 	$: hasDetails = Boolean(title || details);
-
-	const onClick = () => {
-		dispatch('message', { eventName: ctaEventName, mediaUrl: ctaUrl });
-	};
 </script>
 
 <div
-	class={['relative aspect-[9/13] md:aspect-[16/9] w-full'].join(' ')}
+	class={[
+		'relative w-screen',
+		`${imgSrc ? 'aspect-[9/13] md:aspect-[16/9]' : 'aspect-square md:aspect-[16/9]'}`
+	].join(' ')}
 	style="--text-color: {textColor}"
 >
-	<picture>
-		<source media="(min-width: 950px)" srcset={imgSrc.desktop} />
-		<source media="(min-width: 650px)" srcset={imgSrc.tablet} />
-		<img
-			src={imgSrc.mobile}
-			alt={title}
-			loading="lazy"
-			class={['absolute inset-0 object-cover object-top', 'h-full w-full'].join(' ')}
-		/>
-	</picture>
+	{#if imgSrc}
+		<picture>
+			<source media="(min-width: 950px)" srcset={imgSrc.desktop} />
+			<source media="(min-width: 650px)" srcset={imgSrc.tablet} />
+			<img
+				src={imgSrc.mobile}
+				alt={title}
+				loading="lazy"
+				class={['absolute inset-0 object-cover object-top', 'h-full w-full'].join(' ')}
+			/>
+		</picture>
+	{/if}
 	<div
 		class={[
 			`absolute bottom-0  w-full bg-gradient-to-t z-10 flex flex-col`,
@@ -77,22 +75,30 @@
 			</h1>
 		{/if}
 		{#if details}<h3 class="text-color text-xs opacity-80">{details}</h3>{/if}
-		{#if ctaLabel}
-			<div class="w-auto md:w-full">
-				<Button color="#ffffff" size="large" {onClick}>
-					<h3 class="flex items-center gap-2 text-xl">
-						{#if ctaIcon}
-							<svg
-								class="flex-none stroke-[5] h-6 w-6"
-								stroke-width="2"
-								viewBox="0 0 50 50"
-							>
-								<path d={ctaIcon} />
-							</svg>
-						{/if}
-						<span>{ctaLabel}</span>
-					</h3>
-				</Button>
+		{#if callToActions}
+			<div
+				class="w-full mt-6 sm:mt-10 flex flex-auto flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 text-xl"
+			>
+				{#each callToActions as cta}
+					<Button
+						color={cta.color}
+						size="large"
+						onClick={() => (location.href = cta.url)}
+					>
+						<h3 class="flex items-center text-xl">
+							{#if cta.icon}
+								<svg
+									class="flex-none stroke-[5] h-6 w-6"
+									stroke-width="2"
+									viewBox="0 0 50 50"
+								>
+									<path d={cta.icon} />
+								</svg>
+							{/if}
+							<span>{cta.label}</span>
+						</h3>
+					</Button>
+				{/each}
 			</div>
 		{/if}
 		{#if overview}

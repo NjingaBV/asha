@@ -4,7 +4,9 @@
 	export let videoId: string;
 	export let isPlayerReady = false;
 
-	let player: any;
+	let player: {
+		playVideo: () => void;
+	};
 
 	onMount(() => {
 		window.onYouTubeIframeAPIReady = () => {

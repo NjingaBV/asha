@@ -3,10 +3,10 @@
 	export let colors: string[] = [];
 </script>
 
-<div class="h-fit flex items-center justify-center">
+<section class="h-fit flex items-center justify-center">
 	<div class="flex flex-wrap items-center justify-center">
 		{#each colors as color}
 			<Blob {color} />
 		{/each}
 	</div>
-</div>
+</section>
