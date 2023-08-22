@@ -5,7 +5,7 @@ module.exports = {
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
 		'@storybook/addon-svelte-csf',
-        '@storybook/addon-styling'
+		'@storybook/addon-styling'
 	],
 	framework: {
 		name: '@storybook/sveltekit',
