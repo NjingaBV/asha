@@ -4,20 +4,20 @@
 
 	export let headerMenu = false;
 	export let links: LinkType[] = [];
-    export let color = '#ffffff';
+	export let color = '#ffffff';
 
-    $: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color) as RegExpExecArray;
+	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color) as RegExpExecArray;
 	$: rgb =
 		regex.slice(1).reduce((acc: string[], val, i) => {
-            acc[i] = `${parseInt(val, 16)}`;
-            return acc;
-        }, []) || [];
+			acc[i] = `${parseInt(val, 16)}`;
+			return acc;
+		}, []) || [];
 
 	$: backgroundColor = rgb.join();
 
 	$: brightness = Math.round(
-        (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
-    );
+		(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
+	);
 
 	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
 </script>
@@ -31,7 +31,7 @@
 		}`
 	].join(' ')}
 	transition:fly={{ y: -200, duration: 400 }}
-    style="--background-color: {backgroundColor}"
+	style="--background-color: {backgroundColor}"
 >
 	<ul
 		class={[
@@ -47,12 +47,12 @@
 </nav>
 
 <style>
-    .bg-link {
-        background-color: --background-color;
-    }
-    @media (min-width: 768px) {
-    .bg-link {
-        background-color: inherit;
-    }
-}
+	.bg-link {
+		background-color: --background-color;
+	}
+	@media (min-width: 768px) {
+		.bg-link {
+			background-color: inherit;
+		}
+	}
 </style>

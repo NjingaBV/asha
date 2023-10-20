@@ -50,7 +50,7 @@
 							loading="lazy"
 							class={[
 								`absolute inset-0 object-cover object-center md:object-top h-full w-full`,
-                                `${mixColor && 'mix-blend-screen'} ${rounded && 'rounded-[30px]'}`
+								`${mixColor && 'mix-blend-screen'} ${rounded && 'rounded-[30px]'}`
 							].join(' ')}
 						/>
 					</picture>

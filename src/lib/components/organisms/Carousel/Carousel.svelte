@@ -11,9 +11,7 @@
 	$: isEven = cards.length % 2 === 0;
 </script>
 
-<div
-	class={['p-4', `${onlyOneItem && 'md:flex md:items-center md:justify-between'}`].join(' ')}
->
+<div class={['p-4', `${onlyOneItem && 'md:flex md:items-center md:justify-between'}`].join(' ')}>
 	{#if title}
 		<div>
 			{#if category}
@@ -29,11 +27,7 @@
 			{/if}
 		</div>
 	{/if}
-	<ul
-		class={['flex gap-4 w-full', 'overflow-x-auto snap-x', 'no-scrollbar'].join(
-			' '
-		)}
-	>
+	<ul class={['flex gap-4 w-full', 'overflow-x-auto snap-x', 'no-scrollbar'].join(' ')}>
 		{#each cards as card}
 			<li
 				class={[

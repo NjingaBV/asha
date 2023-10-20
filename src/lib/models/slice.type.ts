@@ -3,10 +3,10 @@ import type { ImageType } from './image.type';
 import type { LogoType } from './logo.type';
 
 export type CallToActionType = {
-    name: 'call-to-action';
-    overview: string;
-    buttonBefore: boolean;
-    buttons: Array<{
+	name: 'call-to-action';
+	overview: string;
+	buttonBefore: boolean;
+	buttons: Array<{
 		label: string;
 		url: string;
 		backgroundColor: `#${string}`;
@@ -59,7 +59,7 @@ export type TextAnimationType = {
 };
 
 export type SliceType =
-    | CallToActionType
+	| CallToActionType
 	| CarouselType
 	| FeaturesType
 	| HeroType
