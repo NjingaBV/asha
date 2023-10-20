@@ -1,10 +1,11 @@
 <script lang="ts">
 	import {
+        CallToAction,
 		Carousel,
 		Features,
 		Hero,
+        HeroTile,
 		Nav,
-		HeroTile,
 		Slogan,
 		TextAnimation
 	} from '$lib/components';
@@ -26,6 +27,8 @@
 
 	const getComponent = (slice: SliceType): ComponentType | undefined => {
 		switch (slice.name) {
+            case 'call-to-action':
+                return CallToAction;
 			case 'carousel':
 				return Carousel;
 			case 'hero':

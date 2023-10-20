@@ -15,9 +15,9 @@
 	}>;
 </script>
 
-<section class="container mx-auto px-6">
-	<div class="text-center mb-12">
-		<small class="text-sm font-sans font-semibold tracking-wide uppercase">
+<section class="container mx-auto space-y-6 px-6 py-12">
+	<div class="text-center">
+		<small class="text-base md:text-lg font-sans font-semibold tracking-wide uppercase">
 			{title}
 		</small>
 	</div>

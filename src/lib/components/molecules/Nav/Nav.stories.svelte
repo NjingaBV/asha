@@ -24,6 +24,7 @@
 	}}
 	args={{
 		headerMenu: true,
+        color: "#ffffff",
 		links: [
 			{
 				label: 'Home',
@@ -45,6 +46,7 @@
 	name="Aside Navigation"
 	args={{
 		headerMenu: false,
+        color: "#ffffff",
 		links: [
 			{
 				label: 'Home',

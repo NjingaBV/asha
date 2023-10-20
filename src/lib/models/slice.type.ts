@@ -2,6 +2,17 @@ import type { CardType } from './card.type';
 import type { ImageType } from './image.type';
 import type { LogoType } from './logo.type';
 
+export type CallToActionType = {
+    name: 'call-to-action';
+    overview: string;
+    buttonBefore: boolean;
+    buttons: Array<{
+		label: string;
+		url: string;
+		backgroundColor: `#${string}`;
+	}>;
+};
+
 export type CarouselType = {
 	name?: 'carousel';
 	title: string;
@@ -48,6 +59,7 @@ export type TextAnimationType = {
 };
 
 export type SliceType =
+    | CallToActionType
 	| CarouselType
 	| FeaturesType
 	| HeroType

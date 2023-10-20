@@ -27,7 +27,7 @@
 <header
 	class={[
 		`flex justify-between items-center top-0 z-50 px-2 md:px-0 sticky h-[var(--header-height)]`,
-		`container bg-surface-1/50 text-lg backdrop-blur-sm transition-transform ease-in `
+		'container md:mx-auto bg-surface-1/50 text-lg backdrop-blur-sm transition-transform ease-in'
 	].join(' ')}
 	class:motion-safe:-translate-y-full={offscreen}
 	bind:clientHeight

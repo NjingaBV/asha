@@ -1,6 +1,6 @@
 {
 	"name": "@njingabv/asha",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
@@ -21,6 +21,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "svelte-kit sync && pnpm package",
+		"build:watch": "svelte-kit sync && pnpm package --watch",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && NODE_ENV=production postcss src/app.css -o dist/asha.css && publint",
 		"prepublishOnly": "pnpm run package",
