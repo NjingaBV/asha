@@ -4,7 +4,7 @@
 </script>
 
 <Meta
-	title="Molecules/PathLine"
+	title="Atoms/PathLine"
 	component={PathLine}
 	argTypes={{
 		order: { control: 'text' },

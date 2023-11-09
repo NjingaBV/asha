@@ -357,6 +357,7 @@
 			url: '/souscrire'
 		},
 		open: false,
+		alternateColor: false,
 		navLinks: [
 			{
 				label: 'Home',
@@ -386,6 +387,24 @@
 					{
 						color: '#3b82f6',
 						title: 'Révolutionnaire'
+					}
+				]
+			},
+			{
+				name: 'call-to-action',
+				buttonBefore: true,
+				overview:
+					'Ouranos combine les meilleures offres d’assurance du marché avec la meilleure expérience utilisateur. Notre plateforme vous libère de la paperasse.',
+				buttons: [
+					{
+						label: 'Souscrire',
+						url: '/souscrire',
+						backgroundColor: '#0284c7'
+					},
+					{
+						label: "Contacter l'equipe",
+						url: '/contact',
+						backgroundColor: '#1c1917'
 					}
 				]
 			},

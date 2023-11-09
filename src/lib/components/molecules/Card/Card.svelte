@@ -21,7 +21,7 @@
 <Linkable {isLinkable} link={buttonLink}>
 	<div
 		class={[
-			`relative max-h-screen ${rounded && 'rounded-xl'}`,
+			`relative max-h-screen ${rounded && 'rounded-[30px]'}`,
 			`${
 				buttonName && imgSrc
 					? 'aspect-[9/16]'
@@ -31,7 +31,7 @@
 	>
 		<div class="flex flex-col h-full">
 			<div
-				class={`bg relative h-full w-full ${rounded && 'rounded-xl'}`}
+				class={`bg relative h-full w-full ${rounded && 'rounded-[30px]'}`}
 				style="--bg-color: {backgroundColor}"
 			>
 				{#if imgSrc}
@@ -50,7 +50,7 @@
 							loading="lazy"
 							class={[
 								`absolute inset-0 object-cover object-center md:object-top h-full w-full`,
-								`${mixColor && 'mix-blend-screen'} ${rounded && 'rounded-xl'}`
+								`${mixColor && 'mix-blend-screen'} ${rounded && 'rounded-[30px]'}`
 							].join(' ')}
 						/>
 					</picture>
@@ -63,7 +63,7 @@
 						`bg-gradient-to-t from-stone-900 ${
 							buttonName && imgSrc && 'via-stone-900'
 						}`,
-						`p-4 ${rounded && 'rounded-b-xl'} flex flex-col`
+						`p-4 ${rounded && 'rounded-b-[30px]'} flex flex-col`
 					].join(' ')}
 				>
 					{#if subtitle}
@@ -102,7 +102,7 @@
 	</div>
 </Linkable>
 {#if (buttonName || title) && !textOnImage}
-	<div class={['p-4 rounded-b-xl flex flex-col'].join(' ')}>
+	<div class={['p-4 rounded-b-[30px] flex flex-col'].join(' ')}>
 		{#if subtitle}
 			<h4 class="text-slate-700 text-lg text-left font-black">
 				{subtitle}

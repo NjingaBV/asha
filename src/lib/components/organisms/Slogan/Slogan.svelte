@@ -8,10 +8,10 @@
 
 <section class="bg text-slate-100" style="--bg-color: {backgroundColor}">
 	<div
-		class="container mx-auto flex flex-col md:flex-row py-12 items-center space-y-6 md:space-y-0"
+		class="container mx-auto flex flex-col md:flex-row p-12 items-center justify-between space-y-4 md:space-y-0"
 	>
 		<div
-			class="md:w-4/5 font-sans flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6"
+			class="flex flex-col md:flex-row font-sans justify-center md:justify-between space-y-4 md:space-y-0 md:space-x-4"
 		>
 			{#each slogans as slogan}
 				<div>
@@ -24,7 +24,7 @@
 				</div>
 			{/each}
 		</div>
-		<div class="md:w-1/5">
+		<div>
 			<Button color={cta.color} size="large" onClick={() => (location.href = cta.url)}>
 				{cta.label}
 			</Button>
