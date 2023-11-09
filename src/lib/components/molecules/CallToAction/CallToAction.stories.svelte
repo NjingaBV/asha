@@ -4,12 +4,12 @@
 </script>
 
 <Meta
-    title="Molecules/CallToAction"
-    component={CallToAction}
-    argTypes={{
-        overview: { controle: 'text' },
-        buttonBefore: { control: 'boolean' }
-    }}
+	title="Molecules/CallToAction"
+	component={CallToAction}
+	argTypes={{
+		overview: { controle: 'text' },
+		buttonBefore: { control: 'boolean' }
+	}}
 />
 
 <Template let:args>

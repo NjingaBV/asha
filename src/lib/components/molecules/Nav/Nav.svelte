@@ -47,11 +47,11 @@
 <style>
 	.bg-link {
 		color: var(--text-color);
-        background-color: var(--background-color);
+		background-color: var(--background-color);
 	}
-    @media (min-width: 768px) {
+	@media (min-width: 768px) {
 		.bg-link {
 			background-color: inherit;
 		}
-    }
+	}
 </style>
