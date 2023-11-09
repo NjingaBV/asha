@@ -13,8 +13,6 @@
 			return acc;
 		}, []) || [];
 
-	$: backgroundColor = rgb.join();
-
 	$: brightness = Math.round(
 		(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
 	);
@@ -26,12 +24,12 @@
 	class={[
 		`${
 			headerMenu
-				? 'no-underline whitespace-nowrap mr-4 hidden md:inline-block bg-link'
-				: 'md:hidden pb-5 fixed h-screen flex-grow w-full md:w-64 md:sticky z-40'
+				? 'no-underline whitespace-nowrap mr-4 hidden md:inline-block'
+				: 'md:hidden pb-5 fixed h-screen flex-grow w-full md:w-64 md:sticky z-40 bg-link'
 		}`
 	].join(' ')}
 	transition:fly={{ y: -200, duration: 400 }}
-	style="--background-color: {backgroundColor}"
+	style="--background-color: {color}; --text-color: {textColor};"
 >
 	<ul
 		class={[
@@ -48,11 +46,12 @@
 
 <style>
 	.bg-link {
-		background-color: --background-color;
+		color: var(--text-color);
+        background-color: var(--background-color);
 	}
-	@media (min-width: 768px) {
+    @media (min-width: 768px) {
 		.bg-link {
 			background-color: inherit;
 		}
-	}
+    }
 </style>

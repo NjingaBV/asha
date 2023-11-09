@@ -3,7 +3,14 @@
 	import CallToAction from './CallToAction.svelte';
 </script>
 
-<Meta title="Molecules/CallToAction" component={CallToAction} />
+<Meta
+    title="Molecules/CallToAction"
+    component={CallToAction}
+    argTypes={{
+        overview: { controle: 'text' },
+        buttonBefore: { control: 'boolean' }
+    }}
+/>
 
 <Template let:args>
 	<CallToAction {...args} />
