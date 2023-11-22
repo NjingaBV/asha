@@ -52,7 +52,7 @@
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.22.6",
 		"@sveltejs/package": "^2.2.1",
-		"@sveltejs/vite-plugin-svelte": "^2.4.5",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@tailwindcss/line-clamp": "^0.4.4",
 		"@tsconfig/svelte": "^5.0.0",
 		"@types/youtube": "^0.0.47",
