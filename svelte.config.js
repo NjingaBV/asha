@@ -1,9 +1,8 @@
-import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import adapter from 'svelte-adapter-deno';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import tailwind from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
-/** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: vitePreprocess({
 		postcss: {

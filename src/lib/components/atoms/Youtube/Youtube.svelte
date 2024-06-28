@@ -1,38 +1,28 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+    import { createActor } from 'xstate'
+    import {youtubeMachine} from '$lib/components/atoms/Youtube/Youtube.machine';
 
-	export let videoId: string;
-	export let isPlayerReady = false;
+    export let videoId: string;
 
-	let player: {
-		playVideo: () => void;
-	};
+    const youtubeActor = createActor(youtubeMachine, {
+        input: {
+            videoId,
+        },
+    })
 
 	onMount(() => {
-		window.onYouTubeIframeAPIReady = () => {
-			/* eslint-disable */
-			player = new YT.Player('player', {
-				videoId,
-				playerVars: {
-					rel: 0,
-					showinfo: 0,
-					modestbranding: 0,
-					playsinline: 1,
-					controls: 1,
-					autoplay: 0,
-					iv_load_policy: 3
-				},
-				events: {
-					onReady: onPlayerReady
-				}
-			});
-		};
+        youtubeActor.start();
+        youtubeActor.subscribe((state) => {
+            console.log('new state: ', state)
+        })
+        youtubeActor.send({type: 'READY'});
 	});
 
-	const onPlayerReady = (event: YT.PlayerEvent) => {
-		isPlayerReady = true;
-		player.playVideo();
-	};
+
+
+    $:console.log('actor ', youtubeActor);
+
 </script>
 
 <svelte:head>
