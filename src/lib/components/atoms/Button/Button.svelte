@@ -23,12 +23,13 @@
 
 <button
 	type="button"
-	class={[`w-full flex justify-center ${rounded ? 'rounded-full' : 'rounded-md'},
+	class={[
+		`w-full flex justify-center ${rounded ? 'rounded-full' : 'rounded-md'},
             hover:opacity-75 ${border && 'border'},
             font-medium ${size === 'small' && 'px-2 py-1 text-base md:text-lg'}
             ${size === 'medium' && 'px-4 py-2  text-lg md:text-xl'}
             ${size === 'large' && 'px-8 py-4 text-xl md:text-2xl'}`
-	       ].join(' ')}
+	].join(' ')}
 	on:click={onClick}
 	style={`${`background-color:rgb(${backgroundColor}); color: ${textColor}; border-color: ${textColor};`}`}
 >
