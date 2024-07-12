@@ -1,21 +1,21 @@
-import { createMachine } from 'xstate';
+import { createMachine } from 'xstate'
 
 export type PlayerEvents =
 	| { type: 'PLAY' }
 	| { type: 'PAUSE' }
 	| { type: 'RESET' }
-	| { type: 'END' };
+	| { type: 'END' }
 
 export interface PlayerContext {
-	mediaId: string;
-	mediaUrl: string;
-	mediaTitle: string;
-	mediaDescription: string;
-	mediaDuration: number;
-	mediaCurrentTime: number;
-	mediaThumbnail: string;
-	mediaViews: number;
-	type: 'playerContext';
+	mediaId: string
+	mediaUrl: string
+	mediaTitle: string
+	mediaDescription: string
+	mediaDuration: number
+	mediaCurrentTime: number
+	mediaThumbnail: string
+	mediaViews: number
+	type: 'playerContext'
 }
 
 export const playerMachine = createMachine({
@@ -23,7 +23,7 @@ export const playerMachine = createMachine({
 	initial: 'ready',
 	schema: {
 		context: {} as PlayerContext,
-		events: {} as PlayerEvents
+		events: {} as PlayerEvents,
 	},
 	states: {
 		ready: {
@@ -31,26 +31,26 @@ export const playerMachine = createMachine({
 			on: {
 				PLAY: {
 					target: 'playing',
-					actions: ['playMedia']
-				}
-			}
+					actions: ['playMedia'],
+				},
+			},
 		},
 		playing: {
 			on: {
 				PAUSE: 'paused',
-				END: 'ended'
-			}
+				END: 'ended',
+			},
 		},
 		paused: {
 			on: {
 				PLAY: 'playing',
-				END: 'ended'
-			}
+				END: 'ended',
+			},
 		},
 		ended: {
 			on: {
-				RESET: 'ready'
-			}
-		}
-	}
-});
+				RESET: 'ready',
+			},
+		},
+	},
+})

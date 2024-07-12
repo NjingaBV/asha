@@ -1,1 +1,1 @@
-export { default as TextAnimation } from './TextAnimation.svelte';
+export { default as TextAnimation } from './TextAnimation.svelte'

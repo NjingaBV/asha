@@ -1,5 +1,5 @@
 export type ImageType = {
-	desktop: string;
-	mobile: string;
-	tablet: string;
-};
+	desktop: string
+	mobile: string
+	tablet: string
+}

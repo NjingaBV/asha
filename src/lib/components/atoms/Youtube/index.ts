@@ -1,1 +1,1 @@
-export { default as Youtube } from './Youtube.svelte';
+export { default as Youtube } from './Youtube.svelte'

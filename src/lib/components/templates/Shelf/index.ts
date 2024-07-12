@@ -1,1 +1,1 @@
-export { default as Shelf } from './Shelf.svelte';
+export { default as Shelf } from './Shelf.svelte'

@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
-import Hero from './Hero.svelte';
+import type { Meta, StoryObj } from '@storybook/svelte'
+import Hero from './Hero.svelte'
 
 const meta: Meta<typeof Hero> = {
 	title: 'Molecules/Hero',
-	component: Hero
-};
+	component: Hero,
+}
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const SimpleTherapies: Story = {
 	name: 'Simples Thérapies',
@@ -18,16 +18,18 @@ export const SimpleTherapies: Story = {
 		imgSrc: {
 			desktop:
 				'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-			mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-			tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
+			mobile:
+				'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
+			tablet:
+				'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
 		},
 		backgroundColor: '#6c00e2',
 		ctaLabel: 'Regarder',
 		ctaIcon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
 		ctaEventName: 'PLAY_MEDIA',
-		ctaUrl: 'https://www.youtube.com/watch?v=7e90gBu4pas'
-	}
-};
+		ctaUrl: 'https://www.youtube.com/watch?v=7e90gBu4pas',
+	},
+}
 
 export const AfroClub: Story = {
 	name: "L'Afro Club",
@@ -39,18 +41,20 @@ export const AfroClub: Story = {
 		imgSrc: {
 			desktop:
 				'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-			mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-			tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
+			mobile:
+				'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+			tablet:
+				'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 		},
 		backgroundColor: '#990505',
 		callToActions: [
 			{
 				label: 'Regarder',
-				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
-			}
-		]
-	}
-};
+				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
+			},
+		],
+	},
+}
 
 export const UrbanXra: Story = {
 	name: 'Urban Xra',
@@ -61,18 +65,20 @@ export const UrbanXra: Story = {
 		imgSrc: {
 			desktop:
 				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-			mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-			tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
+			mobile:
+				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+			tablet:
+				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 		},
 		backgroundColor: '#024a99',
 		callToActions: [
 			{
 				label: 'En savoir plus',
-				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
-			}
-		]
-	}
-};
+				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
+			},
+		],
+	},
+}
 
 export const UrbanXraWithoutDescription: Story = {
 	name: 'Without Description',
@@ -80,11 +86,13 @@ export const UrbanXraWithoutDescription: Story = {
 		imgSrc: {
 			desktop:
 				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-			mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-			tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
-		}
-	}
-};
+			mobile:
+				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+			tablet:
+				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+		},
+	},
+}
 
 export const Ouranos: Story = {
 	name: 'Ouranos',
@@ -94,12 +102,12 @@ export const Ouranos: Story = {
 		callToActions: [
 			{
 				label: 'En savoir plus',
-				color: '#0284c7'
+				color: '#0284c7',
 			},
 			{
 				label: "Contacter l'équipe",
-				color: '#1c1917'
-			}
-		]
-	}
-};
+				color: '#1c1917',
+			},
+		],
+	},
+}

@@ -1,6 +1,6 @@
-import { describe, it } from 'vitest';
-import { createModel } from '@xstate/test';
-import { appMachine } from './app.machine';
+import { describe, it } from 'vitest'
+import { createModel } from '@xstate/test'
+import { appMachine } from './app.machine'
 
 const appModel = createModel(appMachine).withEvents({
 	SUCCESS: {},
@@ -8,11 +8,11 @@ const appModel = createModel(appMachine).withEvents({
 	PLAY: {},
 	PAUSE: {},
 	RESET: {},
-	END: {}
-});
+	END: {},
+})
 
 describe('appMachine', () => {
-	const testPlans = appModel.getShortestPathPlans();
+	const testPlans = appModel.getShortestPathPlans()
 
 	testPlans.forEach((plan) => {
 		describe(plan.description, () => {
@@ -20,19 +20,20 @@ describe('appMachine', () => {
 				it(
 					path.description,
 					async () => {
-						await path.test({});
+						await path.test({})
 					},
-					10000
-				);
-			});
-		});
-	});
+					10000,
+				)
+			})
+		})
+	})
 
 	it('should have full coverage', () => {
 		return appModel.testCoverage({
 			filter: (stateNode) => {
-				return !stateNode.parent || stateNode.parent.key === 'readyMachine';
-			}
-		});
-	});
-});
+				return !stateNode.parent ||
+					stateNode.parent.key === 'readyMachine'
+			},
+		})
+	})
+})

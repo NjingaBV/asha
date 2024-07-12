@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/svelte'
 
-import Carousel from './Carousel.svelte';
+import Carousel from './Carousel.svelte'
 
 const meta: Meta<typeof Carousel> = {
 	title: 'Organism/Carousel',
-	component: Carousel
-};
+	component: Carousel,
+}
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const OneItem: Story = {
 	args: {
@@ -20,16 +20,18 @@ export const OneItem: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 				},
 				buttonName: 'Entrez dans la danse',
 				buttonLink: 'https://audioboom.com/channels/4993780/episodes',
-				backgroundColor: '#024a99'
-			}
-		]
-	}
-};
+				backgroundColor: '#024a99',
+			},
+		],
+	},
+}
 
 export const TwoItems: Story = {
 	args: {
@@ -43,12 +45,14 @@ export const TwoItems: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 				},
 				buttonName: 'Entrez dans le club',
 				buttonLink: 'https://musique.rfi.fr/tag/auteur/herve-mandina',
-				backgroundColor: '#990505'
+				backgroundColor: '#990505',
 			},
 			{
 				title: 'Urban Xra',
@@ -57,16 +61,18 @@ export const TwoItems: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 				},
 				buttonName: 'Entrez dans la danse',
 				buttonLink: 'https://audioboom.com/channels/4993780/episodes',
-				backgroundColor: '#024a99'
-			}
-		]
-	}
-};
+				backgroundColor: '#024a99',
+			},
+		],
+	},
+}
 
 export const ThreeItems: Story = {
 	args: {
@@ -78,12 +84,14 @@ export const ThreeItems: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
 				},
 				buttonName: 'Boostez votre quotidien',
 				buttonLink: 'https://djfacemaker.com/simples-therapies/',
-				backgroundColor: '#6c00e2'
+				backgroundColor: '#6c00e2',
 			},
 			{
 				title: "L'Afro Club",
@@ -92,12 +100,14 @@ export const ThreeItems: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 				},
 				buttonName: 'Entrez dans le club',
 				buttonLink: 'https://musique.rfi.fr/tag/auteur/herve-mandina',
-				backgroundColor: '#990505'
+				backgroundColor: '#990505',
 			},
 			{
 				title: 'Urban Xra',
@@ -106,16 +116,18 @@ export const ThreeItems: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 				},
 				buttonName: 'Entrez dans la danse',
 				buttonLink: 'https://audioboom.com/channels/4993780/episodes',
-				backgroundColor: '#024a99'
-			}
-		]
-	}
-};
+				backgroundColor: '#024a99',
+			},
+		],
+	},
+}
 
 export const ThreeItemsVideos: Story = {
 	args: {
@@ -127,12 +139,14 @@ export const ThreeItemsVideos: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
 				},
 				backgroundColor: '#6c00e2',
 				textOnImage: false,
-				isVideo: true
+				isVideo: true,
 			},
 			{
 				title: "L'Afro Club",
@@ -141,12 +155,14 @@ export const ThreeItemsVideos: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 				},
 				backgroundColor: '#990505',
 				textOnImage: false,
-				isVideo: true
+				isVideo: true,
 			},
 			{
 				title: 'Urban Xra',
@@ -155,16 +171,18 @@ export const ThreeItemsVideos: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 				},
 				backgroundColor: '#024a99',
 				textOnImage: false,
-				isVideo: true
-			}
-		]
-	}
-};
+				isVideo: true,
+			},
+		],
+	},
+}
 
 export const ThreeItemsWithoutDetails: Story = {
 	args: {
@@ -173,35 +191,41 @@ export const ThreeItemsWithoutDetails: Story = {
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
 				},
 				backgroundColor: '#6c00e2',
-				mixColor: true
+				mixColor: true,
 			},
 			{
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 				},
 				backgroundColor: '#990505',
-				mixColor: true
+				mixColor: true,
 			},
 			{
 				imgSrc: {
 					desktop:
 						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-					tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
+					mobile:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+					tablet:
+						'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 				},
 				backgroundColor: '#024a99',
-				mixColor: true
-			}
-		]
-	}
-};
+				mixColor: true,
+			},
+		],
+	},
+}
 
 export const NjingaCollections: Story = {
 	args: {
@@ -215,9 +239,11 @@ export const NjingaCollections: Story = {
 				imgSrc: {
 					desktop:
 						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
-					mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
-					tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269'
-				}
+					mobile:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+					tablet:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+				},
 			},
 			{
 				title: 'Panthère',
@@ -225,9 +251,11 @@ export const NjingaCollections: Story = {
 				imgSrc: {
 					desktop:
 						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
-					mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
-					tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957'
-				}
+					mobile:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
+					tablet:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
+				},
 			},
 			{
 				title: 'Malabo',
@@ -235,10 +263,12 @@ export const NjingaCollections: Story = {
 				imgSrc: {
 					desktop:
 						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
-					mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
-					tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836'
-				}
-			}
-		]
-	}
-};
+					mobile:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
+					tablet:
+						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
+				},
+			},
+		],
+	},
+}
