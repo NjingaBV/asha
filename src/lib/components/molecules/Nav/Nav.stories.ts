@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/svelte'
+import type { Meta, StoryObj } from '@storybook/svelte';
 
-import Nav from './Nav.svelte'
+import Nav from './Nav.svelte';
 
 const meta: Meta<typeof Nav> = {
 	title: 'Molecules/Nav',
-	component: Nav,
-}
+	component: Nav
+};
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const HeaderNavigation: Story = {
 	args: {
@@ -17,19 +17,19 @@ export const HeaderNavigation: Story = {
 		links: [
 			{
 				label: 'Home',
-				href: '#',
+				href: '#'
 			},
 			{
 				label: 'About',
-				href: '#about',
+				href: '#about'
 			},
 			{
 				label: 'Contact',
-				href: '#contact',
-			},
-		],
-	},
-}
+				href: '#contact'
+			}
+		]
+	}
+};
 
 export const SideNavigation: Story = {
 	args: {
@@ -38,16 +38,16 @@ export const SideNavigation: Story = {
 		links: [
 			{
 				label: 'Home',
-				href: '#',
+				href: '#'
 			},
 			{
 				label: 'About',
-				href: '#about',
+				href: '#about'
 			},
 			{
 				label: 'Contact',
-				href: '#contact',
-			},
-		],
-	},
-}
+				href: '#contact'
+			}
+		]
+	}
+};

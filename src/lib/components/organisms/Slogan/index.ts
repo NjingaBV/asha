@@ -1,1 +1,1 @@
-export { default as Slogan } from './Slogan.svelte'
+export { default as Slogan } from './Slogan.svelte';

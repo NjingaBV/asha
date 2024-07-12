@@ -17,7 +17,9 @@
 	const backgroundColor = $derived(rgb.join());
 
 	const brightness = $derived(
-		Math.round((parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000)
+		Math.round(
+			(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
+		)
 	);
 
 	const textColor = $derived(brightness > 125 ? '#000000' : '#ffffff');

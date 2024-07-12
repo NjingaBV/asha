@@ -1,1 +1,1 @@
-export { default as Hamburger } from './Hamburger.svelte'
+export { default as Hamburger } from './Hamburger.svelte';

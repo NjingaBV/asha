@@ -1,1 +1,1 @@
-export { default as Blob } from './Blob.svelte'
+export { default as Blob } from './Blob.svelte';

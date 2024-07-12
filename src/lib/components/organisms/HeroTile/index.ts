@@ -1,1 +1,1 @@
-export { default as HeroTile } from './HeroTile.svelte'
+export { default as HeroTile } from './HeroTile.svelte';

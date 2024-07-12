@@ -1,1 +1,1 @@
-export { default as Linkable } from './Linkable.svelte'
+export { default as Linkable } from './Linkable.svelte';
