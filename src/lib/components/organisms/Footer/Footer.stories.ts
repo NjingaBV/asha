@@ -4,7 +4,7 @@ import Footer from './Footer.svelte';
 
 const meta: Meta<typeof Footer> = {
 	title: 'Organism/Footer',
-	component: Footer
+	component: Footer,
 };
 
 export default meta;
@@ -16,8 +16,9 @@ export const Ouranos: Story = {
 			title: 'uranos',
 			subtitle: "Courtier d'assurances",
 			showTitle: true,
-			imgUrl: 'https://images.prismic.io/ouranos/5f910072-4e6d-4b5e-b47a-5649dc9312fe_O.png?Fauto=compress,format'
+			imgUrl:
+				'https://images.prismic.io/ouranos/5f910072-4e6d-4b5e-b47a-5649dc9312fe_O.png?Fauto=compress,format',
 		},
-		brandName: 'Ouranos'
-	}
+		brandName: 'Ouranos',
+	},
 };

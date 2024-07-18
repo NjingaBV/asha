@@ -5,7 +5,7 @@ import { uiMachine } from './ui.machine';
 const uiModel = createModel(uiMachine).withEvents({
 	TOGGLE_MENU: {},
 	OPEN_PLAYER: {},
-	CLOSE_PLAYER: {}
+	CLOSE_PLAYER: {},
 });
 
 describe('uiMachine', () => {
@@ -19,7 +19,7 @@ describe('uiMachine', () => {
 					async () => {
 						await path.test({});
 					},
-					10000
+					10000,
 				);
 			});
 		});
@@ -28,8 +28,9 @@ describe('uiMachine', () => {
 	it('should have full coverage', () => {
 		return uiModel.testCoverage({
 			filter: (stateNode) => {
-				return !stateNode.parent || stateNode.parent.key === 'readyMachine';
-			}
+				return !stateNode.parent ||
+					stateNode.parent.key === 'readyMachine';
+			},
 		});
 	});
 });

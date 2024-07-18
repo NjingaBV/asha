@@ -4,7 +4,7 @@ import Slogan from './Slogan.svelte';
 
 const meta: Meta<typeof Slogan> = {
 	title: 'Organism/Slogan',
-	component: Slogan
+	component: Slogan,
 };
 
 export default meta;
@@ -15,22 +15,22 @@ export const Subscribe: Story = {
 		cta: {
 			url: '/',
 			label: 'Souscrire',
-			color: '#0284c7'
+			color: '#0284c7',
 		},
 		backgroundColor: '#000000',
 		slogans: [
 			{
 				title: 'Simple.',
-				subtitle: '0% prise de tête'
+				subtitle: '0% prise de tête',
 			},
 			{
 				title: 'Transparente.',
-				subtitle: 'Au juste prix'
+				subtitle: 'Au juste prix',
 			},
 			{
 				title: 'Révolutionnaire.',
-				subtitle: '100% mobile et flexible'
-			}
-		]
-	}
+				subtitle: '100% mobile et flexible',
+			},
+		],
+	},
 };

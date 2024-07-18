@@ -8,7 +8,7 @@ const appModel = createModel(appMachine).withEvents({
 	PLAY: {},
 	PAUSE: {},
 	RESET: {},
-	END: {}
+	END: {},
 });
 
 describe('appMachine', () => {
@@ -22,7 +22,7 @@ describe('appMachine', () => {
 					async () => {
 						await path.test({});
 					},
-					10000
+					10000,
 				);
 			});
 		});
@@ -31,8 +31,9 @@ describe('appMachine', () => {
 	it('should have full coverage', () => {
 		return appModel.testCoverage({
 			filter: (stateNode) => {
-				return !stateNode.parent || stateNode.parent.key === 'readyMachine';
-			}
+				return !stateNode.parent ||
+					stateNode.parent.key === 'readyMachine';
+			},
 		});
 	});
 });

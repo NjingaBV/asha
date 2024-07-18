@@ -20,44 +20,44 @@ export const appMachineConfig: MachineConfig<AppContext, never, AppEvents> = {
 				PAGE_LOADED: {
 					target: 'browsing',
 					actions: assign({
-						pathname: (_, event) => event.type
-					})
-				}
-			}
+						pathname: (_, event) => event.type,
+					}),
+				},
+			},
 		},
 		browsing: {
 			on: {
 				MEDIA_PLAYING: {
 					target: 'playing',
-					actions: sendTo('uiMachine', { type: 'MEDIA_PLAYING' })
-				}
-			}
+					actions: sendTo('uiMachine', { type: 'MEDIA_PLAYING' }),
+				},
+			},
 		},
 		playing: {
 			on: {
 				MEDIA_PAUSE: {
 					target: 'paused',
-					actions: sendTo('uiMachine', { type: 'MEDIA_PAUSE' })
+					actions: sendTo('uiMachine', { type: 'MEDIA_PAUSE' }),
 				},
 				MEDIA_STOP: {
 					target: 'idle',
-					actions: sendTo('uiMachine', { type: 'MEDIA_STOP' })
-				}
-			}
+					actions: sendTo('uiMachine', { type: 'MEDIA_STOP' }),
+				},
+			},
 		},
 		paused: {
 			on: {
 				MEDIA_PLAYING: {
 					target: 'playing',
-					actions: sendTo('uiMachine', { type: 'MEDIA_PLAYING' })
+					actions: sendTo('uiMachine', { type: 'MEDIA_PLAYING' }),
 				},
 				MEDIA_STOP: {
 					target: 'idle',
-					actions: sendTo('uiMachine', { type: 'MEDIA_STOP' })
-				}
-			}
-		}
-	}
+					actions: sendTo('uiMachine', { type: 'MEDIA_STOP' }),
+				},
+			},
+		},
+	},
 };
 
 export const appMachine = createMachine(appMachineConfig);

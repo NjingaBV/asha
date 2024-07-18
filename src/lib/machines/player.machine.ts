@@ -23,7 +23,7 @@ export const playerMachine = createMachine({
 	initial: 'ready',
 	schema: {
 		context: {} as PlayerContext,
-		events: {} as PlayerEvents
+		events: {} as PlayerEvents,
 	},
 	states: {
 		ready: {
@@ -31,26 +31,26 @@ export const playerMachine = createMachine({
 			on: {
 				PLAY: {
 					target: 'playing',
-					actions: ['playMedia']
-				}
-			}
+					actions: ['playMedia'],
+				},
+			},
 		},
 		playing: {
 			on: {
 				PAUSE: 'paused',
-				END: 'ended'
-			}
+				END: 'ended',
+			},
 		},
 		paused: {
 			on: {
 				PLAY: 'playing',
-				END: 'ended'
-			}
+				END: 'ended',
+			},
 		},
 		ended: {
 			on: {
-				RESET: 'ready'
-			}
-		}
-	}
+				RESET: 'ready',
+			},
+		},
+	},
 });

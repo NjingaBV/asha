@@ -25,7 +25,7 @@
 			{/each}
 		</div>
 		<div>
-			<Button color={cta.color} size="large" onClick={() => (location.href = cta.url)}>
+			<Button color={cta.color} size="large" onclick={() => (location.href = cta.url)}>
 				{cta.label}
 			</Button>
 		</div>

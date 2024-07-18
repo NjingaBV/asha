@@ -3,7 +3,7 @@ import CallToAction from './CallToAction.svelte';
 
 const meta: Meta<typeof CallToAction> = {
 	title: 'Molecules/CallToAction',
-	component: CallToAction
+	component: CallToAction,
 };
 
 export default meta;
@@ -17,13 +17,13 @@ export const Souscription: Story = {
 			{
 				label: 'Souscrire',
 				url: '/souscrire',
-				backgroundColor: '#0284c7'
+				backgroundColor: '#0284c7',
 			},
 			{
 				label: "Contacter l'équipe",
 				url: '/contact',
-				backgroundColor: '#1c1917'
-			}
-		]
-	}
+				backgroundColor: '#1c1917',
+			},
+		],
+	},
 };

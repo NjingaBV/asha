@@ -6,7 +6,7 @@ const playerModel = createModel(playerMachine).withEvents({
 	PLAY: {},
 	PAUSE: {},
 	RESET: {},
-	END: {}
+	END: {},
 });
 
 describe('playerMachine', () => {
@@ -20,7 +20,7 @@ describe('playerMachine', () => {
 					async () => {
 						await path.test({});
 					},
-					10000
+					10000,
 				);
 			});
 		});
@@ -29,8 +29,9 @@ describe('playerMachine', () => {
 	it('should have full coverage', () => {
 		return playerModel.testCoverage({
 			filter: (stateNode) => {
-				return !stateNode.parent || stateNode.parent.key === 'readyMachine';
-			}
+				return !stateNode.parent ||
+					stateNode.parent.key === 'readyMachine';
+			},
 		});
 	});
 });

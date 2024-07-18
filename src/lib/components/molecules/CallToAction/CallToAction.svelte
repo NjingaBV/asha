@@ -24,7 +24,7 @@
 		{#each buttons as button}
 			<Button
 				color={button.backgroundColor}
-				onClick={() => (location.href = button.url)}
+				onclick={() => (location.href = button.url)}
 				size="large"
 			>
 				{button.label}

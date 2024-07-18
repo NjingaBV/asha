@@ -2,31 +2,44 @@
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 	import Linkable from '$lib/components/atoms/Linkable/Linkable.svelte';
 	import type { ImageType } from '$lib/models';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	export let title: string;
-	export let subtitle: string;
-	export let overview: string;
-	export let imgSrc: ImageType;
-	export let buttonName: string;
-	export let buttonLink: string;
-	export let backgroundColor: `#${string}`;
-	export let mixColor: boolean;
-	export let textOnImage = true;
-	export let rounded = true;
-	export let isVideo = false;
+	interface Props extends HTMLAttributes<HTMLDivElement> {
+		title?: string;
+		subtitle?: string;
+		overview?: string;
+		imgSrc?: ImageType;
+		buttonName?: string;
+		buttonLink?: string;
+		backgroundColor?: `#${string}`;
+		mixColor?: boolean;
+		textOnImage?: boolean;
+		rounded?: boolean;
+		isVideo?: boolean;
+	}
 
-	$: isLinkable = Boolean(!buttonName && buttonLink);
+	let {
+		title,
+		subtitle,
+		overview,
+		imgSrc,
+		buttonName,
+		buttonLink,
+		backgroundColor = '#ffffff',
+		mixColor = false,
+		textOnImage = true,
+		rounded = true,
+		isVideo = false
+	}: Props = $props();
+
+	const isLinkable = $derived(Boolean(!buttonName && buttonLink));
 </script>
 
 <Linkable {isLinkable} link={buttonLink}>
 	<div
 		class={[
 			`relative max-h-screen ${rounded && 'rounded-[30px]'}`,
-			`${
-				buttonName && imgSrc
-					? 'aspect-[9/16]'
-					: `${isVideo ? 'aspect-video' : 'aspect-square'}`
-			}`
+			`${buttonName && imgSrc ? 'aspect-[9/16]' : `${isVideo ? 'aspect-video' : 'aspect-square'}`}`
 		].join(' ')}
 	>
 		<div class="flex flex-col h-full">
@@ -36,14 +49,8 @@
 			>
 				{#if imgSrc}
 					<picture>
-						{#if imgSrc.desktop}<source
-								media="(min-width: 950px)"
-								srcset={imgSrc.desktop}
-							/>{/if}
-						{#if imgSrc.tablet}<source
-								media="(min-width: 650px)"
-								srcset={imgSrc.tablet}
-							/>{/if}
+						{#if imgSrc.desktop}<source media="(min-width: 950px)" srcset={imgSrc.desktop} />{/if}
+						{#if imgSrc.tablet}<source media="(min-width: 650px)" srcset={imgSrc.tablet} />{/if}
 						<img
 							src={imgSrc.mobile}
 							alt={title}
@@ -60,9 +67,7 @@
 				<div
 					class={[
 						'absolute w-full h-fit bottom-0',
-						`bg-gradient-to-t from-stone-900 ${
-							buttonName && imgSrc && 'via-stone-900'
-						}`,
+						`bg-gradient-to-t from-stone-900 ${buttonName && imgSrc && 'via-stone-900'}`,
 						`p-4 ${rounded && 'rounded-b-[30px]'} flex flex-col`
 					].join(' ')}
 				>
@@ -81,9 +86,7 @@
 						</h2>
 					{/if}
 					{#if overview}
-						<h3
-							class="text-stone-100 font-thin text-left md:text-center mb-4 line-clamp-5"
-						>
+						<h3 class="text-stone-100 font-thin text-left md:text-center mb-4 line-clamp-5">
 							{overview}
 						</h3>
 					{/if}
@@ -92,7 +95,7 @@
 							<Button
 								color={backgroundColor}
 								rounded={true}
-								onClick={() => (location.href = buttonLink)}>{buttonName}</Button
+								onclick={() => (location.href = buttonLink)}>{buttonName}</Button
 							>
 						</div>
 					{/if}
@@ -124,10 +127,8 @@
 		{/if}
 		{#if buttonName && buttonLink}
 			<div class=" w-3/4 self-center">
-				<Button
-					color={backgroundColor}
-					rounded={true}
-					onClick={() => (location.href = buttonLink)}>{buttonName}</Button
+				<Button color={backgroundColor} rounded={true} onclick={() => (location.href = buttonLink)}
+					>{buttonName}</Button
 				>
 			</div>
 		{/if}

@@ -3,7 +3,7 @@ import Card from './Card.svelte';
 
 const meta: Meta<typeof Card> = {
 	title: 'Molecules/Card',
-	component: Card
+	component: Card,
 };
 
 export default meta;
@@ -18,13 +18,15 @@ export const SimpleTherapies: Story = {
 		imgSrc: {
 			desktop:
 				'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-			mobile: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
-			tablet: 'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format'
+			mobile:
+				'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
+			tablet:
+				'https://images.prismic.io/djfacemakerv2/cc7c006e-352b-4dd2-bb41-2625d8eab953_ST+vignette+FMK.png?auto=compress,format',
 		},
 		buttonName: 'Boostez votre quotidien',
 		buttonLink: 'https://djfacemaker.com/simples-therapies/',
-		backgroundColor: '#6c00e2'
-	}
+		backgroundColor: '#6c00e2',
+	},
 };
 
 export const AfroClub: Story = {
@@ -36,14 +38,16 @@ export const AfroClub: Story = {
 		imgSrc: {
 			desktop:
 				'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-			mobile: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
-			tablet: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format'
+			mobile:
+				'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+			tablet:
+				'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 		},
 		buttonName: 'Entrez dans le club',
 		buttonLink: 'https://musique.rfi.fr/tag/auteur/herve-mandina',
 		backgroundColor: '#990505',
-		rounded: false
-	}
+		rounded: false,
+	},
 };
 
 export const UrbanXra: Story = {
@@ -55,13 +59,15 @@ export const UrbanXra: Story = {
 		imgSrc: {
 			desktop:
 				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-			mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-			tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
+			mobile:
+				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+			tablet:
+				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
 		},
 		buttonName: 'Entrez dans la danse',
 		buttonLink: 'https://audioboom.com/channels/4993780/episodes',
-		backgroundColor: '#024a99'
-	}
+		backgroundColor: '#024a99',
+	},
 };
 
 export const UrbanXraWithoutDescription: Story = {
@@ -71,10 +77,12 @@ export const UrbanXraWithoutDescription: Story = {
 		imgSrc: {
 			desktop:
 				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-			mobile: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
-			tablet: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format'
-		}
-	}
+			mobile:
+				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+			tablet:
+				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+		},
+	},
 };
 
 export const NjingaBuy: Story = {
@@ -86,12 +94,14 @@ export const NjingaBuy: Story = {
 		imgSrc: {
 			desktop:
 				'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291',
-			mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291',
-			tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291'
+			mobile:
+				'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291',
+			tablet:
+				'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_155_7d3e18cc-aadf-48ee-a292-dda3cd25ad82_540x.jpg?v=1645794291',
 		},
 		buttonName: 'Je veux du style',
-		buttonLink: '/buy'
-	}
+		buttonLink: '/buy',
+	},
 };
 
 export const NjingaBuyWithoutDescription: Story = {
@@ -102,10 +112,12 @@ export const NjingaBuyWithoutDescription: Story = {
 		imgSrc: {
 			desktop:
 				'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/PhotoRoom_20211019_022805_large.jpg?v=1634650638',
-			mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/PhotoRoom_20211019_022805_large.jpg?v=1634650638',
-			tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/PhotoRoom_20211019_022805_large.jpg?v=1634650638'
-		}
-	}
+			mobile:
+				'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/PhotoRoom_20211019_022805_large.jpg?v=1634650638',
+			tablet:
+				'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/PhotoRoom_20211019_022805_large.jpg?v=1634650638',
+		},
+	},
 };
 
 export const NjingaTurbanMalabo: Story = {
@@ -116,10 +128,12 @@ export const NjingaTurbanMalabo: Story = {
 		imgSrc: {
 			desktop:
 				'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
-			mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
-			tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836'
+			mobile:
+				'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
+			tablet:
+				'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
 		},
 		textOnImage: false,
-		rounded: false
-	}
+		rounded: false,
+	},
 };

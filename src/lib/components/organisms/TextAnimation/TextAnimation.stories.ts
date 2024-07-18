@@ -4,7 +4,7 @@ import TextAnimation from './TextAnimation.svelte';
 
 const meta: Meta<typeof TextAnimation> = {
 	title: 'Organism/TextAnimation',
-	component: TextAnimation
+	component: TextAnimation,
 };
 
 export default meta;
@@ -15,16 +15,16 @@ export const Ouranos: Story = {
 		labels: [
 			{
 				color: '#22c55e',
-				title: 'Simple'
+				title: 'Simple',
 			},
 			{
 				color: '#eab308',
-				title: 'Transparente'
+				title: 'Transparente',
 			},
 			{
 				color: '#3b82f6',
-				title: 'Révolutionnaire'
-			}
-		]
-	}
+				title: 'Révolutionnaire',
+			},
+		],
+	},
 };

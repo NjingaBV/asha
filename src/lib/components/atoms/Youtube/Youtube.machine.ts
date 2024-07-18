@@ -11,9 +11,9 @@ export const youtubeMachine = createMachine({
 	},
 	context: ({ input }) => ({
 		player: {
-			playVideo: () => {}
+			playVideo: () => {},
 		},
-		videoId: input.videoId
+		videoId: input.videoId,
 	}),
 	invoke: {
 		src: fromCallback(({ sendBack, receive, input }) => {
@@ -35,8 +35,8 @@ export const youtubeMachine = createMachine({
 						playsinline: 1,
 						controls: 1,
 						autoplay: 0,
-						iv_load_policy: 3
-					}
+						iv_load_policy: 3,
+					},
 				}).addEventListener('youtube', handler);
 			};
 
@@ -45,8 +45,8 @@ export const youtubeMachine = createMachine({
 			};
 		}),
 		input: ({ context, event }) => ({
-			videoId: context.videoId
-		})
+			videoId: context.videoId,
+		}),
 	},
 	states: {
 		ready: {
@@ -60,26 +60,26 @@ export const youtubeMachine = createMachine({
 					actions: ({ context }) => {
 						console.log('player ready: ', context.player);
 						context.player.playVideo();
-					}
-				}
-			}
+					},
+				},
+			},
 		},
 		playing: {
 			on: {
 				PAUSE: 'paused',
-				END: 'ended'
-			}
+				END: 'ended',
+			},
 		},
 		paused: {
 			on: {
 				PLAY: 'playing',
-				END: 'ended'
-			}
+				END: 'ended',
+			},
 		},
 		ended: {
 			on: {
-				RESET: 'ready'
-			}
-		}
-	}
+				RESET: 'ready',
+			},
+		},
+	},
 });

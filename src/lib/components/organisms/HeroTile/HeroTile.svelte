@@ -21,7 +21,7 @@
 		<Tile images={images.sort(() => 0.5 - Math.random()).slice(3)} speed={-0.5} />
 	</div>
 	{#if logo}
-		<div class="absolute bg-stone-900/50 w-full h-full" />
+		<div class="absolute bg-stone-900/50 w-full h-full"></div>
 		<div class="h-[30vh] md:h-[50vh] flex items-center">
 			<img
 				src={logo.imgUrl}

@@ -3,19 +3,32 @@
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 	import type { ImageType } from '$lib/models';
 
-	export let title: string;
-	export let overview: string;
-	export let details: string;
-	export let imgSrc: ImageType;
-	export let callToActions: Array<{ label: string; url: string; icon: string; color: string }>;
-	export let backgroundColor: `#${string}` = '#ffffff';
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	interface Props extends HTMLAttributes<HTMLDivElement> {
+		title?: string;
+		overview?: string;
+		details?: string;
+		imgSrc?: ImageType;
+		callToActions?: Array<{ label: string; url: string; icon: string; color: string }>;
+		backgroundColor?: `#${string}`;
+	}
+
+	let {
+		title,
+		overview,
+		details,
+		imgSrc,
+		callToActions,
+		backgroundColor = '#ffffff'
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
 	let lineClampEnabled = true;
 	let lines = 5;
 
-	$: truncated = overview && overview.length > lines * 50;
+	const truncated = $derived.by(() => overview && overview.length > lines * 50);
 
 	const toggleLineClamp = () => {
 		if (truncated) {
@@ -24,19 +37,24 @@
 		}
 	};
 
-	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray;
-	$: rgb =
-		regex.slice(1).reduce((acc: string[], val, i) => {
-			acc[i] = `${parseInt(val, 16)}`;
-			return acc;
-		}, []) || [];
-
-	$: brightness = Math.round(
-		(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
+	const regex = $derived.by(
+		() => /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray
 	);
 
-	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
-	$: hasDetails = Boolean(title || details);
+	const rgb = $derived.by(
+		() =>
+			regex.slice(1).reduce((acc: string[], val, i) => {
+				acc[i] = `${parseInt(val, 16)}`;
+				return acc;
+			}, []) || []
+	);
+
+	const brightness = $derived.by(() =>
+		Math.round((parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000)
+	);
+
+	const textColor = $derived.by(() => (brightness > 125 ? '#000000' : '#ffffff'));
+	const hasDetails = $derived.by(() => Boolean(title || details));
 </script>
 
 <div
@@ -64,7 +82,7 @@
 			`${hasDetails ? 'h-3/4 md:h-3/5' : 'h-2/5'}`
 		].join(' ')}
 		style="--tw-gradient-stops: {backgroundColor}, {backgroundColor}, rgb(15 23 42 / 0)"
-	/>
+	></div>
 	<div
 		class="flex flex-col items-center absolute bottom-0 md:w-1/3 p-4 h-fit z-20 gap-4"
 		style="color: var(--text-color);"
@@ -80,18 +98,10 @@
 				class="w-full mt-6 sm:mt-10 flex flex-auto flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 text-xl"
 			>
 				{#each callToActions as cta}
-					<Button
-						color={cta.color}
-						size="large"
-						onClick={() => (location.href = cta.url)}
-					>
+					<Button color={cta.color} size="large" onclick={() => (location.href = cta.url)}>
 						<h3 class="flex items-center text-xl">
 							{#if cta.icon}
-								<svg
-									class="flex-none stroke-[5] h-6 w-6"
-									stroke-width="2"
-									viewBox="0 0 50 50"
-								>
+								<svg class="flex-none stroke-[5] h-6 w-6" stroke-width="2" viewBox="0 0 50 50">
 									<path d={cta.icon} />
 								</svg>
 							{/if}
@@ -104,12 +114,10 @@
 		{#if overview}
 			<button
 				class={`relative flex flex-col ${!truncated && 'cursor-default'}`}
-				on:click={toggleLineClamp}
+				onclick={toggleLineClamp}
 			>
 				<p
-					class={`flex-1 text-color text-justify font-light ${
-						lineClampEnabled && 'line-clamp-5'
-					}`}
+					class={`flex-1 text-color text-justify font-light ${lineClampEnabled && 'line-clamp-5'}`}
 				>
 					{overview}
 				</p>
