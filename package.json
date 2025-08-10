@@ -55,7 +55,7 @@
 		"@sveltejs/vite-plugin-svelte": "^2.4.5",
 		"@tailwindcss/line-clamp": "^0.4.4",
 		"@tsconfig/svelte": "^5.0.0",
-		"@types/youtube": "^0.0.47",
+		"@types/youtube": "^0.1.0",
 		"@typescript-eslint/eslint-plugin": "^6.4.0",
 		"@typescript-eslint/parser": "^6.4.0",
 		"@xstate/cli": "^0.4.2",
