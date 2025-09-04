@@ -11,12 +11,10 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+            - uses: actions/checkout@v4
               with:
                   fetch-depth: 0
-            - name: Commitlint
-              uses: wagoid/commitlint-github-action@v5
+            - uses: wagoid/commitlint-github-action@v5
               with:
                   configFile: commitlint.config.cjs
 
@@ -27,34 +25,19 @@ jobs:
         env:
             NODE_OPTIONS: --max-old-space-size=4096
         steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: 'lts/*'
                   cache: 'pnpm'
-
-            - name: Enable corepack and set pnpm version
-              run: |
-                  corepack enable
-                  corepack prepare pnpm@8.6.12 --activate
-
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
-
-            - name: Lint
-              run: pnpm run lint
-
-            - name: Type Check
-              run: pnpm run check
-
-            - name: Build Storybook
-              run: pnpm run build-storybook
-
-            - name: Upload Storybook artifact
-              uses: actions/upload-artifact@v4
+            - uses: pnpm/action-setup@v4
+              with:
+                  version: 8.6.12
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm run lint
+            - run: pnpm run check
+            - run: pnpm run build-storybook
+            - uses: actions/upload-artifact@v4
               with:
                   name: storybook-static
                   path: storybook-static
@@ -65,34 +48,19 @@ jobs:
         env:
             NODE_OPTIONS: --max-old-space-size=4096
         steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: 'lts/*'
                   cache: 'pnpm'
-
-            - name: Enable corepack and set pnpm version
-              run: |
-                  corepack enable
-                  corepack prepare pnpm@8.6.12 --activate
-
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
-
-            - name: Lint
-              run: pnpm run lint
-
-            - name: Type Check
-              run: pnpm run check
-
-            - name: Build Storybook
-              run: pnpm run build-storybook
-
-            - name: Upload Storybook artifact
-              uses: actions/upload-artifact@v4
+            - uses: pnpm/action-setup@v4
+              with:
+                  version: 8.6.12
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm run lint
+            - run: pnpm run check
+            - run: pnpm run build-storybook
+            - uses: actions/upload-artifact@v4
               with:
                   name: storybook-static
                   path: storybook-static
