@@ -28,9 +28,9 @@ Usage (Quick Start)
 ```svelte
 <!-- Example.svelte -->
 <script lang="ts">
-  import { Button } from '@njingabv/asha';
-  // styles
-  import '@njingabv/asha/dist/asha.css';
+	import { Button } from '@njingabv/asha';
+	// styles
+	import '@njingabv/asha/dist/asha.css';
 </script>
 
 <Button color="#6c00e2" size="large">Get Started</Button>
@@ -42,6 +42,38 @@ Component Organization
 - Molecules: combined atoms (Card, Tile, Hero, Player, Nav, Blob)
 - Organisms: sections (Header, Footer, Features, Carousel, Slogan, TextAnimation, AnimatedBlob, HeroTile)
 - Templates/Pages: page-level assembly (Shelf, Home)
+
+## Component Catalogue (Quick Reference)
+
+Atoms
+- Button: CTA with size/color; auto-contrasts text.
+- Linkable: Styled anchor wrapper.
+- Youtube: 16:9 player via Iframe API (prop: `videoId`).
+- PathLine: SVG path line utility.
+- Hamburger: Menu toggle icon.
+
+Molecules
+- Card: Image + title/subtitle/CTA; configurable colors.
+- Tile: Vertical image tiles with parallax-like scroll.
+- Hero: Media backdrop + title/overview + CTAs; gradient overlay.
+- Player: Smart media player; detects YouTube URLs.
+- Nav: Header/aside navigation; computed text color.
+- Blob: Decorative colored blob.
+- Logo: Brand logo/title block.
+- Feature: Highlight with icon/text/details.
+- CallToAction: One or more primary CTA buttons.
+
+Organisms
+- Header/Footer: Page chrome sections.
+- Features: Section rendering a list of Feature items.
+- Carousel: Horizontal cards slider; responsive widths.
+- Slogan: Short slogans + CTA with background color.
+- TextAnimation: Large animated headline sequence.
+- AnimatedBlob: Row of Blob decorations.
+- HeroTile: Hero section with tiled media.
+
+Templates
+- Shelf: Page template composing slices (sections) by name.
 
 ## Features
 
