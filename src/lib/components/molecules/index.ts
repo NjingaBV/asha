@@ -6,3 +6,6 @@ export * from './Hero';
 export * from './Logo';
 export * from './Nav';
 export * from './Tile';
+export * from './CTAGroup';
+export * from './FeatureItem';
+export * from './ColorSelector';

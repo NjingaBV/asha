@@ -13,4 +13,4 @@
 	aria-label={label}
 	title={label}
 	style={`background:${color}`}
-/>
+></button>
