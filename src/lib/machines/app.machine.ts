@@ -1,4 +1,4 @@
-import { assign, createMachine, sendTo, type MachineConfig } from 'xstate';
+import { assign, createMachine, sendTo } from 'xstate';
 
 export type AppEvents =
 	| { type: 'PAGE_LOADED'; pathname: string }
@@ -10,8 +10,7 @@ export interface AppContext {
 	pathname: string;
 }
 
-export const appMachineConfig: MachineConfig<AppContext, never, AppEvents> = {
-	schema: { context: {} as AppContext, events: {} as AppEvents },
+export const appMachineConfig = {
 	id: 'appMachine',
 	initial: 'idle',
 	states: {
@@ -20,7 +19,8 @@ export const appMachineConfig: MachineConfig<AppContext, never, AppEvents> = {
 				PAGE_LOADED: {
 					target: 'browsing',
 					actions: assign({
-						pathname: (_, event) => event.type
+						// best-effort typing
+						pathname: (_: any, event: any) => event?.pathname ?? ''
 					})
 				}
 			}
@@ -60,4 +60,4 @@ export const appMachineConfig: MachineConfig<AppContext, never, AppEvents> = {
 	}
 };
 
-export const appMachine = createMachine(appMachineConfig);
+export const appMachine = createMachine(appMachineConfig as any);

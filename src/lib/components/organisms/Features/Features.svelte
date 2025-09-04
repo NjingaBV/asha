@@ -21,7 +21,7 @@
 			{title}
 		</small>
 	</div>
-	{#each features as feature, index}
+	{#each features as feature, index (index)}
 		<Feature order={index + 1} {...feature} />
 	{/each}
 </section>

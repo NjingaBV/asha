@@ -35,21 +35,18 @@
 		</ul>
 
 		<h2 class="mt-8 text-xl font-semibold">Exemple minimal</h2>
-		<pre class="bg-slate-900 text-slate-100 p-4 rounded"><code
-				>{`<!-- Button.stories.svelte -->
-<script>
-  import { Meta, Template, Story } from '@storybook/addon-svelte-csf';
+		<pre class="bg-slate-900 text-slate-100 p-4 rounded"><code>&lt;script&gt;
+  import &#123; Meta, Template, Story &#125; from '@storybook/addon-svelte-csf';
   import Button from './Button.svelte';
-</script>
+&lt;/script&gt;
 
-<Meta title="Atoms/Button" component={Button} />
+&lt;Meta title="Atoms/Button" component=&#123;Button&#125; /&gt;
 
-<Template let:args>
-  <Button {...args}>Bouton</Button>
-</Template>
+&lt;Template let:args&gt;
+  &lt;Button &#123;...args&#125;&gt;Bouton&lt;/Button&gt;
+&lt;/Template&gt;
 
-<Story name="Par défaut" args={{ size: 'medium', color: '#6c00e2' }} />`}</code
-			></pre>
+&lt;Story name="Par défaut" args=&#123;&#123; size: 'medium', color: '#6c00e2' &#125;&#125; /&gt;</code></pre>
 
 		<h2 class="mt-8 text-xl font-semibold">Rendu global</h2>
 		<p>

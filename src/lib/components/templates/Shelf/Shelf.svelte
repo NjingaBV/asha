@@ -10,7 +10,7 @@
 		TextAnimation
 	} from '$lib/components';
 	import type { LinkType, SliceType } from '$lib/models';
-	import type { ComponentType } from 'svelte';
+import type { ComponentType } from 'svelte';
 
 	export let navLinks: LinkType[] = [];
 	export let slices: SliceType[] = [];
@@ -25,7 +25,8 @@
 		return '#ffffff';
 	};
 
-	const getComponent = (slice: SliceType): ComponentType | undefined => {
+// Relaxed typing to accommodate varying component prop types
+const getComponent = (slice: SliceType): any => {
 		switch (slice.name) {
 			case 'call-to-action':
 				return CallToAction;

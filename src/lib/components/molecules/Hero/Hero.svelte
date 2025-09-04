@@ -79,7 +79,7 @@
 			<div
 				class="w-full mt-6 sm:mt-10 flex flex-auto flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 text-xl"
 			>
-				{#each callToActions as cta}
+				{#each callToActions as cta, i (i)}
 					<Button
 						color={cta.color}
 						size="large"

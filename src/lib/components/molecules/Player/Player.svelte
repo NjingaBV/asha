@@ -14,9 +14,9 @@
 	let lines = 5;
 
 	let showThumbnail = true;
-	let timeoutId: number;
+	let timeoutId: number | undefined;
 
-	$: if (timeoutId) clearTimeout(timeoutId);
+	$: if (timeoutId !== undefined) clearTimeout(timeoutId);
 
 	const toggleLineClamp = () => {
 		lineClampEnabled = !lineClampEnabled;
@@ -33,7 +33,7 @@
 	$: match = url.match(youtubeRegExp);
 	$: videoId = match && match[2].length === 11 ? match[2] : null;
 
-	const getComponent = (selectedUrl: string): ComponentType | undefined => {
+	const getComponent = (selectedUrl: string): any => {
 		const urlCheck = new URL(selectedUrl);
 		switch (urlCheck.host) {
 			case 'www.youtube.com':

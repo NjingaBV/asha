@@ -28,7 +28,7 @@
 		</div>
 	{/if}
 	<ul class={['flex gap-4 w-full', 'overflow-x-auto snap-x', 'no-scrollbar'].join(' ')}>
-		{#each cards as card}
+		{#each cards as card, i (i)}
 			<li
 				class={[
 					'flex-none',

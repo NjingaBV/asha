@@ -8,16 +8,7 @@
 	component={Header}
 	argTypes={{
 		open: { control: 'boolean' },
-		items: {
-			control: {
-				type: 'array',
-				options: [
-					{ label: 'Home', href: '/' },
-					{ label: 'About', href: '/about' },
-					{ lable: 'Contact', href: '/contact' }
-				]
-			}
-		}
+		items: { control: 'object' }
 	}}
 />
 

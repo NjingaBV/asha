@@ -9,9 +9,11 @@
 	};
 
 	onMount(() => {
-		window.onYouTubeIframeAPIReady = () => {
+		if (typeof window === 'undefined') return;
+		(window as any).onYouTubeIframeAPIReady = () => {
 			/* eslint-disable */
-			player = new YT.Player('player', {
+			const YTGlobal = (window as any).YT;
+			player = new YTGlobal.Player('player', {
 				videoId,
 				playerVars: {
 					rel: 0,

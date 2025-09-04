@@ -13,7 +13,7 @@
 		<div
 			class="flex flex-col md:flex-row font-sans justify-center md:justify-between space-y-4 md:space-y-0 md:space-x-4"
 		>
-			{#each slogans as slogan}
+			{#each slogans as slogan (slogan.title)}
 				<div>
 					<div class="font-extrabold text-4xl md:text-2xl lg:text-4xl">
 						{slogan.title}

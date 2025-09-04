@@ -21,7 +21,7 @@
 	<div
 		class="flex flex-auto flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 text-xl"
 	>
-		{#each buttons as button}
+		{#each buttons as button (button.url)}
 			<Button
 				color={button.backgroundColor}
 				onClick={() => (location.href = button.url)}

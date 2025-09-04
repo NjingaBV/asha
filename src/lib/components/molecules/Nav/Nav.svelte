@@ -36,7 +36,7 @@
 			`${headerMenu ? 'flex space-x-3' : 'px-10 text-left text-lg font-extralight divide-y'}`
 		].join(' ')}
 	>
-		{#each links as link}
+		{#each links as link (link.href)}
 			<li class={[`${!headerMenu && 'py-2'}`].join(' ')} style={`${`color: ${textColor};`}`}>
 				<a href={link.href}>{link.label}</a>
 			</li>

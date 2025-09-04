@@ -11,13 +11,14 @@ export type UIEvents =
 	| { type: 'CLOSE_PLAYER' };
 
 export const uiMachine = createMachine({
-	id: 'uiMachine',
-	type: 'parallel',
-	schema: {
-		context: {} as UIContext,
-		events: {} as UIEvents
-	},
-	states: {
+    id: 'uiMachine',
+    context: {} as UIContext,
+    types: {} as {
+        context: UIContext;
+        events: UIEvents;
+    },
+    type: 'parallel',
+    states: {
 		menu: {
 			initial: 'closed',
 			states: {
@@ -37,22 +38,23 @@ export const uiMachine = createMachine({
 			initial: 'closed',
 			states: {
 				closed: {
-					on: {
-						OPEN_PLAYER: {
-							target: 'open',
-							actions: assign({
-								mediaUrl: (_, event) => event.mediaUrl
-							})
-						}
-					}
+                on: {
+                    OPEN_PLAYER: {
+                        target: 'open',
+                        actions: assign({
+                            // loosen typing
+                            mediaUrl: (ctx: any, event: any) => (event?.mediaUrl ?? ctx.mediaUrl)
+                        })
+                    }
+                }
 				},
 				open: {
 					invoke: {
 						id: 'playerActor',
 						src: playerMachine,
-						data: (context) => ({
-							mediaUrl: context.mediaUrl
-						}),
+                    input: (context: UIContext) => ({
+                        mediaUrl: context.mediaUrl
+                    }),
 						onDone: 'closed',
 						onError: 'closed'
 					},
@@ -62,5 +64,5 @@ export const uiMachine = createMachine({
 				}
 			}
 		}
-	}
+    }
 });

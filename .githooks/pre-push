@@ -4,5 +4,4 @@ set -e
 
 pnpm install --frozen-lockfile
 pnpm lint
-# Temporarily skip typecheck (svelte-check) to unblock pushes
-# Run manually with `pnpm check` or in CI
+pnpm check
