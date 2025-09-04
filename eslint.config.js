@@ -10,7 +10,22 @@ import tsParser from '@typescript-eslint/parser';
 export default [
 	// Ignore patterns (replaces .eslintignore)
 	{
-		ignores: ['node_modules/**', 'dist/**', '.svelte-kit/**', 'storybook-static/**']
+		ignores: [
+			'.DS_Store',
+			'node_modules/**',
+			'build/**',
+			'dist/**',
+			'.svelte-kit/**',
+			'package/**',
+			'storybook-static/**',
+			'.env',
+			'.env.*',
+			'!.env.example',
+			'*.typegen.ts',
+			'pnpm-lock.yaml',
+			'package-lock.json',
+			'yarn.lock'
+		]
 	},
 
 	// Global environments
