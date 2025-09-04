@@ -56,7 +56,7 @@
 	class="relative flex flex-col justify-start items-stretch font-bold"
 	style="--init-color: {color}; --light-color: {lightenColor}; --dark-color: {darkenColor}; --rgb-init-color: {rgbColor}; --rgb-dark-color: {darkRgb}"
 >
-	<span class="h-24 w-[1px] self-center bg-gradient-to-b from via to" />
+	<span class="h-24 w-[1px] self-center bg-gradient-to-b from via to"></span>
 	<div class="text-center text-white mb-4">
 		<span
 			class="rounded-full h-10 w-10 items-center justify-center inline-flex bg-gradient-to-r from via to"

@@ -64,7 +64,7 @@
 			`${hasDetails ? 'h-3/4 md:h-3/5' : 'h-2/5'}`
 		].join(' ')}
 		style="--tw-gradient-stops: {backgroundColor}, {backgroundColor}, rgb(15 23 42 / 0)"
-	/>
+	></div>
 	<div
 		class="flex flex-col items-center absolute bottom-0 md:w-1/3 p-4 h-fit z-20 gap-4"
 		style="color: var(--text-color);"

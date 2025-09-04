@@ -14,6 +14,6 @@
 		<div
 			class="w-full h-[20vmax] md:h-[40vmax] my-[1vw] md:my-[3vw] mx-auto bg-cover bg-center"
 			style={`background-image: url(${image})`}
-		/>
+		></div>
 	{/each}
 </div>

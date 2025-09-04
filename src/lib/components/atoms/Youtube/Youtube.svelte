@@ -40,5 +40,5 @@
 </svelte:head>
 
 <div class="relative w-full aspect-[16/9]">
-	<div id="player" class="absolute inset-0 w-full h-full" />
+	<div id="player" class="absolute inset-0 w-full h-full"></div>
 </div>

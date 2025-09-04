@@ -11,5 +11,5 @@
 			'rounded-full animate-blob'
 		].join(' ')}
 		style={`background-color:${color}; postion:${position}`}
-	/>
+	></div>
 </div>

@@ -1,4 +1,3 @@
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '../src/app.css';
 
 export const parameters = {
@@ -9,9 +8,5 @@ export const parameters = {
 			date: /Date$/
 		}
 	},
-	layout: 'fullscreen',
-	viewport: {
-		viewports: INITIAL_VIEWPORTS,
-		defaultViewport: 'iphone6'
-	}
+	layout: 'fullscreen'
 };
