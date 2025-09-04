@@ -19,39 +19,39 @@ export interface PlayerContext {
 }
 
 export const playerMachine = createMachine({
-    id: 'playerMachine',
-    context: {} as PlayerContext,
-    types: {} as {
-        context: PlayerContext;
-        events: PlayerEvents;
-    },
-    initial: 'ready',
-    states: {
-        ready: {
-            entry: () => console.log('ready'),
-            on: {
-                PLAY: {
-                    target: 'playing',
-                    actions: ['playMedia']
-                }
-            }
-        },
-        playing: {
-            on: {
-                PAUSE: 'paused',
-                END: 'ended'
-            }
-        },
-        paused: {
-            on: {
-                PLAY: 'playing',
-                END: 'ended'
-            }
-        },
-        ended: {
-            on: {
-                RESET: 'ready'
-            }
-        }
-    }
+	id: 'playerMachine',
+	context: {} as PlayerContext,
+	types: {} as {
+		context: PlayerContext;
+		events: PlayerEvents;
+	},
+	initial: 'ready',
+	states: {
+		ready: {
+			entry: () => console.log('ready'),
+			on: {
+				PLAY: {
+					target: 'playing',
+					actions: ['playMedia']
+				}
+			}
+		},
+		playing: {
+			on: {
+				PAUSE: 'paused',
+				END: 'ended'
+			}
+		},
+		paused: {
+			on: {
+				PLAY: 'playing',
+				END: 'ended'
+			}
+		},
+		ended: {
+			on: {
+				RESET: 'ready'
+			}
+		}
+	}
 });

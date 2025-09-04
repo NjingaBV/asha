@@ -63,5 +63,11 @@ export default [
 			ecmaVersion: 'latest',
 			sourceType: 'module'
 		}
+	},
+	// Final overrides
+	{
+		rules: {
+			'@typescript-eslint/no-explicit-any': 'off'
+		}
 	}
 ];

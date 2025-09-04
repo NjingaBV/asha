@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { ComponentType } from 'svelte';
 	import Youtube from '$lib/components/atoms/Youtube/Youtube.svelte';
 
 	export let title: string;
