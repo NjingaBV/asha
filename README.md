@@ -46,6 +46,7 @@ Component Organization
 ## Component Catalogue (Quick Reference)
 
 Atoms
+
 - Button: CTA with size/color; auto-contrasts text.
 - Linkable: Styled anchor wrapper.
 - Youtube: 16:9 player via Iframe API (prop: `videoId`).
@@ -53,6 +54,7 @@ Atoms
 - Hamburger: Menu toggle icon.
 
 Molecules
+
 - Card: Image + title/subtitle/CTA; configurable colors.
 - Tile: Vertical image tiles with parallax-like scroll.
 - Hero: Media backdrop + title/overview + CTAs; gradient overlay.
@@ -64,6 +66,7 @@ Molecules
 - CallToAction: One or more primary CTA buttons.
 
 Organisms
+
 - Header/Footer: Page chrome sections.
 - Features: Section rendering a list of Feature items.
 - Carousel: Horizontal cards slider; responsive widths.
@@ -73,6 +76,7 @@ Organisms
 - HeroTile: Hero section with tiled media.
 
 Templates
+
 - Shelf: Page template composing slices (sections) by name.
 
 ## Features
