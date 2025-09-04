@@ -14,7 +14,7 @@
 			? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(
 					result[3],
 					16
-			  )} / 0)`
+				)} / 0)`
 			: null;
 	};
 
@@ -79,8 +79,9 @@
 	}
 	.via {
 		--tw-gradient-to: var(--rgb-init-color) var(--tw-gradient-to-position);
-		--tw-gradient-stops: var(--tw-gradient-from),
-			var(--init-color) var(--tw-gradient-via-position), var(--tw-gradient-to);
+		--tw-gradient-stops:
+			var(--tw-gradient-from), var(--init-color) var(--tw-gradient-via-position),
+			var(--tw-gradient-to);
 	}
 	.to {
 		--tw-gradient-to: var(--light-color) var(--tw-gradient-to-position);
