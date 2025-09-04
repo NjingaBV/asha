@@ -29,11 +29,13 @@ jobs:
                   corepack prepare pnpm@8.6.12 --activate
 
             - name: Configure 1Password Service Account
+              if: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN != '' }}
               uses: 1password/load-secrets-action/configure@v1
               with:
                   service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
             - name: Load secret
+              if: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN != '' }}
               uses: 1password/load-secrets-action@v1
               env:
                   AUTH_TOKEN: op://IT/GitHub/CREDENTIALS/personal_token

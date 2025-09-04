@@ -24,6 +24,8 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         needs: [commitlint]
         runs-on: ubuntu-latest
+        env:
+            NODE_OPTIONS: --max-old-space-size=4096
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -60,6 +62,8 @@ jobs:
     build_push:
         if: ${{ github.event_name == 'push' }}
         runs-on: ubuntu-latest
+        env:
+            NODE_OPTIONS: --max-old-space-size=4096
         steps:
             - name: Checkout
               uses: actions/checkout@v4
