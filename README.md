@@ -14,6 +14,14 @@ Asha means "The Life" in Swahili . It's also the name of my daughter.
 
 ## Features
 
+## Contributing
+
+See the Contributor Guide in AGENTS.md for repository structure, commands, coding style, tests, and CI/release details.
+
+- Read: [AGENTS.md](./AGENTS.md)
+- Before PRs: run `pnpm lint` and `pnpm check`
+- Use Conventional Commits for messages and semantic PR titles
+
 ## Githooks
 
 To use the git hooks in the repo, which will save you waiting for CI to tell you that you forgot to lint, run this:
