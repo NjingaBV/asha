@@ -12,7 +12,7 @@
 			: tone === 'secondary'
 				? 'bg-white text-black border hover:bg-slate-50'
 				: 'bg-black text-white hover:opacity-90';
-	$: base = 'inline-flex items-center justify-center rounded-full font-medium transition';
+	const base = 'inline-flex items-center justify-center rounded-full font-medium transition';
 </script>
 
 {#if href}
