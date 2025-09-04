@@ -17,3 +17,20 @@ To use the git hooks in the repo, which will save you waiting for CI to tell you
 ```bash
 git config core.hookspath .githooks
 ```
+
+## Conventional Commits
+
+- Format: `<type>(<scope>): <subject>`
+- Types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `build`, `ci`.
+- Breaking change: ajouter `!` après le type/scope ou un paragraphe `BREAKING CHANGE:` dans le corps.
+- Scopes suggérés: `atoms`, `molecules`, `organisms`, `templates`, `pages`, `machines`, `storybook`, `build`.
+
+Exemples
+- `feat(atoms): add Button loading state`
+- `fix(machines): prevent player deadlock on END`
+- `docs: link live Storybook`
+- `refactor!: drop deprecated Hero prop\n\nBREAKING CHANGE: Hero no longer accepts 'detailsHtml'`
+
+CI/Release
+- Les commits conformes déclenchent la version via semantic-release (tag `vX.Y.Z`, changelog, GitHub Release, publication npm registry GitHub).
+- Les messages sont vérifiés localement (`.githooks/commit-msg`) et sur PR (job commitlint).
