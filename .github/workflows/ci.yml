@@ -7,22 +7,22 @@ on:
         branches: [main]
 
 jobs:
-  commitlint:
-    if: ${{ github.event_name == 'pull_request' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Commitlint
-        uses: wagoid/commitlint-github-action@v5
-        with:
-          configFile: commitlint.config.cjs
+    commitlint:
+        if: ${{ github.event_name == 'pull_request' }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Commitlint
+              uses: wagoid/commitlint-github-action@v5
+              with:
+                  configFile: commitlint.config.cjs
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
+    build:
+        runs-on: ubuntu-latest
+        steps:
             - name: Checkout
               uses: actions/checkout@v4
 

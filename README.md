@@ -26,11 +26,13 @@ git config core.hookspath .githooks
 - Scopes suggérés: `atoms`, `molecules`, `organisms`, `templates`, `pages`, `machines`, `storybook`, `build`.
 
 Exemples
+
 - `feat(atoms): add Button loading state`
 - `fix(machines): prevent player deadlock on END`
 - `docs: link live Storybook`
 - `refactor!: drop deprecated Hero prop\n\nBREAKING CHANGE: Hero no longer accepts 'detailsHtml'`
 
 CI/Release
+
 - Les commits conformes déclenchent la version via semantic-release (tag `vX.Y.Z`, changelog, GitHub Release, publication npm registry GitHub).
 - Les messages sont vérifiés localement (`.githooks/commit-msg`) et sur PR (job commitlint).
