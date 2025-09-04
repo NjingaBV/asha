@@ -6,3 +6,6 @@ export * from './Header';
 export * from './HeroTile';
 export * from './Slogan';
 export * from './TextAnimation';
+export * from './HeroBanner';
+export * from './PromoStrip';
+export * from './FeatureGrid';
