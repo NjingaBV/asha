@@ -1,24 +1,22 @@
+@config "../tailwind.config.cjs";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer utilities {
-	.animation-delay-2000 {
-		animation-delay: 2s;
-	}
-	.animation-delay-4000 {
-		animation-delay: 4s;
-	}
-	@variants responsive {
-		/* Hide scrollbar for Chrome, Safari and Opera */
-		.no-scrollbar::-webkit-scrollbar {
-			display: none;
-		}
-
-		/* Hide scrollbar for IE, Edge and Firefox */
-		.no-scrollbar {
-			-ms-overflow-style: none; /* IE and Edge */
-			scrollbar-width: none; /* Firefox */
-		}
-	}
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

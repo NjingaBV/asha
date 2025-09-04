@@ -1,8 +1,8 @@
 import { describe, it } from 'vitest';
-import { createModel } from '@xstate/test';
+import { createTestModel } from '@xstate/graph';
 import { appMachine } from './app.machine';
 
-const appModel = createModel(appMachine).withEvents({
+const appModel = createTestModel(appMachine).withEvents({
 	SUCCESS: {},
 	FAILED: {},
 	PLAY: {},

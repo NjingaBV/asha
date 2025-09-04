@@ -1,8 +1,8 @@
 import { describe, it } from 'vitest';
-import { createModel } from '@xstate/test';
+import { createTestModel } from '@xstate/graph';
 import { uiMachine } from './ui.machine';
 
-const uiModel = createModel(uiMachine).withEvents({
+const uiModel = createTestModel(uiMachine).withEvents({
 	TOGGLE_MENU: {},
 	OPEN_PLAYER: {},
 	CLOSE_PLAYER: {}

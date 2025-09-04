@@ -1,8 +1,8 @@
 import { describe, it } from 'vitest';
-import { createModel } from '@xstate/test';
+import { createTestModel } from '@xstate/graph';
 import { playerMachine } from './player.machine';
 
-const playerModel = createModel(playerMachine).withEvents({
+const playerModel = createTestModel(playerMachine).withEvents({
 	PLAY: {},
 	PAUSE: {},
 	RESET: {},

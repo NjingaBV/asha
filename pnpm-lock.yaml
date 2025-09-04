@@ -8,15 +8,9 @@ devDependencies:
   '@babel/core':
     specifier: ^7.28.3
     version: 7.28.3
-  '@storybook/addon-actions':
-    specifier: ^9.0.8
-    version: 9.0.8
   '@storybook/addon-docs':
     specifier: ^9.1.4
     version: 9.1.4(@types/react@19.1.12)(storybook@9.1.4)
-  '@storybook/addon-links':
-    specifier: ^9.1.4
-    version: 9.1.4(react@19.1.1)(storybook@9.1.4)
   '@storybook/addon-svelte-csf':
     specifier: ^5.0.8
     version: 5.0.8(@storybook/svelte@9.1.4)(@sveltejs/vite-plugin-svelte@6.1.4)(storybook@9.1.4)(svelte@5.38.6)(vite@7.1.4)
@@ -62,12 +56,12 @@ devDependencies:
   '@xstate/cli':
     specifier: ^0.5.17
     version: 0.5.17
+  '@xstate/graph':
+    specifier: ^3.0.4
+    version: 3.0.4(xstate@5.21.0)
   '@xstate/svelte':
     specifier: ^5.0.0
     version: 5.0.0(svelte@5.38.6)(xstate@5.21.0)
-  '@xstate/test':
-    specifier: ^0.5.1
-    version: 0.5.1(xstate@5.21.0)
   autoprefixer:
     specifier: ^10.4.21
     version: 10.4.21(postcss@8.5.6)
@@ -909,10 +903,6 @@ packages:
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
     dev: true
 
-  /@storybook/addon-actions@9.0.8:
-    resolution: {integrity: sha512-LFePu7PPnWN0Il/uoUpmA5T0J0C7d6haJIbg0pXrjxW2MQVSYXE4S4LSUz8fOImltBDV3xAl6tLPYHFj6VcrOA==}
-    dev: true
-
   /@storybook/addon-docs@9.1.4(@types/react@19.1.12)(storybook@9.1.4):
     resolution: {integrity: sha512-ueGaA++UOICrM+ZyrN35HNt7JGgrKkX/X+RJwoL3UAbK1Nkbw1vNu7Rz+W4PRqU6gpRZ6xYFPkgJ2ZaPxCMJbg==}
     peerDependencies:
@@ -928,20 +918,6 @@ packages:
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - '@types/react'
-    dev: true
-
-  /@storybook/addon-links@9.1.4(react@19.1.1)(storybook@9.1.4):
-    resolution: {integrity: sha512-pWw7ikV3Tki9Na5cd16SQg4a2yc4Y148m1gZrN4lzxBGeCvGw2O9hsNWLOpqKvOCKRUjYGeUJZxA0PR1HSJO/A==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
-      storybook: ^9.1.4
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dependencies:
-      '@storybook/global': 5.0.0
-      react: 19.1.1
-      storybook: 9.1.4(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@7.1.4)
     dev: true
 
   /@storybook/addon-svelte-csf@5.0.8(@storybook/svelte@9.1.4)(@sveltejs/vite-plugin-svelte@6.1.4)(storybook@9.1.4)(svelte@5.38.6)(vite@7.1.4):
@@ -1771,10 +1747,10 @@ packages:
       - supports-color
     dev: true
 
-  /@xstate/graph@1.4.2(xstate@5.21.0):
-    resolution: {integrity: sha512-XIh6opCf9ukXRj4dXe2fv2kwFFUl15B5Ob8ELNOOqDXB2BPyNwp6TaLe5KJn/na3gzC9B7LyOo+2d0dPkC8PWQ==}
+  /@xstate/graph@3.0.4(xstate@5.21.0):
+    resolution: {integrity: sha512-b12RA7E//+7FJVrD09Td+BhHRJbeKZnK+98xXBd+JmccG360xVP1lyzVhUZPgBgwPdmIGBJqhKzmWYJQ9c8ojQ==}
     peerDependencies:
-      xstate: ^4.30.3
+      xstate: ^5.19.4
     dependencies:
       xstate: 5.21.0
     dev: true
@@ -1803,17 +1779,6 @@ packages:
         optional: true
     dependencies:
       svelte: 5.38.6
-      xstate: 5.21.0
-    dev: true
-
-  /@xstate/test@0.5.1(xstate@5.21.0):
-    resolution: {integrity: sha512-Ltz46QR9QvEuhlNy+zvs+5ylfpGXzDBh+jVC1/WL8w88uEbN+Wf1bJ/Bi5OWVWWEgXJxfcmlavN4hJOqtQuqgQ==}
-    deprecated: Please use @xstate/graph instead.
-    peerDependencies:
-      xstate: ^4.29.0
-    dependencies:
-      '@xstate/graph': 1.4.2(xstate@5.21.0)
-      chalk: 2.4.2
       xstate: 5.21.0
     dev: true
 
@@ -1902,13 +1867,6 @@ packages:
   /ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
-    dev: true
-
-  /ansi-styles@3.2.1:
-    resolution: {integrity: sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==}
-    engines: {node: '>=4'}
-    dependencies:
-      color-convert: 1.9.3
     dev: true
 
   /ansi-styles@4.3.0:
@@ -2084,15 +2042,6 @@ packages:
       pathval: 2.0.1
     dev: true
 
-  /chalk@2.4.2:
-    resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
-    engines: {node: '>=4'}
-    dependencies:
-      ansi-styles: 3.2.1
-      escape-string-regexp: 1.0.5
-      supports-color: 5.5.0
-    dev: true
-
   /chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
@@ -2152,21 +2101,11 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /color-convert@1.9.3:
-    resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
-    dependencies:
-      color-name: 1.1.3
-    dev: true
-
   /color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
     engines: {node: '>=7.0.0'}
     dependencies:
       color-name: 1.1.4
-    dev: true
-
-  /color-name@1.1.3:
-    resolution: {integrity: sha512-72fSenhMw2HZMTVHeCA9KCmpEIbzWiQsjN+BHcBbS9vr1mtt+vJjPdksIBNUmKAW8TFUDPJK5SUU3QhE9NEXDw==}
     dev: true
 
   /color-name@1.1.4:
@@ -2520,11 +2459,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /escape-string-regexp@1.0.5:
-    resolution: {integrity: sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==}
-    engines: {node: '>=0.8.0'}
-    dev: true
-
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
@@ -2861,11 +2795,6 @@ packages:
 
   /graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
-    dev: true
-
-  /has-flag@3.0.0:
-    resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==}
-    engines: {node: '>=4'}
     dev: true
 
   /has-flag@4.0.0:
@@ -4176,13 +4105,6 @@ packages:
       browserslist: 4.25.4
       postcss: 8.5.6
       postcss-selector-parser: 7.1.0
-    dev: true
-
-  /supports-color@5.5.0:
-    resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
-    engines: {node: '>=4'}
-    dependencies:
-      has-flag: 3.0.0
     dev: true
 
   /supports-color@7.2.0:

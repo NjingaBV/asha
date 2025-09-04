@@ -1,5 +1,8 @@
 export default {
-	stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|svelte)'],
+	stories: [
+		'../src/**/*.stories.@(js|jsx|ts|tsx|svelte)',
+		'../src/**/*.mdx'
+	],
 	addons: [
 		'@storybook/addon-docs',
 		{

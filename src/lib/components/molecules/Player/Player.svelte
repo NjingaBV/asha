@@ -45,7 +45,7 @@
 <div class="relative flex w-full aspect-[16/9] top-0 z-10 items-center justify-center">
 	{#if !isPlaying}
 		<img src={thumbnail} alt="video thumbnail" class="absolute w-full h-full object-cover" />
-		<button class="absolute w-1/4 opacity-90" on:click={togglePlay}>
+    <button class="absolute w-1/4 opacity-90" aria-label="Play video" on:click={togglePlay}>
 			<svg class="stroke-[5] h-full fill-white" stroke-width="2" viewBox="0 0 50 50">
 				<path d="M 10 5.25 L 10 44.746094 L 43.570313 25 Z" />
 			</svg>
