@@ -92,6 +92,7 @@
 							<Button
 								color={backgroundColor}
 								rounded={true}
+								fullWidth={true}
 								onClick={() => (location.href = buttonLink)}>{buttonName}</Button
 							>
 						</div>
@@ -127,6 +128,7 @@
 				<Button
 					color={backgroundColor}
 					rounded={true}
+					fullWidth={true}
 					onClick={() => (location.href = buttonLink)}>{buttonName}</Button
 				>
 			</div>

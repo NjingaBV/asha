@@ -1,5 +1,7 @@
 module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}', './.storybook/**/*.{js,ts,svelte,html}'],
+	mode: 'jit',
+	purge: ['./src/**/*.svelte'],
 	theme: {
 		extend: {
 			animation: {

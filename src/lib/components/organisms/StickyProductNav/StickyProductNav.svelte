@@ -1,0 +1,55 @@
+<script lang="ts">
+	import { PillButton } from '$lib/components/atoms';
+	export let logo: { title: string } = { title: 'Apple Watch' };
+	export let links: Array<{ label: string; href: string }> = [
+		{ label: 'Aperçu', href: '#' },
+		{ label: 'Caractéristiques', href: '#' },
+		{ label: 'Comparer', href: '#' }
+	];
+	export let cta: { label: string; href: string } | null = { label: 'Acheter', href: '#' };
+	export let dark = true; // dark background by default
+</script>
+
+<nav
+	class={[
+		'sticky top-0 z-50 w-full border-b backdrop-blur supports-[backdrop-filter]:bg-white/70',
+		dark ? 'bg-black/70 text-white border-white/10' : 'bg-white/70 text-black border-black/10'
+	].join(' ')}
+>
+	<div class="container mx-auto flex items-center justify-between px-4 md:px-6 py-3 gap-3">
+		<div class="font-semibold tracking-tight whitespace-nowrap">{logo.title}</div>
+		<ul class="hidden md:flex items-center gap-6 text-sm">
+			{#each links as l}
+				<li><a class="hover:underline" href={l.href}>{l.label}</a></li>
+			{/each}
+		</ul>
+		{#if cta}
+			<div class="hidden md:block">
+				<PillButton
+					label={cta.label}
+					href={cta.href}
+					tone={dark ? 'secondary' : 'dark'}
+					size="sm"
+				/>
+			</div>
+		{/if}
+	</div>
+	<!-- mobile scroller -->
+	<div class="md:hidden overflow-x-auto no-scrollbar border-t border-white/10">
+		<ul class="flex items-center gap-4 px-4 py-2 text-sm">
+			{#each links as l}
+				<li class="flex-none"><a class="hover:underline" href={l.href}>{l.label}</a></li>
+			{/each}
+			{#if cta}
+				<li class="flex-none">
+					<PillButton
+						label={cta.label}
+						href={cta.href}
+						tone={dark ? 'secondary' : 'dark'}
+						size="sm"
+					/>
+				</li>
+			{/if}
+		</ul>
+	</div>
+</nav>

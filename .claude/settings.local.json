@@ -1,0 +1,7 @@
+{
+	"permissions": {
+		"allow": ["Bash(npm ls:*)", "Bash(npm run storybook:*)", "Bash(sed:*)"],
+		"deny": [],
+		"ask": []
+	}
+}
