@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/sveltekit';
 import Carousel from './Carousel.svelte';
 
 const meta = {
@@ -12,8 +12,7 @@ const meta = {
 		title: { control: 'text' },
 		category: { control: 'text' },
 		color: { control: 'color' },
-		cards: { control: 'object' },
-		size: { control: 'text' }
+		cards: { control: 'object' }
 	}
 } satisfies Meta<Carousel>;
 
@@ -24,11 +23,12 @@ export const Primary: Story = {
 	args: {
 		title: 'Les dernières sorties',
 		category: 'Music',
+		overview: '',
 		color: '#ff0000',
-		size: 'md',
 		cards: [
 			{
 				title: "L'Afro Club",
+				subtitle: '',
 				overview:
 					"Chaque semaine, sur RFI Musique, faites le tour des tendances afro-urbaines avec DJ Face Maker dans l'Afro Club. À cette sélection, s'ajoute désormais une session acoustique Live avec les artistes phares et émergents de la scène africaine francophone.",
 				imgSrc: {
@@ -39,10 +39,13 @@ export const Primary: Story = {
 				},
 				buttonName: 'Entrez dans le club',
 				buttonLink: 'https://musique.rfi.fr/tag/auteur/herve-mandina',
-				backgroundColor: '#990505'
+				backgroundColor: '#990505',
+				mixColor: false,
+				textOnImage: true
 			},
 			{
 				title: 'Urban Xra',
+				subtitle: '',
 				overview:
 					'Les dernières sorties afro, hip hop, r&b, baile funk, amapiano et punjabi sont dans le show de la radio. Disponible du lundi au vendredi sur Urban FM 104.5 à Libreville et également sur toutes vos plateformes préférées de podcast.',
 				imgSrc: {
@@ -53,7 +56,9 @@ export const Primary: Story = {
 				},
 				buttonName: 'Entrez dans la danse',
 				buttonLink: 'https://audioboom.com/channels/4993780/episodes',
-				backgroundColor: '#024a99'
+				backgroundColor: '#024a99',
+				mixColor: false,
+				textOnImage: true
 			}
 		]
 	}
@@ -62,11 +67,12 @@ export const Primary: Story = {
 export const OneItem: Story = {
 	args: {
 		...Primary.args,
-		title: undefined,
-		category: undefined,
+		title: '',
+		category: '',
 		cards: [
 			{
 				title: 'Urban Xra',
+				subtitle: '',
 				overview:
 					'Les dernières sorties afro, hip hop, r&b, baile funk, amapiano et punjabi sont dans le show de la radio. Disponible du lundi au vendredi sur Urban FM 104.5 à Libreville et également sur toutes vos plateformes préférées de podcast.',
 				imgSrc: {
@@ -77,7 +83,9 @@ export const OneItem: Story = {
 				},
 				buttonName: 'Entrez dans la danse',
 				buttonLink: 'https://audioboom.com/channels/4993780/episodes',
-				backgroundColor: '#024a99'
+				backgroundColor: '#024a99',
+				mixColor: false,
+				textOnImage: true
 			}
 		]
 	}
@@ -94,7 +102,6 @@ export const NjingaCollections: Story = {
 		...Primary.args,
 		title: 'Turbans Modulables',
 		category: 'Accessoire de cheveux',
-		size: 'lg',
 		cards: [
 			{
 				title: 'Doré',
@@ -104,7 +111,13 @@ export const NjingaCollections: Story = {
 						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
 					mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
 					tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269'
-				}
+				},
+				overview: '',
+				buttonName: '',
+				buttonLink: '',
+				backgroundColor: '#ffffff',
+				mixColor: false,
+				textOnImage: false
 			},
 			{
 				title: 'Panthère',
@@ -114,7 +127,13 @@ export const NjingaCollections: Story = {
 						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
 					mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
 					tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957'
-				}
+				},
+				overview: '',
+				buttonName: '',
+				buttonLink: '',
+				backgroundColor: '#ffffff',
+				mixColor: false,
+				textOnImage: false
 			},
 			{
 				title: 'Malabo',
@@ -124,7 +143,13 @@ export const NjingaCollections: Story = {
 						'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
 					mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
 					tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836'
-				}
+				},
+				overview: '',
+				buttonName: '',
+				buttonLink: '',
+				backgroundColor: '#ffffff',
+				mixColor: false,
+				textOnImage: false
 			}
 		]
 	}

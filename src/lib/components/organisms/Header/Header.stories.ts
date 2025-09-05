@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/sveltekit';
 import Header from './Header.svelte';
 
 const meta = {
@@ -21,7 +21,11 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
 	args: {
 		logo: {
-			imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format'
+			title: 'DJ FMK',
+			subtitle: '',
+			imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format',
+			imgAlt: 'DJ FMK logo',
+			showTitle: false
 		},
 		open: false,
 		navLinks: [
@@ -43,7 +47,10 @@ export const MenuOpen: Story = {
 		...Primary.args,
 		logo: {
 			title: 'DJ FMK',
-			imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format'
+			subtitle: '',
+			imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format',
+			imgAlt: 'DJ FMK logo',
+			showTitle: false
 		},
 		open: true
 	}

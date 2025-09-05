@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/sveltekit';
 import CallToAction from './CallToAction.svelte';
 
 const meta = {
@@ -29,7 +29,7 @@ export const Primary: Story = {
 				backgroundColor: '#0284c7'
 			},
 			{
-				label: "Contacter l\'équipe",
+				label: "Contacter l'équipe",
 				url: '/contact',
 				backgroundColor: '#1c1917'
 			}

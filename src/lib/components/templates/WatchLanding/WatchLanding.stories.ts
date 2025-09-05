@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/sveltekit';
 import WatchLanding from './WatchLanding.svelte';
 
 const meta = {
@@ -24,6 +24,7 @@ export const Primary: Story = {
 			eyebrow: 'Apple Watch',
 			title: 'Plus puissante. Plus connectée.',
 			subtitle: 'Des fonctionnalités santé et forme avancées.',
+			image: null,
 			background: '#000000',
 			primaryCTA: { label: 'Acheter', href: '#' },
 			secondaryCTA: { label: 'En savoir plus', href: '#' }
@@ -48,10 +49,14 @@ export const WithLongText: Story = {
 	args: {
 		...Primary.args,
 		hero: {
-			...Primary.args.hero!,
+			eyebrow: 'Apple Watch',
 			title: 'Plus puissante. Plus connectée. Plus aventurière. Plus personnelle. Plus tout.',
 			subtitle:
-				'Des fonctionnalités santé et forme avancées. Et de nouvelles façons de rester connecté. Le tout dans un design élégant et épuré.'
+				'Des fonctionnalités santé et forme avancées. Et de nouvelles façons de rester connecté. Le tout dans un design élégant et épuré.',
+			image: null,
+			background: '#000000',
+			primaryCTA: { label: 'Acheter', href: '#' },
+			secondaryCTA: { label: 'En savoir plus', href: '#' }
 		},
 		promo: { text: 'Disponibilité limitée.' }
 	}
@@ -61,8 +66,13 @@ export const WithDifferentBackground: Story = {
 	args: {
 		...Primary.args,
 		hero: {
-			...Primary.args.hero!,
-			background: '#ff0000'
+			eyebrow: 'Apple Watch',
+			title: 'Plus puissante. Plus connectée.',
+			subtitle: 'Des fonctionnalités santé et forme avancées.',
+			image: null,
+			background: '#ff0000',
+			primaryCTA: { label: 'Acheter', href: '#' },
+			secondaryCTA: { label: 'En savoir plus', href: '#' }
 		}
 	}
 };

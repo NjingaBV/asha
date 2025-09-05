@@ -1,4 +1,4 @@
-/// <reference types="vitest/config" />
+// Vitest types via import (no triple-slash)
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import tailwindcss from '@tailwindcss/vite';

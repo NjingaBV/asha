@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/sveltekit';
 import Slogan from './Slogan.svelte';
 
-const meta: Meta<Slogan> = {
+const meta = {
 	title: 'Organisms/Slogan',
 	component: Slogan,
 	parameters: {
@@ -13,7 +13,7 @@ const meta: Meta<Slogan> = {
 		cta: { control: 'object' },
 		backgroundColor: { control: 'color' }
 	}
-};
+} satisfies Meta<Slogan>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

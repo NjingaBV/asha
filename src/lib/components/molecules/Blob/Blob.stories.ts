@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/sveltekit';
 import Blob from './Blob.svelte';
 
-const meta: Meta<Blob> = {
+const meta = {
 	title: 'Molecules/Blob',
 	component: Blob,
 	parameters: {
@@ -12,7 +12,7 @@ const meta: Meta<Blob> = {
 		color: { control: 'color' },
 		position: { control: 'text' }
 	}
-};
+} satisfies Meta<Blob>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

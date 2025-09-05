@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/sveltekit';
 import Hero from './Hero.svelte';
 
 const meta = {
@@ -38,7 +38,8 @@ export const Primary: Story = {
 			{
 				label: 'Regarder',
 				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
-				url: 'https://www.youtube.com/watch?v=7e90gBu4pas'
+				url: 'https://www.youtube.com/watch?v=7e90gBu4pas',
+				color: '#0a84ff'
 			}
 		]
 	}
@@ -65,7 +66,9 @@ export const AfroClub: Story = {
 		callToActions: [
 			{
 				label: 'Regarder',
-				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
+				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
+				url: '#',
+				color: '#0a84ff'
 			}
 		]
 	}
@@ -87,7 +90,9 @@ export const UrbanXra: Story = {
 		callToActions: [
 			{
 				label: 'En savoir plus',
-				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
+				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
+				url: '#',
+				color: '#0a84ff'
 			}
 		]
 	}
@@ -96,10 +101,7 @@ export const UrbanXra: Story = {
 export const WithoutDescription: Story = {
 	args: {
 		...Primary.args,
-		title: undefined,
-		overview: undefined,
-		details: undefined,
-		callToActions: undefined,
+		details: '',
 		imgSrc: {
 			desktop:
 				'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
@@ -113,13 +115,16 @@ export const UrbanXraWithoutImage: Story = {
 	args: {
 		...Primary.args,
 		title: 'Urban Xra',
-		imgSrc: undefined,
+		// omit image
 		overview:
 			'Les dernières sorties afro, hip hop, r&b, baile funk, amapiano et punjabi sont dans le show de la radio. Disponible du lundi au vendredi sur Urban FM 104.5 à Libreville et également sur toutes vos plateformes préférées de podcast.',
 		backgroundColor: '#024a99',
 		callToActions: [
 			{
-				label: 'En savoir plus'
+				label: 'En savoir plus',
+				url: '#',
+				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
+				color: '#0a84ff'
 			}
 		]
 	}
@@ -128,18 +133,18 @@ export const UrbanXraWithoutImage: Story = {
 export const Ouranos: Story = {
 	args: {
 		...Primary.args,
-		title: undefined,
-		details: undefined,
-		imgSrc: undefined,
-		backgroundColor: undefined,
 		overview: `Ouranos combine les meilleures offres d'assurance du marché avec la meilleure expérience utilisateur. Notre plateforme vous libère de la paperasse.`,
 		callToActions: [
 			{
 				label: 'En savoir plus',
+				url: '#',
+				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
 				color: '#0284c7'
 			},
 			{
 				label: "Contacter l'équipe",
+				url: '#',
+				icon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z',
 				color: '#1c1917'
 			}
 		]

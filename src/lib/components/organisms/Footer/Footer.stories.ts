@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/sveltekit';
 import Footer from './Footer.svelte';
 
 const meta = {
@@ -22,8 +22,9 @@ export const Primary: Story = {
 		logo: {
 			title: 'uranos',
 			subtitle: "Courtier d'assurances",
-			showTitle: true,
-			imgUrl: 'https://images.prismic.io/ouranos/5f910072-4e6d-4b5e-b47a-5649dc9312fe_O.png?Fauto=compress,format'
+			imgUrl: 'https://images.prismic.io/ouranos/5f910072-4e6d-4b5e-b47a-5649dc9312fe_O.png?Fauto=compress,format',
+			imgAlt: 'Ouranos logo',
+			showTitle: true
 		},
 		brandName: 'Ouranos'
 	}

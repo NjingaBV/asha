@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 
-	export let buttonBefore: true;
+	export let buttonBefore: boolean = true;
 	export let overview: string;
 	export let buttons: Array<{
 		label: string;
