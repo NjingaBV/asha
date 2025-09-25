@@ -23,12 +23,12 @@ jobs:
                   version: 8.6.12
             - name: Configure 1Password Service Account
               if: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN != '' }}
-              uses: 1password/load-secrets-action/configure@v1
+              uses: 1password/load-secrets-action/configure@v3
               with:
                   service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
             - name: Load secret
               if: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN != '' }}
-              uses: 1password/load-secrets-action@v1
+              uses: 1password/load-secrets-action@v3
               env:
                   AUTH_TOKEN: op://IT/GitHub/CREDENTIALS/personal_token
             - run: pnpm install --frozen-lockfile
