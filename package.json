@@ -30,8 +30,8 @@
 		"test:unit": "vitest",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"storybook": "storybook dev -p 6006 --ci --no-open --disable-telemetry",
-		"build-storybook": "storybook build",
+		"storybook": "svelte-kit sync && storybook dev -p 6006 --ci --no-open --disable-telemetry",
+		"build-storybook": "svelte-kit sync && storybook build",
 		"release": "semantic-release"
 	},
 	"files": [
