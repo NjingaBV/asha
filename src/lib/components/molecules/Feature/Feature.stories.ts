@@ -55,7 +55,7 @@ export const Transparente: Story = {
 		subtitle: `Des offres adaptées et transparentes.`,
 		description: `Nous offrons des prix compétitifs et adaptés à vos besoins.`,
 		details: {
-			...Primary.args.details,
+			...Primary.args?.details,
 			cover: {
 				url: 'https://images.prismic.io/ouranos/256b6214-43d8-4850-a47b-5df1b7db6e6a_hand-shake-on-yellow.jpg?auto=compress,format',
 				alt: 'Handshake on yellow',
@@ -74,7 +74,7 @@ export const Revolutionnaire: Story = {
 		subtitle: `Une interface complète, facile à utiliser.`,
 		description: `Courtier en assurances nouvelle génération.`,
 		details: {
-			...Primary.args.details,
+			...Primary.args?.details,
 			cover: {
 				url: 'https://images.prismic.io/ouranos/c92dd038-7b63-4a4a-8aaa-4fd26d6ca3da_office-work-tools-on-the-white-desk.jpg?auto=compress,format',
 				alt: 'Office tools on desk',
