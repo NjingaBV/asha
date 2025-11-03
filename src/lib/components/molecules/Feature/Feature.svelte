@@ -1,5 +1,6 @@
 <script lang="ts">
 	import PathLine from '$lib/components/atoms/PathLine/PathLine.svelte';
+	import { sanitizeHtml } from '$lib/utils';
 
 	let {
 		order = 0,
@@ -20,6 +21,9 @@
 			cover: { url: string; alt: string; text: string };
 		};
 	} = $props();
+
+	// Sanitize HTML content to prevent XSS attacks
+	let sanitizedDescription = $derived(sanitizeHtml(details.description));
 </script>
 
 <div class="mx-auto max-w-full">
@@ -41,13 +45,13 @@
 					alt={details.cover.alt}
 				/>
 				<div class="w-full md:w-1/2 text-left text-slate-700 tracking-wider">
-					{@html details.description}
+					{@html sanitizedDescription}
 				</div>
 			{:else if details.cover && !details.description}
 				<img class="w-full rounded-md" src={details.cover.url} alt={details.cover.alt} />
 			{:else}
 				<div class="w-full text-left text-slate-700 tracking-wider">
-					{@html details.description}
+					{@html sanitizedDescription}
 				</div>
 			{/if}
 		</div>

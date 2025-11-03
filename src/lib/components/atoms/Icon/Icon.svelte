@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { sanitizeSvg } from '$lib/utils';
+
 	let {
 		name = '',
 		size = 'base'
@@ -28,7 +30,8 @@
 		// For now, assume name is SVG content or a simple mapping
 		// In a real implementation, this would map icon names to SVG paths
 		if (name.startsWith('<svg') || name.startsWith('<path')) {
-			return name;
+			// Sanitize user-provided SVG content to prevent XSS
+			return sanitizeSvg(name);
 		}
 		// Simple icon mapping - this should be expanded
 		const icons: Record<string, string> = {

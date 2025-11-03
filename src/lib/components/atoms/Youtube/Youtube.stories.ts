@@ -9,8 +9,7 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {
-		videoId: { control: 'text' },
-		isPlayerReady: { control: 'boolean' }
+		videoId: { control: 'text' }
 	}
 } satisfies Meta<typeof Youtube>;
 
@@ -19,8 +18,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
 	args: {
-		videoId: 'G-ECTntZYtk',
-		isPlayerReady: false
+		videoId: 'G-ECTntZYtk'
 	}
 };
 

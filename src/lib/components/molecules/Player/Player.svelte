@@ -8,7 +8,6 @@
 		url = '',
 		thumbnail = '',
 		isPlaying = false,
-		isPlayerReady = false,
 		lineClampEnabled = true
 	}: {
 		title: string;
@@ -17,7 +16,6 @@
 		url: string;
 		thumbnail: string;
 		isPlaying?: boolean;
-		isPlayerReady?: boolean;
 		lineClampEnabled?: boolean;
 	} = $props();
 
@@ -63,7 +61,7 @@
 			</svg>
 		</button>
 	{:else}
-		<svelte:component this={getComponent(url)} {videoId} bind:isPlayerReady />
+		<svelte:component this={getComponent(url)} {videoId} />
 	{/if}
 </div>
 <div class={['p-4 rounded-b-xl flex flex-col'].join(' ')}>
