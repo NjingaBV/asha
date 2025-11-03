@@ -20,17 +20,28 @@ jobs:
         env:
             NODE_OPTIONS: --max-old-space-size=4096
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 8.6.12
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
               with:
                   node-version: 'lts/*'
                   cache: 'pnpm'
-            - uses: pnpm/action-setup@v4
-              with:
-                  version: 8.6.12
-            - run: pnpm install --frozen-lockfile
-            - run: pnpm run build-storybook
-            - uses: actions/upload-pages-artifact@v3
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Build Storybook
+              run: pnpm run build-storybook
+
+            - name: Upload Storybook to GitHub Pages
+              uses: actions/upload-pages-artifact@v3
               with:
                   path: storybook-static
 
@@ -41,5 +52,6 @@ jobs:
         runs-on: ubuntu-latest
         needs: build
         steps:
-            - id: deployment
+            - name: Deploy to GitHub Pages
+              id: deployment
               uses: actions/deploy-pages@v4

@@ -1,0 +1,75 @@
+version: 2
+updates:
+    # Enable version updates for npm dependencies
+    - package-ecosystem: 'npm'
+      directory: '/'
+      schedule:
+          interval: 'weekly'
+          day: 'monday'
+          time: '09:00'
+          timezone: 'Europe/Brussels'
+      open-pull-requests-limit: 10
+      commit-message:
+          prefix: 'chore(deps)'
+          include: 'scope'
+      groups:
+          # Group all non-major development dependency updates together
+          dev-dependencies:
+              dependency-type: 'development'
+              update-types:
+                  - 'minor'
+                  - 'patch'
+          # Group all non-major production dependency updates together
+          production-dependencies:
+              dependency-type: 'production'
+              update-types:
+                  - 'minor'
+                  - 'patch'
+          # Group Storybook packages
+          storybook:
+              patterns:
+                  - '@storybook/*'
+                  - 'storybook'
+          # Group Svelte packages
+          svelte:
+              patterns:
+                  - 'svelte'
+                  - '@sveltejs/*'
+                  - 'svelte-*'
+          # Group TypeScript packages
+          typescript:
+              patterns:
+                  - 'typescript'
+                  - '@typescript-eslint/*'
+                  - 'typescript-eslint'
+          # Group Vitest packages
+          vitest:
+              patterns:
+                  - 'vitest'
+                  - '@vitest/*'
+          # Group Tailwind CSS packages
+          tailwind:
+              patterns:
+                  - 'tailwindcss'
+                  - '@tailwindcss/*'
+                  - 'postcss'
+                  - 'postcss-*'
+                  - 'autoprefixer'
+          # Group XState packages
+          xstate:
+              patterns:
+                  - 'xstate'
+                  - '@xstate/*'
+
+    # Enable version updates for GitHub Actions
+    - package-ecosystem: 'github-actions'
+      directory: '/'
+      schedule:
+          interval: 'weekly'
+          day: 'monday'
+          time: '09:00'
+          timezone: 'Europe/Brussels'
+      commit-message:
+          prefix: 'ci'
+          include: 'scope'
+      open-pull-requests-limit: 5

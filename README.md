@@ -3,6 +3,7 @@
 [![Storybook](https://img.shields.io/badge/storybook-live-ff4785?logo=storybook&logoColor=white)](https://njingabv.github.io/asha/)
 [![Deploy Storybook](https://github.com/NjingaBV/asha/actions/workflows/deploy-storybook.yml/badge.svg?branch=main)](https://github.com/NjingaBV/asha/actions/workflows/deploy-storybook.yml)
 [![CI](https://github.com/NjingaBV/asha/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NjingaBV/asha/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/NjingaBV/asha/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/NjingaBV/asha/actions/workflows/codeql.yml)
 [![Release](https://github.com/NjingaBV/asha/actions/workflows/create-release-and-tag.yml/badge.svg?branch=main)](https://github.com/NjingaBV/asha/actions/workflows/create-release-and-tag.yml)
 
 [Contributor Guide](./AGENTS.md)
@@ -111,7 +112,35 @@ Exemples
 - `docs: link live Storybook`
 - `refactor!: drop deprecated Hero prop\n\nBREAKING CHANGE: Hero no longer accepts 'detailsHtml'`
 
-CI/Release
+## CI/CD Pipelines
 
-- Les commits conformes déclenchent la version via semantic-release (tag `vX.Y.Z`, changelog, GitHub Release, publication npm registry GitHub).
-- Les messages sont vérifiés localement (`.githooks/commit-msg`) et sur PR (job commitlint).
+The project uses comprehensive GitHub Actions workflows that follow industry best practices:
+
+### Continuous Integration (CI)
+
+The CI pipeline runs on every push and pull request to `main`:
+
+- **Linting**: Enforces code style with Prettier and ESLint
+- **Type Checking**: Validates TypeScript types with svelte-check
+- **Unit Tests**: Runs Vitest tests with Playwright browser support
+- **Package Build**: Builds the library package to verify it compiles
+- **Storybook Build**: Builds the Storybook documentation
+
+Jobs run in parallel for faster feedback.
+
+### Code Quality & Security
+
+- **CodeQL Analysis**: Automated security scanning for vulnerabilities (runs on pushes, PRs, and weekly)
+- **Dependabot**: Automated dependency updates with grouped PRs for easier review
+- **Semantic PR Titles**: Enforces conventional commit format on PR titles
+- **Commitlint**: Validates commit messages in PRs
+
+### Release & Deployment
+
+- **Semantic Release**: Automatically creates releases, tags, and changelogs based on commit messages
+- **Storybook Deployment**: Deploys to GitHub Pages on every push to `main`
+- **NPM Publishing**: Publishes to GitHub Packages when a release is created
+
+### Les commits conformes déclenchent la version via semantic-release (tag `vX.Y.Z`, changelog, GitHub Release, publication npm registry GitHub).
+
+Les messages sont vérifiés localement (`.githooks/commit-msg`) et sur PR (job commitlint).

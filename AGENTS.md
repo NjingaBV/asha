@@ -43,10 +43,50 @@
 
 ## Release & CI
 
-- Releases are automated via semantic-release on `main` (tags `vX.Y.Z`, changelog, GitHub Release, publish to GitHub Packages).
-- Storybook is deployed to GitHub Pages from `main`.
+### Automated CI Pipeline
+
+The project uses a comprehensive CI/CD pipeline with the following workflows:
+
+**CI Workflow** (`.github/workflows/ci.yml`):
+
+- Runs on every push to `main` and on all pull requests
+- Parallel jobs for: commitlint (PR only), lint, typecheck, test, build-package, build-storybook
+- Uses Playwright for browser-based tests
+- Includes concurrency controls to cancel outdated runs
+
+**Security Scanning** (`.github/workflows/codeql.yml`):
+
+- CodeQL analysis for JavaScript/TypeScript
+- Runs on pushes, pull requests, and weekly schedule
+- Detects security vulnerabilities and code quality issues
+
+**Dependency Management** (`.github/dependabot.yml`):
+
+- Automated dependency updates grouped by type (dev, production, framework)
+- Weekly schedule on Mondays at 09:00 CET
+- Groups updates for Storybook, Svelte, TypeScript, Vitest, Tailwind, and XState
+
+**Release & Deployment**:
+
+- Releases are automated via semantic-release on `main` (tags `vX.Y.Z`, changelog, GitHub Release, publish to GitHub Packages)
+- Storybook is deployed to GitHub Pages from `main`
+- Semantic PR titles are enforced via GitHub Actions
+
+### Running CI Locally
+
+Before pushing, ensure your changes pass all checks:
+
+```bash
+pnpm run lint      # Prettier & ESLint
+pnpm run check     # TypeScript type checking
+pnpm run test:unit -- --run  # Unit tests (requires Playwright browsers)
+pnpm run build     # Build the package
+pnpm run build-storybook  # Build Storybook
+```
 
 ## Security & Configuration Tips
 
 - Use Node LTS (`corepack enable && corepack prepare pnpm@8.6.12 --activate`).
 - Do not commit secrets; tokens are managed via GitHub/1Password in workflows.
+- CodeQL scans run automatically on PRs and weekly to detect security vulnerabilities.
+- Dependabot creates automated PRs for dependency updates with grouped changes.
