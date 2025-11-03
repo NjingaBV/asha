@@ -32,7 +32,9 @@
 		}
 	};
 
-	let regex = $derived(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray);
+	let regex = $derived(
+		/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray
+	);
 	let rgb = $derived(
 		regex.slice(1).reduce((acc: string[], val, i) => {
 			acc[i] = `${parseInt(val, 16)}`;

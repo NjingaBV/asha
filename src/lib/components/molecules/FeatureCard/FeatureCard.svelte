@@ -25,16 +25,16 @@
 
 	// Apple Watch inspired layout
 	let cardClasses = $derived(
-		['bg-white rounded-2xl overflow-hidden shadow-sm', className]
-			.filter(Boolean)
-			.join(' ')
+		['bg-white rounded-2xl overflow-hidden shadow-sm', className].filter(Boolean).join(' ')
 	);
 	const gridClasses = 'grid lg:grid-cols-2 min-h-[400px]';
 	let contentClasses = $derived(
 		'p-8 lg:p-12 flex flex-col justify-center ' +
 			(imagePosition === 'left' ? 'lg:order-2' : 'lg:order-1')
 	);
-	let imageClasses = $derived('relative ' + (imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2'));
+	let imageClasses = $derived(
+		'relative ' + (imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2')
+	);
 </script>
 
 <div class={cardClasses}>
