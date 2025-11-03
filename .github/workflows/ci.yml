@@ -124,7 +124,7 @@ jobs:
               run: pnpm run build
 
             - name: Upload package artifacts
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v5
               with:
                   name: package-dist
                   path: dist/
@@ -155,7 +155,7 @@ jobs:
               run: pnpm run build-storybook
 
             - name: Upload Storybook artifacts
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v5
               with:
                   name: storybook-static
                   path: storybook-static/
