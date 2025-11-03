@@ -11,7 +11,7 @@ const meta = {
 	argTypes: {
 		colors: { control: 'object' }
 	}
-} satisfies Meta<AnimatedBlob>;
+} satisfies Meta<typeof AnimatedBlob>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

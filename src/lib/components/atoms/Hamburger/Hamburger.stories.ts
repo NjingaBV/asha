@@ -14,7 +14,7 @@ const meta = {
 		ariaLabel: { control: 'text' },
 		width: { control: 'number' }
 	}
-} satisfies Meta<Hamburger>;
+} satisfies Meta<typeof Hamburger>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

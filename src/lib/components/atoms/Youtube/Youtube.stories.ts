@@ -12,7 +12,7 @@ const meta = {
 		videoId: { control: 'text' },
 		isPlayerReady: { control: 'boolean' }
 	}
-} satisfies Meta<Youtube>;
+} satisfies Meta<typeof Youtube>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

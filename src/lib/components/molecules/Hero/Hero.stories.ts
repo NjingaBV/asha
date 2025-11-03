@@ -16,7 +16,7 @@ const meta = {
 		backgroundColor: { control: 'color' },
 		callToActions: { control: 'object' }
 	}
-} satisfies Meta<Hero>;
+} satisfies Meta<typeof Hero>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

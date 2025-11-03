@@ -16,7 +16,7 @@ const meta = {
 		secondaryCTA: { control: 'object' },
 		background: { control: 'color' }
 	}
-} satisfies Meta<HeroBanner>;
+} satisfies Meta<typeof HeroBanner>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

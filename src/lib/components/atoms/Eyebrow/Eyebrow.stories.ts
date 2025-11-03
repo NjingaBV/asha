@@ -15,7 +15,7 @@ const meta = {
 			options: ['left', 'center', 'right']
 		}
 	}
-} satisfies Meta<Eyebrow>;
+} satisfies Meta<typeof Eyebrow>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

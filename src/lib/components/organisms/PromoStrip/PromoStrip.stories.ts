@@ -15,7 +15,7 @@ const meta = {
 			options: ['light', 'dark']
 		}
 	}
-} satisfies Meta<PromoStrip>;
+} satisfies Meta<typeof PromoStrip>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -13,7 +13,7 @@ const meta = {
 		color: { control: 'color' },
 		links: { control: 'object' }
 	}
-} satisfies Meta<Nav>;
+} satisfies Meta<typeof Nav>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

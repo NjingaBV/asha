@@ -13,7 +13,7 @@ const meta = {
 		selected: { control: 'text' },
 		onChange: { action: 'colorChanged' }
 	}
-} satisfies Meta<ColorSelector>;
+} satisfies Meta<typeof ColorSelector>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

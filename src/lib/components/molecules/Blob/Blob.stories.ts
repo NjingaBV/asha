@@ -12,7 +12,7 @@ const meta = {
 		color: { control: 'color' },
 		position: { control: 'text' }
 	}
-} satisfies Meta<Blob>;
+} satisfies Meta<typeof Blob>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

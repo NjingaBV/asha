@@ -19,7 +19,7 @@ const meta = {
 			options: ['sm', 'md']
 		}
 	}
-} satisfies Meta<Badge>;
+} satisfies Meta<typeof Badge>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

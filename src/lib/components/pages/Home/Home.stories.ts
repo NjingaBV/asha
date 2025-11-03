@@ -13,7 +13,7 @@ const meta = {
 		navLinks: { control: 'object' },
 		slices: { control: 'object' }
 	}
-} satisfies Meta<Home>;
+} satisfies Meta<typeof Home>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

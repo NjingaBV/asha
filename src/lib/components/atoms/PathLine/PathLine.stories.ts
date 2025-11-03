@@ -13,7 +13,7 @@ const meta = {
 		title: { control: 'text' },
 		color: { control: 'color' }
 	}
-} satisfies Meta<PathLine>;
+} satisfies Meta<typeof PathLine>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

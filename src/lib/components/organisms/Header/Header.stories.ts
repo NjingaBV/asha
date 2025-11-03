@@ -13,7 +13,7 @@ const meta = {
 		logo: { control: 'object' },
 		navLinks: { control: 'object' }
 	}
-} satisfies Meta<Header>;
+} satisfies Meta<typeof Header>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
