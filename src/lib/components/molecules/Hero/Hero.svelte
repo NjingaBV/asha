@@ -1,42 +1,53 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 	import type { ImageType } from '$lib/models';
 
-	export let title: string;
-	export let overview: string;
-	export let details: string;
-	export let imgSrc: ImageType;
-	export let callToActions: Array<{ label: string; url: string; icon: string; color: string }>;
-	export let backgroundColor: `#${string}` = '#ffffff';
+	let {
+		title = '',
+		overview = '',
+		details = '',
+		imgSrc = undefined,
+		callToActions = [],
+		backgroundColor = '#ffffff',
+		onLineClampToggle = () => {}
+	}: {
+		title: string;
+		overview: string;
+		details: string;
+		imgSrc: ImageType | undefined;
+		callToActions: Array<{ label: string; url: string; icon: string; color: string }>;
+		backgroundColor: `#${string}`;
+		onLineClampToggle?: (enabled: boolean) => void;
+	} = $props();
 
-	const dispatch = createEventDispatcher();
+	let lineClampEnabled = $state(true);
+	let lines = $state(5);
 
-	let lineClampEnabled = true;
-	let lines = 5;
-
-	$: truncated = overview && overview.length > lines * 50;
+	let truncated = $derived(overview && overview.length > lines * 50);
 
 	const toggleLineClamp = () => {
 		if (truncated) {
 			lineClampEnabled = !lineClampEnabled;
-			dispatch('lineClampToggled', { lineClampEnabled });
+			onLineClampToggle(lineClampEnabled);
 		}
 	};
 
-	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray;
-	$: rgb =
+	let regex = $derived(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray);
+	let rgb = $derived(
 		regex.slice(1).reduce((acc: string[], val, i) => {
 			acc[i] = `${parseInt(val, 16)}`;
 			return acc;
-		}, []) || [];
-
-	$: brightness = Math.round(
-		(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
+		}, []) || []
 	);
 
-	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
-	$: hasDetails = Boolean(title || details);
+	let brightness = $derived(
+		Math.round(
+			(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
+		)
+	);
+
+	let textColor = $derived(brightness > 125 ? '#000000' : '#ffffff');
+	let hasDetails = $derived(Boolean(title || details));
 </script>
 
 <div

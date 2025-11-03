@@ -11,11 +11,17 @@
 	} from '$lib/components';
 	import type { LinkType, SliceType } from '$lib/models';
 
-	export let navLinks: LinkType[] = [];
-	export let slices: SliceType[] = [];
-	export let open = false;
-
-	export let alternateColor = false;
+	let {
+		navLinks = [],
+		slices = [],
+		open = $bindable(false),
+		alternateColor = false
+	}: {
+		navLinks?: LinkType[];
+		slices?: SliceType[];
+		open?: boolean;
+		alternateColor?: boolean;
+	} = $props();
 
 	const bgColor = (index: number) => {
 		if (alternateColor) {

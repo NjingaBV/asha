@@ -3,19 +3,33 @@
 	import Linkable from '$lib/components/atoms/Linkable/Linkable.svelte';
 	import type { ImageType } from '$lib/models';
 
-	export let title: string;
-	export let subtitle: string;
-	export let overview: string;
-	export let imgSrc: ImageType;
-	export let buttonName: string;
-	export let buttonLink: string;
-	export let backgroundColor: `#${string}`;
-	export let mixColor: boolean;
-	export let textOnImage = true;
-	export let rounded = true;
-	export let isVideo = false;
+	let {
+		title = '',
+		subtitle = '',
+		overview = '',
+		imgSrc = { desktop: '', tablet: '', mobile: '' },
+		buttonName = '',
+		buttonLink = '',
+		backgroundColor = '#000000',
+		mixColor = false,
+		textOnImage = true,
+		rounded = true,
+		isVideo = false
+	}: {
+		title: string;
+		subtitle: string;
+		overview: string;
+		imgSrc: ImageType;
+		buttonName: string;
+		buttonLink: string;
+		backgroundColor: `#${string}`;
+		mixColor: boolean;
+		textOnImage?: boolean;
+		rounded?: boolean;
+		isVideo?: boolean;
+	} = $props();
 
-	$: isLinkable = Boolean(!buttonName && buttonLink);
+	let isLinkable = $derived(Boolean(!buttonName && buttonLink));
 </script>
 
 <Linkable {isLinkable} link={buttonLink}>

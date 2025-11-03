@@ -2,13 +2,23 @@
 	import { Eyebrow } from '$lib/components/atoms';
 	import { CTAGroup } from '$lib/components/molecules';
 
-	export let eyebrow: string | null = null;
-	export let title: string;
-	export let subtitle: string | null = null;
-	export let image: { src: string; alt: string } | null = null;
-	export let primaryCTA: { label: string; href?: string } | null = null;
-	export let secondaryCTA: { label: string; href?: string } | null = null;
-	export let background: string = '#000000';
+	let {
+		eyebrow = null,
+		title = '',
+		subtitle = null,
+		image = null,
+		primaryCTA = null,
+		secondaryCTA = null,
+		background = '#000000'
+	}: {
+		eyebrow?: string | null;
+		title: string;
+		subtitle?: string | null;
+		image?: { src: string; alt: string } | null;
+		primaryCTA?: { label: string; href?: string } | null;
+		secondaryCTA?: { label: string; href?: string } | null;
+		background?: string;
+	} = $props();
 </script>
 
 <section class="relative w-full overflow-hidden" style={`background:${background}`}>

@@ -1,8 +1,14 @@
 <script lang="ts">
 	import { PillButton } from '$lib/components/atoms';
-	export let primary: { label: string; href?: string; tone?: 'primary' | 'dark' } | null = null;
-	export let secondary: { label: string; href?: string; tone?: 'secondary' } | null = null;
-	export let align: 'center' | 'left' = 'center';
+	let {
+		primary = $state<{ label: string; href?: string; tone?: 'primary' | 'dark' } | null>(null),
+		secondary = $state<{ label: string; href?: string; tone?: 'secondary' } | null>(null),
+		align = $state<'center' | 'left'>('center')
+	}: {
+		primary?: { label: string; href?: string; tone?: 'primary' | 'dark' } | null;
+		secondary?: { label: string; href?: string; tone?: 'secondary' } | null;
+		align?: 'center' | 'left';
+	} = $props();
 </script>
 
 <div class={[align === 'center' ? 'justify-center' : 'justify-start', 'flex gap-3'].join(' ')}>

@@ -1,9 +1,15 @@
 <script lang="ts">
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 
-	export let cta: { url: string; label: string; color: string };
-	export let backgroundColor: `#${string}`;
-	export let slogans: Array<{ title: string; subtitle: string }> = [];
+	let {
+		cta = $state<{ url: string; label: string; color: string }>({ url: '', label: '', color: '' }),
+		backgroundColor = $state<`#${string}`>('#000000'),
+		slogans = $state<Array<{ title: string; subtitle: string }>>([])
+	}: {
+		cta: { url: string; label: string; color: string };
+		backgroundColor: `#${string}`;
+		slogans?: Array<{ title: string; subtitle: string }>;
+	} = $props();
 </script>
 
 <section class="bg text-slate-100" style="--bg-color: {backgroundColor}">

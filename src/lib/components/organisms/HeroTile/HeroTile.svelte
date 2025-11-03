@@ -2,8 +2,13 @@
 	import Tile from '$lib/components/molecules/Tile/Tile.svelte';
 	import type { LogoType } from '$lib/models';
 
-	export let images: string[] = [];
-	export let logo: LogoType;
+	let {
+		images = $state<string[]>([]),
+		logo = $state<LogoType>({ title: '', imgUrl: '', imgAlt: '' })
+	}: {
+		images?: string[];
+		logo: LogoType;
+	} = $props();
 </script>
 
 <section class="relative overflow-hidden h-[30vh] md:h-[50vh]">

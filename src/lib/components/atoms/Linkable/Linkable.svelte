@@ -1,7 +1,10 @@
 <script lang="ts">
-	export let isLinkable = false;
-	export let link: string | undefined;
-	export let target: '_blank' | '_self' | '_parent' | '_top' = '_self';
+	let {
+		isLinkable = false,
+		link = undefined,
+		target = '_self',
+		children
+	} = $props();
 </script>
 
 {#if isLinkable}

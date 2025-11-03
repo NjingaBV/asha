@@ -2,22 +2,31 @@
 	import type { LinkType } from '$lib/models';
 	import { fly } from 'svelte/transition';
 
-	export let headerMenu = false;
-	export let links: LinkType[] = [];
-	export let color = '#ffffff';
+	let {
+		headerMenu = false,
+		links = [],
+		color = '#ffffff'
+	}: {
+		headerMenu?: boolean;
+		links?: LinkType[];
+		color?: string;
+	} = $props();
 
-	$: regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color) as RegExpExecArray;
-	$: rgb =
+	let regex = $derived(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color) as RegExpExecArray);
+	let rgb = $derived(
 		regex.slice(1).reduce((acc: string[], val, i) => {
 			acc[i] = `${parseInt(val, 16)}`;
 			return acc;
-		}, []) || [];
-
-	$: brightness = Math.round(
-		(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
+		}, []) || []
 	);
 
-	$: textColor = brightness > 125 ? '#000000' : '#ffffff';
+	let brightness = $derived(
+		Math.round(
+			(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000
+		)
+	);
+
+	let textColor = $derived(brightness > 125 ? '#000000' : '#ffffff');
 </script>
 
 <nav

@@ -1,18 +1,23 @@
 <script lang="ts">
 	import Feature from '$lib/components/molecules/Feature/Feature.svelte';
 
-	export let title: string;
-	export let features: Array<{
+	let {
+		title = '',
+		features = []
+	}: {
 		title: string;
-		subtitle: string;
-		description: string;
-		color: string;
-		details: {
+		features: Array<{
 			title: string;
+			subtitle: string;
 			description: string;
-			cover: { url: string; alt: string; text: string };
-		};
-	}>;
+			color: string;
+			details: {
+				title: string;
+				description: string;
+				cover: { url: string; alt: string; text: string };
+			};
+		}>;
+	} = $props();
 </script>
 
 <section class="container mx-auto space-y-6 px-6 py-12">

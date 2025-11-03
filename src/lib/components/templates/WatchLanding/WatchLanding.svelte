@@ -1,33 +1,25 @@
 <script lang="ts">
-	import { HeroBanner, PromoStrip, FeatureGrid } from '$lib/components/organisms';
 	import HeroSection from '../../organisms/HeroSection/HeroSection.svelte';
 	import ProductGrid from '../../organisms/ProductGrid/ProductGrid.svelte';
 	import CallToAction from '../../molecules/CallToAction/CallToAction.svelte';
+	import FeatureGrid from '../../organisms/FeatureGrid/FeatureGrid.svelte';
 	import Heading from '../../atoms/Heading/Heading.svelte';
 	import Paragraph from '../../atoms/Paragraph/Paragraph.svelte';
 
-	// Backward compatibility props
-	export let hero: any = {
-		eyebrow: 'Apple Watch',
-		title: 'Plus puissante. Plus connectée.',
-		subtitle: 'Des fonctionnalités santé et forme avancées.',
-		image: null,
-		primaryCTA: { label: 'Acheter', href: '#' },
-		secondaryCTA: { label: 'En savoir plus', href: '#' },
-		background: '#000000'
-	};
-	export let promo: any = { text: 'Livraison et retours gratuits.' };
-	export let features: Array<{ title: string; description: string; icon?: string }> = [];
-
-	// New Apple Watch inspired props
-	export let useNewDesign: boolean = false;
-	export let heroData: any = undefined;
-	export let productsData: any[] = [];
-	export let featuresData: any[] = [];
-	export let ctaData: any = undefined;
+	let {
+		heroData = $state<any>(undefined),
+		productsData = $state<any[]>([]),
+		featuresData = $state<any[]>([]),
+		ctaData = $state<any>(undefined)
+	}: {
+		heroData?: any;
+		productsData?: any[];
+		featuresData?: any[];
+		ctaData?: any;
+	} = $props();
 
 	// Default data for new design
-	$: defaultHeroData = {
+	let defaultHeroData = $state({
 		title: 'Apple Watch',
 		subtitle: 'Nouveau',
 		description:
@@ -57,9 +49,9 @@
 				badge: 'Nouveau'
 			}
 		]
-	};
+	});
 
-	$: defaultProductsData = [
+	let defaultProductsData = $state([
 		{
 			title: 'Apple Watch Series 11',
 			subtitle: 'Nouveau',
@@ -98,9 +90,9 @@
 			secondaryAction: { label: 'Acheter' },
 			badge: 'Nouveau'
 		}
-	];
+	]);
 
-	$: defaultFeaturesData = [
+	let defaultFeaturesData = $state([
 		{
 			title: 'Santé',
 			description:
@@ -125,9 +117,9 @@
 			icon: 'shield',
 			badge: 'Protection'
 		}
-	];
+	]);
 
-	$: defaultCtaData = {
+	let defaultCtaData = $state({
 		title: "Tant de raisons d'acheter votre Apple Watch chez Apple.",
 		description:
 			'Livraison gratuite et retours gratuits. Découvrez comment profiter au maximum de votre nouvelle Apple Watch.',
@@ -135,64 +127,52 @@
 			label: 'Acheter une Apple Watch',
 			onClick: () => console.log('Buy now clicked')
 		}
-	};
+	});
 
-	$: actualHeroData = heroData || defaultHeroData;
-	$: actualProductsData = productsData.length > 0 ? productsData : defaultProductsData;
-	$: actualFeaturesData = featuresData.length > 0 ? featuresData : defaultFeaturesData;
-	$: actualCtaData = ctaData || defaultCtaData;
+	let actualHeroData = $derived(heroData || defaultHeroData);
+	let actualProductsData = $derived(productsData.length > 0 ? productsData : defaultProductsData);
+	let actualFeaturesData = $derived(featuresData.length > 0 ? featuresData : defaultFeaturesData);
+	let actualCtaData = $derived(ctaData || defaultCtaData);
 </script>
 
-{#if useNewDesign}
-	<!-- New Apple Watch inspired design -->
-	<main class="min-h-screen bg-white">
-		<!-- Hero Section -->
-		<HeroSection
-			title={actualHeroData.title}
-			subtitle={actualHeroData.subtitle}
-			description={actualHeroData.description}
-			primaryAction={actualHeroData.primaryAction}
-			secondaryAction={actualHeroData.secondaryAction}
-			products={actualHeroData.products}
-		/>
+<main class="min-h-screen bg-white">
+	<!-- Hero Section -->
+	<HeroSection
+		title={actualHeroData.title}
+		subtitle={actualHeroData.subtitle}
+		description={actualHeroData.description}
+		primaryAction={actualHeroData.primaryAction}
+		secondaryAction={actualHeroData.secondaryAction}
+		products={actualHeroData.products}
+	/>
 
-		<!-- Products Section -->
-		<section class="py-16 lg:py-24 bg-gray-50">
-			<div class="max-w-7xl mx-auto px-6 lg:px-8">
-				<div class="text-center mb-12">
-					<Heading level={2} size="4xl" weight="bold" class="text-slate-900 mb-4">
-						Découvrez l'Apple Watch
-					</Heading>
-					<Paragraph size="lg" color="text-slate-600" class="max-w-2xl mx-auto">
-						Trois modèles conçus pour différents besoins et budgets.
-					</Paragraph>
-				</div>
-
-				<ProductGrid products={actualProductsData} columns={3} />
+	<!-- Products Section -->
+	<section class="py-16 lg:py-24 bg-gray-50">
+		<div class="max-w-7xl mx-auto px-6 lg:px-8">
+			<div class="text-center mb-12">
+				<Heading level={2} size="4xl" weight="bold" class="text-slate-900 mb-4">
+					Découvrez l'Apple Watch
+				</Heading>
+				<Paragraph size="lg" color="text-slate-600" class="max-w-2xl mx-auto">
+					Trois modèles conçus pour différents besoins et budgets.
+				</Paragraph>
 			</div>
-		</section>
 
-		<!-- Features Section -->
-		<section class="py-16 lg:py-24">
-			<div class="max-w-7xl mx-auto px-6 lg:px-8">
-				<FeatureGrid features={actualFeaturesData} layout="alternating" />
-			</div>
-		</section>
+			<ProductGrid products={actualProductsData} columns={3} />
+		</div>
+	</section>
 
-		<!-- Call to Action -->
-		<CallToAction
-			title={actualCtaData.title}
-			description={actualCtaData.description}
-			primaryAction={actualCtaData.primaryAction}
-		/>
-	</main>
-{:else}
-	<!-- Backward compatibility -->
-	<div class="flex flex-col">
-		<PromoStrip text={promo.text} tone="light" />
-		<HeroBanner {...hero} />
-		<section class="container mx-auto px-6 py-16">
-			<FeatureGrid items={features} />
-		</section>
-	</div>
-{/if}
+	<!-- Features Section -->
+	<section class="py-16 lg:py-24">
+		<div class="max-w-7xl mx-auto px-6 lg:px-8">
+			<FeatureGrid features={actualFeaturesData} layout="alternating" />
+		</div>
+	</section>
+
+	<!-- Call to Action -->
+	<CallToAction
+		title={actualCtaData.title}
+		description={actualCtaData.description}
+		primaryAction={actualCtaData.primaryAction}
+	/>
+</main>

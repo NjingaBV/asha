@@ -3,17 +3,27 @@
 	import Paragraph from '$lib/components/atoms/Paragraph/Paragraph.svelte';
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 
-	export let title: string;
-	export let subtitle: string;
-	export let description: string;
-	export let image: string;
-	export let imageAlt: string = '';
-	export let colors: string[] = [];
-	export let primaryAction: { label: string; href?: string; onClick?: () => void } | undefined =
-		undefined;
-	export let secondaryAction: { label: string; href?: string; onClick?: () => void } | undefined =
-		undefined;
-	export let badge: string | undefined = undefined;
+	let {
+		title = '',
+		subtitle = '',
+		description = '',
+		image = '',
+		imageAlt = '',
+		colors = [],
+		primaryAction = undefined,
+		secondaryAction = undefined,
+		badge = undefined
+	}: {
+		title: string;
+		subtitle: string;
+		description: string;
+		image: string;
+		imageAlt: string;
+		colors: string[];
+		primaryAction: { label: string; href?: string; onClick?: () => void } | undefined;
+		secondaryAction: { label: string; href?: string; onClick?: () => void } | undefined;
+		badge: string | undefined;
+	} = $props();
 
 	const colorMap: Record<string, string> = {
 		noir: 'bg-black',
@@ -31,12 +41,14 @@
 		or: 'bg-yellow-400'
 	};
 
-	$: cardClasses = [
-		'group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300',
-		$$props.class
-	]
-		.filter(Boolean)
-		.join(' ');
+	let cardClasses = $derived(
+		[
+			'group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300',
+			$$props.class
+		]
+			.filter(Boolean)
+			.join(' ')
+	);
 </script>
 
 <div class={cardClasses}>

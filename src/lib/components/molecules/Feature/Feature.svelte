@@ -1,16 +1,25 @@
 <script lang="ts">
 	import PathLine from '$lib/components/atoms/PathLine/PathLine.svelte';
 
-	export let order: number;
-	export let title: string;
-	export let subtitle: string;
-	export let description: string;
-	export let color: string;
-	export let details: {
+	let {
+		order = 0,
+		title = '',
+		subtitle = '',
+		description = '',
+		color = '',
+		details = { title: '', description: '', cover: { url: '', alt: '', text: '' } }
+	}: {
+		order: number;
 		title: string;
+		subtitle: string;
 		description: string;
-		cover: { url: string; alt: string; text: string };
-	};
+		color: string;
+		details: {
+			title: string;
+			description: string;
+			cover: { url: string; alt: string; text: string };
+		};
+	} = $props();
 </script>
 
 <div class="mx-auto max-w-full">

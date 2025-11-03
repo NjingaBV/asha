@@ -1,20 +1,26 @@
 <script lang="ts">
-	export let size: 'xs' | 'sm' | 'base' | 'lg' | 'xl' = 'base';
-	export let weight: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' = 'normal';
-	export let color: string = 'text-slate-600';
-	export let align: 'left' | 'center' | 'right' | 'justify' = 'left';
-	export let leading: 'tight' | 'normal' | 'relaxed' | 'loose' = 'normal';
+	let {
+		size = 'base',
+		weight = 'normal',
+		color = 'text-slate-600',
+		align = 'left',
+		leading = 'normal',
+		class: className = undefined,
+		children
+	} = $props();
 
-	$: paragraphClasses = [
-		'text-' + size,
-		'font-' + weight,
-		color,
-		'text-' + align,
-		'leading-' + leading,
-		$$props.class
-	]
-		.filter(Boolean)
-		.join(' ');
+	let paragraphClasses = $derived(
+		[
+			'text-' + size,
+			'font-' + weight,
+			color,
+			'text-' + align,
+			'leading-' + leading,
+			className
+		]
+			.filter(Boolean)
+			.join(' ')
+	);
 </script>
 
 <p class={paragraphClasses}>

@@ -2,9 +2,15 @@
 	import Logo from '$lib/components/molecules/Logo/Logo.svelte';
 	import type { LogoType } from '$lib/models';
 
-	export let logo: LogoType;
-	export let link = '/';
-	export let brandName: string;
+	let {
+		logo = { title: '', imgUrl: '', imgAlt: '' },
+		link = '/',
+		brandName = ''
+	}: {
+		logo: LogoType;
+		link?: string;
+		brandName: string;
+	} = $props();
 </script>
 
 <footer class="bg-gray-100 border-t">

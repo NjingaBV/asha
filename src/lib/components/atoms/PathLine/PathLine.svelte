@@ -1,7 +1,13 @@
 <script lang="ts">
-	export let order: number;
-	export let title: string;
-	export let color: string;
+	let {
+		order = 0,
+		title = '',
+		color = ''
+	}: {
+		order: number;
+		title: string;
+		color: string;
+	} = $props();
 
 	const hexToRgb = (hex: string) => {
 		let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -46,10 +52,10 @@
 		return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
 	};
 
-	$: lightenColor = adjustColor(color, 40); // lighten the color by 20
-	$: darkenColor = adjustColor(color, -40);
-	$: rgbColor = hexToRgb(color);
-	$: darkRgb = hexToRgb(darkenColor);
+	let lightenColor = $derived(adjustColor(color, 40));
+	let darkenColor = $derived(adjustColor(color, -40));
+	let rgbColor = $derived(hexToRgb(color));
+	let darkRgb = $derived(hexToRgb(darkenColor));
 </script>
 
 <div

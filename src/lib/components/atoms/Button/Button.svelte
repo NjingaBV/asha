@@ -1,33 +1,44 @@
 <script lang="ts">
-	// API
-	// - Keep backward-compat props: size, color, rounded, border, onClick
-	// - Add variant/tone/fullWidth/disabled for better design control
-	export let size: 'small' | 'medium' | 'large' = 'medium';
-	export let color: string | undefined = undefined; // custom hex, if provided overrides tone/variant styles
-	export let rounded = false;
-	export let border = false; // legacy prop; outline variant preferred
-	export let onClick: (() => void) | undefined;
-
-	export let variant: 'solid' | 'outline' | 'ghost' = 'solid';
-	export let tone: 'primary' | 'secondary' | 'neutral' | 'success' | 'danger' = 'primary';
-	export let fullWidth = false;
-	export let disabled = false;
-	export let className: string | undefined = undefined;
+	let {
+		size = 'medium',
+		color = undefined,
+		rounded = false,
+		border = false,
+		onClick = undefined,
+		variant = 'solid',
+		tone = 'primary',
+		fullWidth = false,
+		disabled = false,
+		className = undefined
+	}: {
+		size: 'small' | 'medium' | 'large';
+		color: string | undefined;
+		rounded: boolean;
+		border: boolean;
+		onClick: (() => void) | undefined;
+		variant: 'solid' | 'outline' | 'ghost';
+		tone: 'primary' | 'secondary' | 'neutral' | 'success' | 'danger';
+		fullWidth: boolean;
+		disabled: boolean;
+		className: string | undefined;
+	} = $props();
 
 	// Compute classes
 	const base =
 		'inline-flex items-center justify-center font-medium transition focus-visible:outline-none focus-visible:ring-2 ring-blue-600 ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
-	$: rounding = rounded ? 'rounded-full' : 'rounded-md';
-	$: widthCls = fullWidth ? 'w-full' : '';
-	$: sizeCls =
+
+	let rounding = $derived(rounded ? 'rounded-full' : 'rounded-md');
+	let widthCls = $derived(fullWidth ? 'w-full' : '');
+	let sizeCls = $derived(
 		size === 'small'
 			? 'px-3 py-1.5 text-sm md:text-base'
 			: size === 'large'
 				? 'px-6 py-3 text-lg md:text-xl'
-				: 'px-4 py-2 text-base md:text-lg';
+				: 'px-4 py-2 text-base md:text-lg'
+	);
 
 	// Tone + variant classes (used when no custom color)
-	$: scheme = (() => {
+	let scheme = $derived(() => {
 		if (variant === 'ghost') {
 			if (tone === 'secondary') return 'text-slate-700 hover:bg-slate-100';
 			if (tone === 'neutral') return 'text-gray-800 hover:bg-gray-100';
@@ -50,21 +61,26 @@
 		if (tone === 'success') return 'bg-emerald-600 text-white hover:bg-emerald-700';
 		if (tone === 'danger') return 'bg-red-600 text-white hover:bg-red-700';
 		return 'bg-blue-600 text-white hover:bg-blue-700'; // primary
-	})();
+	});
 
 	// Optional custom color path
-	$: hex = color?.trim() ?? '';
-	$: match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	$: rgb = match ? [match[1], match[2], match[3]].map((v) => `${parseInt(v, 16)}`) : [];
-	$: backgroundColor = rgb.length === 3 ? rgb.join() : '';
-	$: brightness =
+	let hex = $derived(color?.trim() ?? '');
+	let match = $derived(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex));
+	let rgb = $derived(
+		match ? [match[1], match[2], match[3]].map((v) => `${parseInt(v, 16)}`) : []
+	);
+	let backgroundColor = $derived(rgb.length === 3 ? rgb.join() : '');
+	let brightness = $derived(
 		rgb.length === 3
 			? Math.round(
 					(parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) /
 						1000
 				)
-			: null;
-	$: textColor = brightness !== null ? (brightness > 125 ? '#000000' : '#ffffff') : undefined;
+			: null
+	);
+	let textColor = $derived(
+		brightness !== null ? (brightness > 125 ? '#000000' : '#ffffff') : undefined
+	);
 </script>
 
 <button

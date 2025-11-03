@@ -1,8 +1,13 @@
 <script lang="ts">
-	export let open = false;
-
-	export let ariaLabel = 'toggle menu';
-	export let width = 60;
+	let {
+		open = false,
+		ariaLabel = 'toggle menu',
+		width = 60
+	}: {
+		open?: boolean;
+		ariaLabel?: string;
+		width?: number;
+	} = $props();
 
 	const hamburger =
 		'm 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20';
@@ -12,7 +17,7 @@
 </script>
 
 <button
-	on:click={() => (open = !open)}
+	onclick={() => (open = !open)}
 	aria-expanded={open}
 	aria-label={ariaLabel}
 	class="cursor-pointer flex items-center overflow-hidden md:hidden"

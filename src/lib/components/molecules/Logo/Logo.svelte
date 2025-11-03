@@ -1,14 +1,23 @@
 <script lang="ts">
 	import Linkable from '$lib/components/atoms/Linkable/Linkable.svelte';
 
-	export let title = '';
-	export let subtitle = '';
-	export let imgUrl = '';
-	export let imgAlt = '';
-	export let showTitle = false;
-	export let link: string;
+	let {
+		title = '',
+		subtitle = '',
+		imgUrl = '',
+		imgAlt = '',
+		showTitle = false,
+		link = undefined
+	}: {
+		title?: string;
+		subtitle?: string;
+		imgUrl?: string;
+		imgAlt?: string;
+		showTitle?: boolean;
+		link?: string;
+	} = $props();
 
-	$: isLinkable = Boolean(link);
+	let isLinkable = $derived(Boolean(link));
 </script>
 
 <Linkable {isLinkable} {link}>

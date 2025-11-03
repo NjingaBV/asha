@@ -3,23 +3,38 @@
 	import Paragraph from '../../atoms/Paragraph/Paragraph.svelte';
 	import Icon from '../../atoms/Icon/Icon.svelte';
 
-	export let title: string;
-	export let description: string;
-	export let image: string;
-	export let imageAlt: string = '';
-	export let imagePosition: 'left' | 'right' = 'right';
-	export let icon: string | undefined = undefined;
-	export let badge: string | undefined = undefined;
+	let {
+		title = '',
+		description = '',
+		image = '',
+		imageAlt = '',
+		imagePosition = 'right',
+		icon = undefined,
+		badge = undefined,
+		class: className = undefined
+	}: {
+		title: string;
+		description: string;
+		image: string;
+		imageAlt?: string;
+		imagePosition?: 'left' | 'right';
+		icon?: string;
+		badge?: string;
+		class?: string;
+	} = $props();
 
 	// Apple Watch inspired layout
-	$: cardClasses = ['bg-white rounded-2xl overflow-hidden shadow-sm', $$props.class]
-		.filter(Boolean)
-		.join(' ');
+	let cardClasses = $derived(
+		['bg-white rounded-2xl overflow-hidden shadow-sm', className]
+			.filter(Boolean)
+			.join(' ')
+	);
 	const gridClasses = 'grid lg:grid-cols-2 min-h-[400px]';
-	$: contentClasses =
+	let contentClasses = $derived(
 		'p-8 lg:p-12 flex flex-col justify-center ' +
-		(imagePosition === 'left' ? 'lg:order-2' : 'lg:order-1');
-	$: imageClasses = 'relative ' + (imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2');
+			(imagePosition === 'left' ? 'lg:order-2' : 'lg:order-1')
+	);
+	let imageClasses = $derived('relative ' + (imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2'));
 </script>
 
 <div class={cardClasses}>

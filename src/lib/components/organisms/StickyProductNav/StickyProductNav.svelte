@@ -1,13 +1,20 @@
 <script lang="ts">
 	import { PillButton } from '$lib/components/atoms';
-	export let logo: { title: string } = { title: 'Apple Watch' };
-	export let links: Array<{ label: string; href: string }> = [
-		{ label: 'Aperçu', href: '#' },
-		{ label: 'Caractéristiques', href: '#' },
-		{ label: 'Comparer', href: '#' }
-	];
-	export let cta: { label: string; href: string } | null = { label: 'Acheter', href: '#' };
-	export let dark = true; // dark background by default
+	let {
+		logo = { title: 'Apple Watch' },
+		links = [
+			{ label: 'Aperçu', href: '#' },
+			{ label: 'Caractéristiques', href: '#' },
+			{ label: 'Comparer', href: '#' }
+		],
+		cta = { label: 'Acheter', href: '#' },
+		dark = true
+	}: {
+		logo?: { title: string };
+		links?: Array<{ label: string; href: string }>;
+		cta?: { label: string; href: string } | null;
+		dark?: boolean;
+	} = $props();
 </script>
 
 <nav

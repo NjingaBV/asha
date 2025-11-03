@@ -1,24 +1,31 @@
 <script lang="ts">
 	import ProductCard from '../../molecules/ProductCard/ProductCard.svelte';
 
-	export let products: Array<{
-		title: string;
-		subtitle: string;
-		description: string;
-		image: string;
-		imageAlt?: string;
-		colors?: string[];
-		primaryAction?: { label: string; href?: string; onClick?: () => void };
-		secondaryAction?: { label: string; href?: string; onClick?: () => void };
-		badge?: string;
-	}> = [];
-	export let columns: 1 | 2 | 3 | 4 = 3;
-	export let gap: 'sm' | 'base' | 'lg' = 'base';
+	let {
+		products = [],
+		columns = 3,
+		gap = 'base'
+	}: {
+		products: Array<{
+			title: string;
+			subtitle: string;
+			description: string;
+			image: string;
+			imageAlt?: string;
+			colors?: string[];
+			primaryAction?: { label: string; href?: string; onClick?: () => void };
+			secondaryAction?: { label: string; href?: string; onClick?: () => void };
+			badge?: string;
+		}>;
+		columns: 1 | 2 | 3 | 4;
+		gap: 'sm' | 'base' | 'lg';
+	} = $props();
 
-	$: gridCols = `grid-cols-${columns}`;
-	$: gapSize = `gap-${gap === 'sm' ? '4' : gap === 'lg' ? '8' : '6'}`;
-
-	$: gridClasses = ['grid', gridCols, gapSize, $$props.class].filter(Boolean).join(' ');
+	let gridCols = $derived(`grid-cols-${columns}`);
+	let gapSize = $derived(`gap-${gap === 'sm' ? '4' : gap === 'lg' ? '8' : '6'}`);
+	let gridClasses = $derived(
+		['grid', gridCols, gapSize, $$props.class].filter(Boolean).join(' ')
+	);
 </script>
 
 <div class={gridClasses}>

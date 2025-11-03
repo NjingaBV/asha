@@ -5,14 +5,23 @@
 
 	import type { LinkType, LogoType, SliceType } from '$lib/models';
 
-	export let slices: SliceType[] = [];
-	export let navLinks: LinkType[] = [];
-	export let logo: LogoType;
-	export let alternateColor = false;
-	export let cta: { label: string; url: string; icon: string; href: string };
-	let open = false;
+	let {
+		slices = [],
+		navLinks = [],
+		logo = { title: '', imgUrl: '', imgAlt: '' },
+		alternateColor = false,
+		cta = { label: '', url: '', icon: '', href: '' }
+	}: {
+		slices?: SliceType[];
+		navLinks?: LinkType[];
+		logo: LogoType;
+		alternateColor?: boolean;
+		cta: { label: string; url: string; icon: string; href: string };
+	} = $props();
 
-	$: isCta = Boolean(cta) && Boolean(cta.url) && Boolean(cta.label || cta.icon);
+	let open = $state(false);
+
+	let isCta = $derived(Boolean(cta) && Boolean(cta.url) && Boolean(cta.label || cta.icon));
 </script>
 
 <Header {navLinks} bind:open {logo}>

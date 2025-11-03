@@ -1,20 +1,17 @@
 <script lang="ts">
-	// Backward compatibility props
-	export let label: string | undefined = undefined;
-	export let tone: 'dark' | 'light' | 'accent' | undefined = undefined;
-	export let size: 'sm' | 'md' | undefined = undefined;
-
-	// New Apple Watch inspired props
-	export let variant: 'solid' | 'outline' | 'ghost' = 'solid';
-	export let color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral' =
-		'primary';
-	export let badgeSize: 'sm' | 'base' | 'lg' = 'base';
-	export let rounded: boolean = true;
-
-	// Backward compatibility mapping
-	$: actualVariant = tone === 'light' ? 'outline' : 'solid';
-	$: actualColor = tone === 'accent' ? 'primary' : tone === 'dark' ? 'neutral' : 'neutral';
-	$: actualSize = size === 'sm' ? 'sm' : size === 'md' ? 'base' : badgeSize;
+	let {
+		label = undefined,
+		variant = 'solid',
+		color = 'primary',
+		badgeSize = 'base',
+		rounded = true
+	}: {
+		label?: string;
+		variant?: 'solid' | 'outline' | 'ghost';
+		color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral';
+		badgeSize?: 'sm' | 'base' | 'lg';
+		rounded?: boolean;
+	} = $props();
 
 	// Color schemes inspired by Apple Watch
 	const colorSchemes: Record<string, Record<string, string>> = {
@@ -50,18 +47,21 @@
 		}
 	};
 
-	$: scheme = tone ? colorSchemes[actualColor][actualVariant] : colorSchemes[color][variant];
-	$: sizeClasses =
-		actualSize === 'sm'
+	let scheme = $derived(colorSchemes[color][variant]);
+	let sizeClasses = $derived(
+		badgeSize === 'sm'
 			? 'px-2 py-0.5 text-xs'
-			: actualSize === 'lg'
+			: badgeSize === 'lg'
 				? 'px-3 py-1 text-sm'
-				: 'px-2.5 py-0.5 text-xs';
-	$: roundedClass = rounded ? 'rounded-full' : 'rounded';
+				: 'px-2.5 py-0.5 text-xs'
+	);
+	let roundedClass = $derived(rounded ? 'rounded-full' : 'rounded');
 	const baseClasses = 'inline-flex items-center font-medium';
-	$: allClasses = [baseClasses, sizeClasses, roundedClass, scheme, $$props.class]
-		.filter(Boolean)
-		.join(' ');
+	let allClasses = $derived(
+		[baseClasses, sizeClasses, roundedClass, scheme]
+			.filter(Boolean)
+			.join(' ')
+	);
 </script>
 
 <span class={allClasses}>

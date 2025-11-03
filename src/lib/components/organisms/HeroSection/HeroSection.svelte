@@ -3,21 +3,31 @@
 	import Paragraph from '$lib/components/atoms/Paragraph/Paragraph.svelte';
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 
-	export let title: string;
-	export let subtitle: string | undefined = undefined;
-	export let description: string;
-	export let primaryAction: { label: string; href?: string; onClick?: () => void };
-	export let secondaryAction: { label: string; href?: string; onClick?: () => void } | undefined =
-		undefined;
-	export let backgroundImage: string | undefined = undefined;
-	export let products: Array<{
-		name: string;
-		image: string;
-		badge?: string;
-	}> = [];
-	$: sectionClasses = ['relative min-h-screen flex items-center', $$props.class]
-		.filter(Boolean)
-		.join(' ');
+	let {
+		title = '',
+		subtitle = undefined,
+		description = '',
+		primaryAction = { label: '' },
+		secondaryAction = undefined,
+		backgroundImage = undefined,
+		products = [],
+		class: className = ''
+	}: {
+		title: string;
+		subtitle?: string | undefined;
+		description: string;
+		primaryAction: { label: string; href?: string; onClick?: () => void };
+		secondaryAction?: { label: string; href?: string; onClick?: () => void } | undefined;
+		backgroundImage?: string | undefined;
+		products?: Array<{ name: string; image: string; badge?: string }>;
+		class?: string;
+	} = $props();
+
+	let sectionClasses = $derived(
+		['relative min-h-screen flex items-center', className]
+			.filter(Boolean)
+			.join(' ')
+	);
 </script>
 
 <section class={sectionClasses}>

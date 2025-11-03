@@ -1,6 +1,11 @@
 <script lang="ts">
-	export let text: string;
-	export let tone: 'dark' | 'light' = 'light';
+	let {
+		text = '',
+		tone = 'light'
+	}: {
+		text: string;
+		tone?: 'dark' | 'light';
+	} = $props();
 </script>
 
 <aside

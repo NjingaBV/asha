@@ -1,7 +1,13 @@
 <script lang="ts">
-	export let images: string[] = [];
-	export let speed = 0.5;
-	let scroll: number;
+	let {
+		images = [],
+		speed = 0.5
+	}: {
+		images?: string[];
+		speed?: number;
+	} = $props();
+
+	let scroll = $state(0);
 </script>
 
 <svelte:window bind:scrollY={scroll} />

@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let labels: Array<{ title: string; color: string }>;
+	let {
+		labels = $state<Array<{ title: string; color: string }>>([])
+	}: {
+		labels: Array<{ title: string; color: string }>;
+	} = $props();
 </script>
 
 <section class="relative pt-20 sm:pt-24 lg:pt-32 px-4 sm:px-6 md:px-8">

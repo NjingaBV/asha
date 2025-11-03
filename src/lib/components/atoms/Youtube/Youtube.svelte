@@ -1,14 +1,17 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
-	export let videoId: string;
-	export let isPlayerReady = false;
+	let {
+		videoId = '',
+		isPlayerReady = false
+	}: {
+		videoId: string;
+		isPlayerReady?: boolean;
+	} = $props();
 
 	let player: {
 		playVideo: () => void;
 	};
 
-	onMount(() => {
+	$effect.pre(() => {
 		if (typeof window === 'undefined') return;
 		(window as any).onYouTubeIframeAPIReady = () => {
 			/* eslint-disable */

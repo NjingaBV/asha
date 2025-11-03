@@ -5,21 +5,29 @@
 
 	import type { LinkType, LogoType } from '$lib/models';
 
-	export let logo: LogoType;
-	export let link = '/';
-	export let navLinks: LinkType[] = [];
-	export let open = false;
+	let {
+		logo = { title: '', imgUrl: '', imgAlt: '' },
+		link = '/',
+		navLinks = [],
+		open = $bindable(false)
+	}: {
+		logo: LogoType;
+		link?: string;
+		navLinks?: LinkType[];
+		open?: boolean;
+	} = $props();
 
-	let previousY: number;
-	let currentY: number;
-	let clientHeight: number;
+	let previousY = $state<number>(0);
+	let currentY = $state<number>(0);
+	let clientHeight = $state<number>(0);
+
 	const deriveDirection = (y: number) => {
 		const direction = !previousY || previousY < y ? 'down' : 'up';
 		previousY = y;
 		return direction;
 	};
-	$: scrollDirection = deriveDirection(currentY);
-	$: offscreen = scrollDirection === 'down' && currentY > clientHeight * 4;
+	let scrollDirection = $derived(deriveDirection(currentY));
+	let offscreen = $derived(scrollDirection === 'down' && currentY > clientHeight * 4);
 </script>
 
 <svelte:window bind:scrollY={currentY} />

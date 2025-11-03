@@ -1,7 +1,14 @@
 <script lang="ts">
-	export let title: string;
-	export let description: string;
-	export let icon: string | null = null; // optional SVG path
+	let {
+		title = '',
+		description = '',
+		icon = null,
+		children
+	}: {
+		title: string;
+		description: string;
+		icon?: string | null;
+	} = $props();
 </script>
 
 <div class="flex items-start gap-3">

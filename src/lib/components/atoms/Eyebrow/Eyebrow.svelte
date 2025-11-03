@@ -1,6 +1,12 @@
 <script lang="ts">
-	export let text: string;
-	export let align: 'left' | 'center' = 'center';
+	let {
+		text = '',
+		align = 'center',
+		children
+	}: {
+		text: string;
+		align?: 'left' | 'center';
+	} = $props();
 </script>
 
 <p

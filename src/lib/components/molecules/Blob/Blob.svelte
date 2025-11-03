@@ -1,6 +1,11 @@
 <script lang="ts">
-	export let color = '#ff9800';
-	export let position = 'top';
+	let {
+		color = '#ff9800',
+		position = 'top'
+	}: {
+		color?: string;
+		position?: string;
+	} = $props();
 </script>
 
 <div class="w-1/2 md:w-1/3 h-full">

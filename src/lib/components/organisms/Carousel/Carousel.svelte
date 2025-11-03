@@ -1,14 +1,25 @@
 <script lang="ts">
 	import Card from '$lib/components/molecules/Card/Card.svelte';
 	import type { CardType } from '$lib/models';
-	export const name = 'carousel';
-	export let title: string;
-	export let category: string;
-	export let overview: string;
-	export let color: `#${string}` = '#6b6b6b';
-	export let cards: Array<CardType> = [];
-	$: onlyOneItem = cards.length === 1;
-	$: isEven = cards.length % 2 === 0;
+
+	const name = 'carousel';
+
+	let {
+		title = '',
+		category = '',
+		overview = '',
+		color = '#6b6b6b',
+		cards = []
+	}: {
+		title: string;
+		category: string;
+		overview: string;
+		color?: `#${string}`;
+		cards?: Array<CardType>;
+	} = $props();
+
+	let onlyOneItem = $derived(cards.length === 1);
+	let isEven = $derived(cards.length % 2 === 0);
 </script>
 
 <div class={['p-4', `${onlyOneItem && 'md:flex md:items-center md:justify-between'}`].join(' ')}>
