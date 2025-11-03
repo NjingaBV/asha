@@ -4,7 +4,8 @@
 	let {
 		products = [],
 		columns = 3,
-		gap = 'base'
+		gap = 'base',
+		class: className = ''
 	}: {
 		products: Array<{
 			title: string;
@@ -19,13 +20,12 @@
 		}>;
 		columns: 1 | 2 | 3 | 4;
 		gap: 'sm' | 'base' | 'lg';
+		class?: string;
 	} = $props();
 
 	let gridCols = $derived(`grid-cols-${columns}`);
 	let gapSize = $derived(`gap-${gap === 'sm' ? '4' : gap === 'lg' ? '8' : '6'}`);
-	let gridClasses = $derived(
-		['grid', gridCols, gapSize, $$props.class].filter(Boolean).join(' ')
-	);
+	let gridClasses = $derived(['grid', gridCols, gapSize, className].filter(Boolean).join(' '));
 </script>
 
 <div class={gridClasses}>

@@ -12,7 +12,8 @@
 		colors = [],
 		primaryAction = undefined,
 		secondaryAction = undefined,
-		badge = undefined
+		badge = undefined,
+		class: className = ''
 	}: {
 		title: string;
 		subtitle: string;
@@ -23,6 +24,7 @@
 		primaryAction: { label: string; href?: string; onClick?: () => void } | undefined;
 		secondaryAction: { label: string; href?: string; onClick?: () => void } | undefined;
 		badge: string | undefined;
+		class?: string;
 	} = $props();
 
 	const colorMap: Record<string, string> = {
@@ -44,7 +46,7 @@
 	let cardClasses = $derived(
 		[
 			'group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300',
-			$$props.class
+			className
 		]
 			.filter(Boolean)
 			.join(' ')

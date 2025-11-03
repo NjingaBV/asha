@@ -24,9 +24,7 @@
 	} = $props();
 
 	let sectionClasses = $derived(
-		['relative min-h-screen flex items-center', className]
-			.filter(Boolean)
-			.join(' ')
+		['relative min-h-screen flex items-center', className].filter(Boolean).join(' ')
 	);
 </script>
 

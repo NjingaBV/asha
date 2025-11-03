@@ -7,10 +7,10 @@
 	import Paragraph from '../../atoms/Paragraph/Paragraph.svelte';
 
 	let {
-		heroData = $state<any>(undefined),
-		productsData = $state<any[]>([]),
-		featuresData = $state<any[]>([]),
-		ctaData = $state<any>(undefined)
+		heroData = undefined,
+		productsData = [],
+		featuresData = [],
+		ctaData = undefined
 	}: {
 		heroData?: any;
 		productsData?: any[];

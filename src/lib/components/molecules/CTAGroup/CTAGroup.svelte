@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { PillButton } from '$lib/components/atoms';
 	let {
-		primary = $state<{ label: string; href?: string; tone?: 'primary' | 'dark' } | null>(null),
-		secondary = $state<{ label: string; href?: string; tone?: 'secondary' } | null>(null),
-		align = $state<'center' | 'left'>('center')
+		primary = null,
+		secondary = null,
+		align = 'center'
 	}: {
 		primary?: { label: string; href?: string; tone?: 'primary' | 'dark' } | null;
 		secondary?: { label: string; href?: string; tone?: 'secondary' } | null;

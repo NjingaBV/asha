@@ -2,11 +2,13 @@
 	let {
 		name = '',
 		size = 'base',
-		color = 'currentColor'
+		color = 'currentColor',
+		class: className = ''
 	}: {
 		name: string;
 		size: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl';
 		color: string;
+		class?: string;
 	} = $props();
 
 	let sizeClass = $derived(() => {
@@ -42,9 +44,7 @@
 	});
 
 	let allClasses = $derived(
-		['inline-flex items-center justify-center', sizeClass, $$props.class]
-			.filter(Boolean)
-			.join(' ')
+		['inline-flex items-center justify-center', sizeClass, className].filter(Boolean).join(' ')
 	);
 </script>
 
