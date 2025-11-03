@@ -3,8 +3,8 @@
 	import type { LogoType } from '$lib/models';
 
 	let {
-		images = $state<string[]>([]),
-		logo = $state<LogoType>({ title: '', imgUrl: '', imgAlt: '' })
+		images = [],
+		logo = { title: '', imgUrl: '', imgAlt: '' }
 	}: {
 		images?: string[];
 		logo: LogoType;

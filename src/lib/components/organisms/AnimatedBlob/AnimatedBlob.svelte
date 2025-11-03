@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Blob from '$lib/components/molecules/Blob/Blob.svelte';
-	let { colors = $state<string[]>([]) }: { colors?: string[] } = $props();
+	let { colors = [] }: { colors?: string[] } = $props();
 </script>
 
 <section class="h-fit flex items-center justify-center">

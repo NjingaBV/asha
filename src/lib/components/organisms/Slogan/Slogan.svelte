@@ -2,9 +2,9 @@
 	import Button from '$lib/components/atoms/Button/Button.svelte';
 
 	let {
-		cta = $state<{ url: string; label: string; color: string }>({ url: '', label: '', color: '' }),
-		backgroundColor = $state<`#${string}`>('#000000'),
-		slogans = $state<Array<{ title: string; subtitle: string }>>([])
+		cta = { url: '', label: '', color: '' },
+		backgroundColor = '#000000',
+		slogans = []
 	}: {
 		cta: { url: string; label: string; color: string };
 		backgroundColor: `#${string}`;

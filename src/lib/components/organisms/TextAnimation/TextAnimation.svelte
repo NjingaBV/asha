@@ -1,6 +1,6 @@
 <script lang="ts">
 	let {
-		labels = $state<Array<{ title: string; color: string }>>([])
+		labels = []
 	}: {
 		labels: Array<{ title: string; color: string }>;
 	} = $props();

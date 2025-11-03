@@ -10,14 +10,7 @@
 	} = $props();
 
 	let paragraphClasses = $derived(
-		[
-			'text-' + size,
-			'font-' + weight,
-			color,
-			'text-' + align,
-			'leading-' + leading,
-			className
-		]
+		['text-' + size, 'font-' + weight, color, 'text-' + align, 'leading-' + leading, className]
 			.filter(Boolean)
 			.join(' ')
 	);

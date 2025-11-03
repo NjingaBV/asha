@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
 	import Hamburger from '$lib/components/atoms/Hamburger/Hamburger.svelte';
 	import Logo from '$lib/components/molecules/Logo/Logo.svelte';
 	import Nav from '$lib/components/molecules/Nav/Nav.svelte';
@@ -23,7 +24,9 @@
 
 	const deriveDirection = (y: number) => {
 		const direction = !previousY || previousY < y ? 'down' : 'up';
-		previousY = y;
+		untrack(() => {
+			previousY = y;
+		});
 		return direction;
 	};
 	let scrollDirection = $derived(deriveDirection(currentY));

@@ -4,7 +4,8 @@
 
 	let {
 		features = [],
-		layout = 'stacked'
+		layout = 'stacked',
+		class: className = ''
 	}: {
 		features: Array<{
 			title: string;
@@ -16,10 +17,11 @@
 			badge?: string;
 		}>;
 		layout: 'stacked' | 'alternating';
+		class?: string;
 	} = $props();
 
 	let containerClasses = $derived(
-		['space-y-16 lg:space-y-24', $$props.class].filter(Boolean).join(' ')
+		['space-y-16 lg:space-y-24', className].filter(Boolean).join(' ')
 	);
 </script>
 

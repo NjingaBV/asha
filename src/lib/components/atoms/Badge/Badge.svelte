@@ -58,9 +58,7 @@
 	let roundedClass = $derived(rounded ? 'rounded-full' : 'rounded');
 	const baseClasses = 'inline-flex items-center font-medium';
 	let allClasses = $derived(
-		[baseClasses, sizeClasses, roundedClass, scheme]
-			.filter(Boolean)
-			.join(' ')
+		[baseClasses, sizeClasses, roundedClass, scheme].filter(Boolean).join(' ')
 	);
 </script>
 
