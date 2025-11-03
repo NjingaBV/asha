@@ -6,3 +6,6 @@ export * from './Badge';
 export * from './PillButton';
 export * from './Eyebrow';
 export * from './ColorSwatch';
+export * from './Heading';
+export * from './Paragraph';
+export * from './Icon';

@@ -9,6 +9,7 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {
+		useNewDesign: { control: 'boolean' },
 		hero: { control: 'object' },
 		promo: { control: 'object' },
 		features: { control: 'object' }
@@ -18,8 +19,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const NewAppleWatchDesign: Story = {
 	args: {
+		useNewDesign: true
+	}
+};
+
+export const OldDesign: Story = {
+	args: {
+		useNewDesign: false,
 		hero: {
 			eyebrow: 'Apple Watch',
 			title: 'Plus puissante. Plus connectée.',
@@ -39,15 +47,21 @@ export const Primary: Story = {
 	}
 };
 
+export const Primary: Story = {
+	args: {
+		...OldDesign.args
+	}
+};
+
 export const Default: Story = {
 	args: {
-		...Primary.args
+		...OldDesign.args
 	}
 };
 
 export const WithLongText: Story = {
 	args: {
-		...Primary.args,
+		...OldDesign.args,
 		hero: {
 			eyebrow: 'Apple Watch',
 			title: 'Plus puissante. Plus connectée. Plus aventurière. Plus personnelle. Plus tout.',
@@ -64,7 +78,7 @@ export const WithLongText: Story = {
 
 export const WithDifferentBackground: Story = {
 	args: {
-		...Primary.args,
+		...OldDesign.args,
 		hero: {
 			eyebrow: 'Apple Watch',
 			title: 'Plus puissante. Plus connectée.',

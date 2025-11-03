@@ -1,6 +1,12 @@
 {
 	"permissions": {
-		"allow": ["Bash(npm ls:*)", "Bash(npm run storybook:*)", "Bash(sed:*)"],
+		"allow": [
+			"Bash(npm ls:*)",
+			"Bash(npm run storybook:*)",
+			"Bash(sed:*)",
+			"Bash(git add:*)",
+			"Bash(git commit -m \"$(cat <<''EOF''\nfix: consolidate Storybook styles and add missing storybook.css file\n\n- Move fonts and global styles from preview-head.html to dedicated storybook.css\n- Update preview.ts to import from storybook.css instead of app.css\n- Remove deprecated Tailwind v2 config (mode: ''jit'', purge key)\n- Fix typo in blob animation keyframes (tranlate → translate)\n- Ensure Tailwind CSS properly loads in Storybook with @tailwindcss/vite plugin\n- Add JSDoc type annotation to tailwind.config.cjs\n\nThis fixes component display issues in Storybook where styles were not loading correctly.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+		],
 		"deny": [],
 		"ask": []
 	}

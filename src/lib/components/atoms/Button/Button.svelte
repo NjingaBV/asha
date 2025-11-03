@@ -12,6 +12,7 @@
 	export let tone: 'primary' | 'secondary' | 'neutral' | 'success' | 'danger' = 'primary';
 	export let fullWidth = false;
 	export let disabled = false;
+	export let className: string | undefined = undefined;
 
 	// Compute classes
 	const base =
@@ -68,9 +69,17 @@
 
 <button
 	type="button"
-	class={[base, rounding, widthCls, sizeCls, border ? 'border' : '', !color ? scheme : ''].join(
-		' '
-	)}
+	class={[
+		base,
+		rounding,
+		widthCls,
+		sizeCls,
+		border ? 'border' : '',
+		!color ? scheme : '',
+		className
+	]
+		.filter(Boolean)
+		.join(' ')}
 	on:click={onClick}
 	{disabled}
 	aria-disabled={disabled}

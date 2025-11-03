@@ -9,3 +9,5 @@ export * from './TextAnimation';
 export * from './HeroBanner';
 export * from './PromoStrip';
 export * from './FeatureGrid';
+export * from './HeroSection';
+export * from './ProductGrid';

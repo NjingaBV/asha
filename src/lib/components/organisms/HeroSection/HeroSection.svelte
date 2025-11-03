@@ -1,0 +1,121 @@
+<script lang="ts">
+	import Heading from '$lib/components/atoms/Heading/Heading.svelte';
+	import Paragraph from '$lib/components/atoms/Paragraph/Paragraph.svelte';
+	import Button from '$lib/components/atoms/Button/Button.svelte';
+
+	export let title: string;
+	export let subtitle: string | undefined = undefined;
+	export let description: string;
+	export let primaryAction: { label: string; href?: string; onClick?: () => void };
+	export let secondaryAction: { label: string; href?: string; onClick?: () => void } | undefined =
+		undefined;
+	export let backgroundImage: string | undefined = undefined;
+	export let products: Array<{
+		name: string;
+		image: string;
+		badge?: string;
+	}> = [];
+	$: sectionClasses = ['relative min-h-screen flex items-center', $$props.class]
+		.filter(Boolean)
+		.join(' ');
+</script>
+
+<section class={sectionClasses}>
+	<!-- Background -->
+	{#if backgroundImage}
+		<div class="absolute inset-0">
+			<img src={backgroundImage} alt="" class="w-full h-full object-cover" />
+			<div
+				class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"
+			></div>
+		</div>
+	{/if}
+
+	<!-- Content -->
+	<div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8">
+		<div class="grid lg:grid-cols-2 gap-12 items-center">
+			<!-- Text Content -->
+			<div class="space-y-8">
+				<!-- Badge -->
+				{#if subtitle}
+					<div>
+						<span
+							class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
+						>
+							{subtitle}
+						</span>
+					</div>
+				{/if}
+
+				<!-- Title -->
+				<Heading level={1} size="6xl" weight="bold" class="text-slate-900 leading-tight">
+					{title}
+				</Heading>
+
+				<!-- Description -->
+				<Paragraph size="xl" color="text-slate-600" leading="relaxed" class="max-w-lg">
+					{description}
+				</Paragraph>
+
+				<!-- Actions -->
+				<div class="flex flex-col sm:flex-row gap-4">
+					<Button
+						variant="solid"
+						tone="primary"
+						size="large"
+						onClick={primaryAction.onClick}
+					>
+						{primaryAction.label}
+					</Button>
+
+					{#if secondaryAction}
+						<Button
+							variant="outline"
+							tone="secondary"
+							size="large"
+							onClick={secondaryAction.onClick}
+						>
+							{secondaryAction.label}
+						</Button>
+					{/if}
+				</div>
+			</div>
+
+			<!-- Products Grid -->
+			{#if products.length > 0}
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6">
+					{#each products as product}
+						<div
+							class="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+						>
+							{#if product.badge}
+								<div class="absolute -top-2 -right-2 z-10">
+									<span
+										class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-600 text-white"
+									>
+										{product.badge}
+									</span>
+								</div>
+							{/if}
+							<div class="aspect-square relative mb-4">
+								<img
+									src={product.image}
+									alt={product.name}
+									class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+								/>
+							</div>
+							<Heading
+								level={4}
+								size="base"
+								weight="semibold"
+								class="text-center text-slate-900"
+							>
+								{product.name}
+							</Heading>
+						</div>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	</div>
+</section>
