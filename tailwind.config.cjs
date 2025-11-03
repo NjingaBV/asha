@@ -1,7 +1,6 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}', './.storybook/**/*.{js,ts,svelte,html}'],
-	mode: 'jit',
-	purge: ['./src/**/*.svelte'],
 	theme: {
 		extend: {
 			animation: {
@@ -24,7 +23,7 @@ module.exports = {
 						transform: 'translate(-20px, 20px) scale(0.9)'
 					},
 					'100%': {
-						transform: 'tranlate(0px, 0px) scale(1)'
+						transform: 'translate(0px, 0px) scale(1)'
 					}
 				}
 			}
