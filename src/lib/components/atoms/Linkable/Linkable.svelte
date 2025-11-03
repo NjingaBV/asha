@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { isLinkable = false, link = undefined, target = '_self', children } = $props();
+	let { isLinkable = false, link = undefined, target = '_self' } = $props();
 </script>
 
 {#if isLinkable}

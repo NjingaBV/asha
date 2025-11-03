@@ -1,10 +1,8 @@
 <script lang="ts">
 	let {
-		videoId = '',
-		isPlayerReady = false
+		videoId = ''
 	}: {
 		videoId: string;
-		isPlayerReady?: boolean;
 	} = $props();
 
 	let player: {
@@ -35,7 +33,6 @@
 	});
 
 	const onPlayerReady = (event: YT.PlayerEvent) => {
-		isPlayerReady = true;
 		player.playVideo();
 	};
 </script>

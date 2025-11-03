@@ -5,8 +5,7 @@
 		weight = 'normal',
 		color = 'text-slate-900',
 		align = 'left',
-		class: className = undefined,
-		children
+		class: className = undefined
 	} = $props();
 
 	let headingClasses = $derived(

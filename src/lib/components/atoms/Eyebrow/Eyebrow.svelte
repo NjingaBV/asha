@@ -1,8 +1,7 @@
 <script lang="ts">
 	let {
 		text = '',
-		align = 'center',
-		children
+		align = 'center'
 	}: {
 		text: string;
 		align?: 'left' | 'center';

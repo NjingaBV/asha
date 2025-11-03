@@ -5,8 +5,7 @@
 		color = 'text-slate-600',
 		align = 'left',
 		leading = 'normal',
-		class: className = undefined,
-		children
+		class: className = undefined
 	} = $props();
 
 	let paragraphClasses = $derived(

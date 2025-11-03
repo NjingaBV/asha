@@ -1,12 +1,10 @@
 <script lang="ts">
 	let {
 		name = '',
-		size = 'base',
-		color = 'currentColor'
+		size = 'base'
 	}: {
 		name: string;
 		size: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl';
-		color: string;
 	} = $props();
 
 	let sizeClass = $derived(() => {

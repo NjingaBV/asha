@@ -2,8 +2,7 @@
 	let {
 		title = '',
 		description = '',
-		icon = null,
-		children
+		icon = null
 	}: {
 		title: string;
 		description: string;
