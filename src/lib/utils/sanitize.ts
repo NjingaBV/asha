@@ -1,16 +1,13 @@
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 
 /**
  * Sanitize HTML content to prevent XSS attacks
+ * Works both on server-side (SSR) and client-side
  * @param dirty - The potentially unsafe HTML string
  * @returns Sanitized HTML string safe for rendering
  */
 export function sanitizeHtml(dirty: string): string {
-	if (typeof window === 'undefined') {
-		// Server-side: return empty string or the content as-is depending on your SSR strategy
-		// For now, we'll return empty to be safe
-		return '';
-	}
+	if (!dirty) return '';
 	return DOMPurify.sanitize(dirty, {
 		// Allow common HTML tags for rich text content
 		ALLOWED_TAGS: [
@@ -41,13 +38,12 @@ export function sanitizeHtml(dirty: string): string {
 
 /**
  * Sanitize SVG content to prevent XSS attacks
+ * Works both on server-side (SSR) and client-side
  * @param dirty - The potentially unsafe SVG string
  * @returns Sanitized SVG string safe for rendering
  */
 export function sanitizeSvg(dirty: string): string {
-	if (typeof window === 'undefined') {
-		return '';
-	}
+	if (!dirty) return '';
 	return DOMPurify.sanitize(dirty, {
 		USE_PROFILES: { svg: true, svgFilters: true },
 		ALLOWED_TAGS: ['svg', 'path', 'circle', 'rect', 'line', 'polyline', 'polygon', 'g'],

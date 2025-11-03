@@ -110,6 +110,6 @@
 		"xstate": "^5.23.0"
 	},
 	"dependencies": {
-		"dompurify": "^3.3.0"
+		"isomorphic-dompurify": "^2.31.0"
 	}
 }
