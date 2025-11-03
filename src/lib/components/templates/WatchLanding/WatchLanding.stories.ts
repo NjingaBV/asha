@@ -13,7 +13,7 @@ const meta = {
 		promo: { control: 'object' },
 		features: { control: 'object' }
 	}
-} satisfies Meta<WatchLanding>;
+} satisfies Meta<typeof WatchLanding>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

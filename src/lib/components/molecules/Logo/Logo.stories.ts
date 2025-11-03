@@ -16,7 +16,7 @@ const meta = {
 		showTitle: { control: 'boolean' },
 		link: { control: 'text' }
 	}
-} satisfies Meta<Logo>;
+} satisfies Meta<typeof Logo>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

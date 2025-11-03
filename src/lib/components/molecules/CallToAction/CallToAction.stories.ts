@@ -13,7 +13,7 @@ const meta = {
 		buttonBefore: { control: 'boolean' },
 		buttons: { control: 'object' }
 	}
-} satisfies Meta<CallToAction>;
+} satisfies Meta<typeof CallToAction>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

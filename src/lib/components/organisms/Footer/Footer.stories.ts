@@ -12,7 +12,7 @@ const meta = {
 		logo: { control: 'object' },
 		brandName: { control: 'text' }
 	}
-} satisfies Meta<Footer>;
+} satisfies Meta<typeof Footer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

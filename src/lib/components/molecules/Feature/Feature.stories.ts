@@ -16,7 +16,7 @@ const meta = {
 		color: { control: 'color' },
 		details: { control: 'object' }
 	}
-} satisfies Meta<Feature>;
+} satisfies Meta<typeof Feature>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

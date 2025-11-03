@@ -14,7 +14,7 @@ const meta = {
 		color: { control: 'color' },
 		cards: { control: 'object' }
 	}
-} satisfies Meta<Carousel>;
+} satisfies Meta<typeof Carousel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

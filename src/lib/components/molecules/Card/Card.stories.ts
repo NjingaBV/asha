@@ -21,7 +21,7 @@ const meta = {
 		rounded: { control: 'boolean' },
 		isVideo: { control: 'boolean' }
 	}
-} satisfies Meta<Card>;
+} satisfies Meta<typeof Card>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

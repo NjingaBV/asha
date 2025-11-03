@@ -11,7 +11,7 @@ const meta = {
 	argTypes: {
 		items: { control: 'object' }
 	}
-} satisfies Meta<FeatureGrid>;
+} satisfies Meta<typeof FeatureGrid>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

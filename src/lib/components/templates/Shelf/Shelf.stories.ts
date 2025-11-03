@@ -14,7 +14,7 @@ const meta = {
 		navLinks: { control: 'object' },
 		slices: { control: 'object' }
 	}
-} satisfies Meta<Shelf>;
+} satisfies Meta<typeof Shelf>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

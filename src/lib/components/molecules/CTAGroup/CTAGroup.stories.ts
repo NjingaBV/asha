@@ -13,7 +13,7 @@ const meta = {
 		secondary: { control: 'object' },
 		align: { control: { type: 'select' }, options: ['left', 'center'] }
 	}
-} satisfies Meta<CTAGroup>;
+} satisfies Meta<typeof CTAGroup>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

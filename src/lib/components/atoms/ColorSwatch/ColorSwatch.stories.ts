@@ -13,7 +13,7 @@ const meta = {
 		selected: { control: 'boolean' },
 		label: { control: 'text' }
 	}
-} satisfies Meta<ColorSwatch>;
+} satisfies Meta<typeof ColorSwatch>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

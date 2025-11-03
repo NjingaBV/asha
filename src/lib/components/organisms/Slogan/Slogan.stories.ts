@@ -13,7 +13,7 @@ const meta = {
 		cta: { control: 'object' },
 		backgroundColor: { control: 'color' }
 	}
-} satisfies Meta<Slogan>;
+} satisfies Meta<typeof Slogan>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

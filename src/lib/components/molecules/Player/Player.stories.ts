@@ -15,7 +15,7 @@ const meta = {
 		overview: { control: 'text' },
 		thumbnail: { control: 'text' }
 	}
-} satisfies Meta<Player>;
+} satisfies Meta<typeof Player>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

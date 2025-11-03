@@ -11,7 +11,7 @@ const meta = {
 	argTypes: {
 		labels: { control: 'object' }
 	}
-} satisfies Meta<TextAnimation>;
+} satisfies Meta<typeof TextAnimation>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

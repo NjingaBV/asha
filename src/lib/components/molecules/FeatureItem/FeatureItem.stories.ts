@@ -12,7 +12,7 @@ const meta = {
 		title: { control: 'text' },
 		description: { control: 'text' }
 	}
-} satisfies Meta<FeatureItem>;
+} satisfies Meta<typeof FeatureItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -20,7 +20,7 @@ const meta = {
 			options: ['sm', 'md', 'lg']
 		}
 	}
-} satisfies Meta<PillButton>;
+} satisfies Meta<typeof PillButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

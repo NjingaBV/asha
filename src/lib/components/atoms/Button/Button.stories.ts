@@ -27,7 +27,7 @@ const meta = {
 		color: { control: 'color' },
 		onClick: { action: 'onClick' }
 	}
-} satisfies Meta<Button>;
+} satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

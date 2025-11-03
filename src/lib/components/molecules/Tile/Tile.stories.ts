@@ -11,7 +11,7 @@ const meta = {
 	argTypes: {
 		images: { control: 'object' }
 	}
-} satisfies Meta<Tile>;
+} satisfies Meta<typeof Tile>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
