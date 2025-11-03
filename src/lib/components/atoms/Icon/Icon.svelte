@@ -2,7 +2,6 @@
 	let {
 		name = '',
 		size = 'base',
-		color = 'currentColor',
 		class: className = ''
 	}: {
 		name: string;

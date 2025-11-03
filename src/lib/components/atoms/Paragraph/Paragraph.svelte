@@ -7,6 +7,14 @@
 		leading = 'normal',
 		class: className = undefined,
 		children
+	}: {
+		size?: string;
+		weight?: string;
+		color?: string;
+		align?: string;
+		leading?: string;
+		class?: string;
+		children: any;
 	} = $props();
 
 	let paragraphClasses = $derived(
@@ -17,5 +25,5 @@
 </script>
 
 <p class={paragraphClasses}>
-	<slot />
+	{@render children?.()}
 </p>

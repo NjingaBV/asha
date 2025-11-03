@@ -1,10 +1,12 @@
 <script lang="ts">
 	let {
 		text = '',
-		tone = 'light'
+		tone = 'light',
+		children
 	}: {
 		text: string;
 		tone?: 'dark' | 'light';
+		children: any;
 	} = $props();
 </script>
 
@@ -15,5 +17,5 @@
 	].join(' ')}
 >
 	{text}
-	<slot />
+	{@render children?.()}
 </aside>

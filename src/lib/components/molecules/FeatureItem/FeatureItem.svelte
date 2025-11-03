@@ -5,9 +5,10 @@
 		icon = null,
 		children
 	}: {
-		title: string;
-		description: string;
+		title?: string;
+		description?: string;
 		icon?: string | null;
+		children?: any;
 	} = $props();
 </script>
 
@@ -21,5 +22,5 @@
 		<h4 class="text-lg font-semibold">{title}</h4>
 		<p class="text-slate-600 text-sm">{description}</p>
 	</div>
-	<slot />
+	{@render children?.()}
 </div>

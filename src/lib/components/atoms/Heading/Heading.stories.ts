@@ -54,7 +54,8 @@ export const Default: Story = {
 		size: '4xl',
 		weight: 'bold',
 		color: 'text-slate-900',
-		align: 'left'
+		align: 'left',
+		children: 'Default Heading'
 	},
 	render: (args) => ({
 		Component: Heading,

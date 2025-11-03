@@ -4,13 +4,15 @@
 		variant = 'solid',
 		color = 'primary',
 		badgeSize = 'base',
-		rounded = true
+		rounded = true,
+		children
 	}: {
 		label?: string;
 		variant?: 'solid' | 'outline' | 'ghost';
 		color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral';
 		badgeSize?: 'sm' | 'base' | 'lg';
 		rounded?: boolean;
+		children: any;
 	} = $props();
 
 	// Color schemes inspired by Apple Watch
@@ -66,6 +68,6 @@
 	{#if label}
 		{label}
 	{:else}
-		<slot />
+		{@render children?.()}
 	{/if}
 </span>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	let {
-		open = false,
+		open = $bindable(false),
 		ariaLabel = 'toggle menu',
 		width = 60
 	}: {

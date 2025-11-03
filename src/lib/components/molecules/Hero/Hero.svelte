@@ -117,7 +117,7 @@
 		{#if overview}
 			<button
 				class={`relative flex flex-col ${!truncated && 'cursor-default'}`}
-				on:click={toggleLineClamp}
+				onclick={toggleLineClamp}
 			>
 				<p
 					class={`flex-1 text-color text-justify font-light ${

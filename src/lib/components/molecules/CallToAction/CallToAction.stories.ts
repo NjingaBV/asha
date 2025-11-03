@@ -9,9 +9,13 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {
-		overview: { control: 'text' },
-		buttonBefore: { control: 'boolean' },
-		buttons: { control: 'object' }
+		title: { control: 'text' },
+		subtitle: { control: 'text' },
+		description: { control: 'text' },
+		primaryAction: { control: 'object' },
+		secondaryAction: { control: 'object' },
+		backgroundImage: { control: 'text' },
+		overlay: { control: 'boolean' }
 	}
 } satisfies Meta<typeof CallToAction>;
 
@@ -20,25 +24,31 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
 	args: {
-		overview: `Ouranos combine les meilleures offres d'assurance du marché avec la meilleure expérience utilisateur. Notre plateforme vous libère de la paperasse.`,
-		buttonBefore: false,
-		buttons: [
-			{
-				label: 'Souscrire',
-				url: '/souscrire',
-				backgroundColor: '#0284c7'
-			},
-			{
-				label: "Contacter l'équipe",
-				url: '/contact',
-				backgroundColor: '#1c1917'
-			}
-		]
+		title: 'Ready to get started?',
+		description: `Ouranos combine les meilleures offres d'assurance du marché avec la meilleure expérience utilisateur. Notre plateforme vous libère de la paperasse.`,
+		primaryAction: {
+			label: 'Souscrire',
+			onClick: () => console.log('Primary action clicked')
+		},
+		secondaryAction: {
+			label: "Contacter l'équipe",
+			onClick: () => console.log('Secondary action clicked')
+		}
 	}
 };
 
-export const Souscription: Story = {
+export const WithSubtitle: Story = {
 	args: {
-		...Primary.args
+		...Primary.args,
+		subtitle: 'Commencez votre essai gratuit'
+	}
+};
+
+export const WithBackgroundImage: Story = {
+	args: {
+		...Primary.args,
+		title: 'Experience the difference',
+		backgroundImage: 'https://via.placeholder.com/1920x1080/2563eb/ffffff?text=Background',
+		overlay: true
 	}
 };

@@ -7,7 +7,7 @@
 		gap = 'base',
 		class: className = ''
 	}: {
-		products: Array<{
+		products?: Array<{
 			title: string;
 			subtitle: string;
 			description: string;
@@ -18,8 +18,8 @@
 			secondaryAction?: { label: string; href?: string; onClick?: () => void };
 			badge?: string;
 		}>;
-		columns: 1 | 2 | 3 | 4;
-		gap: 'sm' | 'base' | 'lg';
+		columns?: 1 | 2 | 3 | 4;
+		gap?: 'sm' | 'base' | 'lg';
 		class?: string;
 	} = $props();
 

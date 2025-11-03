@@ -23,7 +23,8 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
 	args: {
 		text: 'Livraison et retours gratuits.',
-		tone: 'light'
+		tone: 'light',
+		children: null
 	}
 };
 

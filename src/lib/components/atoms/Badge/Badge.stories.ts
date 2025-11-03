@@ -10,13 +10,17 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {
 		label: { control: 'text' },
-		tone: {
+		color: {
 			control: { type: 'select' },
-			options: ['dark', 'light', 'accent']
+			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral']
 		},
-		size: {
+		variant: {
 			control: { type: 'select' },
-			options: ['sm', 'md']
+			options: ['solid', 'outline', 'ghost']
+		},
+		badgeSize: {
+			control: { type: 'select' },
+			options: ['sm', 'base', 'lg']
 		}
 	}
 } satisfies Meta<typeof Badge>;
@@ -27,29 +31,63 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
 	args: {
 		label: 'New',
-		tone: 'dark',
-		size: 'md'
+		color: 'primary',
+		variant: 'solid',
+		badgeSize: 'base',
+		children: null
 	}
 };
 
-export const Dark: Story = {
-	args: {
-		...Primary.args
-	}
-};
-
-export const Light: Story = {
+export const Secondary: Story = {
 	args: {
 		...Primary.args,
-		tone: 'light'
+		color: 'secondary'
 	}
 };
 
-export const Accent: Story = {
+export const Success: Story = {
+	args: {
+		...Primary.args,
+		label: 'Available',
+		color: 'success'
+	}
+};
+
+export const Warning: Story = {
+	args: {
+		...Primary.args,
+		label: 'Limited',
+		color: 'warning'
+	}
+};
+
+export const Danger: Story = {
+	args: {
+		...Primary.args,
+		label: 'Sold Out',
+		color: 'danger'
+	}
+};
+
+export const Neutral: Story = {
 	args: {
 		...Primary.args,
 		label: 'Edition',
-		tone: 'accent',
-		size: 'sm'
+		color: 'neutral',
+		badgeSize: 'sm'
+	}
+};
+
+export const Outline: Story = {
+	args: {
+		...Primary.args,
+		variant: 'outline'
+	}
+};
+
+export const Ghost: Story = {
+	args: {
+		...Primary.args,
+		variant: 'ghost'
 	}
 };

@@ -4,8 +4,9 @@
 		align = 'center',
 		children
 	}: {
-		text: string;
+		text?: string;
 		align?: 'left' | 'center';
+		children?: any;
 	} = $props();
 </script>
 
@@ -16,5 +17,5 @@
 	].join(' ')}
 >
 	{text}
-	<slot />
+	{@render children?.()}
 </p>

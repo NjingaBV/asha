@@ -9,19 +9,26 @@
 		tone = 'primary',
 		fullWidth = false,
 		disabled = false,
-		className = undefined
+		className = undefined,
+		class: classNameAlias = undefined,
+		children
 	}: {
-		size: 'small' | 'medium' | 'large';
-		color: string | undefined;
-		rounded: boolean;
-		border: boolean;
-		onClick: (() => void) | undefined;
-		variant: 'solid' | 'outline' | 'ghost';
-		tone: 'primary' | 'secondary' | 'neutral' | 'success' | 'danger';
-		fullWidth: boolean;
-		disabled: boolean;
-		className: string | undefined;
+		size?: 'small' | 'medium' | 'large';
+		color?: string | undefined;
+		rounded?: boolean;
+		border?: boolean;
+		onClick?: (() => void) | undefined;
+		variant?: 'solid' | 'outline' | 'ghost';
+		tone?: 'primary' | 'secondary' | 'neutral' | 'success' | 'danger';
+		fullWidth?: boolean;
+		disabled?: boolean;
+		className?: string | undefined;
+		class?: string | undefined;
+		children?: any;
 	} = $props();
+
+	// Use class prop if className is not provided
+	let finalClassName = $derived(classNameAlias ?? className);
 
 	// Compute classes
 	const base =
@@ -91,17 +98,17 @@
 		widthCls,
 		sizeCls,
 		border ? 'border' : '',
-		!color ? scheme : '',
-		className
+		!color ? scheme() : '',
+		finalClassName
 	]
 		.filter(Boolean)
 		.join(' ')}
-	on:click={onClick}
+	onclick={onClick}
 	{disabled}
 	aria-disabled={disabled}
 	style={color && backgroundColor
 		? `background-color:rgb(${backgroundColor}); color: ${textColor};`
 		: undefined}
 >
-	<slot />
+	{@render children?.()}
 </button>

@@ -10,12 +10,14 @@
 		logo = { title: '', imgUrl: '', imgAlt: '' },
 		link = '/',
 		navLinks = [],
-		open = $bindable(false)
+		open = $bindable(false),
+		children
 	}: {
-		logo: LogoType;
+		logo?: LogoType;
 		link?: string;
 		navLinks?: LinkType[];
 		open?: boolean;
+		children?: any;
 	} = $props();
 
 	let previousY = $state<number>(0);
@@ -45,6 +47,6 @@
 >
 	<Logo {...logo} {link} />
 	<Nav headerMenu={true} links={navLinks} />
-	<slot />
+	{@render children?.()}
 	<Hamburger bind:open />
 </header>
