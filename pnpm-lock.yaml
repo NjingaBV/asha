@@ -109,10 +109,10 @@ importers:
         version: 0.5.17
       '@xstate/graph':
         specifier: ^3.0.4
-        version: 3.0.4(xstate@5.23.0)
+        version: 3.0.4(xstate@5.24.0)
       '@xstate/svelte':
         specifier: ^5.0.0
-        version: 5.0.0(svelte@5.43.2)(xstate@5.23.0)
+        version: 5.0.0(svelte@5.43.2)(xstate@5.24.0)
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
@@ -208,7 +208,7 @@ importers:
         version: 4.0.6(@types/node@24.10.0)(@vitest/browser-playwright@4.0.6)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.0)(yaml@2.8.1)
       xstate:
         specifier: ^5.23.0
-        version: 5.23.0
+        version: 5.24.0
 
 packages:
 
@@ -4139,8 +4139,8 @@ packages:
   xstate@5.0.0-beta.54:
     resolution: {integrity: sha512-BTnCPBQ2iTKe4uCnHEe1hNx6VTbXU+5mQGybSQHOjTLiBi4Ryi+tL9T6N1tmqagvM8rfl4XRfvndogfWCWcdpw==}
 
-  xstate@5.23.0:
-    resolution: {integrity: sha512-jo126xWXkU6ySQ91n51+H2xcgnMuZcCQpQoD3FQ79d32a6RQvryRh8rrDHnH4WDdN/yg5xNjlIRol9ispMvzeg==}
+  xstate@5.24.0:
+    resolution: {integrity: sha512-h/213ThFfZbOefUWrLc9ZvYggEVBr0jrD2dNxErxNMLQfZRN19v+80TaXFho17hs8Q2E1mULtm/6nv12um0C4A==}
 
   xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
@@ -5541,9 +5541,9 @@ snapshots:
       - encoding
       - supports-color
 
-  '@xstate/graph@3.0.4(xstate@5.23.0)':
+  '@xstate/graph@3.0.4(xstate@5.24.0)':
     dependencies:
-      xstate: 5.23.0
+      xstate: 5.24.0
 
   '@xstate/machine-extractor@0.16.0(xstate@4.38.3)':
     dependencies:
@@ -5555,11 +5555,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@xstate/svelte@5.0.0(svelte@5.43.2)(xstate@5.23.0)':
+  '@xstate/svelte@5.0.0(svelte@5.43.2)(xstate@5.24.0)':
     dependencies:
       svelte: 5.43.2
     optionalDependencies:
-      xstate: 5.23.0
+      xstate: 5.24.0
 
   '@xstate/tools-shared@4.1.0(prettier@2.8.8)(xstate@4.38.3)':
     dependencies:
@@ -8070,7 +8070,7 @@ snapshots:
 
   xstate@5.0.0-beta.54: {}
 
-  xstate@5.23.0: {}
+  xstate@5.24.0: {}
 
   xtend@4.0.2: {}
 
