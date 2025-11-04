@@ -2,8 +2,6 @@
 	import Card from '$lib/components/molecules/Card/Card.svelte';
 	import type { CardType } from '$lib/models';
 
-	const name = 'carousel';
-
 	let {
 		title = '',
 		category = '',

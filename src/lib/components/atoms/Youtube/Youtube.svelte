@@ -1,10 +1,8 @@
 <script lang="ts">
 	let {
-		videoId = '',
-		isPlayerReady = false
+		videoId = ''
 	}: {
 		videoId: string;
-		isPlayerReady?: boolean;
 	} = $props();
 
 	let player: {
