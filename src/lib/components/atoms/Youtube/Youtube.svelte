@@ -1,8 +1,10 @@
 <script lang="ts">
 	let {
-		videoId = ''
+		videoId = '',
+		isPlayerReady = $bindable(false)
 	}: {
 		videoId: string;
+		isPlayerReady?: boolean;
 	} = $props();
 
 	let player: {

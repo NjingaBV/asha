@@ -63,7 +63,8 @@
 			</svg>
 		</button>
 	{:else}
-		<svelte:component this={getComponent(url)} {videoId} bind:isPlayerReady />
+		{@const Component = getComponent(url)}
+		<Component {videoId} bind:isPlayerReady />
 	{/if}
 </div>
 <div class={['p-4 rounded-b-xl flex flex-col'].join(' ')}>
