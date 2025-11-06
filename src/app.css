@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './lib/design-system/tokens/base.css';
+@import './lib/design-system/themes/light.css';
+@import './lib/design-system/themes/dark.css';
+
 @layer utilities {
 	.animation-delay-2000 {
 		animation-delay: 2s;

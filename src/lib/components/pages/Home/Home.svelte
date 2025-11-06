@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button/Button.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	import Header from '$lib/components/organisms/Header/Header.svelte';
 	import Shelf from '$lib/components/templates/Shelf/Shelf.svelte';
 

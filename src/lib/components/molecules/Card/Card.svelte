@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button/Button.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	import Linkable from '$lib/components/atoms/Linkable/Linkable.svelte';
 	import type { ImageType } from '$lib/models';
 

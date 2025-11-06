@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button/Button.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	import Heading from '$lib/components/atoms/Heading/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph/Paragraph.svelte';
 

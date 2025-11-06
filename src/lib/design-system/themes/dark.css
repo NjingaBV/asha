@@ -1,0 +1,7 @@
+:root[data-theme='dark'] {
+    --ds-color-bg: 10 10 10;
+    --ds-color-surface: 26 26 26;
+    --ds-color-border: 64 64 64;
+    --ds-color-text: 255 255 255;
+    --ds-color-primary: 0 199 190;
+}

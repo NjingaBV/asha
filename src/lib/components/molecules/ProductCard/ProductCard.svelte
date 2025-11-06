@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Heading from '$lib/components/atoms/Heading/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph/Paragraph.svelte';
-	import Button from '$lib/components/atoms/Button/Button.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 
 	let {
 		title = '',

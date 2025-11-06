@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button/Button.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 
 	let {
 		cta = { url: '', label: '', color: '' },
