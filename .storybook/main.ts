@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/svelte-vite';
+import tailwindcss from '@tailwindcss/vite';
 
 const config: StorybookConfig = {
   stories: [
@@ -17,6 +18,11 @@ const config: StorybookConfig = {
   },
   core: {
       builder: '@storybook/builder-vite'
+  },
+  async viteFinal(config) {
+    config.plugins = config.plugins || [];
+    config.plugins.push(tailwindcss());
+    return config;
   },
 };
 export default config;
