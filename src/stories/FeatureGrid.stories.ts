@@ -24,32 +24,18 @@ export const Primary: Story = {
 	args: {
 		features: [
 			{
-				title: 'Autonomie',
-				description: "Jusqu'à 18 h d'autonomie.",
-				image: 'https://via.placeholder.com/800x600/10b981/ffffff?text=Autonomie',
-				icon: 'battery',
-				badge: 'Performance'
+				title: "L'Afro Club",
+				description:
+					"Chaque semaine, sur RFI Musique, faites le tour des tendances afro-urbaines avec DJ Face Maker. Une sélection des meilleurs artistes de la scène africaine francophone.",
+				image: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+				badge: 'Musique Afro'
 			},
 			{
-				title: 'Santé',
-				description: 'Fréquence cardiaque, ECG, sommeil.',
-				image: 'https://via.placeholder.com/800x600/3b82f6/ffffff?text=Sant%C3%A9',
-				icon: 'heart',
-				badge: 'Bien-être'
-			},
-			{
-				title: 'Résistance',
-				description: "Résiste à l'eau et à la poussière.",
-				image: 'https://via.placeholder.com/800x600/8b5cf6/ffffff?text=R%C3%A9sistance',
-				icon: 'shield',
-				badge: 'Durabilité'
-			},
-			{
-				title: 'Connectivité',
-				description: 'Restez joignable sans votre iPhone.',
-				image: 'https://via.placeholder.com/800x600/f59e0b/ffffff?text=Connectivit%C3%A9',
-				icon: 'wifi',
-				badge: 'Communication'
+				title: 'Urban Xra',
+				description:
+					'Les dernières sorties afro, hip hop, r&b, baile funk, amapiano et punjabi. Disponible du lundi au vendredi sur Urban FM 104.5 à Libreville et en podcast.',
+				image: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+				badge: 'Radio FM'
 			}
 		],
 		layout: 'stacked'
@@ -70,44 +56,61 @@ export const AlternatingLayout: Story = {
 	}
 };
 
-export const WithMoreFeatures: Story = {
+export const ProductsCollection: Story = {
 	args: {
 		features: [
 			{
-				title: 'Autonomie',
-				description: "Jusqu'à 18 h d'autonomie.",
-				image: 'https://via.placeholder.com/800x600/10b981/ffffff?text=Autonomie',
-				icon: 'battery'
+				title: 'Doré',
+				description:
+					'Un turban modulable aux teintes dorées sophistiquées. Parfait pour ajouter une touche d\'élégance à votre style quotidien.',
+				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+				badge: 'Accessoire Mode'
 			},
 			{
-				title: 'Santé',
-				description: 'Fréquence cardiaque, ECG, sommeil.',
-				image: 'https://via.placeholder.com/800x600/3b82f6/ffffff?text=Sant%C3%A9',
-				icon: 'heart'
+				title: 'Panthère',
+				description:
+					'Design audacieux avec un motif panthère captivant. Un choix parfait pour les femmes qui aiment exprimer leur personnalité.',
+				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
+				badge: 'Collection Exclusive'
 			},
 			{
-				title: 'Résistance',
-				description: "Résiste à l'eau et à la poussière.",
-				image: 'https://via.placeholder.com/800x600/8b5cf6/ffffff?text=R%C3%A9sistance',
-				icon: 'shield'
+				title: 'Malabo',
+				description:
+					'Le turban flexible Malabo offre confort et style. Adapté à toutes les occasions, du quotidien aux événements spéciaux.',
+				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
+				badge: 'Bestseller'
+			}
+		],
+		layout: 'alternating'
+	}
+};
+
+export const WithAlternatingImages: Story = {
+	args: {
+		features: [
+			{
+				title: "L'Afro Club",
+				description:
+					"Chaque semaine, sur RFI Musique, découvrez les meilleures tendances afro-urbaines avec DJ Face Maker. Une sélection curatée des artistes phares de la scène africaine francophone avec sessions acoustiques en direct.",
+				image: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+				badge: 'Musique Afro',
+				imagePosition: 'right'
 			},
 			{
-				title: 'Connectivité',
-				description: 'Restez joignable sans votre iPhone.',
-				image: 'https://via.placeholder.com/800x600/f59e0b/ffffff?text=Connectivit%C3%A9',
-				icon: 'wifi'
+				title: 'Doré',
+				description:
+					'Un turban modulable aux teintes dorées sophistiquées. Parfait pour ajouter une touche d\'élégance intemporelle à votre style quotidien et vos occasions spéciales.',
+				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+				badge: 'Accessoire Mode',
+				imagePosition: 'left'
 			},
 			{
-				title: 'Design',
-				description: 'Un design élégant et personnalisable.',
-				image: 'https://via.placeholder.com/800x600/ec4899/ffffff?text=Design',
-				icon: 'watch'
-			},
-			{
-				title: 'Apps',
-				description: "Des milliers d'apps à portée de main.",
-				image: 'https://via.placeholder.com/800x600/06b6d4/ffffff?text=Apps',
-				icon: 'grid'
+				title: 'Panthère',
+				description:
+					'Design audacieux avec un motif panthère captivant. Un choix parfait pour les femmes qui aiment exprimer leur personnalité avec style et confiance.',
+				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
+				badge: 'Collection Exclusive',
+				imagePosition: 'right'
 			}
 		],
 		layout: 'stacked'

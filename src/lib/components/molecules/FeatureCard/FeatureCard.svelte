@@ -27,13 +27,13 @@
 	let cardClasses = $derived(
 		['bg-white rounded-2xl overflow-hidden shadow-sm', className].filter(Boolean).join(' ')
 	);
-	const gridClasses = 'grid lg:grid-cols-2 min-h-[400px]';
+	const gridClasses = 'grid lg:grid-cols-2 min-h-[480px] lg:min-h-[520px]';
 	let contentClasses = $derived(
-		'p-8 lg:p-12 flex flex-col justify-center ' +
+		'p-8 md:p-12 lg:p-14 flex flex-col justify-center ' +
 			(imagePosition === 'left' ? 'lg:order-2' : 'lg:order-1')
 	);
 	let imageClasses = $derived(
-		'relative ' + (imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2')
+		'relative h-64 md:h-80 lg:h-full ' + (imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2')
 	);
 </script>
 
@@ -43,9 +43,9 @@
 		<div class={contentClasses}>
 			<!-- Badge -->
 			{#if badge}
-				<div class="mb-4">
+				<div class="mb-5">
 					<span
-						class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+						class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-blue-50 text-blue-700"
 					>
 						{badge}
 					</span>
@@ -54,20 +54,20 @@
 
 			<!-- Icon -->
 			{#if icon}
-				<div class="mb-6">
-					<div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
-						<Icon name={icon} size="lg" color="#2563eb" />
+				<div class="mb-8">
+					<div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center">
+						<Icon name={icon} size="lg" color="#0099cc" />
 					</div>
 				</div>
 			{/if}
 
 			<!-- Title -->
-			<Heading level={2} size="3xl" weight="bold" class="text-slate-900 mb-4 leading-tight">
+			<Heading level={2} size="4xl" weight="black" class="text-slate-900 mb-5 md:mb-6 leading-tight">
 				{title}
 			</Heading>
 
 			<!-- Description -->
-			<Paragraph size="lg" color="text-slate-600" leading="relaxed" class="mb-6">
+			<Paragraph size="lg" color="text-slate-600" leading="relaxed" class="mb-0 text-base md:text-lg">
 				{description}
 			</Paragraph>
 		</div>
