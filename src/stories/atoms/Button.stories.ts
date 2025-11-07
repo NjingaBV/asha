@@ -6,36 +6,82 @@ const meta = {
 	component: Button,
 	tags: ['autodocs'],
 	parameters: {
-		layout: 'centered'
+		layout: 'centered',
+		docs: {
+			description: {
+				component: `
+# Button Component
+
+A versatile, accessible button component that supports multiple variants, sizes, and states.
+
+## Key Features
+- **Multiple Variants**: primary, ghost, outline, solid for different visual styles
+- **Flexible Sizing**: sm, md, lg sizes for various contexts
+- **Rich States**: loading, disabled, and focus states with proper visual feedback
+- **Icon Support**: Built-in slots for icons before and after text
+- **Accessibility**: Full keyboard support, ARIA labels, and focus indicators
+- **Link Support**: Can render as &lt;a&gt; tag when href is provided
+- **Type Support**: Supports button, submit, and reset types
+
+## Use Cases
+- Call-to-action buttons in forms
+- Navigation links styled as buttons
+- Submit buttons in forms with loading states
+- Icon buttons with optional text
+- Full-width button groups
+- Disabled interactive states
+
+## Best Practices
+- Use semantic type attributes (submit for form submissions)
+- Provide loading feedback for async operations
+- Use icon slots for visual emphasis
+- Ensure sufficient color contrast
+- Use aria-label for icon-only buttons
+- Keep button text concise and actionable
+				`
+			}
+		}
 	},
 	argTypes: {
 		variant: {
 			control: { type: 'select' },
-			options: ['primary', 'ghost', 'outline', 'solid']
+			options: ['primary', 'ghost', 'outline', 'solid'],
+			description: 'Visual style variant of the button (primary, ghost, outline, solid)'
 		},
 		size: {
 			control: { type: 'select' },
-			options: ['sm', 'md', 'lg']
+			options: ['sm', 'md', 'lg'],
+			description: 'Size of the button (sm: small, md: medium, lg: large)'
 		},
 		tone: {
 			control: { type: 'select' },
-			options: ['primary', 'secondary', 'neutral']
+			options: ['primary', 'secondary', 'neutral'],
+			description: 'Color tone/theme of the button'
 		},
 		type: {
 			control: { type: 'select' },
-			options: ['button', 'submit', 'reset']
+			options: ['button', 'submit', 'reset'],
+			description: 'HTML button type (button, submit, reset)'
 		},
 		disabled: {
-			control: 'boolean'
+			control: 'boolean',
+			description: 'Disable the button and prevent interactions'
 		},
 		loading: {
-			control: 'boolean'
+			control: 'boolean',
+			description: 'Show loading spinner and disable interaction during async operations'
 		},
 		fullWidth: {
-			control: 'boolean'
+			control: 'boolean',
+			description: 'Make button take full width of its container'
 		},
 		rounded: {
-			control: 'boolean'
+			control: 'boolean',
+			description: 'Apply rounded corners (border-radius)'
+		},
+		href: {
+			control: 'text',
+			description: 'URL for navigation (renders as &lt;a&gt; tag instead of &lt;button&gt;)'
 		}
 	}
 } satisfies Meta<typeof Button>;

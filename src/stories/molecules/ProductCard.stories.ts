@@ -5,9 +5,118 @@ const meta = {
 	title: 'Molecules/ProductCard',
 	component: ProductCard,
 	parameters: {
-		layout: 'centered'
+		layout: 'centered',
+		docs: {
+			description: {
+				component: `# ProductCard
+
+A comprehensive product display card molecule designed for e-commerce and content showcases. Features image, badge, color swatches, detailed text, and dual action buttons.
+
+## Key Features
+
+- **Badge Support**: Optional badge for "New", "Popular", "Bestseller", etc.
+- **Color Swatches**: Display available product colors/variants
+- **Dual CTAs**: Primary and secondary action buttons
+- **Rich Text Layout**: Title, subtitle (price/metadata), and description
+- **Image Display**: Product or content imagery with alt text
+- **Structured Pricing**: Subtitle for price or categorization
+- **Hover Effects**: Interactive states for engagement
+
+## Use Cases
+
+- **E-commerce Products**: Physical product displays with variants
+- **Content Cards**: Podcasts, videos, or digital content
+- **Service Offerings**: Services with pricing and details
+- **Subscription Plans**: Tiered offering displays
+- **Course Cards**: Educational content with enrollment
+- **Event Tickets**: Event information with booking
+
+## Best Practices
+
+- Use square product images (400x400px+) for consistency
+- Badge text should be concise (1-2 words)
+- Primary action = main conversion (e.g., "Buy", "Listen")
+- Secondary action = alternative (e.g., "Details", "Preview")
+- List colors in logical order (most popular first)
+- Keep descriptions under 100 characters for scanability
+
+## Accessibility Notes
+
+- Semantic HTML with proper heading structure
+- Image alt text required
+- Color-agnostic interaction (not color-only indicators)
+- Keyboard accessible buttons
+- Sufficient color contrast for text
+
+## Composition
+
+- **Badge atoms**: For status indicators
+- **ColorSwatch atoms**: For variant display
+- **Button atoms**: For actions
+- **Image elements**: Product imagery
+- **Text elements**: Structured content
+
+## Responsive Behavior
+
+- Cards stack in grids responsively
+- Images maintain aspect ratio
+- Typography scales appropriately
+- Buttons stack on narrow viewports
+- Color swatches wrap as needed
+
+## Differences from Simple Card
+
+Unlike basic Card molecule, ProductCard provides specialized e-commerce features: badges, color variants, structured pricing, and dual-action patterns optimized for product/content sales.`
+			}
+		}
 	},
-	tags: ['autodocs']
+	tags: ['autodocs'],
+	argTypes: {
+		title: {
+			control: 'text',
+			description: 'Product or content name. Main heading displayed prominently.'
+		},
+		subtitle: {
+			control: 'text',
+			description:
+				'Secondary info like price, category, or metadata (e.g., "€49,99 • Modulable", "En Direct • RFI Musique").'
+		},
+		description: {
+			control: 'text',
+			description:
+				'Product or content description. Brief summary of key features or value proposition.'
+		},
+		image: {
+			control: 'text',
+			description:
+				'URL to product/content image. Should be square format (1:1) for best results. Recommend 400x400px minimum.'
+		},
+		imageAlt: {
+			control: 'text',
+			description:
+				'Alt text for product image. Describe what the image shows for accessibility.'
+		},
+		colors: {
+			control: 'array',
+			description:
+				'Array of color names for product variants (e.g., ["noir", "or", "marron"]). Displayed as swatches below image.'
+		},
+		primaryAction: {
+			control: 'object',
+			description:
+				'Primary CTA button config with label property. Main conversion action (e.g., {label: "Acheter"}, {label: "Écouter"}).'
+		},
+		secondaryAction: {
+			control: 'object',
+			description:
+				'Secondary CTA button config. Alternative action (e.g., {label: "Plus de détails"}, {label: "Découvrir"}).'
+		},
+		badge: {
+			control: 'text',
+			description:
+				'Optional badge text displayed on product (e.g., "Nouveau", "Populaire", "En Direct"). Draws attention to status.'
+		}
+	}
 } satisfies Meta<typeof ProductCard>;
 
 export default meta;

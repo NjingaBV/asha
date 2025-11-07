@@ -5,30 +5,159 @@ const meta = {
 	title: 'Molecules/CallToAction',
 	component: CallToAction,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'fullscreen',
+		docs: {
+			description: {
+				component: `# CallToAction
+
+A versatile and powerful CTA section component designed to drive user engagement and conversions. Features flexible content options, multiple background styles, and highly customizable action buttons.
+
+## Key Features
+
+- **Flexible Content**: Supports title, subtitle, and description with both string and Svelte snippet inputs
+- **Multiple Background Types**: None, solid color, gradient, or image backgrounds
+- **Image Overlay System**: Customizable overlay colors and opacity for background images
+- **Size Variants**: Three preset sizes (small, medium, large) with responsive padding and typography
+- **Dual Action Buttons**: Primary and secondary actions with independent styling
+- **Smart Text Coloring**: Automatically adjusts text color based on background for optimal readability
+- **Responsive Layout**: Actions stack on mobile, side-by-side on desktop
+
+## Use Cases
+
+- **Landing Page Conversions**: Drive sign-ups, trials, or purchases on product pages
+- **Section Breaks**: Create visual separation between page sections while prompting action
+- **Marketing Campaigns**: Promote limited-time offers or special announcements
+- **Newsletter Signups**: Encourage email list subscriptions with compelling copy
+- **Product Launches**: Announce new features or products with dramatic presentation
+- **Event Registration**: Drive attendance for webinars, conferences, or workshops
+
+## Best Practices
+
+- Keep titles short and action-oriented (under 60 characters)
+- Use descriptions to provide context, not just repeat the title
+- Primary action should be the most important user path (e.g., "Start Trial")
+- Secondary action offers an alternative (e.g., "Learn More", "See Pricing")
+- Choose background types that align with your brand and page design
+- For image backgrounds, ensure text remains readable with appropriate overlays
+- Use large size for hero CTAs, medium for mid-page, small for footers
+
+## Accessibility Notes
+
+- Semantic HTML with proper \`<section>\` structure
+- Heading hierarchy maintained (H2 for title, H3 for subtitle)
+- Sufficient color contrast automatically managed for text readability
+- Button components include proper focus states and keyboard navigation
+- Background images use empty alt text (decorative)
+- Supports screen readers with semantic content structure
+
+## Composition
+
+This molecule is composed of:
+- **Heading atoms**: For title and subtitle with automatic sizing
+- **Paragraph atom**: For description text with optimal line spacing
+- **Button atoms**: For primary and secondary actions with variants
+- **Native elements**: Section container and image handling
+
+## Responsive Behavior
+
+- Padding scales from mobile to desktop (e.g., py-16 to py-24 on medium)
+- Typography sizes adjust based on screen size
+- Action buttons stack vertically on mobile, horizontal on tablet+
+- Background images use object-cover for proper aspect ratio
+- Maximum content width constrained for readability (max-w-4xl)
+- Button spacing adapts from flex-col to flex-row at sm breakpoint
+
+## Differences from Atoms
+
+Unlike simple Button or Heading atoms, this molecule provides:
+- Complete section structure with semantic HTML
+- Integrated background and overlay system
+- Coordinated text color management
+- Multi-element composition with proper spacing
+- Responsive layout orchestration
+- Context-aware button styling based on background`
+			}
+		}
 	},
 	tags: ['autodocs'],
 	argTypes: {
-		title: { control: 'text' },
-		subtitle: { control: 'text' },
-		description: { control: 'text' },
-		primaryAction: { control: 'object' },
-		secondaryAction: { control: 'object' },
-		backgroundImage: { control: 'text' },
-		backgroundColor: { control: 'color' },
+		title: {
+			control: 'text',
+			description:
+				'Main heading text for the CTA. Can also accept a Svelte snippet for custom rendering. Typically action-oriented (e.g., "Ready to get started?"). Rendered as H2 with size based on the size prop.'
+		},
+		subtitle: {
+			control: 'text',
+			description:
+				'Secondary heading displayed below title. Can also accept a Svelte snippet. Useful for additional context, taglines, or promotional text (e.g., "Limited Time Offer"). Rendered as H3 with XL sizing.'
+		},
+		description: {
+			control: 'text',
+			description:
+				'Body text providing detail about the offer or action. Can also accept a Svelte snippet. Should expand on the title and motivate the user to take action. Uses large paragraph styling with relaxed leading.'
+		},
+		primaryAction: {
+			control: 'object',
+			description:
+				'Configuration object for the primary action button. Properties: label (string, required), href (string, optional), onClick (function, optional), variant (string, optional). Primary action receives prominent styling and is the main conversion point.'
+		},
+		secondaryAction: {
+			control: 'object',
+			description:
+				'Configuration object for the secondary action button. Same properties as primaryAction. Secondary action offers an alternative path (e.g., "Learn More" vs "Sign Up") with more subtle styling.'
+		},
+		backgroundImage: {
+			control: 'text',
+			description:
+				'URL to background image. Only used when backgroundType is set to "image". Image will cover the full section with object-cover. Recommend high-resolution images (1920x1080 or larger) for best quality.'
+		},
+		backgroundColor: {
+			control: 'color',
+			description:
+				'Hex color code for solid background. Only used when backgroundType is "color". Automatically adjusts text color to white for contrast. Common choices: dark slate, blue, or brand colors.'
+		},
 		backgroundType: {
 			control: { type: 'select' },
-			options: ['none', 'color', 'image', 'gradient']
+			options: ['none', 'color', 'image', 'gradient'],
+			description:
+				'Type of background to display: "none" (transparent/white), "color" (solid backgroundColor), "image" (backgroundImage with optional overlay), "gradient" (linear gradient from gradientFrom to gradientTo).'
 		},
-		overlay: { control: 'boolean' },
+		gradientFrom: {
+			control: 'color',
+			description:
+				'Starting color for gradient background. Only used when backgroundType is "gradient". Gradient flows from top-left at 135deg angle. Use hex codes for consistency.'
+		},
+		gradientTo: {
+			control: 'color',
+			description:
+				'Ending color for gradient background. Only used when backgroundType is "gradient". Creates smooth color transition to bottom-right. Works best with complementary or analogous colors.'
+		},
+		overlay: {
+			control: 'boolean',
+			description:
+				'Enable or disable overlay on background images. Only applies when backgroundType is "image". Helps ensure text readability over complex images. Default is true.'
+		},
 		overlayColor: {
 			control: { type: 'select' },
-			options: ['black', 'blue', 'gray', 'transparent']
+			options: ['black', 'blue', 'gray', 'transparent'],
+			description:
+				'Color of the overlay applied to background images. "black" provides neutral darkening, "blue" or "gray" add subtle color tints, "transparent" disables overlay visual effect. Works with overlayOpacity.'
 		},
-		overlayOpacity: { control: { type: 'range', min: 0, max: 100, step: 10 } },
+		overlayOpacity: {
+			control: { type: 'range', min: 0, max: 100, step: 10 },
+			description:
+				'Opacity of the overlay as a percentage (0-100). Higher values create darker overlays for better text contrast. Typical range: 30-60. Automatically clamped between 0-100.'
+		},
 		size: {
 			control: { type: 'select' },
-			options: ['sm', 'md', 'lg']
+			options: ['sm', 'md', 'lg'],
+			description:
+				'Size variant controlling padding, title size, and spacing. "sm" (py-8/py-12, 3xl title) for compact sections, "md" (py-16/py-24, 4xl title) for standard use, "lg" (py-20/py-32, 5xl title) for hero sections. Default is "md".'
+		},
+		class: {
+			control: 'text',
+			description:
+				'Additional CSS classes to apply to the root section element. Use for custom spacing, positioning, or styling overrides.'
 		}
 	}
 } satisfies Meta<typeof CallToAction>;
@@ -51,6 +180,13 @@ export const Default: Story = {
 			href: '#'
 		},
 		size: 'md'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Standard CTA with title, description, and dual actions. Uses default medium size with no background. Perfect for clean, minimal page sections.'
+			}
+		}
 	}
 };
 
@@ -58,6 +194,13 @@ export const WithSubtitle: Story = {
 	args: {
 		...Default.args,
 		subtitle: "Commencez votre essai gratuit aujourd'hui"
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Adds a subtitle between title and description. Useful for promotional text, taglines, or internationalization.'
+			}
+		}
 	}
 };
 
@@ -66,6 +209,13 @@ export const Small: Story = {
 	args: {
 		...Default.args,
 		size: 'sm'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Compact size variant with reduced padding (py-8/12) and smaller title (3xl). Ideal for footer CTAs or secondary page sections.'
+			}
+		}
 	}
 };
 
@@ -73,6 +223,13 @@ export const Large: Story = {
 	args: {
 		...Default.args,
 		size: 'lg'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Hero-sized variant with generous padding (py-20/32) and large title (5xl). Perfect for landing page heroes and main conversion sections.'
+			}
+		}
 	}
 };
 
@@ -81,6 +238,13 @@ export const NoBackground: Story = {
 	args: {
 		...Default.args,
 		backgroundType: 'none'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Clean CTA with no background. Text uses default dark colors on white/transparent background.'
+			}
+		}
 	}
 };
 
@@ -92,6 +256,13 @@ export const WithColorBackground: Story = {
 		backgroundColor: '#0f172a',
 		title: 'Premium Experience',
 		description: 'Unlock advanced features with our premium subscription.'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Solid color background (dark slate). Text automatically switches to white for contrast. Great for brand-colored sections.'
+			}
+		}
 	}
 };
 
@@ -114,6 +285,13 @@ export const WithGradient: Story = {
 		gradientTo: '#0369a1',
 		title: 'Transform Your Workflow',
 		description: 'Experience the future of work with our AI-powered platform.'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Linear gradient background flowing from slate to blue at 135deg. Creates modern, dynamic visual impact for premium offerings.'
+			}
+		}
 	}
 };
 
@@ -139,6 +317,13 @@ export const WithBackgroundImage: Story = {
 		overlayOpacity: 40,
 		title: 'Experience the Difference',
 		description: 'Join us on a journey to excellence and innovation.'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Background image with 40% black overlay for text readability. Ideal for hero sections with compelling lifestyle or product photography.'
+			}
+		}
 	}
 };
 
@@ -231,6 +416,13 @@ export const CompleteExample: Story = {
 		gradientFrom: '#1e293b',
 		gradientTo: '#0f172a',
 		size: 'lg'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Product launch CTA with all features: title, subtitle, description, dual actions, and gradient background. Large size for hero placement.'
+			}
+		}
 	}
 };
 
@@ -251,6 +443,13 @@ export const MarketingExample: Story = {
 		backgroundType: 'color',
 		backgroundColor: '#0369a1',
 		size: 'lg'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Marketing campaign CTA emphasizing urgency with subtitle. Solid blue background creates strong visual presence for conversion-focused sections.'
+			}
+		}
 	}
 };
 
@@ -272,5 +471,12 @@ export const ProductLaunch: Story = {
 		gradientFrom: '#7c3aed',
 		gradientTo: '#0369a1',
 		size: 'md'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Feature announcement with vibrant purple-to-blue gradient. Medium size for mid-page placement. Shows premium positioning with color choice.'
+			}
+		}
 	}
 };

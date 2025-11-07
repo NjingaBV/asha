@@ -5,21 +5,102 @@ const meta = {
 	title: 'Atoms/Hamburger',
 	component: Hamburger,
 	parameters: {
-		layout: 'centered'
+		layout: 'centered',
+		docs: {
+			description: {
+				component: `# Hamburger Menu Button
+
+An animated, accessible hamburger menu toggle button designed for mobile navigation with smooth SVG path transitions.
+
+## Key Features
+
+- **Smooth Animations**: SVG-based morphing transitions between states
+- **Multiple Variants**: Four distinct visual styles (default, cross, arrow, plus)
+- **Fully Accessible**: ARIA labels, keyboard navigation, and focus management
+- **Customizable**: Control size, color, stroke width, and animation duration
+- **Bindable State**: Two-way binding with \`bind:open\` for easy state management
+- **Mobile-First**: Hidden on desktop by default with \`md:hidden\` utility
+
+## Use Cases
+
+- **Mobile Navigation**: Primary use for toggling mobile menu drawers
+- **Sidebar Toggles**: Collapsible sidebar panels on mobile devices
+- **Modal Triggers**: Opening full-screen modal menus on small screens
+- **Overlay Menus**: Triggering off-canvas navigation overlays
+
+## Best Practices
+
+- **Always Provide ARIA Label**: Essential for screen reader users to understand the button's purpose
+- **Match Animation Duration**: Coordinate with your menu's transition timing for polished UX
+- **Choose Appropriate Variant**: Use 'default' for traditional menus, 'cross' for modals, 'arrow' for expanding sections
+- **Test Touch Targets**: Ensure minimum 44x44px touch area for mobile usability
+- **Consider Color Contrast**: Ensure icon is visible against navigation background
+
+## Accessibility
+
+- Button includes proper ARIA attributes (\`aria-expanded\`, \`aria-label\`)
+- Keyboard accessible (Enter and Space keys)
+- Focus visible indicator with ring outline
+- Screen readers announce current state
+- Disabled state prevents interaction and reduces opacity
+- Hidden on desktop with semantic approach (not display:none)`
+			}
+		}
 	},
 	tags: ['autodocs'],
 	argTypes: {
-		open: { control: 'boolean' },
-		size: { control: { type: 'select' }, options: ['sm', 'md', 'lg'] },
-		variant: { control: { type: 'select' }, options: ['default', 'cross', 'arrow', 'plus'] },
+		open: {
+			control: 'boolean',
+			description:
+				'Controls the open/closed state of the hamburger. Use `bind:open` for two-way binding. When true, animates to the variant\'s "open" state.'
+		},
+		size: {
+			control: { type: 'select' },
+			options: ['sm', 'md', 'lg'],
+			description:
+				'Icon size: sm (40px), md (60px), lg (80px). Choose based on navigation bar height. Default is "md".'
+		},
+		variant: {
+			control: { type: 'select' },
+			options: ['default', 'cross', 'arrow', 'plus'],
+			description:
+				'Visual animation style: "default" for standard hamburger-to-X, "cross" for simple X-pattern, "arrow" for directional indicators, "plus" for add/close pattern. Default is "default".'
+		},
 		color: {
 			control: { type: 'select' },
-			options: ['currentColor', 'inherit', 'primary', 'white', 'black', 'gray-600']
+			options: ['currentColor', 'inherit', 'primary', 'white', 'black', 'gray-600'],
+			description:
+				'Icon color. Use "currentColor" to inherit text color, "white" for dark backgrounds, "primary" for brand color. Default is "currentColor".'
 		},
-		strokeWidth: { control: { type: 'number', min: 1, max: 10 } },
-		duration: { control: { type: 'number', min: 100, max: 1000, step: 100 } },
-		disabled: { control: 'boolean' },
-		ariaLabel: { control: 'text' }
+		strokeWidth: {
+			control: { type: 'number', min: 1, max: 10 },
+			description:
+				'SVG stroke thickness (1-10). Thicker strokes (6-8) appear more bold, thinner (2-4) more delicate. Default is 5.'
+		},
+		duration: {
+			control: { type: 'number', min: 100, max: 1000, step: 100 },
+			description:
+				'Animation duration in milliseconds. Match this with your menu transition. Fast (200-300ms) feels snappy, slow (600-800ms) feels smooth. Default is 400ms.'
+		},
+		disabled: {
+			control: 'boolean',
+			description:
+				'Disables the button and prevents interaction. Visual opacity reduced to 50%. Use when menu should be temporarily unavailable.'
+		},
+		ariaLabel: {
+			control: 'text',
+			description:
+				'Accessible label for screen readers. Be descriptive: "Toggle main navigation" or "Open mobile menu". Required for accessibility. Default is "Toggle menu".'
+		},
+		class: {
+			control: 'text',
+			description:
+				'Additional CSS classes for custom styling, backgrounds, or positioning. Commonly used for adding padding or background colors.'
+		},
+		onToggle: {
+			description:
+				'Callback function invoked when button is clicked, receiving the new open state. Use for triggering menu animations or analytics.'
+		}
 	}
 } satisfies Meta<typeof Hamburger>;
 
