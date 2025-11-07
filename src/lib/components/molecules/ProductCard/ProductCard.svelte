@@ -45,7 +45,7 @@
 
 	let cardClasses = $derived(
 		[
-			'group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300',
+			'group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02]',
 			className
 		]
 			.filter(Boolean)
@@ -56,9 +56,9 @@
 <div class={cardClasses}>
 	<!-- Badge -->
 	{#if badge}
-		<div class="absolute top-4 left-4 z-10">
+		<div class="absolute top-5 left-5 z-10">
 			<span
-				class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-600 text-white"
+				class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-blue-600 text-white"
 			>
 				{badge}
 			</span>
@@ -66,41 +66,45 @@
 	{/if}
 
 	<!-- Image -->
-	<div class="aspect-square relative overflow-hidden bg-gray-50">
+	<div class="aspect-square relative overflow-hidden bg-gray-100">
 		<img
 			src={image}
 			alt={imageAlt || title}
-			class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+			class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
 		/>
 	</div>
 
 	<!-- Content -->
-	<div class="p-6 space-y-4">
+	<div class="p-6 md:p-8 space-y-5 md:space-y-6 flex flex-col h-full">
 		<!-- Title and Subtitle -->
-		<div>
-			<Heading level={3} size="lg" weight="semibold" class="text-slate-900 mb-1">
+		<div class="space-y-2">
+			<Heading level={3} size="xl" weight="black" class="text-slate-900 leading-tight">
 				{title}
 			</Heading>
-			<Paragraph size="sm" color="text-slate-600" weight="medium">
-				{subtitle}
-			</Paragraph>
+			{#if subtitle}
+				<Paragraph size="sm" color="text-slate-600" weight="semibold" class="tracking-wide uppercase text-xs">
+					{subtitle}
+				</Paragraph>
+			{/if}
 		</div>
 
 		<!-- Description -->
-		<Paragraph size="sm" color="text-slate-600" leading="relaxed">
-			{description}
-		</Paragraph>
+		{#if description}
+			<Paragraph size="sm" color="text-slate-600" leading="relaxed" class="flex-grow">
+				{description}
+			</Paragraph>
+		{/if}
 
 		<!-- Colors -->
 		{#if colors.length > 0}
-			<div class="flex items-center gap-2">
-				<Paragraph size="xs" color="text-slate-500" class="font-medium">
-					Couleurs disponibles :
+			<div class="flex items-center gap-3 pt-2">
+				<Paragraph size="xs" color="text-slate-500" class="font-semibold tracking-wide uppercase">
+					Couleurs :
 				</Paragraph>
-				<div class="flex gap-1">
+				<div class="flex gap-2">
 					{#each colors as color}
 						<div
-							class="w-4 h-4 rounded-full border border-gray-200 {colorMap[
+							class="w-5 h-5 rounded-full border-2 border-gray-200 hover:border-slate-400 transition-colors duration-200 cursor-pointer {colorMap[
 								color.toLowerCase()
 							] || 'bg-gray-400'}"
 							title={color}
@@ -111,7 +115,7 @@
 		{/if}
 
 		<!-- Actions -->
-		<div class="flex flex-col sm:flex-row gap-3 pt-2">
+		<div class="flex flex-col sm:flex-row gap-3 pt-4 mt-auto">
 			{#if primaryAction}
 				<Button
 					variant="solid"
