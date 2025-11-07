@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @import './lib/design-system/tokens/base.css';
 @import './lib/design-system/themes/light.css';
