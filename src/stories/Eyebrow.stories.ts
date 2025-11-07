@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Eyebrow from '@/lib/components/atoms/Eyebrow/Eyebrow.svelte';
+import Eyebrow from '@/lib/components/atoms/Eyebrow.svelte';
 
 const meta = {
 	title: 'Atoms/Eyebrow',

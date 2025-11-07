@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/atoms/Button.svelte';
-	import Heading from '$lib/components/atoms/Heading/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph/Paragraph.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 
 	let {
 		title = undefined,

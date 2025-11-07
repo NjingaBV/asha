@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Heading from '$lib/components/atoms/Heading/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph/Paragraph.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 
 	let {
@@ -82,7 +82,12 @@
 				{title}
 			</Heading>
 			{#if subtitle}
-				<Paragraph size="sm" color="text-slate-600" weight="semibold" class="tracking-wide uppercase text-xs">
+				<Paragraph
+					size="sm"
+					color="text-slate-600"
+					weight="semibold"
+					class="tracking-wide uppercase text-xs"
+				>
 					{subtitle}
 				</Paragraph>
 			{/if}
@@ -98,7 +103,11 @@
 		<!-- Colors -->
 		{#if colors.length > 0}
 			<div class="flex items-center gap-3 pt-2">
-				<Paragraph size="xs" color="text-slate-500" class="font-semibold tracking-wide uppercase">
+				<Paragraph
+					size="xs"
+					color="text-slate-500"
+					class="font-semibold tracking-wide uppercase"
+				>
 					Couleurs :
 				</Paragraph>
 				<div class="flex gap-2">

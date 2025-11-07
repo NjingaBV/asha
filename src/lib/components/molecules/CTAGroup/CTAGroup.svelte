@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PillButton } from '$lib/components/atoms';
+	import PillButton from '$lib/components/atoms/PillButton.svelte';
 	let {
 		primary = null,
 		secondary = null,

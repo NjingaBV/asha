@@ -29,7 +29,8 @@ const config: StorybookConfig = {
 		config.resolve = config.resolve || {};
 		config.resolve.alias = {
 			...config.resolve.alias,
-			$lib: resolve(__dirname, '../src/lib')
+			$lib: resolve(__dirname, '../src/lib'),
+			'@': resolve(__dirname, '../src')
 		};
 
 		return config;

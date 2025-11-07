@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import PathLine from '@/lib/components/atoms/PathLine/PathLine.svelte';
+import PathLine from '@/lib/components/atoms/PathLine.svelte';
 
 const meta = {
 	title: 'Atoms/PathLine',

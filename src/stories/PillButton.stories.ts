@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import PillButton from '@/lib/components/atoms/PillButton/PillButton.svelte';
+import PillButton from '@/lib/components/atoms/PillButton.svelte';
 
 const meta = {
 	title: 'Atoms/PillButton',

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { FeatureItem } from '$lib/components/molecules';
-	import FeatureCard from '../../molecules/FeatureCard/FeatureCard.svelte';
+	import { FeatureItem, FeatureCard } from '$lib/components/molecules';
 
 	let {
 		features = [],

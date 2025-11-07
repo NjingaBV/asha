@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Youtube from '$lib/components/atoms/Youtube/Youtube.svelte';
+	import Youtube from '$lib/components/atoms/Youtube.svelte';
 
 	let {
 		title = '',

@@ -71,25 +71,29 @@
 			/>
 		</picture>
 	{/if}
-	<div   
+	<div
 		class={[
 			`absolute bottom-0  w-full bg-gradient-to-t z-10 flex flex-col`,
 			`${hasDetails ? 'h-2/5 md:h-3/5' : 'h-2/5'}`,
-            `[background:linear-gradient(to_top,var(--bg-color),var(--bg-color),rgb(15_23_42_/_0))]`
+			`[background:linear-gradient(to_top,var(--bg-color),var(--bg-color),rgb(15_23_42_/_0))]`
 		].join(' ')}
-        style="--bg-color: {backgroundColor}"
+		style="--bg-color: {backgroundColor}"
 	></div>
 	<div
 		class="flex flex-col items-center absolute bottom-0 left-0 right-0 w-full md:w-auto md:left-1/2 md:transform md:-translate-x-1/2 md:max-w-2xl lg:max-w-4xl px-6 md:px-8 lg:px-12 py-8 md:py-10 lg:py-16 pb-12 md:pb-16 h-fit z-20 gap-6 md:gap-8"
 		style="color: var(--text-color);"
 	>
 		{#if details}
-			<div class="inline-flex items-center px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wide uppercase bg-white/10 backdrop-blur-sm">
+			<div
+				class="inline-flex items-center px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wide uppercase bg-white/10 backdrop-blur-sm"
+			>
 				<span class="text-color opacity-90">{details}</span>
 			</div>
 		{/if}
 		{#if title}
-			<h1 class="text-color text-center font-black text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight max-w-4xl">
+			<h1
+				class="text-color text-center font-black text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight max-w-4xl"
+			>
 				{title}
 			</h1>
 		{/if}
@@ -149,7 +153,7 @@
 
 	/* Smooth scroll momentum on iOS */
 	@supports (backdrop-filter: blur(1px)) {
-		:global(div[class*="backdrop-blur"]) {
+		:global(div[class*='backdrop-blur']) {
 			-webkit-backdrop-filter: blur(8px);
 		}
 	}

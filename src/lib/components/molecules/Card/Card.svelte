@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/atoms/Button.svelte';
-	import Linkable from '$lib/components/atoms/Linkable/Linkable.svelte';
+	import Linkable from '$lib/components/atoms/Linkable.svelte';
 	import type { ImageType } from '$lib/models';
 
 	let {
@@ -79,7 +79,9 @@
 					].join(' ')}
 				>
 					{#if subtitle}
-						<p class="text-slate-200 text-sm md:text-base font-semibold tracking-wide uppercase opacity-90">
+						<p
+							class="text-slate-200 text-sm md:text-base font-semibold tracking-wide uppercase opacity-90"
+						>
 							{subtitle}
 						</p>
 					{/if}
@@ -131,7 +133,9 @@
 			</h2>
 		{/if}
 		{#if overview}
-			<p class="text-slate-600 font-light text-left text-sm md:text-base leading-relaxed line-clamp-4">
+			<p
+				class="text-slate-600 font-light text-left text-sm md:text-base leading-relaxed line-clamp-4"
+			>
 				{overview}
 			</p>
 		{/if}

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import ColorSwatch from '@/lib/components/atoms/ColorSwatch/ColorSwatch.svelte';
+import ColorSwatch from '$lib/components/atoms/ColorSwatch.svelte';
 
 const meta = {
 	title: 'Atoms/ColorSwatch',

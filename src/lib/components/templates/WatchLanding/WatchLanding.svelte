@@ -1,10 +1,10 @@
 <script lang="ts">
-	import HeroSection from '../../organisms/HeroSection/HeroSection.svelte';
-	import ProductGrid from '../../organisms/ProductGrid/ProductGrid.svelte';
-	import CallToAction from '../../molecules/CallToAction/CallToAction.svelte';
-	import FeatureGrid from '../../organisms/FeatureGrid/FeatureGrid.svelte';
-	import Heading from '../../atoms/Heading/Heading.svelte';
-	import Paragraph from '../../atoms/Paragraph/Paragraph.svelte';
+	import HeroSection from '$lib/components/organisms/HeroSection/HeroSection.svelte';
+	import ProductGrid from '$lib/components/organisms/ProductGrid/ProductGrid.svelte';
+	import CallToAction from '$lib/components/molecules/CallToAction/CallToAction.svelte';
+	import FeatureGrid from '$lib/components/organisms/FeatureGrid/FeatureGrid.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 
 	let {
 		heroData = undefined,

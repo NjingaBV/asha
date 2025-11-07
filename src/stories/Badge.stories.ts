@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Badge from '@/lib/components/atoms/Badge/Badge.svelte';
+import Badge from '@/lib/components/atoms/Badge.svelte';
 
 const meta = {
 	title: 'Atoms/Badge',

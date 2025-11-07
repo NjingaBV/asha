@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ColorSwatch } from '$lib/components/atoms';
+	import ColorSwatch from '$lib/components/atoms/ColorSwatch.svelte';
 	let {
 		colors = [],
 		selected = '',

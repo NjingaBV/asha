@@ -24,18 +24,19 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
 	args: {
 		order: 1,
-		color: '#22c55e',
-		title: 'Simple',
-		subtitle: `L'assurance en toute simplicité.`,
-		description: `Ouranos réinvente complètement l'approche de l'assurance. Vos informations d'assuré dans le creux de votre main grâce à votre smartphone, magnifiquement disposées et faciles à comprendre.`,
+		color: '#990505',
+		title: "L'Afro Club",
+		subtitle: 'Explorez les tendances afro-urbaines',
+		description:
+			'Chaque semaine, sur RFI Musique, faites le tour des meilleures tendances afro-urbaines avec DJ Face Maker. Une sélection curatée des artistes phares et émergents de la scène africaine francophone.',
 		details: {
-			title: 'Détail',
+			title: 'En Direct',
 			cover: {
-				url: 'https://images.prismic.io/ouranos/3f508aca-4bba-4975-899c-cfa85646553a_couple-sits-relaxing-in-living-room.jpg?auto=compress,format',
-				alt: 'Couple in living room',
+				url: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
+				alt: "L'Afro Club - RFI Musique",
 				text: 'Cover image'
 			},
-			description: `<p><strong>Où vous voulez, quand vous le souhaitez.</strong><br>Que vous soyez devant votre TV, en plein jogging ou en train de cuisiner, il vous suffit d'un smartphone pour vous assurer.<br><br><strong>Bye bye la paperasse. Bonjour la liberté.</strong><br>Il suffit de répondre à quelques questions pour définir vos besoins, pour découvrir la proposition qui vous correspond.</p>`
+			description: `<p><strong>Sessions acoustiques en direct</strong><br>Des performances exclusives des artistes les plus en vogue de la musique africaine. Découvrez les sons qui façonnent la scène contemporaine.<br><br><strong>Disponible partout, tout le temps</strong><br>Écoutez sur RFI Musique, votre plateforme préférée de podcast, ou en direct sur Urban FM. La musique africaine n'a jamais été aussi accessible.</p>`
 		}
 	}
 };
@@ -46,41 +47,42 @@ export const Simple: Story = {
 	}
 };
 
-export const Transparente: Story = {
+export const UrbanXra: Story = {
 	args: {
-		...Primary.args,
 		order: 2,
-		color: '#eab308',
-		title: 'Transparente',
-		subtitle: `Des offres adaptées et transparentes.`,
-		description: `Nous offrons des prix compétitifs et adaptés à vos besoins.`,
+		color: '#024a99',
+		title: 'Urban Xra',
+		subtitle: 'Les dernières tendances urbaines',
+		description:
+			'Les dernières sorties afro, hip hop, r&b, baile funk, amapiano et punjabi. Disponible du lundi au vendredi sur Urban FM 104.5 à Libreville et toutes vos plateformes de podcast préférées.',
 		details: {
-			...Primary.args?.details,
+			title: 'Écouter',
 			cover: {
-				url: 'https://images.prismic.io/ouranos/256b6214-43d8-4850-a47b-5df1b7db6e6a_hand-shake-on-yellow.jpg?auto=compress,format',
-				alt: 'Handshake on yellow',
+				url: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format',
+				alt: 'Urban Xra - Urban FM',
 				text: 'Cover image'
-			}
+			},
+			description: `<p><strong>Une immersion musicale complète</strong><br>De l'afrobeats aux sounds émergents, découvrez la diversité de la musique urbaine africaine et mondiale. Des sélections exclusives des DJ les plus talentueux.<br><br><strong>Connecté à votre quotidien</strong><br>Chaque jour, une nouvelle sélection. Jogging, travail ou soirée - la musique parfaite pour chaque moment de votre vie.</p>`
 		}
 	}
 };
 
-export const Revolutionnaire: Story = {
+export const NjingaTurbans: Story = {
 	args: {
-		...Primary.args,
 		order: 3,
-		color: '#3b82f6',
-		title: 'Révolutionnaire',
-		subtitle: `Une interface complète, facile à utiliser.`,
-		description: `Courtier en assurances nouvelle génération.`,
+		color: '#d4a574',
+		title: 'Turbans Njinga',
+		subtitle: 'Collection premium et modulable',
+		description:
+			'Découvrez notre sélection exclusive de turbans modulables. Chaque pièce est confectionnée avec soin pour offrir confort, style et une touche intemporelle à votre garde-robe.',
 		details: {
-			...Primary.args?.details,
+			title: 'Explorer',
 			cover: {
-				url: 'https://images.prismic.io/ouranos/c92dd038-7b63-4a4a-8aaa-4fd26d6ca3da_office-work-tools-on-the-white-desk.jpg?auto=compress,format',
-				alt: 'Office tools on desk',
-				text: 'Cover image'
+				url: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+				alt: 'Collection Turbans Njinga',
+				text: 'Premium turban collection'
 			},
-			description: `<p><strong>Quand l'assurance rencontre le téléphone</strong><br>Souscrivez en quelques minutes seulement depuis votre application Ouranos. Gérez vos polices d'assurances sur votre téléphone simplement et sans paperasse.<br><br><strong>Réactive<br></strong>Toujours à vos côtés : disponible 7j/7 (même le dimanche!)</p>`
+			description: `<p><strong>Qualité Premium, Design Contemporain</strong><br>Chaque turban est conçu pour combiner tradition et modernité. Des teintes sophistiquées aux motifs exclusifs, trouvez le style qui vous ressemble.<br><br><strong>Polyvalent pour tous les moments</strong><br>Du quotidien aux occasions spéciales, nos turbans s'adaptent à votre vie. Modulable, confortable et toujours élégant.</p>`
 		}
 	}
 };

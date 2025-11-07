@@ -48,7 +48,8 @@ export const WithoutProducts: Story = {
 		products: [],
 		title: 'Turbans Modulables',
 		subtitle: undefined,
-		description: 'Découvrez notre collection exclusive de turbans modulables. Qualité premium, styles contemporains et confortables pour tous les moments de votre vie.',
+		description:
+			'Découvrez notre collection exclusive de turbans modulables. Qualité premium, styles contemporains et confortables pour tous les moments de votre vie.',
 		primaryAction: {
 			label: 'Explorez la Collection',
 			onClick: () => console.log('Primary action clicked')

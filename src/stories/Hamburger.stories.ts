@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Hamburger from '@/lib/components/atoms/Hamburger/Hamburger.svelte';
+import Hamburger from '@/lib/components/atoms/Hamburger.svelte';
 
 const meta = {
 	title: 'Atoms/Hamburger',

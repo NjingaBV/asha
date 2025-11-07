@@ -26,7 +26,7 @@ export const Primary: Story = {
 			{
 				title: "L'Afro Club",
 				description:
-					"Chaque semaine, sur RFI Musique, faites le tour des tendances afro-urbaines avec DJ Face Maker. Une sélection des meilleurs artistes de la scène africaine francophone.",
+					'Chaque semaine, sur RFI Musique, faites le tour des tendances afro-urbaines avec DJ Face Maker. Une sélection des meilleurs artistes de la scène africaine francophone.',
 				image: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 				badge: 'Musique Afro'
 			},
@@ -62,7 +62,7 @@ export const ProductsCollection: Story = {
 			{
 				title: 'Doré',
 				description:
-					'Un turban modulable aux teintes dorées sophistiquées. Parfait pour ajouter une touche d\'élégance à votre style quotidien.',
+					"Un turban modulable aux teintes dorées sophistiquées. Parfait pour ajouter une touche d'élégance à votre style quotidien.",
 				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
 				badge: 'Accessoire Mode'
 			},
@@ -91,7 +91,7 @@ export const WithAlternatingImages: Story = {
 			{
 				title: "L'Afro Club",
 				description:
-					"Chaque semaine, sur RFI Musique, découvrez les meilleures tendances afro-urbaines avec DJ Face Maker. Une sélection curatée des artistes phares de la scène africaine francophone avec sessions acoustiques en direct.",
+					'Chaque semaine, sur RFI Musique, découvrez les meilleures tendances afro-urbaines avec DJ Face Maker. Une sélection curatée des artistes phares de la scène africaine francophone avec sessions acoustiques en direct.',
 				image: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format',
 				badge: 'Musique Afro',
 				imagePosition: 'right'
@@ -99,7 +99,7 @@ export const WithAlternatingImages: Story = {
 			{
 				title: 'Doré',
 				description:
-					'Un turban modulable aux teintes dorées sophistiquées. Parfait pour ajouter une touche d\'élégance intemporelle à votre style quotidien et vos occasions spéciales.',
+					"Un turban modulable aux teintes dorées sophistiquées. Parfait pour ajouter une touche d'élégance intemporelle à votre style quotidien et vos occasions spéciales.",
 				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
 				badge: 'Accessoire Mode',
 				imagePosition: 'left'

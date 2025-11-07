@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Heading from '../../atoms/Heading/Heading.svelte';
-	import Paragraph from '../../atoms/Paragraph/Paragraph.svelte';
-	import Icon from '../../atoms/Icon/Icon.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
+	import Icon from '$lib/components/atoms/Icon.svelte';
 
 	let {
 		title = '',
@@ -33,7 +33,8 @@
 			(imagePosition === 'left' ? 'lg:order-2' : 'lg:order-1')
 	);
 	let imageClasses = $derived(
-		'relative h-64 md:h-80 lg:h-full ' + (imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2')
+		'relative h-64 md:h-80 lg:h-full ' +
+			(imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2')
 	);
 </script>
 
@@ -62,12 +63,22 @@
 			{/if}
 
 			<!-- Title -->
-			<Heading level={2} size="4xl" weight="black" class="text-slate-900 mb-5 md:mb-6 leading-tight">
+			<Heading
+				level={2}
+				size="4xl"
+				weight="black"
+				class="text-slate-900 mb-5 md:mb-6 leading-tight"
+			>
 				{title}
 			</Heading>
 
 			<!-- Description -->
-			<Paragraph size="lg" color="text-slate-600" leading="relaxed" class="mb-0 text-base md:text-lg">
+			<Paragraph
+				size="lg"
+				color="text-slate-600"
+				leading="relaxed"
+				class="mb-0 text-base md:text-lg"
+			>
 				{description}
 			</Paragraph>
 		</div>

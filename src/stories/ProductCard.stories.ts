@@ -18,7 +18,7 @@ export const Default: Story = {
 		title: "L'Afro Club",
 		subtitle: 'En Direct • RFI Musique',
 		description:
-			"Chaque semaine, explorez les meilleures tendances afro-urbaines avec DJ Face Maker. Sessions acoustiques en direct avec les artistes phares de la scène africaine francophone.",
+			'Chaque semaine, explorez les meilleures tendances afro-urbaines avec DJ Face Maker. Sessions acoustiques en direct avec les artistes phares de la scène africaine francophone.',
 		image: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format&h=400&w=400&fit=crop',
 		imageAlt: "L'Afro Club",
 		colors: [],
@@ -46,7 +46,7 @@ export const DoréTurban: Story = {
 		title: 'Doré',
 		subtitle: '€49,99 • Modulable',
 		description:
-			'Un turban modulable aux teintes dorées sophistiquées. Parfait pour ajouter une touche d\'élégance intemporelle à votre style quotidien et vos occasions spéciales.',
+			"Un turban modulable aux teintes dorées sophistiquées. Parfait pour ajouter une touche d'élégance intemporelle à votre style quotidien et vos occasions spéciales.",
 		image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
 		imageAlt: 'Turban Doré',
 		colors: ['or', 'marron'],

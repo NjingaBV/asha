@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Heading from '$lib/components/atoms/Heading/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph/Paragraph.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 
 	let {
@@ -56,12 +56,22 @@
 				{/if}
 
 				<!-- Title -->
-				<Heading level={1} size="6xl" weight="black" class="text-slate-900 leading-tight tracking-tight">
+				<Heading
+					level={1}
+					size="6xl"
+					weight="black"
+					class="text-slate-900 leading-tight tracking-tight"
+				>
 					{title}
 				</Heading>
 
 				<!-- Description -->
-				<Paragraph size="lg" color="text-slate-700" leading="relaxed" class="max-w-lg md:text-lg">
+				<Paragraph
+					size="lg"
+					color="text-slate-700"
+					leading="relaxed"
+					class="max-w-lg md:text-lg"
+				>
 					{description}
 				</Paragraph>
 
@@ -91,7 +101,9 @@
 
 			<!-- Products Grid -->
 			{#if products.length > 0}
-				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8">
+				<div
+					class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8"
+				>
 					{#each products as product}
 						<div
 							class="group relative bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-[1.02]"
@@ -105,7 +117,9 @@
 									</span>
 								</div>
 							{/if}
-							<div class="aspect-square relative mb-5 md:mb-6 overflow-hidden rounded-xl">
+							<div
+								class="aspect-square relative mb-5 md:mb-6 overflow-hidden rounded-xl"
+							>
 								<img
 									src={product.image}
 									alt={product.name}
