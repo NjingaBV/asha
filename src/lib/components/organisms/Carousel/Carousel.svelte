@@ -20,29 +20,29 @@
 	let isEven = $derived(cards.length % 2 === 0);
 </script>
 
-<div class={['p-4', `${onlyOneItem && 'md:flex md:items-center md:justify-between'}`].join(' ')}>
+<div class={['px-4 md:px-6 lg:px-8', `${onlyOneItem && 'md:flex md:items-center md:justify-between'}`].join(' ')}>
 	{#if title}
-		<div>
+		<div class="mb-8 md:mb-12 lg:mb-14 max-w-3xl">
 			{#if category}
 				<h5
-					class="font-black text-base tracking-tighter category-color"
+					class="text-sm md:text-xs font-semibold tracking-widest uppercase letter-spacing category-color opacity-80 mb-3 md:mb-4"
 					style="--text-color: {color};"
 				>
 					{category}
 				</h5>{/if}
-			<h2 class="font-black text-3xl md:text-4xl mb-5 md:mb-7">{title}</h2>
+			<h2 class="font-black text-3xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-4 md:mb-6">{title}</h2>
 			{#if overview}
-				<p class="text-base md:text-lg mb-5">{overview}</p>
+				<p class="text-base md:text-lg lg:text-xl leading-relaxed text-opacity-75 max-w-2xl">{overview}</p>
 			{/if}
 		</div>
 	{/if}
-	<ul class={['flex gap-4 w-full', 'overflow-x-auto snap-x', 'no-scrollbar'].join(' ')}>
+	<ul class={['flex gap-5 md:gap-6 lg:gap-8 w-full', 'overflow-x-auto snap-x', 'no-scrollbar', `${title ? 'pb-4 md:pb-6' : ''}`].join(' ')}>
 		{#each cards as card, i (i)}
 			<li
 				class={[
 					'flex-none',
-					`${onlyOneItem ? 'w-full' : 'w-10/12'}`,
-					`${isEven ? 'lg:w-[39%]' : 'lg:w-[35%]'}`,
+					`${onlyOneItem ? 'w-full' : 'w-[90%] md:w-[calc(50%-12px)]'}`,
+					`${isEven ? 'lg:w-[calc(50%-16px)]' : 'lg:w-[calc(33.33%-16px)]'}`,
 					'snap-center md:snap-none'
 				].join(' ')}
 			>
@@ -55,5 +55,25 @@
 <style>
 	.category-color {
 		color: var(--text-color);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		font-size: 0.75rem;
+	}
+
+	:global(.carousel-list) {
+		scroll-behavior: smooth;
+		scroll-padding-inline: 1rem;
+	}
+
+	:global(ul[class*="no-scrollbar"]) {
+		scroll-snap-type: x mandatory;
+		scroll-snap-stop: auto;
+	}
+
+	/* Smooth scroll momentum on iOS */
+	@supports (scroll-snap-type: x mandatory) {
+		:global(ul[class*="no-scrollbar"]) {
+			-webkit-overflow-scrolling: touch;
+		}
 	}
 </style>

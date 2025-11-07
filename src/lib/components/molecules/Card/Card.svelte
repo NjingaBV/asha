@@ -35,17 +35,17 @@
 <Linkable {isLinkable} link={buttonLink}>
 	<div
 		class={[
-			`relative max-h-screen ${rounded && 'rounded-[30px]'}`,
+			`relative max-h-screen transition-transform duration-300 hover:scale-[1.02] ${rounded && 'rounded-2xl'}`,
 			`${
 				buttonName && imgSrc
-					? 'aspect-[9/16]'
+					? 'aspect-[4/5]'
 					: `${isVideo ? 'aspect-video' : 'aspect-square'}`
 			}`
 		].join(' ')}
 	>
 		<div class="flex flex-col h-full">
 			<div
-				class={`bg relative h-full w-full ${rounded && 'rounded-[30px]'}`}
+				class={`bg relative h-full w-full ${rounded && 'rounded-2xl'}`}
 				style="--bg-color: {backgroundColor}"
 			>
 				{#if imgSrc}
@@ -64,7 +64,7 @@
 							loading="lazy"
 							class={[
 								`absolute inset-0 object-cover object-center md:object-top h-full w-full`,
-								`${mixColor && 'mix-blend-screen'} ${rounded && 'rounded-[30px]'}`
+								`${mixColor && 'mix-blend-screen'} ${rounded && 'rounded-2xl'}`
 							].join(' ')}
 						/>
 					</picture>
@@ -74,35 +74,33 @@
 				<div
 					class={[
 						'absolute w-full h-fit bottom-0',
-						`bg-gradient-to-t from-stone-900 ${
-							buttonName && imgSrc && 'via-stone-900'
-						}`,
-						`p-4 ${rounded && 'rounded-b-[30px]'} flex flex-col`
+						`bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent`,
+						`p-6 md:p-8 ${rounded && 'rounded-b-2xl'} flex flex-col gap-3`
 					].join(' ')}
 				>
 					{#if subtitle}
-						<h4 class="text-slate-100 text-lg text-left font-black">
+						<p class="text-slate-200 text-sm md:text-base font-semibold tracking-wide uppercase opacity-90">
 							{subtitle}
-						</h4>
+						</p>
 					{/if}
 					{#if title}
 						<h2
-							class={`text-slate-100 text-xl md:text-4xl mb-4 ${
+							class={`text-white text-2xl md:text-4xl lg:text-5xl font-black leading-tight ${
 								subtitle ? 'text-left' : 'text-center'
-							} font-black`}
+							}`}
 						>
 							{title}
 						</h2>
 					{/if}
 					{#if overview}
-						<h3
-							class="text-stone-100 font-thin text-left md:text-center mb-4 line-clamp-5"
+						<p
+							class="text-slate-300 font-light text-left text-sm md:text-base leading-relaxed line-clamp-4 opacity-90"
 						>
 							{overview}
-						</h3>
+						</p>
 					{/if}
 					{#if buttonName && buttonLink}
-						<div class=" w-3/4 self-center">
+						<div class="mt-2 w-11/12 self-center">
 							<Button
 								color={backgroundColor}
 								rounded={true}
@@ -117,28 +115,28 @@
 	</div>
 </Linkable>
 {#if (buttonName || title) && !textOnImage}
-	<div class={['p-4 rounded-b-[30px] flex flex-col'].join(' ')}>
+	<div class={['p-6 md:p-8 rounded-b-2xl flex flex-col gap-3 bg-surface'].join(' ')}>
 		{#if subtitle}
-			<h4 class="text-slate-700 text-lg text-left font-black">
+			<p class="text-slate-600 text-sm md:text-base font-semibold tracking-wide uppercase">
 				{subtitle}
-			</h4>
+			</p>
 		{/if}
 		{#if title}
 			<h2
-				class={`text-black text-lg md:text-2xl mb-4 ${
+				class={`text-text text-xl md:text-2xl lg:text-3xl font-black leading-tight ${
 					subtitle ? 'text-left' : 'text-center'
-				} font-black`}
+				}`}
 			>
 				{title}
 			</h2>
 		{/if}
 		{#if overview}
-			<h3 class="text-black font-thin text-left mb-4 line-clamp-5">
+			<p class="text-slate-600 font-light text-left text-sm md:text-base leading-relaxed line-clamp-4">
 				{overview}
-			</h3>
+			</p>
 		{/if}
 		{#if buttonName && buttonLink}
-			<div class=" w-3/4 self-center">
+			<div class="mt-2 w-11/12 self-center">
 				<Button
 					color={backgroundColor}
 					rounded={true}
