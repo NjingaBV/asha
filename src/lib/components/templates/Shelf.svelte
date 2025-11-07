@@ -1,12 +1,12 @@
 <script lang="ts">
 	import CallToAction from '$lib/components/molecules/CallToAction.svelte';
 	import Carousel from '$lib/components/organisms/Carousel.svelte';
-    import Features from '$lib/components/organisms/Features.svelte';
+	import Features from '$lib/components/organisms/Features.svelte';
 	import Hero from '$lib/components/molecules/Hero.svelte';
 	import HeroTile from '$lib/components/organisms/HeroTile.svelte';
 	import Nav from '$lib/components/atoms/Nav.svelte';
 	import Slogan from '$lib/components/organisms/Slogan.svelte';
-    import TextAnimation from '$lib/components/organisms/TextAnimation.svelte';
+	import TextAnimation from '$lib/components/organisms/TextAnimation.svelte';
 	import type { LinkType, SliceType } from '$lib/models';
 
 	let {

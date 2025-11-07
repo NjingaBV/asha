@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Heading from '$lib/components/atoms/Heading.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 	import HeroSection from '$lib/components/organisms/HeroSection.svelte';
 	import ProductGrid from '$lib/components/organisms/ProductGrid.svelte';
