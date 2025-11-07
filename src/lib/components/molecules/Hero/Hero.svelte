@@ -67,66 +67,90 @@
 				src={imgSrc.mobile}
 				alt={title}
 				loading="lazy"
-				class={['absolute inset-0 object-cover object-top', 'h-full w-full'].join(' ')}
+				class={['absolute inset-0 object-cover object-top', 'h-full w-full']}
 			/>
 		</picture>
 	{/if}
-	<div
+	<div   
 		class={[
 			`absolute bottom-0  w-full bg-gradient-to-t z-10 flex flex-col`,
-			`${hasDetails ? 'h-3/4 md:h-3/5' : 'h-2/5'}`
+			`${hasDetails ? 'h-2/5 md:h-3/5' : 'h-2/5'}`,
+            `[background:linear-gradient(to_top,var(--bg-color),var(--bg-color),rgb(15_23_42_/_0))]`
 		].join(' ')}
-		style="--tw-gradient-stops: {backgroundColor}, {backgroundColor}, rgb(15 23 42 / 0)"
+        style="--bg-color: {backgroundColor}"
 	></div>
 	<div
-		class="flex flex-col items-center absolute bottom-0 md:w-1/3 p-4 h-fit z-20 gap-4"
+		class="flex flex-col items-center absolute bottom-0 left-0 right-0 w-full md:w-auto md:left-1/2 md:transform md:-translate-x-1/2 md:max-w-2xl lg:max-w-4xl px-6 md:px-8 lg:px-12 py-8 md:py-10 lg:py-16 pb-12 md:pb-16 h-fit z-20 gap-6 md:gap-8"
 		style="color: var(--text-color);"
 	>
+		{#if details}
+			<div class="inline-flex items-center px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wide uppercase bg-white/10 backdrop-blur-sm">
+				<span class="text-color opacity-90">{details}</span>
+			</div>
+		{/if}
 		{#if title}
-			<h1 class="text-color text-center font-black text-3xl md:text-5xl">
+			<h1 class="text-color text-center font-black text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight max-w-4xl">
 				{title}
 			</h1>
 		{/if}
-		{#if details}<h3 class="text-color text-xs opacity-80">{details}</h3>{/if}
+		{#if overview}
+			<p
+				class={`text-color text-center font-light text-base md:text-lg leading-relaxed max-w-2xl opacity-95 ${
+					lineClampEnabled && 'line-clamp-4'
+				}`}
+			>
+				{overview}
+			</p>
+			{#if truncated}
+				<button
+					onclick={toggleLineClamp}
+					class="mt-2 text-sm font-semibold opacity-70 hover:opacity-100 transition-opacity duration-300"
+				>
+					{lineClampEnabled ? 'Lire plus' : 'Réduire'}
+				</button>
+			{/if}
+		{/if}
 		{#if callToActions}
 			<div
-				class="w-full mt-6 sm:mt-10 flex flex-auto flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 text-xl"
+				class="w-full flex flex-col md:flex-row justify-center gap-4 md:gap-6 pt-4 md:pt-2"
 			>
 				{#each callToActions as cta, i (i)}
-					<Button
-						color={cta.color}
-						size="large"
-						onClick={() => (location.href = cta.url)}
-					>
-						<h3 class="flex items-center text-xl">
-							{#if cta.icon}
-								<svg
-									class="flex-none stroke-[5] h-6 w-6"
-									stroke-width="2"
-									viewBox="0 0 50 50"
-								>
-									<path d={cta.icon} />
-								</svg>
-							{/if}
-							<span>{cta.label}</span>
-						</h3>
-					</Button>
+					<div class="transform transition-transform duration-300 hover:scale-105">
+						<Button
+							color={cta.color}
+							size="large"
+							onClick={() => (location.href = cta.url)}
+						>
+							<div class="flex items-center gap-3 text-base md:text-lg">
+								{#if cta.icon}
+									<svg
+										class="flex-none stroke-[2] h-5 w-5 md:h-6 md:w-6"
+										stroke-width="2"
+										viewBox="0 0 50 50"
+									>
+										<path d={cta.icon} />
+									</svg>
+								{/if}
+								<span>{cta.label}</span>
+							</div>
+						</Button>
+					</div>
 				{/each}
 			</div>
 		{/if}
-		{#if overview}
-			<button
-				class={`relative flex flex-col ${!truncated && 'cursor-default'}`}
-				onclick={toggleLineClamp}
-			>
-				<p
-					class={`flex-1 text-color text-justify font-light ${
-						lineClampEnabled && 'line-clamp-5'
-					}`}
-				>
-					{overview}
-				</p>
-			</button>
-		{/if}
 	</div>
 </div>
+
+<style>
+	:global(.text-color) {
+		color: var(--text-color);
+		transition: color 300ms ease;
+	}
+
+	/* Smooth scroll momentum on iOS */
+	@supports (backdrop-filter: blur(1px)) {
+		:global(div[class*="backdrop-blur"]) {
+			-webkit-backdrop-filter: blur(8px);
+		}
+	}
+</style>
