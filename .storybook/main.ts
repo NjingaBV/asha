@@ -1,5 +1,10 @@
 import type { StorybookConfig } from '@storybook/svelte-vite';
 import tailwindcss from '@tailwindcss/vite';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const config: StorybookConfig = {
 	stories: ['../src/stories/*.mdx', '../src/stories/*.stories.@(js|ts|svelte)'],
@@ -19,6 +24,14 @@ const config: StorybookConfig = {
 	async viteFinal(config) {
 		config.plugins = config.plugins || [];
 		config.plugins.push(tailwindcss());
+
+		// Configure SvelteKit aliases for Storybook
+		config.resolve = config.resolve || {};
+		config.resolve.alias = {
+			...config.resolve.alias,
+			$lib: resolve(__dirname, '../src/lib')
+		};
+
 		return config;
 	}
 };
