@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const config: StorybookConfig = {
-	stories: ['../src/stories/*.mdx', '../src/stories/*.stories.@(js|ts|svelte)'],
+	stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(js|ts|svelte)'],
 	addons: [
 		'@storybook/addon-svelte-csf',
 		'@chromatic-com/storybook',

@@ -1,2 +1,2 @@
-export * from './Shelf';
-export * from './WatchLanding';
+export * from './Shelf.svelte';
+export * from './WatchLanding.svelte';
