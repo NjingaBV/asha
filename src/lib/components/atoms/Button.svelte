@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
 	export type ButtonVariant = 'primary' | 'ghost' | 'outline' | 'solid';
 	export type ButtonSize = 'sm' | 'md' | 'lg' | 'small' | 'medium' | 'large';
 	export type ButtonTone = 'primary' | 'secondary' | 'neutral';
@@ -13,6 +15,7 @@
 		onClick?: (event: MouseEvent) => void;
 		className?: string;
 		rounded?: boolean;
+		children?: Snippet;
 	}
 
 	let {
@@ -24,7 +27,8 @@
 		tone,
 		onClick,
 		className = '',
-		rounded = false
+		rounded = false,
+		children
 	}: Props = $props();
 
 	// Normalize size aliases
@@ -88,5 +92,5 @@
 	{disabled}
 	onclick={handleClick}
 >
-	<slot />
+	{@render children?.()}
 </button>
