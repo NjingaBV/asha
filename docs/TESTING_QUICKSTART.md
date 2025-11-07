@@ -1,6 +1,6 @@
 # 🚀 Testing Quick Start - Démarrage Rapide
 
-Ajoutez des tests d'interaction à vos composants en **5 minutes**!
+Démarrez les tests de vos composants rapidement!
 
 ---
 
@@ -13,161 +13,134 @@ npm run storybook
 # 2. Ouvrir une story
 # Exemple: Atoms > Button > Default
 
-# 3. Vous verrez un panneau "Interactions"
-# Vos tests affichent des ✅ si ça marche!
+# 3. Vérifier l'accessibilité
+# Cliquez sur l'onglet "Accessibility" pour les tests A11y
+```
+
+**Note:** Cette configuration utilise Storybook 10 Svelte avec des stories bien documentées et des tests d'accessibilité intégrés.
+
+---
+
+## 📋 Étape 1: Comprendre Storybook + A11y
+
+Avec Storybook 10 Svelte, nous avons:
+
+✅ **Stories bien documentées** - Chaque composant est décrit et visualisé
+✅ **Tests d'accessibilité (A11y)** - Contrôle automatique WCAG 2.1
+✅ **Visual regression (Chromatic)** - Intégré via addon
+✅ **Documentation intégrée** - Docs auto-générées par Storybook
+
+## 🎯 Étape 2: Visualiser les Stories
+
+```bash
+# Lancez Storybook
+npm run storybook
+
+# Ouvrez http://localhost:6006
+# Explorez: Atoms > Button > Default
 ```
 
 ---
 
-## 📋 Étape 1: Importer les outils
+## 🔍 Étape 3: Vérifier l'Accessibilité
 
-Ouvrez `src/stories/atoms/[YourComponent].stories.ts` et ajoutez:
+Dans Storybook:
 
-```typescript
-import { expect, userEvent, within } from '@storybook/test';
+1. Ouvrez une story (ex: **Button > Default**)
+2. Cliquez sur l'onglet **"Accessibility"** en bas à gauche
+3. Vous verrez les résultats des tests A11y:
+
 ```
+✅ Passing: heading hierarchy
+✅ Passing: form field labels
+✅ Passing: color contrast
+❌ Failing: (s'il y a des erreurs)
+```
+
+**Addon A11y** utilise `axe-core` pour vérifier:
+- Les labels manquants
+- Le contraste des couleurs
+- La hiérarchie des headings
+- Les attributs ARIA
+- Et plus...
 
 ---
 
-## 🎯 Étape 2: Ajouter un play() à une story
+## 🛠️ Étape 4: Documentation
 
-Trouvez une story et ajoutez `play()`:
+Chaque story inclut:
+
+✅ **Description du composant** - Cas d'usage et meilleures pratiques
+✅ **Args Controls** - Modifier les props en direct dans Storybook
+✅ **Multiple Variants** - Voir tous les états (disabled, loading, etc.)
+✅ **Responsive Preview** - Vérifier sur différentes résolutions
+
+---
+
+## 🎨 Étape 5: Contribuer de Nouvelles Stories
+
+Pour ajouter des tests à un nouveau composant:
 
 ```typescript
-export const Default: Story = {
-  args: { /* ... */ },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+import type { Meta, StoryObj } from '@storybook/sveltekit';
+import MyComponent from './MyComponent.svelte';
 
-    // ✅ Voilà! Vos premiers tests!
+const meta = {
+  title: 'Atoms/MyComponent',
+  component: MyComponent,
+  tags: ['autodocs'],  // ← Auto-génère la documentation!
+  parameters: {
+    docs: {
+      description: {
+        component: 'Description and usage...'
+      }
+    }
+  },
+  argTypes: {
+    prop1: { control: 'text', description: '...' },
+    prop2: { control: 'select', options: [...] }
   }
+} satisfies Meta<typeof MyComponent>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: { prop1: 'value', prop2: 'value' }
+};
+
+export const Variant: Story = {
+  args: { prop1: 'different', prop2: 'value' }
 };
 ```
 
----
-
-## 🔍 Étape 3: Tester le rendu (copier-coller)
-
-### Pour une **Button**:
-```typescript
-play: async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole('button');
-
-  await expect(button).toBeInTheDocument();
-  await expect(button).toBeVisible();
-}
-```
-
-### Pour une **Badge**:
-```typescript
-play: async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const badge = canvas.getByText('New');
-
-  await expect(badge).toBeInTheDocument();
-  await expect(badge).toBeVisible();
-}
-```
-
-### Pour une **Heading**:
-```typescript
-play: async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const heading = canvas.getByRole('heading', { level: 1 });
-
-  await expect(heading).toBeInTheDocument();
-  await expect(heading.tagName).toBe('H1');
-}
-```
+**Résultat:** ✅ Story documentée et vérifiable dans Storybook
 
 ---
 
-## 🖱️ Étape 4: Ajouter des interactions
-
-### Tester un **clic**:
-```typescript
-const button = canvas.getByRole('button');
-await userEvent.click(button);
-await expect(button).toHaveFocus();
-```
-
-### Tester une **saisie** dans un input:
-```typescript
-const input = canvas.getByLabelText('Email');
-await userEvent.type(input, 'test@example.com');
-await expect(input).toHaveValue('test@example.com');
-```
-
-### Tester le **clavier**:
-```typescript
-await userEvent.tab();  // Focus l'élément suivant
-await userEvent.keyboard('{Enter}');  // Appuyer sur Entrée
-await userEvent.keyboard('{Escape}');  // Appuyer sur Échapper
-```
-
----
-
-## ♿ Étape 5: Tester l'accessibilité (optionnel mais important!)
-
-```typescript
-// Vérifier que le bouton a un nom accessible
-await expect(button).toHaveAccessibleName('Click me');
-
-// Vérifier que l'input a un label
-const input = canvas.getByLabelText('Email');
-await expect(input).toBeInTheDocument();
-
-// Vérifier que le heading est correct
-const heading = canvas.getByRole('heading', { level: 1 });
-await expect(heading).toBeInTheDocument();
-```
-
----
-
-## 📊 Résultats
-
-Une fois que vous lancez `npm run storybook`, vous verrez:
-
-```
-Interactions Panel:
-✅ renders button  (si ça marche)
-❌ renders button  (si ça échoue)
-```
-
----
-
-## 🎨 Exemples Complets
+## 🎨 Exemples de Stories
 
 ### Button - Exemple Complet
 ```typescript
 export const Default: Story = {
-  args: { children: 'Click me' },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByRole('button', { name: /click me/i });
-
-    // Rendu
-    await expect(button).toBeInTheDocument();
-    await expect(button).toBeVisible();
-
-    // Interaction
-    await userEvent.click(button);
-    await expect(button).toHaveFocus();
-
-    // Accessibilité
-    await expect(button).toHaveAccessibleName('Click me');
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: 'Click me'
   }
 };
 
 export const Disabled: Story = {
-  args: { disabled: true, children: 'Disabled' },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByRole('button');
+  args: {
+    disabled: true,
+    children: 'Disabled'
+  }
+};
 
-    // État
-    await expect(button).toBeDisabled();
+export const Loading: Story = {
+  args: {
+    loading: true,
+    children: 'Loading...'
   }
 };
 ```
@@ -175,159 +148,112 @@ export const Disabled: Story = {
 ### Badge - Exemple Simple
 ```typescript
 export const Primary: Story = {
-  args: { label: 'New' },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const badge = canvas.getByText('New');
+  args: {
+    label: 'New',
+    color: 'primary',
+    variant: 'solid'
+  }
+};
 
-    await expect(badge).toBeInTheDocument();
-    await expect(badge).toBeVisible();
+export const Success: Story = {
+  args: {
+    label: 'Available',
+    color: 'success'
   }
 };
 ```
 
-### Form Input - Avec Validation
+### Heading - Sémantique HTML
 ```typescript
-export const Default: Story = {
-  args: { label: 'Email', type: 'email' },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const input = canvas.getByLabelText('Email');
+export const H1: Story = {
+  args: {
+    level: 1,
+    size: '6xl',
+    children: 'Main Title'
+  }
+};
 
-    // Saisie
-    await userEvent.type(input, 'test@example.com');
-    await expect(input).toHaveValue('test@example.com');
-
-    // Accessibilité
-    await expect(input).toHaveAccessibleName('Email');
+export const H2: Story = {
+  args: {
+    level: 2,
+    size: '5xl',
+    children: 'Section Title'
   }
 };
 ```
 
 ---
 
-## 🔎 Trouver les Bons Sélecteurs
+## ✅ Checklist pour Tester
 
-Si vous ne savez pas quel sélecteur utiliser:
+- [ ] Lancer `npm run storybook`
+- [ ] Ouvrir http://localhost:6006
+- [ ] Consulter les stories (Atoms > Button > Default)
+- [ ] Cliquer sur "Accessibility" tab en bas à gauche
+- [ ] Vérifier que les tests A11y passent ✅
+- [ ] Modifier les args et vérifier les changements
+- [ ] Consulter la documentation de chaque composant
 
-```typescript
-// Pour un bouton
-canvas.getByRole('button', { name: /your text/i })
+---
 
-// Pour un lien
-canvas.getByRole('link', { name: /your text/i })
+## 📚 Types de Vérifications
 
-// Pour un heading
-canvas.getByRole('heading', { name: /your text/i })
+### 1. Documentation (Auto-généré)
+Chaque story crée une page docs Storybook avec:
+- Description du composant
+- Table des props (argTypes)
+- Tous les variants
+- Contrôles interactifs
 
-// Pour un input avec label
-canvas.getByLabelText('Email')
+### 2. Accessibilité (A11y Tab)
+Utilise l'addon A11y pour vérifier:
+- ✅ Hiérarchie correcte
+- ✅ Labels présents
+- ✅ Contraste des couleurs
+- ✅ Attributs ARIA
 
-// Pour un texte quelconque
-canvas.getByText('Your text')
+### 3. Visual Regression (Chromatic)
+Avec `npm run build-storybook`:
+- Snapshots automatiques
+- Détection de changements visuels
+- Comparaison avant/après
 
-// Si rien ne marche, utilisez debug() pour voir le DOM:
-canvas.debug()
+---
+
+## 🚀 Prochaines Étapes
+
+1. Lancez Storybook: `npm run storybook`
+2. Explorez les stories existantes (Button, Badge, Heading)
+3. Cliquez sur "Accessibility" pour voir les tests A11y
+4. Modifiez les args pour tester différents états
+5. Créez vos propres stories pour nouveaux composants
+
+**Pattern à suivre:**
+```
+1. Importer: import type { Meta, StoryObj } from '@storybook/sveltekit'
+2. Créer meta avec description et argTypes
+3. Exporter stories avec différents args
+4. Ajouter tags: ['autodocs'] pour auto-docs
 ```
 
 ---
 
-## ✅ Checklist Rapide
+## 📚 Ressources
 
-- [ ] Importer `{ expect, userEvent, within } from '@storybook/test'`
-- [ ] Ajouter `play()` async à une story
-- [ ] Vérifier le rendu: `getByRole()` + `toBeInTheDocument()`
-- [ ] Tester une interaction: `click()`, `type()`, etc.
-- [ ] Tester l'accessibilité: `toHaveAccessibleName()`
-- [ ] Lancer `npm run storybook` et voir les ✅
+- **Storybook Docs**: https://storybook.js.org/docs/
+- **A11y Testing**: https://www.deque.com/axe/
+- **Exemples réels**: `src/stories/atoms/Button.stories.ts`
+- **Full Strategy**: `docs/TESTING_STRATEGY.md`
 
 ---
 
-## 📝 Patterns Les Plus Courants
+## 🎉 C'est Prêt!
 
-```typescript
-// Pattern 1: Test simple de rendu
-const element = canvas.getByRole('...');
-await expect(element).toBeInTheDocument();
+Storybook fonctionne avec:
+✅ 40+ composants documentés
+✅ Tests d'accessibilité intégrés
+✅ Stories avec variantes
+✅ Documentation auto-générée
+✅ Prêt pour Chromatic visual regression
 
-// Pattern 2: Tester un clic
-await userEvent.click(element);
-await expect(element).toHaveFocus();
-
-// Pattern 3: Tester une saisie
-await userEvent.type(input, 'texte');
-await expect(input).toHaveValue('texte');
-
-// Pattern 4: Tester l'état
-await expect(element).toBeDisabled();
-await expect(element).toHaveAttribute('disabled');
-
-// Pattern 5: Tester l'accessibilité
-await expect(element).toHaveAccessibleName('name');
-await expect(element).toHaveAttribute('aria-label', 'label');
-```
-
----
-
-## 🆘 Problèmes Courants
-
-### "Element not found"
-```typescript
-// ❌ Mauvais
-canvas.getByText('Click')  // Sensible à la casse
-
-// ✅ Bon
-canvas.getByRole('button', { name: /click/i })  // Case-insensitive
-```
-
-### "Role button not found"
-```typescript
-// Vérifiez que c'est vraiment un bouton
-// Ou utilisez un autre sélecteur:
-canvas.getByText('My Button')
-```
-
-### Les tests ne s'exécutent pas
-```typescript
-// ❌ Mauvais
-play: ({ canvasElement }) => {  // Pas async!
-
-// ✅ Bon
-play: async ({ canvasElement }) => {
-```
-
----
-
-## 🎯 Prochain Pas
-
-1. ✅ Lisez ce quick start
-2. ✅ Ouvrez `src/stories/atoms/Button.stories.ts`
-3. ✅ Lancez `npm run storybook`
-4. ✅ Trouvez la story "Default"
-5. ✅ Voyez comment les tests ✅ apparaissent
-6. ✅ Copiez-collez un pattern pour votre composant
-7. ✅ Adaptez pour votre cas d'usage
-
-**Temps estimé:** 5-10 minutes
-
----
-
-## 📚 Besoin d'aide?
-
-- **Patterns détaillés**: Voir `docs/TESTING_EXAMPLES.md`
-- **Stratégie complète**: Voir `docs/TESTING_STRATEGY.md`
-- **Implémentation**: Voir `docs/TESTING_IMPLEMENTATION.md`
-- **Exemples réels**: Voir `src/stories/atoms/Button.stories.ts`
-
----
-
-## 🚀 Bon à savoir
-
-- Les tests s'exécutent **automatiquement** dans Storybook
-- Pas besoin de ligne de commande supplémentaire
-- Les ✅ apparaissent dans le panneau "Interactions"
-- Les ❌ indiquent un problème avec le composant ou le test
-
----
-
-Allez-y! Testez votre premier composant maintenant! 🎉
+Lancez `npm run storybook` et explorez maintenant! 🚀

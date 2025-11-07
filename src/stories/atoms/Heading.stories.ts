@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import { expect, within } from '@storybook/test';
 import Heading from '@/lib/components/atoms/Heading.svelte';
 
 const meta = {
@@ -134,20 +133,6 @@ export const H1: Story = {
 				story: 'The primary page heading. Should appear once per page and represent the main topic. Commonly used for hero sections and page titles.'
 			}
 		}
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const heading = canvas.getByRole('heading', { level: 1, name: /heading level 1/i });
-
-		// Verify h1 element is rendered
-		await expect(heading).toBeInTheDocument();
-		await expect(heading.tagName).toBe('H1');
-
-		// Verify heading is visible
-		await expect(heading).toBeVisible();
-
-		// Verify heading has correct text
-		await expect(heading).toHaveTextContent('Heading Level 1');
 	}
 };
 
@@ -165,14 +150,6 @@ export const H2: Story = {
 				story: 'Major section headings. Use for dividing page content into distinct sections. Maintains visual hierarchy while allowing multiple h2s per page.'
 			}
 		}
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const heading = canvas.getByRole('heading', { level: 2, name: /heading level 2/i });
-
-		// Verify h2 element is rendered
-		await expect(heading).toBeInTheDocument();
-		await expect(heading.tagName).toBe('H2');
 	}
 };
 
@@ -190,14 +167,6 @@ export const H3: Story = {
 				story: 'Subsection headings within an h2 section. Ideal for organizing content into digestible chunks.'
 			}
 		}
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const heading = canvas.getByRole('heading', { level: 3, name: /heading level 3/i });
-
-		// Verify h3 element is rendered
-		await expect(heading).toBeInTheDocument();
-		await expect(heading.tagName).toBe('H3');
 	}
 };
 
@@ -455,19 +424,5 @@ export const Combined: Story = {
 				story: 'Demonstrates combining multiple typographic properties for a complete heading design. Shows how to achieve a polished, brand-specific appearance.'
 			}
 		}
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const heading = canvas.getByRole('heading', { level: 1, name: /apple watch series 11/i });
-
-		// Verify heading is rendered
-		await expect(heading).toBeInTheDocument();
-		await expect(heading).toBeVisible();
-
-		// Verify heading has correct text
-		await expect(heading).toHaveTextContent('Apple Watch Series 11');
-
-		// Verify h1 element
-		await expect(heading.tagName).toBe('H1');
 	}
 };

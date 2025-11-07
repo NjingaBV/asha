@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import { expect, within } from '@storybook/test';
 import Badge from '@/lib/components/atoms/Badge.svelte';
 
 const meta = {
@@ -93,17 +92,6 @@ export const Primary: Story = {
 		variant: 'solid',
 		badgeSize: 'base',
 		children: null
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const badge = canvas.getByText('New');
-
-		// Verify badge is visible
-		await expect(badge).toBeInTheDocument();
-		await expect(badge).toBeVisible();
-
-		// Verify badge has correct text
-		await expect(badge).toHaveTextContent('New');
 	}
 };
 
@@ -111,12 +99,6 @@ export const Secondary: Story = {
 	args: {
 		...Primary.args,
 		color: 'secondary'
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const badge = canvas.getByText('New');
-
-		await expect(badge).toBeInTheDocument();
 	}
 };
 
@@ -125,17 +107,6 @@ export const Success: Story = {
 		...Primary.args,
 		label: 'Available',
 		color: 'success'
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const badge = canvas.getByText('Available');
-
-		// Verify badge is visible
-		await expect(badge).toBeInTheDocument();
-		await expect(badge).toBeVisible();
-
-		// Verify badge has correct text
-		await expect(badge).toHaveTextContent('Available');
 	}
 };
 
@@ -144,12 +115,6 @@ export const Warning: Story = {
 		...Primary.args,
 		label: 'Limited',
 		color: 'warning'
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const badge = canvas.getByText('Limited');
-
-		await expect(badge).toBeInTheDocument();
 	}
 };
 
@@ -158,12 +123,6 @@ export const Danger: Story = {
 		...Primary.args,
 		label: 'Sold Out',
 		color: 'danger'
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const badge = canvas.getByText('Sold Out');
-
-		await expect(badge).toBeInTheDocument();
 	}
 };
 

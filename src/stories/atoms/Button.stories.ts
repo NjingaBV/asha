@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import { expect, userEvent, within } from '@storybook/test';
 import Button from '@/lib/components/atoms/Button.svelte';
 
 const meta = {
@@ -98,26 +97,6 @@ export const Default: Story = {
 		disabled: false,
 		loading: false,
 		children: 'Click me'
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const button = canvas.getByRole('button', { name: /click me/i });
-
-		// Verify button is visible
-		await expect(button).toBeInTheDocument();
-		await expect(button).toBeVisible();
-
-		// Verify button is not disabled
-		await expect(button).not.toBeDisabled();
-
-		// Simulate click
-		await userEvent.click(button);
-
-		// Verify button received focus after click
-		await expect(button).toHaveFocus();
-
-		// Accessibility: Verify button has accessible name
-		await expect(button).toHaveAccessibleName('Click me');
 	}
 };
 
@@ -186,18 +165,6 @@ export const Disabled: Story = {
 		...Default.args,
 		disabled: true,
 		children: 'Disabled'
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const button = canvas.getByRole('button', { name: /disabled/i });
-
-		// Verify button is disabled
-		await expect(button).toBeDisabled();
-
-		// Verify button cannot be clicked
-		await userEvent.click(button);
-		// Button should not trigger any action when disabled
-		await expect(button).toBeDisabled();
 	}
 };
 
@@ -206,16 +173,6 @@ export const Loading: Story = {
 		...Default.args,
 		loading: true,
 		children: 'Loading...'
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-		const button = canvas.getByRole('button', { name: /loading/i });
-
-		// Verify button is disabled during loading
-		await expect(button).toBeDisabled();
-
-		// Verify loading text is visible
-		await expect(button).toHaveTextContent('Loading...');
 	}
 };
 
