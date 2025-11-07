@@ -14,7 +14,9 @@
 			"Bash(cat:*)",
 			"Bash(npm run lint:*)",
 			"Bash(npx eslint:*)",
-			"Bash(npx prettier:*)"
+			"Bash(npx prettier:*)",
+			"Bash(git commit:*)",
+			"Bash(git log:*)"
 		],
 		"deny": [],
 		"ask": []
