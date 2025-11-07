@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Logo from '$lib/components/molecules/Logo/Logo.svelte';
+	import Logo from '$lib/components/molecules/Logo.svelte';
 	import type { LogoType } from '$lib/models';
 
 	let {
