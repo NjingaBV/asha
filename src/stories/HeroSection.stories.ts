@@ -15,33 +15,28 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
-		title: 'Apple Watch',
-		subtitle: 'Nouveau',
+		title: 'Les Dernières Sorties Musicales',
+		subtitle: 'Découvrez',
 		description:
-			"Profitez de 3 mois d'abonnement à Apple Fitness+ pour l'achat d'une Apple Watch. La montre ultime pour votre santé.",
+			'Explorez les dernières tendances afro-urbaines, hip hop, r&b, et bien plus. Des sélections curatées des meilleurs artistes africains francophones et émergents.',
 		primaryAction: {
-			label: 'Acheter une Apple Watch',
+			label: 'Écouter Maintenant',
 			onClick: () => console.log('Primary action clicked')
 		},
 		secondaryAction: {
-			label: 'En savoir plus',
+			label: 'Découvrir Plus',
 			onClick: () => console.log('Secondary action clicked')
 		},
 		products: [
 			{
-				name: 'Apple Watch Series 11',
-				image: 'https://via.placeholder.com/300x300/2563eb/ffffff?text=Series+11',
-				badge: 'Nouveau'
+				name: "L'Afro Club",
+				image: 'https://images.prismic.io/djfacemakerv2/afca42bc-3cc1-4476-8b24-97bdafdad556_FMK+RFI.jpg?auto=compress,format&h=300&w=300&fit=crop',
+				badge: 'En Direct'
 			},
 			{
-				name: 'Apple Watch SE 3',
-				image: 'https://via.placeholder.com/300x300/64748b/ffffff?text=SE+3',
-				badge: 'Nouveau'
-			},
-			{
-				name: 'Apple Watch Ultra 3',
-				image: 'https://via.placeholder.com/300x300/1e293b/ffffff?text=Ultra+3',
-				badge: 'Nouveau'
+				name: 'Urban Xra',
+				image: 'https://images.prismic.io/djfacemakerv2/468e74c9-d158-4fe8-b43b-7aa2f62e942b_Urban+Xtra.png?auto=compress,format&h=300&w=300&fit=crop',
+				badge: 'Populaire'
 			}
 		]
 	}
@@ -51,15 +46,52 @@ export const WithoutProducts: Story = {
 	args: {
 		...Default.args,
 		products: [],
-		title: 'Découvrez Apple Watch',
-		subtitle: undefined
+		title: 'Turbans Modulables',
+		subtitle: undefined,
+		description: 'Découvrez notre collection exclusive de turbans modulables. Qualité premium, styles contemporains et confortables pour tous les moments de votre vie.',
+		primaryAction: {
+			label: 'Explorez la Collection',
+			onClick: () => console.log('Primary action clicked')
+		},
+		secondaryAction: {
+			label: 'Nous Contactez',
+			onClick: () => console.log('Secondary action clicked')
+		}
 	}
 };
 
 export const WithBackground: Story = {
 	args: {
-		...Default.args,
+		title: 'Collection Njinga',
+		subtitle: 'Exclusif',
+		description:
+			'Nos turbans modulables combinent tradition et modernité. Chaque pièce est confectionnée avec soin pour offrir confort et style intemporel.',
+		primaryAction: {
+			label: 'Acheter Maintenant',
+			onClick: () => console.log('Primary action clicked')
+		},
+		secondaryAction: {
+			label: 'Voir la Galerie',
+			onClick: () => console.log('Secondary action clicked')
+		},
 		backgroundImage:
-			'https://via.placeholder.com/1920x1080/1e293b/ffffff?text=Apple+Watch+Background'
+			'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+		products: [
+			{
+				name: 'Doré',
+				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+				badge: 'Populaire'
+			},
+			{
+				name: 'Panthère',
+				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
+				badge: 'Nouveau'
+			},
+			{
+				name: 'Malabo',
+				image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/TurbanflexibleMalabo_large.jpg?v=1621175836',
+				badge: 'Bestseller'
+			}
+		]
 	}
 };
