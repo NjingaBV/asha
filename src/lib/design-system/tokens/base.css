@@ -1,20 +1,19 @@
 :root {
-    /* Palette neutre */
-    --ds-color-bg: 10 10 10;          /* fond très sombre */
-    --ds-color-surface: 26 26 26;
-    --ds-color-border: 64 64 64;
-    --ds-color-text: 255 255 255;
-  
-    /* Accent Apple Watch-like */
-    --ds-color-primary: 0 199 190;
-    --ds-color-primary-soft: 0 199 190;
-  
-    /* Typo */
-    --ds-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text";
-  
-    /* Radius & spacing */
-    --ds-radius-lg: 14px;
-    --ds-radius-xl: 18px;
-    --ds-radius-2xl: 24px;
+	/* Palette neutre */
+	--ds-color-bg: 10 10 10; /* fond très sombre */
+	--ds-color-surface: 26 26 26;
+	--ds-color-border: 64 64 64;
+	--ds-color-text: 255 255 255;
+
+	/* Accent Apple Watch-like */
+	--ds-color-primary: 0 199 190;
+	--ds-color-primary-soft: 0 199 190;
+
+	/* Typo */
+	--ds-font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text';
+
+	/* Radius & spacing */
+	--ds-radius-lg: 14px;
+	--ds-radius-xl: 18px;
+	--ds-radius-2xl: 24px;
 }
-  
