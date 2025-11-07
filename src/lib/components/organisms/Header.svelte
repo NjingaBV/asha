@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import Hamburger from '$lib/components/atoms/Hamburger.svelte';
-	import Logo from '$lib/components/molecules/Logo/Logo.svelte';
-	import Nav from '$lib/components/molecules/Nav/Nav.svelte';
+    import Nav from '$lib/components/atoms/Nav.svelte';
+	import Logo from '$lib/components/molecules/Logo.svelte';
+	
 
 	import type { LinkType, LogoType } from '$lib/models';
 

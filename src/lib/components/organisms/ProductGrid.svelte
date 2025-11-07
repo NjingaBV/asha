@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ProductCard from '../../molecules/ProductCard.svelte';
+	import ProductCard from '$lib/components/molecules/ProductCard.svelte';
 
 	let {
 		products = [],

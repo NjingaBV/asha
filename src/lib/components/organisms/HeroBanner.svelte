@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Eyebrow from '$lib/components/atoms/Eyebrow.svelte';
-	import { CTAGroup } from '$lib/components/molecules';
+	import CTAGroup from '$lib/components/molecules/CTAGroup.svelte';
 
 	let {
 		eyebrow = null,
