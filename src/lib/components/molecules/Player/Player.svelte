@@ -52,6 +52,8 @@
 				return Youtube;
 		}
 	};
+
+	let Component = $derived(getComponent(url));
 </script>
 
 <div class="relative flex w-full aspect-[16/9] top-0 z-10 items-center justify-center">
@@ -62,8 +64,8 @@
 				<path d="M 10 5.25 L 10 44.746094 L 43.570313 25 Z" />
 			</svg>
 		</button>
-	{:else}
-		<svelte:component this={getComponent(url)} {videoId} bind:isPlayerReady />
+	{:else if Component}
+		<Component {videoId} bind:isPlayerReady />
 	{/if}
 </div>
 <div class={['p-4 rounded-b-xl flex flex-col'].join(' ')}>

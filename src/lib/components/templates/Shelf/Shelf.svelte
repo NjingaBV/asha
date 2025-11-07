@@ -56,8 +56,11 @@
 		<Nav headerMenu={false} links={navLinks} />
 	{/if}
 	{#each slices as slice, index}
+		{@const Component = getComponent(slice)}
 		<section class="w-full h-full" style="background-color:{bgColor(index)}">
-			<svelte:component this={getComponent(slice)} {...slice} />
+			{#if Component}
+				<Component {...slice} />
+			{/if}
 		</section>
 	{/each}
 </main>
