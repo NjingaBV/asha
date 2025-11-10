@@ -7,7 +7,7 @@
 		title = '',
 		subtitle = '',
 		overview = '',
-		imgSrc = { desktop: '', tablet: '', mobile: '' },
+		imgSrc,
 		buttonName = '',
 		buttonLink = '',
 		backgroundColor = '#000000',
@@ -16,14 +16,14 @@
 		rounded = true,
 		isVideo = false
 	}: {
-		title: string;
-		subtitle: string;
-		overview: string;
-		imgSrc: ImageType;
-		buttonName: string;
-		buttonLink: string;
-		backgroundColor: `#${string}`;
-		mixColor: boolean;
+		title?: string;
+		subtitle?: string;
+		overview?: string;
+		imgSrc?: ImageType;
+		buttonName?: string;
+		buttonLink?: string;
+		backgroundColor?: `#${string}`;
+		mixColor?: boolean;
 		textOnImage?: boolean;
 		rounded?: boolean;
 		isVideo?: boolean;
@@ -34,18 +34,16 @@
 
 <Linkable {isLinkable} link={buttonLink}>
 	<div
-		class={[
-			`relative max-h-screen transition-transform duration-300 hover:scale-[1.02] ${rounded && 'rounded-2xl'}`,
-			`${
-				buttonName && imgSrc
-					? 'aspect-[4/5]'
-					: `${isVideo ? 'aspect-video' : 'aspect-square'}`
-			}`
-		].join(' ')}
+		class="relative max-h-screen transition-transform duration-300 hover:scale-[1.02]"
+		class:rounded-2xl={rounded}
+		class:aspect-[4/5]={buttonName && imgSrc}
+		class:aspect-video={!buttonName && imgSrc && isVideo}
+		class:aspect-square={!buttonName && imgSrc && !isVideo}
 	>
 		<div class="flex flex-col h-full">
 			<div
-				class={`bg relative h-full w-full ${rounded && 'rounded-2xl'}`}
+				class="bg relative h-full w-full"
+				class:rounded-2xl={rounded}
 				style="--bg-color: {backgroundColor}"
 			>
 				{#if imgSrc}
@@ -62,21 +60,17 @@
 							src={imgSrc.mobile}
 							alt={title}
 							loading="lazy"
-							class={[
-								`absolute inset-0 object-cover object-center md:object-top h-full w-full`,
-								`${mixColor && 'mix-blend-screen'} ${rounded && 'rounded-2xl'}`
-							].join(' ')}
+							class="absolute inset-0 object-cover object-center md:object-top h-full w-full"
+							class:mix-blend-screen={mixColor}
+							class:rounded-2xl={rounded}
 						/>
 					</picture>
 				{/if}
 			</div>
 			{#if (buttonName || title) && textOnImage}
 				<div
-					class={[
-						'absolute w-full h-fit bottom-0',
-						`bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent`,
-						`p-6 md:p-8 ${rounded && 'rounded-b-2xl'} flex flex-col gap-3`
-					].join(' ')}
+					class="absolute w-full h-fit bottom-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent p-6 md:p-8 flex flex-col gap-3"
+					class:rounded-b-2xl={rounded}
 				>
 					{#if subtitle}
 						<p
@@ -87,9 +81,9 @@
 					{/if}
 					{#if title}
 						<h2
-							class={`text-white text-2xl md:text-4xl lg:text-5xl font-black leading-tight ${
-								subtitle ? 'text-left' : 'text-center'
-							}`}
+							class="text-white text-2xl md:text-4xl lg:text-5xl font-black leading-tight"
+							class:text-left={subtitle}
+							class:text-center={!subtitle}
 						>
 							{title}
 						</h2>
@@ -107,8 +101,10 @@
 								color={backgroundColor}
 								rounded={true}
 								fullWidth={true}
-								onClick={() => (location.href = buttonLink)}>{buttonName}</Button
+								href={buttonLink}
 							>
+								{buttonName}
+							</Button>
 						</div>
 					{/if}
 				</div>
@@ -117,7 +113,7 @@
 	</div>
 </Linkable>
 {#if (buttonName || title) && !textOnImage}
-	<div class={['p-6 md:p-8 rounded-b-2xl flex flex-col gap-3 bg-surface'].join(' ')}>
+	<div class="p-6 md:p-8 rounded-b-2xl flex flex-col gap-3 bg-surface">
 		{#if subtitle}
 			<p class="text-slate-600 text-sm md:text-base font-semibold tracking-wide uppercase">
 				{subtitle}
@@ -125,9 +121,9 @@
 		{/if}
 		{#if title}
 			<h2
-				class={`text-text text-xl md:text-2xl lg:text-3xl font-black leading-tight ${
-					subtitle ? 'text-left' : 'text-center'
-				}`}
+				class="text-text text-xl md:text-2xl lg:text-3xl font-black leading-tight"
+				class:text-left={subtitle}
+				class:text-center={!subtitle}
 			>
 				{title}
 			</h2>
@@ -145,8 +141,10 @@
 					color={backgroundColor}
 					rounded={true}
 					fullWidth={true}
-					onClick={() => (location.href = buttonLink)}>{buttonName}</Button
+					href={buttonLink}
 				>
+					{buttonName}
+				</Button>
 			</div>
 		{/if}
 	</div>
