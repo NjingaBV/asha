@@ -34,11 +34,15 @@
 
 <Linkable {isLinkable} link={buttonLink}>
 	<div
-		class="relative max-h-screen transition-transform duration-300 hover:scale-[1.02]"
-		class:rounded-2xl={rounded}
-		class:aspect-[4/5]={buttonName && imgSrc}
-		class:aspect-video={!buttonName && imgSrc && isVideo}
-		class:aspect-square={!buttonName && imgSrc && !isVideo}
+		class={[
+			'relative max-h-screen transition-transform duration-300 hover:scale-[1.02]',
+			rounded && 'rounded-2xl',
+			buttonName && imgSrc && 'aspect-[4/5]',
+			!buttonName && imgSrc && isVideo && 'aspect-video',
+			!buttonName && imgSrc && !isVideo && 'aspect-square'
+		]
+			.filter(Boolean)
+			.join(' ')}
 	>
 		<div class="flex flex-col h-full">
 			<div
