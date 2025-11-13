@@ -8,59 +8,19 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Tile
+				component: `
+# Tuile (Tile)
 
-A minimalist image tile molecule for displaying single or multiple images in an elegant, hover-responsive grid layout. Perfect for galleries, portfolios, and visual showcases.
+Une molécule de tuile d'image minimaliste pour afficher une ou plusieurs images dans une mise en page de grille élégante et réactive au survol. Parfait pour les galeries, les portfolios et les vitrines visuelles.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Multi-image Support**: Display array of images in tile format
-- **Hover Effects**: Smooth transitions on interaction
-- **Responsive Layouts**: Adapts to grid systems
-- **Clean Aesthetic**: Minimal styling for image focus
-- **Lazy Loading**: Performance-optimized image loading
-- **Aspect Ratio**: Maintains consistent proportions
-
-## Use Cases
-
-- **Image Galleries**: Photo collections and portfolios
-- **Portfolio Showcases**: Creative work displays
-- **Brand Assets**: Logo or asset galleries
-- **Before/After**: Comparison image sets
-- **Product Galleries**: Multiple product views
-- **Content Previews**: Visual content teasers
-
-## Best Practices
-
-- Use high-quality images (1000px+ wide)
-- Ensure consistent aspect ratios across images in array
-- Limit to 2-4 images per tile for optimal display
-- Consider image file sizes for performance
-- Use descriptive alt text for images
-
-## Accessibility Notes
-
-- Images include proper alt text
-- Semantic HTML structure
-- Keyboard navigation supported
-- Focus states on interactive elements
-
-## Composition
-
-- **Image elements**: Core display functionality
-- **Grid/flex layouts**: Responsive positioning
-- **Hover effects**: CSS transitions
-
-## Responsive Behavior
-
-- Images scale proportionally
-- Grid adapts to viewport size
-- Spacing adjusts for different screens
-- Maintains aspect ratios across breakpoints
-
-## Differences from Atoms
-
-Unlike simple Image atoms, Tile provides specialized layout handling for image arrays, grid positioning, and cohesive multi-image presentation with unified styling.`
+- **Support Multi-images**: Affiche un tableau d'images au format tuile.
+- **Effets de Survol**: Transitions fluides lors de l'interaction.
+- **Mises en Page Réactives**: S'adapte aux systèmes de grille.
+- **Esthétique Épurée**: Style minimal pour mettre l'accent sur l'image.
+- **Chargement Différé**: Chargement d'image optimisé pour la performance.
+`
 			}
 		}
 	},

@@ -8,15 +8,17 @@ const meta = {
 	parameters: {
 		docs: {
 			description: {
-				component: `# Image Component
+				component: `
+# Image
 
-Responsive image component with srcset support for different screen sizes.
+Un composant d'image responsive qui prend en charge des sources multiples (\`srcset\`) pour différentes tailles d'écran.
 
-## Features
-- Responsive image sources (desktop, tablet, mobile)
-- Object fit options
-- Lazy loading support
-- Accessibility with alt text`
+## Caractéristiques
+- Sources d'images responsives (ordinateur, tablette, mobile).
+- Options d'ajustement de l'objet (\`object-fit\`).
+- Prise en charge du chargement différé (\`lazy loading\`).
+- Accessibilité avec le texte alternatif (\`alt\`).
+`
 			}
 		}
 	},

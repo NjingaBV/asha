@@ -9,15 +9,17 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# MacShowcase Component
+				component: `
+# Vitrine Mac (MacShowcase)
 
-Grid of Mac product cards showcasing all available models.
+Grille de cartes de produits Mac présentant tous les modèles disponibles.
 
-## Features
-- Section title and description
-- Responsive grid layout (1-3 columns)
-- Multiple product cards
-- Consistent spacing and alignment`
+## Caractéristiques
+- Titre et description de la section.
+- Mise en page en grille réactive (1-3 colonnes).
+- Plusieurs cartes de produits.
+- Espacement et alignement cohérents.
+`
 			}
 		}
 	}

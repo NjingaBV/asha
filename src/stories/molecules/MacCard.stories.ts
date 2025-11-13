@@ -8,18 +8,20 @@ const meta = {
 	parameters: {
 		docs: {
 			description: {
-				component: `# MacCard Component
+				component: `
+# Carte Mac (MacCard)
 
-Product card component for displaying Mac models with image, title, price, and call-to-action links.
+Composant de carte produit pour afficher les modèles de Mac avec une image, un titre, un prix et des liens d'appel à l'action.
 
-## Features
-- Product image display
-- Title and tagline
-- Price display
-- Color swatches
-- "New" badge support
-- Learn more and Buy CTAs
-- Hover effects`
+## Caractéristiques
+- Affichage de l'image du produit.
+- Titre et slogan.
+- Affichage du prix.
+- Nuanciers de couleurs.
+- Prise en charge du badge "Nouveau".
+- Appels à l'action "En savoir plus" et "Acheter".
+- Effets de survol.
+`
 			}
 		}
 	},

@@ -8,16 +8,18 @@ const meta = {
 	parameters: {
 		docs: {
 			description: {
-				component: `# Link Component
+				component: `
+# Lien (Link)
 
-Apple-style link component with multiple variants. Supports icons and different visual styles.
+Un composant de lien stylisé à la manière d'Apple, avec plusieurs variantes. Il prend en charge les icônes et différents styles visuels.
 
-## Features
-- Multiple variants (default, cta, subtle)
-- Icon support
-- Accessible with ARIA labels
-- Target control for new tabs
-- Hover and focus states`
+## Caractéristiques
+- Plusieurs variantes (\`default\`, \`cta\`, \`subtle\`).
+- Prise en charge des icônes.
+- Accessible avec les labels ARIA.
+- Contrôle de la cible (\`target\`) pour les nouveaux onglets.
+- États de survol et de focus.
+`
 			}
 		}
 	},

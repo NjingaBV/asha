@@ -2,51 +2,24 @@ import type { Meta, StoryObj } from '@storybook/sveltekit';
 import FeatureItem from '@/lib/components/atoms/FeatureItem.svelte';
 
 const meta = {
-	title: 'Molecules/FeatureItem',
+	title: 'Atoms/FeatureItem',
 	component: FeatureItem,
 	parameters: {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Feature Item
+				component: `
+# Élément de Caractéristique (Feature Item)
 
-A compact feature list item component displaying an optional icon, title, and description in a horizontal layout.
+Un composant compact pour lister des caractéristiques, affichant une icône optionnelle, un titre et une description en disposition horizontale.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Icon Support**: Optional SVG icon with consistent sizing and alignment
-- **Flexible Content**: Title and description with semantic HTML
-- **Horizontal Layout**: Icon and text aligned horizontally with proper spacing
-- **Extensible**: Children slot for additional custom content
-- **Styled Typography**: Semibold titles and muted descriptions for hierarchy
-- **Compact Design**: Efficient use of space for feature lists
-
-## Use Cases
-
-- **Feature Lists**: Display product features or service offerings
-- **Benefits Sections**: Highlight key benefits with icons
-- **Specifications**: Technical specs or product details
-- **Checklists**: Visual list of included features or capabilities
-- **Comparison Tables**: Feature rows in comparison layouts
-- **Onboarding**: Step-by-step features in tutorials
-
-## Best Practices
-
-- **Icon Consistency**: Use icons from same set for visual cohesion
-- **Title Length**: Keep titles brief (2-5 words) for scannability
-- **Description Length**: One sentence (8-15 words) is ideal
-- **Icon Meaning**: Icons should reinforce, not replace, text meaning
-- **Vertical Stacking**: Use multiple FeatureItems in a vertical list
-- **Spacing**: Apply consistent gap between multiple items
-
-## Accessibility
-
-- Uses semantic heading (h4) for titles
-- Paragraph element for descriptions maintains proper structure
-- SVG icons use currentColor for theme compatibility
-- Text provides all essential information (icons are supplementary)
-- Maintains natural reading order for screen readers
-- Proper heading hierarchy when used in context`
+- **Support d'Icône**: Icône SVG optionnelle avec un dimensionnement et un alignement cohérents.
+- **Contenu Flexible**: Titre et description avec un balisage HTML sémantique.
+- **Disposition Horizontale**: Icône et texte alignés horizontalement avec un espacement approprié.
+- **Typographie Structurée**: Titres en demi-gras et descriptions en sourdine pour une bonne hiérarchie.
+`
 			}
 		}
 	},

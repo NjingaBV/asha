@@ -8,16 +8,18 @@ const meta = {
 	parameters: {
 		docs: {
 			description: {
-				component: `# NavigationBar Component
+				component: `
+# Barre de Navigation (NavigationBar)
 
-Horizontal sticky navigation bar for Mac models. Features a clean, centered layout with multiple product links.
+Barre de navigation horizontale et collante pour les modèles de Mac. Présente une mise en page épurée et centrée avec plusieurs liens de produits.
 
-## Features
-- Sticky positioning
-- Centered navigation items
-- Active state highlighting
-- Responsive horizontal scrolling
-- Backdrop blur effect`
+## Caractéristiques
+- Positionnement collant (\`sticky\`).
+- Éléments de navigation centrés.
+- Mise en évidence de l'état actif.
+- Défilement horizontal réactif.
+- Effet de flou en arrière-plan (\`backdrop-blur\`).
+`
 			}
 		}
 	},

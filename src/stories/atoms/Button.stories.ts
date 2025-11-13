@@ -10,34 +10,17 @@ const meta = {
 		docs: {
 			description: {
 				component: `
-# Button Component
+# Bouton (Button)
 
-A versatile, accessible button component that supports multiple variants, sizes, and states.
+Un composant de bouton polyvalent et accessible, prenant en charge plusieurs variantes, tailles et états.
 
-## Key Features
-- **Multiple Variants**: primary, ghost, outline, solid for different visual styles
-- **Flexible Sizing**: sm, md, lg sizes for various contexts
-- **Rich States**: loading, disabled, and focus states with proper visual feedback
-- **Icon Support**: Built-in slots for icons before and after text
-- **Accessibility**: Full keyboard support, ARIA labels, and focus indicators
-- **Link Support**: Can render as &lt;a&gt; tag when href is provided
-- **Type Support**: Supports button, submit, and reset types
-
-## Use Cases
-- Call-to-action buttons in forms
-- Navigation links styled as buttons
-- Submit buttons in forms with loading states
-- Icon buttons with optional text
-- Full-width button groups
-- Disabled interactive states
-
-## Best Practices
-- Use semantic type attributes (submit for form submissions)
-- Provide loading feedback for async operations
-- Use icon slots for visual emphasis
-- Ensure sufficient color contrast
-- Use aria-label for icon-only buttons
-- Keep button text concise and actionable
+## Caractéristiques Clés
+- **Variantes Multiples**: \`primary\`, \`ghost\`, \`outline\`, \`solid\` pour différents styles visuels.
+- **Tailles Flexibles**: Tailles \`sm\`, \`md\`, \`lg\` pour divers contextes.
+- **États Riches**: États \`loading\`, \`disabled\`, et \`focus\` avec un retour visuel approprié.
+- **Support d'Icônes**: Slots intégrés pour les icônes avant et après le texte.
+- **Accessibilité**: Prise en charge complète du clavier, labels ARIA et indicateurs de focus.
+- **Fonction Lien**: Peut être rendu comme une balise \`<a>\` lorsqu'un \`href\` est fourni.
 				`
 			}
 		}

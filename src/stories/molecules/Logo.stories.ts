@@ -8,56 +8,18 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Logo
+				component: `
+# Logo
 
-A flexible logo display molecule combining image and optional text elements. Supports both standalone logos and clickable logo/wordmark combinations for brand identity presentation.
+Une molécule de logo flexible combinant une image et des éléments de texte optionnels. Prend en charge à la fois les logos autonomes et les combinaisons logo/mot-symbole cliquables pour la présentation de l'identité de la marque.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Image + Text Combination**: Logo image with optional title/subtitle display
-- **Linkable**: Optional link wrapper for navigation to home or brand pages
-- **Flexible Display**: Toggle title visibility independently
-- **Semantic Structure**: Proper heading hierarchy when text shown
-- **Responsive**: Adapts sizing for different contexts
-
-## Use Cases
-
-- **Site Headers**: Primary navigation logo
-- **Footer Branding**: Company identification in footers
-- **Partner Logos**: Display partner or sponsor logos
-- **Product Branding**: Show product or service logos
-- **Multi-brand Sites**: Switch between different brand identities
-
-## Best Practices
-
-- Use SVG or high-resolution PNG logos for crisp display
-- Provide meaningful alt text via imgAlt prop
-- Use link prop for clickable logos (typically to homepage)
-- Keep subtitle short (tagline or company type)
-- ShowTitle false for image-only logos, true for wordmark combinations
-
-## Accessibility Notes
-
-- Semantic heading elements when title shown
-- Required alt text for logo images
-- Keyboard accessible when linkable
-- Focus states on interactive elements
-
-## Composition
-
-- **Linkable atom**: For optional link wrapping
-- **Image element**: Logo display
-- **Heading elements**: Optional text display
-
-## Responsive Behavior
-
-- Image sizing adapts to container
-- Text scales responsively when shown
-- Maintains aspect ratio of logo images
-
-## Differences from Atoms
-
-Unlike simple Image atoms, provides integrated logo-text combination with optional linking, proper semantic structure, and brand identity context.`
+- **Combinaison Image + Texte**: Image du logo avec affichage optionnel du titre/sous-titre.
+- **Cliquable**: Enveloppe de lien optionnelle pour la navigation vers les pages d'accueil ou de marque.
+- **Affichage Flexible**: Basculez la visibilité du titre indépendamment.
+- **Structure Sémantique**: Hiérarchie de titres appropriée lorsque le texte est affiché.
+`
 			}
 		}
 	},

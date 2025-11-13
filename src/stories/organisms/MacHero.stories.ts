@@ -9,17 +9,19 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# MacHero Component
+				component: `
+# Héros Mac (MacHero)
 
-Large hero banner for Mac page featuring product image, title, and call-to-action links.
+Grande bannière héros pour la page Mac, présentant une image de produit, un titre et des liens d'appel à l'action.
 
-## Features
-- Full-width hero section
-- New badge support
-- Title, subtitle, and description
-- Responsive images
-- Learn more and Buy CTAs
-- Customizable background and text colors`
+## Caractéristiques
+- Section héros pleine largeur.
+- Prise en charge du badge "Nouveau".
+- Titre, sous-titre et description.
+- Images réactives.
+- Appels à l'action "En savoir plus" et "Acheter".
+- Couleurs d'arrière-plan et de texte personnalisables.
+`
 			}
 		}
 	},

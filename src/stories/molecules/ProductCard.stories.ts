@@ -8,65 +8,19 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# ProductCard
+				component: `
+# Carte Produit (ProductCard)
 
-A comprehensive product display card molecule designed for e-commerce and content showcases. Features image, badge, color swatches, detailed text, and dual action buttons.
+Une molécule de carte d'affichage de produit complète, conçue pour le commerce électronique et les vitrines de contenu. Comprend une image, un badge, des nuanciers de couleurs, un texte détaillé et des boutons à double action.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Badge Support**: Optional badge for "New", "Popular", "Bestseller", etc.
-- **Color Swatches**: Display available product colors/variants
-- **Dual CTAs**: Primary and secondary action buttons
-- **Rich Text Layout**: Title, subtitle (price/metadata), and description
-- **Image Display**: Product or content imagery with alt text
-- **Structured Pricing**: Subtitle for price or categorization
-- **Hover Effects**: Interactive states for engagement
-
-## Use Cases
-
-- **E-commerce Products**: Physical product displays with variants
-- **Content Cards**: Podcasts, videos, or digital content
-- **Service Offerings**: Services with pricing and details
-- **Subscription Plans**: Tiered offering displays
-- **Course Cards**: Educational content with enrollment
-- **Event Tickets**: Event information with booking
-
-## Best Practices
-
-- Use square product images (400x400px+) for consistency
-- Badge text should be concise (1-2 words)
-- Primary action = main conversion (e.g., "Buy", "Listen")
-- Secondary action = alternative (e.g., "Details", "Preview")
-- List colors in logical order (most popular first)
-- Keep descriptions under 100 characters for scanability
-
-## Accessibility Notes
-
-- Semantic HTML with proper heading structure
-- Image alt text required
-- Color-agnostic interaction (not color-only indicators)
-- Keyboard accessible buttons
-- Sufficient color contrast for text
-
-## Composition
-
-- **Badge atoms**: For status indicators
-- **ColorSwatch atoms**: For variant display
-- **Button atoms**: For actions
-- **Image elements**: Product imagery
-- **Text elements**: Structured content
-
-## Responsive Behavior
-
-- Cards stack in grids responsively
-- Images maintain aspect ratio
-- Typography scales appropriately
-- Buttons stack on narrow viewports
-- Color swatches wrap as needed
-
-## Differences from Simple Card
-
-Unlike basic Card molecule, ProductCard provides specialized e-commerce features: badges, color variants, structured pricing, and dual-action patterns optimized for product/content sales.`
+- **Support de Badge**: Badge optionnel pour "Nouveau", "Populaire", "Meilleure vente", etc.
+- **Nuanciers de Couleurs**: Affiche les couleurs/variantes de produit disponibles.
+- **Appels à l'Action Doubles**: Boutons d'action principal et secondaire.
+- **Mise en Page de Texte Riche**: Titre, sous-titre (prix/métadonnées) et description.
+- **Affichage d'Image**: Imagerie du produit ou du contenu avec texte alternatif.
+`
 			}
 		}
 	},

@@ -5,7 +5,22 @@ const meta = {
 	title: 'Organisms/HeroSection',
 	component: HeroSection,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'fullscreen',
+		docs: {
+			description: {
+				component: `
+# Section Héros (HeroSection)
+
+Une section héros proéminente pour les pages de destination, combinant une zone de contenu principale avec des titres et des appels à l'action, et une zone de présentation de produits optionnelle.
+
+## Caractéristiques Clés
+- **Contenu Principal**: Titre, sous-titre et description pour présenter l'offre.
+- **Appels à l'Action Doubles**: Boutons principal et secondaire pour guider l'utilisateur.
+- **Vitrine de Produits**: Affiche une liste de produits ou d'articles avec des images et des badges.
+- **Arrière-plan Personnalisable**: Peut inclure une image d'arrière-plan pour un impact visuel accru.
+`
+			}
+		}
 	},
 	tags: ['autodocs']
 } satisfies Meta<typeof HeroSection>;

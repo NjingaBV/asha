@@ -8,74 +8,19 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# HeroBanner
+				component: `
+# Bannière Héros (HeroBanner)
 
-A full-width, attention-grabbing hero section organism designed to be the primary focal point at the top of landing pages. Features bold typography, optional eyebrow text, call-to-action buttons, and customizable backgrounds.
+Un organisme de section héros pleine largeur et accrocheur, conçu pour être le point focal principal en haut des pages de destination. Comprend une typographie audacieuse, un texte "eyebrow" optionnel, des boutons d'appel à l'action et des arrière-plans personnalisables.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Bold Typography**: Large, responsive headlines (4xl to 6xl) with tight tracking
-- **Eyebrow Text**: Optional category or product line identifier above the main title
-- **Dual CTAs**: Primary and secondary call-to-action buttons for conversion optimization
-- **Custom Backgrounds**: Configurable background colors or gradients
-- **Optional Hero Image**: Support for product or feature images below the content
-- **Center-Aligned Layout**: Optimized for maximum visual impact and readability
-- **Responsive Spacing**: Adapts padding and text sizes across all viewports
-
-## Use Cases
-
-- **Product Launches**: Announce new products with compelling headlines and imagery
-- **Landing Pages**: Create high-converting entry points for marketing campaigns
-- **Feature Announcements**: Highlight major features or updates to existing products
-- **Event Promotion**: Promote events, webinars, or special announcements
-- **Brand Campaigns**: Establish brand messaging with bold, centered content
-- **Homepage Heroes**: Serve as the primary above-the-fold content
-
-## Best Practices
-
-- Keep titles concise and impactful (5-10 words maximum)
-- Use eyebrow text sparingly for context (product name, category)
-- Subtitles should expand on the title with benefits or value proposition
-- Primary CTA should be the main desired action (Buy, Sign Up, Learn More)
-- Secondary CTA provides alternative path (Watch Video, Learn More, Compare)
-- Choose background colors with sufficient contrast for white text
-- Hero images should be high-quality and relevant to the message
-- Test CTA placement and wording for optimal conversion rates
-
-## Accessibility
-
-- Semantic \`<h1>\` heading for the main title (one per page)
-- High contrast white text on dark/colored backgrounds
-- All interactive elements are keyboard accessible
-- CTAs use semantic link elements with clear labels
-- Images include proper alt text
-- Responsive text sizing maintains readability at all sizes
-- Focus states visible on all interactive elements
-
-## Component Composition
-
-This organism composes:
-- **Eyebrow** (Atom): Small category/brand text above title
-- **CTAGroup** (Molecule): Manages primary and secondary button layout
-- Inherits button styling and accessibility from CTAGroup molecule
-
-## Page Layout Considerations
-
-- **Width**: Full viewport width with contained content (container mx-auto)
-- **Height**: Flexible based on content (py-16 md:py-24)
-- **Positioning**: Typically first organism after header/navigation
-- **Background**: Covers full width, can use solid colors or gradients
-- **Text Color**: White text designed for dark backgrounds
-- **Spacing**:
-  - Top/Bottom: 16 (mobile) to 24 (desktop)
-  - Container: px-6 for consistent edge spacing
-  - Internal: Consistent mt-3/mt-4 rhythm between elements
-- **Responsive Behavior**:
-  - Mobile: text-4xl titles, text-lg subtitles
-  - Desktop: text-6xl titles, text-xl subtitles
-  - Image: max-w-5xl for large displays
-- **Z-index**: Relatively low, should sit below navigation if sticky
-- **Integration**: Works well above FeatureGrid or other content organisms`
+- **Typographie Audacieuse**: Titres réactifs de grande taille avec un espacement serré.
+- **Texte "Eyebrow"**: Identifiant de catégorie ou de gamme de produits optionnel au-dessus du titre principal.
+- **Appels à l'Action Doubles**: Boutons d'appel à l'action principal et secondaire pour l'optimisation de la conversion.
+- **Arrière-plans Personnalisés**: Couleurs d'arrière-plan ou dégradés configurables.
+- **Image Héros Optionnelle**: Prise en charge des images de produit ou de fonctionnalité sous le contenu.
+`
 			}
 		}
 	},

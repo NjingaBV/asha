@@ -9,42 +9,19 @@ const meta = {
 		actions: { handles: ['click'] },
 		docs: {
 			description: {
-				component: `# Pill Button
+				component: `
+# Bouton Pilule (Pill Button)
 
-A prominent, pill-shaped call-to-action button with smooth rounded corners inspired by modern UI design patterns.
+Un bouton d'appel à l'action proéminent en forme de pilule, avec des coins arrondis lisses, inspiré des motifs de design d'interface utilisateur modernes.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Pill Shape**: Fully rounded corners create a distinctive, modern appearance
-- **Link or Button**: Automatically renders as \`<a>\` when href is provided, otherwise \`<button>\`
-- **Three Tones**: Primary (blue), secondary (white), and dark (black) variants
-- **Flexible Sizing**: Small, medium, and large sizes for different contexts
-- **Full Width Option**: Can expand to fill container width
-- **Accessibility Built-in**: Focus rings, disabled states, and proper ARIA attributes
-
-## Use Cases
-
-- **Primary CTAs**: Main call-to-action buttons in hero sections or landing pages
-- **Navigation**: Link buttons for "Learn More" or "Explore" actions
-- **Form Actions**: Submit or action buttons in forms and modals
-- **Product Cards**: "Buy Now" or "Add to Cart" buttons
-- **Marketing Content**: High-visibility action buttons in promotional content
-
-## Best Practices
-
-- **Hierarchy**: Use primary tone for main actions, secondary for alternatives, dark for bold statements
-- **One Primary**: Limit to one primary button per section to maintain clear hierarchy
-- **Button vs Link**: Use href for navigation, omit for in-page actions or form submissions
-- **Size Context**: lg for heroes, md for general use, sm for compact spaces
-- **Label Clarity**: Use clear, action-oriented text (e.g., "Buy Now" not "Click Here")
-
-## Accessibility
-
-- Semantic HTML: Renders \`<button>\` or \`<a>\` based on context
-- Keyboard accessible with visible focus indicators
-- Disabled state prevents interaction and reduces opacity
-- Links with disabled state use aria-disabled and tabindex=-1
-- Focus ring meets WCAG contrast requirements`
+- **Forme de Pilule**: Des coins entièrement arrondis pour une apparence moderne et distinctive.
+- **Lien ou Bouton**: Se rend automatiquement en tant que \`<a>\` si \`href\` est fourni, sinon en tant que \`<button>\`.
+- **Trois Tons**: Variantes \`primary\` (bleu), \`secondary\` (blanc) et \`dark\` (noir).
+- **Dimensionnement Flexible**: Tailles petite, moyenne et grande pour différents contextes.
+- **Option Pleine Largeur**: Peut s'étendre pour remplir la largeur de son conteneur.
+`
 			}
 		}
 	},

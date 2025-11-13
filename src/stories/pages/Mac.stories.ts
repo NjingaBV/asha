@@ -8,130 +8,25 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# Mac Landing Page
+				component: `
+# Page de Destination Mac (Mac Landing Page)
 
-Complete Apple Mac landing page implementation inspired by https://www.apple.com/mac/
+Implémentation complète d'une page de destination pour Mac, inspirée de https://www.apple.com/mac/
 
-## Overview
+## Vue d'ensemble
 
-The Mac page is a full-featured landing page showcasing all Mac models with hero sections, product showcases, and comparison tools. It follows Apple's clean, minimal design aesthetic with focus on product imagery and clear calls-to-action.
+La page Mac est une page de destination complète présentant tous les modèles de Mac avec des sections héros, des vitrines de produits et des outils de comparaison. Elle suit l'esthétique de conception épurée et minimale d'Apple, en mettant l'accent sur l'imagerie des produits et des appels à l'action clairs.
 
-## Page Structure
+## Structure de la Page
 
-The page combines multiple organisms following the Atomic Design methodology:
-- **Header**: Persistent navigation with logo
-- **MacHero**: Large hero banner with product spotlight
-- **NavigationBar**: Sticky navigation for Mac models
-- **MacShowcase**: Grid of all Mac products
-- **MacComparison**: Side-by-side feature comparison
-- **Footer**: Site footer with links
-
-## Key Features
-
-- **Comprehensive Product Display**: Shows all Mac models with images, prices, and specifications
-- **Hero Section**: Large, impactful hero with product image and CTAs
-- **Sticky Navigation**: Quick access to different Mac models
-- **Product Cards**: Individual cards for each Mac with color options and pricing
-- **Comparison Tool**: Side-by-side feature comparison
-- **Responsive Design**: Mobile-first with adaptive layouts
-- **Consistent Branding**: Apple-style typography, colors, and spacing
-
-## Use Cases
-
-- **Product Landing Pages**: Showcase multiple products in a category
-- **E-commerce Sites**: Display product lines with comparison features
-- **Marketing Campaigns**: Product launches and promotions
-- **Portfolio Sites**: Creative work showcases
-
-## Best Practices
-
-1. **Hero Image**: Use high-quality product images at appropriate resolutions
-2. **Product Grid**: Limit to 6-8 products for optimal browsing
-3. **Comparison**: Highlight recommended products
-4. **CTAs**: Keep "Learn more" and "Buy" consistent across all cards
-5. **Colors**: Show available color options for products
-6. **Pricing**: Always display starting price clearly
-7. **Navigation**: Keep sticky nav items to 6-8 for desktop visibility
-
-## Accessibility
-
-- Semantic HTML structure with proper headings
-- ARIA labels on navigation and interactive elements
-- Keyboard navigation support
-- Alt text on all images
-- Sufficient color contrast
-- Focus visible states on all interactive elements
-
-## Component Composition
-
-### Atoms
-- **Link**: Navigation and CTA links
-- **Image**: Responsive product images
-- **Label**: "New" badges
-- **Heading**: Section titles
-- **Paragraph**: Descriptions and pricing
-
-### Molecules
-- **MacCard**: Individual product cards
-- **NavigationBar**: Sticky product navigation
-- **ComparisonCard**: Feature comparison cards
-
-### Organisms
-- **Header**: Site header with navigation
-- **MacHero**: Large hero section
-- **MacShowcase**: Product grid section
-- **MacComparison**: Comparison section
-- **Footer**: Site footer
-
-### Page Hierarchy
-\`\`\`
-Mac (Page)
-├── Header (Organism)
-│   └── Logo (Molecule)
-│   └── Nav Links (Atoms)
-├── MacHero (Organism)
-│   └── Heading (Atom)
-│   └── Paragraph (Atom)
-│   └── Link (Atom) × 2
-│   └── Label (Atom)
-│   └── Image (Atom)
-├── NavigationBar (Molecule)
-│   └── Link (Atom) × N
-├── MacShowcase (Organism)
-│   └── MacCard (Molecule) × N
-│       └── Image (Atom)
-│       └── Label (Atom)
-│       └── Heading (Atom)
-│       └── Paragraph (Atom)
-│       └── Link (Atom) × 2
-├── MacComparison (Organism)
-│   └── ComparisonCard (Molecule) × N
-│       └── Image (Atom)
-│       └── Heading (Atom)
-│       └── Paragraph (Atom)
-└── Footer (Organism)
-\`\`\`
-
-## Data Requirements
-
-### Required Props
-- **logo**: Logo configuration object
-- **hero**: Hero section data with title, images, CTAs
-
-### Optional Props
-- **navLinks**: Array of main navigation links
-- **macNavItems**: Array of Mac model navigation items
-- **products**: Array of Mac products for showcase
-- **comparisonItems**: Array of items for comparison
-- **showComparison**: Boolean to show/hide comparison section
-
-## Integration Notes
-
-- Works with SvelteKit routing
-- CMS integration ready (prop-driven content)
-- Supports internationalization (all text as props)
-- Analytics tracking points on CTAs
-- A/B testing friendly structure`
+La page combine plusieurs organismes suivant la méthodologie du Design Atomique :
+- **En-tête**: Navigation persistante avec logo.
+- **Héros Mac**: Grande bannière héros avec mise en avant du produit.
+- **Barre de Navigation**: Navigation collante pour les modèles de Mac.
+- **Vitrine Mac**: Grille de tous les produits Mac.
+- **Comparaison Mac**: Comparaison des caractéristiques côte à côte.
+- **Pied de page**: Pied de page du site avec des liens.
+`
 			}
 		}
 	},

@@ -8,76 +8,19 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# Hero
+				component: `
+# Héros (Hero)
 
-A powerful, full-screen hero section molecule combining dramatic imagery, bold typography, and action buttons. Features smart text color adaptation based on background, responsive images, and gradient overlays.
+Une molécule de section héros puissante et en plein écran, combinant une imagerie spectaculaire, une typographie audacieuse et des boutons d'action. Comprend une adaptation intelligente de la couleur du texte en fonction de l'arrière-plan, des images réactives et des superpositions de dégradé.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Responsive Image Support**: Different images for mobile, tablet, and desktop via picture element
-- **Smart Text Coloring**: Automatically calculates optimal text color based on background brightness
-- **Gradient Overlays**: Smooth gradient from solid background color to transparent over image
-- **Text Truncation**: Expandable overview text with "Read more/Less" toggle
-- **Multiple CTAs**: Support for multiple action buttons with custom colors and icons
-- **Flexible Layouts**: Works with or without images and details badges
-- **Aspect Ratio Control**: Different ratios for mobile (9:13) vs desktop (16:9)
-
-## Use Cases
-
-- **Landing Page Heroes**: Primary conversion point at top of landing pages
-- **Content Intros**: Introduce video series, podcasts, or media content
-- **Product Launches**: Showcase new products with dramatic visuals
-- **Event Promotion**: Promote events, shows, or experiences
-- **Portfolio Headers**: Display creative work or case study intros
-- **Brand Storytelling**: Set the tone with immersive visual narratives
-
-## Best Practices
-
-- Use high-resolution images (2000px+ wide) for best quality across devices
-- Choose background colors that complement your hero image
-- Keep titles under 60 characters for single-line display
-- Overview should be 1-2 sentences summarizing the offer
-- Primary CTA should be most prominent (first in array)
-- Test text readability on various backgrounds
-- Consider detail badges for time-sensitive info (dates, durations, etc.)
-
-## Accessibility Notes
-
-- Picture element provides optimal image loading and performance
-- Text color automatically adjusted for WCAG contrast compliance
-- Semantic HTML with proper heading hierarchy (H1 for title)
-- Button CTAs include proper focus states and keyboard navigation
-- Lazy loading enabled for images to improve performance
-- Alt text required for images via title prop
-
-## Composition
-
-This molecule is composed of:
-- **Button atoms**: For call-to-action functionality with custom styling
-- **Picture element**: For responsive image delivery
-- **Gradient overlays**: CSS-based for smooth visual transitions
-- **Badge elements**: For detail information display
-
-## Responsive Behavior
-
-- Images switch based on media queries (650px, 950px breakpoints)
-- Aspect ratio changes from 9:13 (mobile) to 16:9 (desktop)
-- Title scales from 4xl (mobile) to 6xl (tablet) to 7xl (desktop)
-- CTAs stack vertically on mobile, horizontal on tablet+
-- Gradient overlay height adjusts from 40% (mobile) to 60% (desktop)
-- Padding and spacing scale up on larger screens
-- Maximum content width constrained (2xl to 4xl based on viewport)
-
-## Differences from Atoms
-
-Unlike simple Button or Image atoms, this molecule provides:
-- Complete hero section with integrated image and text
-- Smart background brightness calculation and text color adaptation
-- Gradient overlay system for image-text integration
-- Multi-CTA orchestration with consistent styling
-- Responsive image delivery via picture element
-- Text truncation logic with user control
-- Complex layout coordination across breakpoints`
+- **Support d'Image Réactif**: Différentes images pour mobile, tablette et ordinateur via l'élément \`<picture>\`.
+- **Coloration Intelligente du Texte**: Calcule automatiquement la couleur de texte optimale en fonction de la luminosité de l'arrière-plan.
+- **Superpositions de Dégradé**: Dégradé fluide d'une couleur d'arrière-plan unie à transparente sur l'image.
+- **Troncature de Texte**: Texte de présentation extensible avec un bouton "Lire plus/moins".
+- **Multiples Appels à l'Action**: Prise en charge de plusieurs boutons d'action avec des couleurs et des icônes personnalisées.
+`
 			}
 		}
 	},

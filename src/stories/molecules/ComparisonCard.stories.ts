@@ -8,16 +8,18 @@ const meta = {
 	parameters: {
 		docs: {
 			description: {
-				component: `# ComparisonCard Component
+				component: `
+# Carte de Comparaison (ComparisonCard)
 
-Comparison card for side-by-side Mac model features. Displays product image, name, price, and feature list with checkmarks.
+Une carte de comparaison pour présenter les caractéristiques de modèles côte à côte. Affiche l'image du produit, le nom, le prix et une liste de caractéristiques avec des coches.
 
-## Features
-- Product image display
-- Name and price
-- Feature list with checkmarks
-- Highlighted state for recommended products
-- Clean, minimal design`
+## Caractéristiques
+- Affichage de l'image du produit.
+- Nom et prix.
+- Liste des caractéristiques avec des coches.
+- État de mise en évidence pour les produits recommandés.
+- Design épuré et minimaliste.
+`
 			}
 		}
 	},

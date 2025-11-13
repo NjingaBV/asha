@@ -9,16 +9,18 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# MacComparison Component
+				component: `
+# Comparaison de Mac (MacComparison)
 
-Side-by-side comparison section for Mac models with features.
+Section de comparaison côte à côte pour les modèles de Mac avec leurs caractéristiques.
 
-## Features
-- Section title and description
-- Responsive grid layout
-- Highlighted product support
-- Feature lists with checkmarks
-- Clean comparison view`
+## Caractéristiques
+- Titre et description de la section.
+- Mise en page en grille réactive.
+- Prise en charge des produits mis en évidence.
+- Listes de caractéristiques avec des coches.
+- Vue de comparaison épurée.
+`
 			}
 		}
 	}

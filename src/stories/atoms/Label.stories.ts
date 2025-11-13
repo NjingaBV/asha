@@ -8,15 +8,17 @@ const meta = {
 	parameters: {
 		docs: {
 			description: {
-				component: `# Label Component
+				component: `
+# Étiquette (Label)
 
-Small badge/tag for highlighting new products or features, inspired by Apple's design.
+Petite étiquette/badge pour mettre en avant les nouveaux produits ou fonctionnalités, inspiré par le design d'Apple.
 
-## Features
-- Multiple color schemes
-- Compact design
-- Uppercase text styling
-- Used for "New" badges`
+## Caractéristiques
+- Plusieurs schémas de couleurs.
+- Design compact.
+- Style de texte en majuscules.
+- Utilisé pour les badges "Nouveau".
+`
 			}
 		}
 	},

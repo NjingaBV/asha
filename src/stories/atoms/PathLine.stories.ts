@@ -8,40 +8,19 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# PathLine
+				component: `
+# Ligne de Parcours (PathLine)
 
-A decorative timeline or step indicator featuring a vertical line, numbered badge, and title with optional gradient effects.
+Un indicateur décoratif de chronologie ou d'étape, comprenant une ligne verticale, un badge numéroté et un titre, avec des effets de dégradé optionnels.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Vertical Timeline**: Connects steps in a vertical flow with a colored line
-- **Numbered Badge**: Circular badge displaying step number or order
-- **Gradient Support**: Optional gradient effects for line, badge, and title
-- **Color Theming**: Customizable color with automatic light/dark variations
-- **Bold Typography**: Large, eye-catching title with tight tracking
-
-## Use Cases
-
-- **Process Steps**: Show sequential steps in a process or workflow
-- **Feature Highlights**: Display numbered features in a vertical timeline
-- **Journey Maps**: Illustrate user journeys or product timelines
-- **Progress Indicators**: Visual representation of multi-step progress
-- **Marketing Content**: Numbered value propositions or selling points
-
-## Best Practices
-
-- **Sequential Order**: Use ascending numbers to show progression (1, 2, 3...)
-- **Consistent Spacing**: Use multiple PathLines in sequence for cohesive timelines
-- **Color Meaning**: Choose colors that match your brand or convey meaning
-- **Gradient Usage**: Enable gradients for more dynamic, premium appearance
-- **Title Length**: Keep titles concise (1-3 words) for maximum impact
-
-## Accessibility
-
-- Uses semantic heading (h3) for titles
-- Color is supplemented by numbered order for non-color users
-- Bold text improves readability
-- Structural layout maintains logical flow for screen readers`
+- **Chronologie Verticale**: Relie les étapes d'un flux vertical avec une ligne colorée.
+- **Badge Numéroté**: Un badge circulaire affichant le numéro de l'étape.
+- **Support de Dégradé**: Effets de dégradé optionnels pour la ligne, le badge et le titre.
+- **Thème de Couleur**: Couleur personnalisable avec des variations claires/foncées automatiques.
+- **Typographie Audacieuse**: Titre large et percutant.
+`
 			}
 		}
 	},

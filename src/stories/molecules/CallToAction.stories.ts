@@ -8,74 +8,20 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# CallToAction
+				component: `
+# Appel à l'Action (CallToAction)
 
-A versatile and powerful CTA section component designed to drive user engagement and conversions. Features flexible content options, multiple background styles, and highly customizable action buttons.
+Un composant de section d'appel à l'action (CTA) polyvalent et puissant, conçu pour stimuler l'engagement et les conversions des utilisateurs. Il propose des options de contenu flexibles, plusieurs styles d'arrière-plan et des boutons d'action hautement personnalisables.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Flexible Content**: Supports title, subtitle, and description with both string and Svelte snippet inputs
-- **Multiple Background Types**: None, solid color, gradient, or image backgrounds
-- **Image Overlay System**: Customizable overlay colors and opacity for background images
-- **Size Variants**: Three preset sizes (small, medium, large) with responsive padding and typography
-- **Dual Action Buttons**: Primary and secondary actions with independent styling
-- **Smart Text Coloring**: Automatically adjusts text color based on background for optimal readability
-- **Responsive Layout**: Actions stack on mobile, side-by-side on desktop
-
-## Use Cases
-
-- **Landing Page Conversions**: Drive sign-ups, trials, or purchases on product pages
-- **Section Breaks**: Create visual separation between page sections while prompting action
-- **Marketing Campaigns**: Promote limited-time offers or special announcements
-- **Newsletter Signups**: Encourage email list subscriptions with compelling copy
-- **Product Launches**: Announce new features or products with dramatic presentation
-- **Event Registration**: Drive attendance for webinars, conferences, or workshops
-
-## Best Practices
-
-- Keep titles short and action-oriented (under 60 characters)
-- Use descriptions to provide context, not just repeat the title
-- Primary action should be the most important user path (e.g., "Start Trial")
-- Secondary action offers an alternative (e.g., "Learn More", "See Pricing")
-- Choose background types that align with your brand and page design
-- For image backgrounds, ensure text remains readable with appropriate overlays
-- Use large size for hero CTAs, medium for mid-page, small for footers
-
-## Accessibility Notes
-
-- Semantic HTML with proper \`<section>\` structure
-- Heading hierarchy maintained (H2 for title, H3 for subtitle)
-- Sufficient color contrast automatically managed for text readability
-- Button components include proper focus states and keyboard navigation
-- Background images use empty alt text (decorative)
-- Supports screen readers with semantic content structure
-
-## Composition
-
-This molecule is composed of:
-- **Heading atoms**: For title and subtitle with automatic sizing
-- **Paragraph atom**: For description text with optimal line spacing
-- **Button atoms**: For primary and secondary actions with variants
-- **Native elements**: Section container and image handling
-
-## Responsive Behavior
-
-- Padding scales from mobile to desktop (e.g., py-16 to py-24 on medium)
-- Typography sizes adjust based on screen size
-- Action buttons stack vertically on mobile, horizontal on tablet+
-- Background images use object-cover for proper aspect ratio
-- Maximum content width constrained for readability (max-w-4xl)
-- Button spacing adapts from flex-col to flex-row at sm breakpoint
-
-## Differences from Atoms
-
-Unlike simple Button or Heading atoms, this molecule provides:
-- Complete section structure with semantic HTML
-- Integrated background and overlay system
-- Coordinated text color management
-- Multi-element composition with proper spacing
-- Responsive layout orchestration
-- Context-aware button styling based on background`
+- **Contenu Flexible**: Prend en charge le titre, le sous-titre et la description avec des entrées de type chaîne ou des snippets Svelte.
+- **Plusieurs Types d'Arrière-plan**: Aucun, couleur unie, dégradé ou image.
+- **Système de Superposition d'Image**: Couleurs et opacité de superposition personnalisables pour les images d'arrière-plan.
+- **Variantes de Taille**: Trois tailles prédéfinies (petite, moyenne, grande) avec une typographie et un remplissage réactifs.
+- **Boutons à Double Action**: Actions principale et secondaire avec un style indépendant.
+- **Coloration Intelligente du Texte**: Ajuste automatiquement la couleur du texte en fonction de l'arrière-plan pour une lisibilité optimale.
+`
 			}
 		}
 	},

@@ -8,39 +8,19 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Heading
+				component: `
+# Titre (Heading)
 
-A flexible heading component that renders semantic HTML heading elements (h1-h6) with comprehensive typographic controls.
+Un composant de titre flexible qui rend les éléments de titre HTML sémantiques (h1-h6) avec des contrôles typographiques complets.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Semantic HTML**: Renders appropriate h1-h6 elements for accessibility
-- **Flexible Sizing**: 14 size options from xs to 9xl independent of heading level
-- **Typography Controls**: Fine-tune weight, leading, tracking, and alignment
-- **Color Customization**: Accepts any Tailwind color class
-- **Snippet Support**: Can render Svelte snippets as children
-
-## Use Cases
-
-- **Hero Titles**: Use h1 with 6xl-9xl sizes for prominent page headings
-- **Section Headers**: Use h2-h3 with 4xl-5xl for organizing content hierarchy
-- **Subsections**: Use h4-h6 with 2xl-3xl for smaller content divisions
-- **Custom Typography**: Mix and match level and size for perfect visual hierarchy while maintaining semantic structure
-
-## Best Practices
-
-- **Semantic Structure**: Always maintain proper heading hierarchy (h1 → h2 → h3, etc.) regardless of visual size
-- **Visual vs. Semantic**: Use \`level\` for semantic meaning and \`size\` for visual appearance
-- **Contrast**: Ensure sufficient color contrast (WCAG 4.5:1 for normal text, 3:1 for large text)
-- **Responsive Design**: Consider using different sizes for different breakpoints
-- **Line Length**: Use appropriate \`leading\` for multi-line headings (relaxed/loose for longer text)
-
-## Accessibility
-
-- Uses semantic HTML heading elements for proper document outline
-- Screen readers announce the heading level automatically
-- Proper heading hierarchy helps users navigate with assistive technology
-- Color is not used as the sole means of conveying information`
+- **HTML Sémantique**: Rend les éléments h1-h6 appropriés pour l'accessibilité et le SEO.
+- **Dimensionnement Flexible**: De nombreuses options de taille, indépendantes du niveau de titre sémantique.
+- **Contrôles Typographiques**: Ajustez la graisse, l'interligne, l'espacement et l'alignement.
+- **Personnalisation de la Couleur**: Accepte n'importe quelle classe de couleur Tailwind.
+- **Séparation de la Sémantique et du Style**: Permet d'avoir un \`<h1>\` avec un style visuel de \`<h3>\`, et vice-versa.
+`
 			}
 		}
 	},
