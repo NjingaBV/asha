@@ -4,7 +4,6 @@
 [![Deploy Storybook](https://github.com/NjingaBV/asha/actions/workflows/deploy-storybook.yml/badge.svg?branch=main)](https://github.com/NjingaBV/asha/actions/workflows/deploy-storybook.yml)
 [![CI](https://github.com/NjingaBV/asha/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NjingaBV/asha/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/NjingaBV/asha/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/NjingaBV/asha/actions/workflows/codeql.yml)
-[![Release](https://github.com/NjingaBV/asha/actions/workflows/create-release-and-tag.yml/badge.svg?branch=main)](https://github.com/NjingaBV/asha/actions/workflows/create-release-and-tag.yml)
 
 [Contributor Guide](./AGENTS.md)
 
