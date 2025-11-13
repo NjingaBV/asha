@@ -23,9 +23,7 @@
 		/** Open in new tab */
 		target?: '_blank' | '_self';
 		/** Slot for content */
-		children?: Snippet | any;
-		/** Slot for icon */
-		icon?: Snippet | any;
+		children: Snippet;
 	}
 
 	let {
@@ -34,8 +32,7 @@
 		className = '',
 		ariaLabel = undefined,
 		target = '_self',
-		children,
-		icon
+		children
 	}: Props = $props();
 
 	const getVariantClasses = (): string => {
@@ -61,18 +58,5 @@
 	class={linkClasses}
 	rel={target === '_blank' ? 'noopener noreferrer' : undefined}
 >
-	{#if typeof children === 'function'}
-		{@render children()}
-	{:else}
-		{children}
-	{/if}
-	{#if icon}
-		<span class="flex items-center">
-			{#if typeof icon === 'function'}
-				{@render icon()}
-			{:else}
-				{icon}
-			{/if}
-		</span>
-	{/if}
+	{@render children()}
 </a>
