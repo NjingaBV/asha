@@ -44,9 +44,7 @@
 					variant={activeHref === item.href ? 'cta' : 'subtle'}
 					className={activeHref === item.href ? 'font-semibold' : ''}
 				>
-					{#snippet children()}
-						{item.label}
-					{/snippet}
+					{item.label}
 				</Link>
 			{/each}
 		</div>

@@ -23,7 +23,7 @@
 		/** Open in new tab */
 		target?: '_blank' | '_self';
 		/** Slot for content */
-		children: Snippet;
+		children?: Snippet;
 	}
 
 	let {
@@ -58,5 +58,7 @@
 	class={linkClasses}
 	rel={target === '_blank' ? 'noopener noreferrer' : undefined}
 >
-	{@render children()}
+	{#if children}
+		{@render children()}
+	{/if}
 </a>

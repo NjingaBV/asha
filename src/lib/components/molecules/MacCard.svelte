@@ -106,23 +106,17 @@
 		<!-- Actions -->
 		<div class="flex items-center justify-center gap-4 pt-2">
 			<Link href={learnMoreHref} variant="cta">
-				{#snippet children()}
-					Learn more
-					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9 5l7 7-7 7"
-						/>
-					</svg>
-				{/snippet}
+				Learn more
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M9 5l7 7-7 7"
+					/>
+				</svg>
 			</Link>
-			<Link href={buyHref} variant="cta">
-				{#snippet children()}
-					Buy
-				{/snippet}
-			</Link>
+			<Link href={buyHref} variant="cta">Buy</Link>
 		</div>
 	</div>
 </div>
