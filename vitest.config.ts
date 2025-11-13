@@ -21,19 +21,13 @@ export default defineConfig({
 		coverage: {
 			provider: 'v8',
 			reporter: ['text', 'json', 'html'],
-			exclude: [
-				'node_modules/',
-				'src/stories',
-				'src/routes',
-				'**/*.stories.*',
-				'**/*.spec.*'
-			]
+			exclude: ['node_modules/', 'src/stories', 'src/routes', '**/*.stories.*', '**/*.spec.*']
 		}
 	},
 	resolve: {
 		alias: {
 			'@': resolve(__dirname, './src'),
-			'$lib': resolve(__dirname, './src/lib')
+			$lib: resolve(__dirname, './src/lib')
 		}
 	}
 });

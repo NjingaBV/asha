@@ -83,7 +83,9 @@ export function getComputedContrast(element: HTMLElement): number | null {
  * @param input - The input element to check
  * @returns True if input has a label
  */
-export function hasFormLabel(input: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): boolean {
+export function hasFormLabel(
+	input: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+): boolean {
 	const id = input.id;
 	const ariaLabel = input.getAttribute('aria-label');
 	const ariaLabelledBy = input.getAttribute('aria-labelledby');

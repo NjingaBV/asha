@@ -120,31 +120,31 @@ asha/
 
 ### Core Technologies
 
-| Technologie | Version | Usage |
-|-------------|---------|-------|
-| **Svelte** | 5.43+ | Framework réactif avec compilation |
-| **TypeScript** | 5.9+ | Typage statique |
-| **Tailwind CSS** | 4.1+ | Framework CSS utility-first |
-| **Vite** | 7.2+ | Build tool et dev server |
-| **SvelteKit** | 2.48+ | Framework meta pour Svelte |
-| **pnpm** | 10.20+ | Gestionnaire de packages |
+| Technologie      | Version | Usage                              |
+| ---------------- | ------- | ---------------------------------- |
+| **Svelte**       | 5.43+   | Framework réactif avec compilation |
+| **TypeScript**   | 5.9+    | Typage statique                    |
+| **Tailwind CSS** | 4.1+    | Framework CSS utility-first        |
+| **Vite**         | 7.2+    | Build tool et dev server           |
+| **SvelteKit**    | 2.48+   | Framework meta pour Svelte         |
+| **pnpm**         | 10.20+  | Gestionnaire de packages           |
 
 ### Testing & Quality
 
-| Outil | Usage |
-|-------|-------|
-| **Vitest** | Tests unitaires |
-| **Testing Library** | Tests orientés utilisateur |
-| **Playwright** | Tests d'accessibilité |
-| **Storybook** | Développement et documentation |
-| **ESLint** | Linter JavaScript/TypeScript |
-| **Prettier** | Formateur de code |
+| Outil               | Usage                          |
+| ------------------- | ------------------------------ |
+| **Vitest**          | Tests unitaires                |
+| **Testing Library** | Tests orientés utilisateur     |
+| **Playwright**      | Tests d'accessibilité          |
+| **Storybook**       | Développement et documentation |
+| **ESLint**          | Linter JavaScript/TypeScript   |
+| **Prettier**        | Formateur de code              |
 
 ### State Management
 
-| Outil | Usage |
-|-------|-------|
-| **XState** | Machines d'état pour logique complexe |
+| Outil            | Usage                                        |
+| ---------------- | -------------------------------------------- |
+| **XState**       | Machines d'état pour logique complexe        |
 | **Svelte Runes** | Réactivité native ($state, $derived, $props) |
 
 ---
@@ -157,47 +157,49 @@ asha/
 **Couverture** : Tous les composants atoms, molecules, organisms
 
 **Structure de test** :
+
 ```typescript
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/svelte';
 import Button from './Button.svelte';
 
 describe('Button', () => {
-  describe('Rendu de base', () => {
-    it('devrait rendre un bouton avec du texte', () => {
-      render(Button, { props: { children: 'Cliquez-moi' } });
-      expect(screen.getByRole('button')).toBeInTheDocument();
-    });
-  });
+	describe('Rendu de base', () => {
+		it('devrait rendre un bouton avec du texte', () => {
+			render(Button, { props: { children: 'Cliquez-moi' } });
+			expect(screen.getByRole('button')).toBeInTheDocument();
+		});
+	});
 
-  describe('Variantes', () => {
-    it('devrait appliquer la variante primary', () => {
-      const { container } = render(Button, {
-        props: { variant: 'primary', children: 'Primary' }
-      });
-      expect(container.querySelector('button')?.className).toContain('bg-primary');
-    });
-  });
+	describe('Variantes', () => {
+		it('devrait appliquer la variante primary', () => {
+			const { container } = render(Button, {
+				props: { variant: 'primary', children: 'Primary' }
+			});
+			expect(container.querySelector('button')?.className).toContain('bg-primary');
+		});
+	});
 
-  describe('États', () => {
-    it('devrait être désactivé quand disabled est true', () => {
-      render(Button, { props: { disabled: true, children: 'Désactivé' } });
-      expect(screen.getByRole('button')).toBeDisabled();
-    });
-  });
+	describe('États', () => {
+		it('devrait être désactivé quand disabled est true', () => {
+			render(Button, { props: { disabled: true, children: 'Désactivé' } });
+			expect(screen.getByRole('button')).toBeDisabled();
+		});
+	});
 
-  describe('Interactions', () => {
-    it('devrait appeler onClick quand cliqué', async () => {
-      const onClick = vi.fn();
-      render(Button, { props: { onClick, children: 'Cliquer' } });
-      await userEvent.click(screen.getByRole('button'));
-      expect(onClick).toHaveBeenCalledTimes(1);
-    });
-  });
+	describe('Interactions', () => {
+		it('devrait appeler onClick quand cliqué', async () => {
+			const onClick = vi.fn();
+			render(Button, { props: { onClick, children: 'Cliquer' } });
+			await userEvent.click(screen.getByRole('button'));
+			expect(onClick).toHaveBeenCalledTimes(1);
+		});
+	});
 });
 ```
 
 **Catégories de tests** :
+
 - ✅ Rendu de base (props par défaut)
 - ✅ Variantes (styles, tailles, tons)
 - ✅ États (loading, disabled, error)
@@ -210,28 +212,29 @@ describe('Button', () => {
 **Stories** documentent et testent visuellement les composants.
 
 **Structure** :
+
 ```typescript
 import type { Meta, StoryObj } from '@storybook/svelte';
 import Button from '$lib/components/atoms/Button.svelte';
 
 const meta = {
-  title: 'Atoms/Button',
-  component: Button,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: 'Documentation du composant...'
-      }
-    }
-  }
+	title: 'Atoms/Button',
+	component: Button,
+	tags: ['autodocs'],
+	parameters: {
+		docs: {
+			description: {
+				component: 'Documentation du composant...'
+			}
+		}
+	}
 } satisfies Meta<Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: { variant: 'primary', children: 'Bouton' }
+	args: { variant: 'primary', children: 'Bouton' }
 };
 ```
 
@@ -275,37 +278,41 @@ pnpm storybook
 ### Workflow de Développement
 
 1. **Créer une branche** :
-   ```bash
-   git checkout -b feature/nom-feature
-   ```
+
+    ```bash
+    git checkout -b feature/nom-feature
+    ```
 
 2. **Développer** :
-   - Créer le composant dans `src/lib/components/`
-   - Écrire les tests dans `*.test.ts`
-   - Créer la story dans `src/stories/`
+    - Créer le composant dans `src/lib/components/`
+    - Écrire les tests dans `*.test.ts`
+    - Créer la story dans `src/stories/`
 
 3. **Tester localement** :
-   ```bash
-   pnpm test:unit
-   pnpm check
-   pnpm lint
-   ```
+
+    ```bash
+    pnpm test:unit
+    pnpm check
+    pnpm lint
+    ```
 
 4. **Commit** (Convention Conventional Commits) :
-   ```bash
-   git commit -m "feat(atoms): ajouter variante outline au Button"
-   ```
+
+    ```bash
+    git commit -m "feat(atoms): ajouter variante outline au Button"
+    ```
 
 5. **Push et PR** :
-   ```bash
-   git push origin feature/nom-feature
-   ```
+    ```bash
+    git push origin feature/nom-feature
+    ```
 
 ### Convention de Commit
 
 **Format** : `type(scope): description`
 
 **Types** :
+
 - `feat`: Nouvelle fonctionnalité
 - `fix`: Correction de bug
 - `docs`: Documentation
@@ -315,6 +322,7 @@ pnpm storybook
 - `chore`: Maintenance (build, deps)
 
 **Exemples** :
+
 ```bash
 feat(button): ajouter variante outline
 fix(card): corriger aspect ratio sur mobile
@@ -339,22 +347,26 @@ chore(deps): mettre à jour Tailwind CSS
 ### Automated CI Pipeline
 
 **CI Workflow** (`.github/workflows/ci.yml`) :
+
 - Runs on every push to `main` and on all pull requests
 - Parallel jobs: commitlint, lint, typecheck, test, build-package, build-storybook
 - Uses Playwright for browser-based tests
 - Concurrency controls to cancel outdated runs
 
 **Security Scanning** (`.github/workflows/codeql.yml`) :
+
 - CodeQL analysis for JavaScript/TypeScript
 - Runs on pushes, PRs, and weekly schedule
 - Detects security vulnerabilities and code quality issues
 
 **Dependency Management** (`.github/dependabot.yml`) :
+
 - Automated dependency updates grouped by type
 - Weekly schedule on Mondays at 09:00 CET
 - Groups: Storybook, Svelte, TypeScript, Vitest, Tailwind, XState
 
 **Release & Deployment** :
+
 - Automated releases via semantic-release on `main`
 - Tags: `vX.Y.Z`, changelog, GitHub Release
 - Publish to GitHub Packages
@@ -373,11 +385,13 @@ pnpm run build-storybook   # Build Storybook
 ### Git Hooks
 
 **Setup** :
+
 ```bash
 git config core.hookspath .githooks
 ```
 
 **Hooks** :
+
 - `commit-msg`: Runs commitlint
 - `pre-commit`: Formats code
 - `pre-push`: Runs install + lint + check
@@ -389,12 +403,14 @@ git config core.hookspath .githooks
 ### Pour le Développement de Composants
 
 #### 1. **Claude (Anthropic)** ⭐ Recommandé
+
 - ✅ Génération de composants Svelte 5
 - ✅ Refactorisation TypeScript
 - ✅ Architecture et patterns
 - ✅ Génération de tests unitaires
 
 **Prompts recommandés** :
+
 ```
 "Crée un composant Svelte 5 Button avec TypeScript et Tailwind CSS,
 suivant les principes Atomic Design. Inclus les variantes primary,
@@ -405,11 +421,13 @@ couvrant le rendu de base, les variantes, les états et les interactions."
 ```
 
 #### 2. **GitHub Copilot**
+
 - ✅ Autocomplétion de code en temps réel
 - ✅ Génération de tests
 - ✅ Suggestions de patterns Svelte
 
 #### 3. **Cursor**
+
 - ✅ Édition assistée de code
 - ✅ Recherche sémantique dans le codebase
 - ✅ Refactoring intelligent multi-fichiers
@@ -417,11 +435,13 @@ couvrant le rendu de base, les variantes, les états et les interactions."
 ### Pour la Documentation
 
 #### 1. **Claude (Anthropic)** ⭐ Recommandé
+
 - ✅ Génération de documentation MDX
 - ✅ Création de stories Storybook avec descriptions
 - ✅ Rédaction de README et guides
 
 **Prompts recommandés** :
+
 ```
 "Génère une story Storybook complète pour le composant Button
 avec documentation en français, incluant tous les variants,
@@ -432,6 +452,7 @@ Atomic Design du projet Asha."
 ```
 
 #### 2. **ChatGPT (OpenAI)**
+
 - ✅ Traduction de documentation
 - ✅ Génération d'exemples de code
 - ✅ FAQ et guides utilisateur
@@ -439,12 +460,14 @@ Atomic Design du projet Asha."
 ### Pour les Tests
 
 #### 1. **Claude (Anthropic)** ⭐ Recommandé
+
 - ✅ Génération de suites de tests complètes
 - ✅ Tests d'accessibilité (ARIA, keyboard)
 - ✅ Scénarios de test edge cases
 - ✅ Mocks et fixtures TypeScript
 
 **Prompts recommandés** :
+
 ```
 "Génère une suite de tests Vitest complète pour le composant Card,
 incluant les tests de rendu, d'interactions, d'accessibilité et
@@ -455,6 +478,7 @@ vérifiant ARIA labels, navigation au clavier et focus-visible."
 ```
 
 #### 2. **Codeium**
+
 - ✅ Suggestions de tests inline
 - ✅ Complétion d'assertions
 - ✅ Génération de mocks
@@ -462,12 +486,14 @@ vérifiant ARIA labels, navigation au clavier et focus-visible."
 ### Pour l'Architecture et Refactoring
 
 #### 1. **Claude (Anthropic)** ⭐ Recommandé
+
 - ✅ Analyse d'architecture
 - ✅ Suggestions de refactoring
 - ✅ Patterns de design
 - ✅ Optimisation de performance
 
 **Prompts recommandés** :
+
 ```
 "Analyse l'architecture du composant Hero et suggère des
 améliorations pour la performance, l'accessibilité et la
@@ -480,29 +506,32 @@ de composition Svelte 5 avec $props() et $derived()."
 ### Workflow Recommandé avec Claude
 
 1. **Phase de Design** :
-   ```
-   "Je veux créer un composant [nom] inspiré du design Apple.
-   Il doit avoir [fonctionnalités]. Suggère une API de props
-   TypeScript et une structure Svelte 5."
-   ```
+
+    ```
+    "Je veux créer un composant [nom] inspiré du design Apple.
+    Il doit avoir [fonctionnalités]. Suggère une API de props
+    TypeScript et une structure Svelte 5."
+    ```
 
 2. **Phase de Développement** :
-   ```
-   "Implémente le composant [nom] avec Svelte 5, TypeScript,
-   et Tailwind CSS v4. Applique les principes Atomic Design."
-   ```
+
+    ```
+    "Implémente le composant [nom] avec Svelte 5, TypeScript,
+    et Tailwind CSS v4. Applique les principes Atomic Design."
+    ```
 
 3. **Phase de Tests** :
-   ```
-   "Génère une suite de tests complète pour [nom], couvrant
-   tous les cas d'usage, variantes, et scénarios d'erreur."
-   ```
+
+    ```
+    "Génère une suite de tests complète pour [nom], couvrant
+    tous les cas d'usage, variantes, et scénarios d'erreur."
+    ```
 
 4. **Phase de Documentation** :
-   ```
-   "Crée une story Storybook avec documentation en français
-   pour [nom], incluant exemples et best practices."
-   ```
+    ```
+    "Crée une story Storybook avec documentation en français
+    pour [nom], incluant exemples et best practices."
+    ```
 
 ---
 

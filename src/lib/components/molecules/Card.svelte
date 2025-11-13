@@ -141,12 +141,7 @@
 		{/if}
 		{#if buttonName && buttonLink}
 			<div class="mt-2 w-11/12 self-center">
-				<Button
-					color={backgroundColor}
-					rounded={true}
-					fullWidth={true}
-					href={buttonLink}
-				>
+				<Button color={backgroundColor} rounded={true} fullWidth={true} href={buttonLink}>
 					{buttonName}
 				</Button>
 			</div>

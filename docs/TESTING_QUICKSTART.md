@@ -58,6 +58,7 @@ Dans Storybook:
 ```
 
 **Addon A11y** utilise `axe-core` pour vérifier:
+
 - Les labels manquants
 - Le contraste des couleurs
 - La hiérarchie des headings
@@ -121,64 +122,67 @@ export const Variant: Story = {
 ## 🎨 Exemples de Stories
 
 ### Button - Exemple Complet
+
 ```typescript
 export const Default: Story = {
-  args: {
-    variant: 'primary',
-    size: 'md',
-    children: 'Click me'
-  }
+	args: {
+		variant: 'primary',
+		size: 'md',
+		children: 'Click me'
+	}
 };
 
 export const Disabled: Story = {
-  args: {
-    disabled: true,
-    children: 'Disabled'
-  }
+	args: {
+		disabled: true,
+		children: 'Disabled'
+	}
 };
 
 export const Loading: Story = {
-  args: {
-    loading: true,
-    children: 'Loading...'
-  }
+	args: {
+		loading: true,
+		children: 'Loading...'
+	}
 };
 ```
 
 ### Badge - Exemple Simple
+
 ```typescript
 export const Primary: Story = {
-  args: {
-    label: 'New',
-    color: 'primary',
-    variant: 'solid'
-  }
+	args: {
+		label: 'New',
+		color: 'primary',
+		variant: 'solid'
+	}
 };
 
 export const Success: Story = {
-  args: {
-    label: 'Available',
-    color: 'success'
-  }
+	args: {
+		label: 'Available',
+		color: 'success'
+	}
 };
 ```
 
 ### Heading - Sémantique HTML
+
 ```typescript
 export const H1: Story = {
-  args: {
-    level: 1,
-    size: '6xl',
-    children: 'Main Title'
-  }
+	args: {
+		level: 1,
+		size: '6xl',
+		children: 'Main Title'
+	}
 };
 
 export const H2: Story = {
-  args: {
-    level: 2,
-    size: '5xl',
-    children: 'Section Title'
-  }
+	args: {
+		level: 2,
+		size: '5xl',
+		children: 'Section Title'
+	}
 };
 ```
 
@@ -199,21 +203,27 @@ export const H2: Story = {
 ## 📚 Types de Vérifications
 
 ### 1. Documentation (Auto-généré)
+
 Chaque story crée une page docs Storybook avec:
+
 - Description du composant
 - Table des props (argTypes)
 - Tous les variants
 - Contrôles interactifs
 
 ### 2. Accessibilité (A11y Tab)
+
 Utilise l'addon A11y pour vérifier:
+
 - ✅ Hiérarchie correcte
 - ✅ Labels présents
 - ✅ Contraste des couleurs
 - ✅ Attributs ARIA
 
 ### 3. Visual Regression (Chromatic)
+
 Avec `npm run build-storybook`:
+
 - Snapshots automatiques
 - Détection de changements visuels
 - Comparaison avant/après
@@ -229,6 +239,7 @@ Avec `npm run build-storybook`:
 5. Créez vos propres stories pour nouveaux composants
 
 **Pattern à suivre:**
+
 ```
 1. Importer: import type { Meta, StoryObj } from '@storybook/sveltekit'
 2. Créer meta avec description et argTypes

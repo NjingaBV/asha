@@ -25,33 +25,33 @@ import { expect, userEvent, within } from '@storybook/test';
 import MyComponent from './MyComponent.svelte';
 
 const meta = {
-  title: 'Atoms/MyComponent',
-  component: MyComponent,
-  tags: ['autodocs']
+	title: 'Atoms/MyComponent',
+	component: MyComponent,
+	tags: ['autodocs']
 } satisfies Meta<typeof MyComponent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {
-    label: 'Click me',
-    // ... other props
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+	args: {
+		label: 'Click me'
+		// ... other props
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
 
-    // Test 1: Verify element exists and is visible
-    const element = canvas.getByRole('button', { name: /click me/i });
-    await expect(element).toBeInTheDocument();
-    await expect(element).toBeVisible();
+		// Test 1: Verify element exists and is visible
+		const element = canvas.getByRole('button', { name: /click me/i });
+		await expect(element).toBeInTheDocument();
+		await expect(element).toBeVisible();
 
-    // Test 2: Simulate user interaction
-    await userEvent.click(element);
+		// Test 2: Simulate user interaction
+		await userEvent.click(element);
 
-    // Test 3: Verify state after interaction
-    await expect(element).toHaveFocus();
-  }
+		// Test 3: Verify state after interaction
+		await expect(element).toHaveFocus();
+	}
 };
 ```
 
@@ -59,26 +59,24 @@ export const Primary: Story = {
 
 ```typescript
 // Queries
-- canvas.getByRole(role, options)
-- canvas.getByText(text)
-- canvas.getByLabelText(text)
-- canvas.getByPlaceholderText(text)
-- canvas.queryByRole(role) // Doesn't throw
-
-// User interactions
-- userEvent.click(element)
-- userEvent.type(element, 'text')
-- userEvent.keyboard('{Escape}')
-- userEvent.hover(element)
-- userEvent.unhover(element)
-
-// Assertions
-- expect(element).toBeInTheDocument()
-- expect(element).toBeVisible()
-- expect(element).toBeDisabled()
-- expect(element).toHaveTextContent('text')
-- expect(element).toHaveFocus()
-- expect(element).toHaveAccessibleName('name')
+-canvas.getByRole(role, options) -
+	canvas.getByText(text) -
+	canvas.getByLabelText(text) -
+	canvas.getByPlaceholderText(text) -
+	canvas.queryByRole(role) - // Doesn't throw
+	// User interactions
+	userEvent.click(element) -
+	userEvent.type(element, 'text') -
+	userEvent.keyboard('{Escape}') -
+	userEvent.hover(element) -
+	userEvent.unhover(element) -
+	// Assertions
+	expect(element).toBeInTheDocument() -
+	expect(element).toBeVisible() -
+	expect(element).toBeDisabled() -
+	expect(element).toHaveTextContent('text') -
+	expect(element).toHaveFocus() -
+	expect(element).toHaveAccessibleName('name');
 ```
 
 ### 2. Tests d'Accessibilité
@@ -127,6 +125,7 @@ Chromatic (déjà intégré via `@chromatic-com/storybook`) capture automatiquem
 **Pas d'action requise** - Les snapshots sont générés automatiquement lors du build Storybook.
 
 Pour faciliter les reviews:
+
 1. Les snapshots sont uploadés automatiquement
 2. Vous pouvez accepter ou rejeter les changements visuels
 3. Les baselines servent de référence pour détecter les régressions
@@ -139,13 +138,13 @@ Pour les composants sans interactions:
 
 ```typescript
 export const Primary: Story = {
-  args: { label: 'My Badge' },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const badge = canvas.getByText('My Badge');
-    await expect(badge).toBeInTheDocument();
-    await expect(badge).toBeVisible();
-  }
+	args: { label: 'My Badge' },
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('My Badge');
+		await expect(badge).toBeInTheDocument();
+		await expect(badge).toBeVisible();
+	}
 };
 ```
 
@@ -178,30 +177,30 @@ Pour les composants avec plusieurs états:
 
 ```typescript
 export const Disabled: Story = {
-  args: { disabled: true },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByRole('button');
+	args: { disabled: true },
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const button = canvas.getByRole('button');
 
-    // Vérifier l'état
-    await expect(button).toBeDisabled();
+		// Vérifier l'état
+		await expect(button).toBeDisabled();
 
-    // Vérifier que les interactions ne fonctionnent pas
-    await userEvent.click(button);
-    // Button ne doit pas déclencher d'action
-  }
+		// Vérifier que les interactions ne fonctionnent pas
+		await userEvent.click(button);
+		// Button ne doit pas déclencher d'action
+	}
 };
 
 export const Loading: Story = {
-  args: { loading: true },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByRole('button');
+	args: { loading: true },
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const button = canvas.getByRole('button');
 
-    // Vérifier l'état de chargement
-    await expect(button).toBeDisabled();
-    await expect(button).toHaveTextContent(/loading/i);
-  }
+		// Vérifier l'état de chargement
+		await expect(button).toBeDisabled();
+		await expect(button).toHaveTextContent(/loading/i);
+	}
 };
 ```
 
@@ -258,6 +257,7 @@ npm run build-storybook
 Voir: `src/stories/atoms/Button.stories.ts`
 
 Démontre:
+
 - Tests d'interaction (clic)
 - Tests d'état (disabled, loading)
 - Tests d'accessibilité
@@ -268,6 +268,7 @@ Démontre:
 Voir: `src/stories/atoms/Heading.stories.ts`
 
 Démontre:
+
 - Tests de sémantique HTML (h1-h6)
 - Vérification de la hiérarchie
 - Tests de contenu
@@ -277,6 +278,7 @@ Démontre:
 Voir: `src/stories/atoms/Badge.stories.ts`
 
 Démontre:
+
 - Tests de rendu simple
 - Variations de couleurs et styles
 - Contenu personnalisé
@@ -316,6 +318,7 @@ canvas.logTestingPlaygroundURL(); // Générer un URL Testing Playground
 ### Cas d'Usage Courants
 
 **Q: Comment tester un input?**
+
 ```typescript
 const input = canvas.getByLabelText('Email');
 await userEvent.type(input, 'test@example.com');
@@ -323,6 +326,7 @@ await expect(input).toHaveValue('test@example.com');
 ```
 
 **Q: Comment tester un select/dropdown?**
+
 ```typescript
 const select = canvas.getByRole('combobox');
 await userEvent.click(select);
@@ -331,6 +335,7 @@ await userEvent.click(option);
 ```
 
 **Q: Comment tester un modal/dialog?**
+
 ```typescript
 const button = canvas.getByRole('button', { name: /open modal/i });
 await userEvent.click(button);

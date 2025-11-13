@@ -17,11 +17,11 @@ Mise en place complète d'une infrastructure de test pour les composants Asha ut
 
 ```json
 {
-  "@testing-library/svelte": "^5.2.8",
-  "@testing-library/user-event": "^14.6.1",
-  "axe-core": "^4.11.0",
-  "@axe-core/playwright": "^4.11.0",
-  "jsdom": "^27.1.0"
+	"@testing-library/svelte": "^5.2.8",
+	"@testing-library/user-event": "^14.6.1",
+	"axe-core": "^4.11.0",
+	"@axe-core/playwright": "^4.11.0",
+	"jsdom": "^27.1.0"
 }
 ```
 
@@ -40,7 +40,9 @@ Mise en place complète d'une infrastructure de test pour les composants Asha ut
 ## 📝 Documentation Créée
 
 ### 1. **TESTING_STRATEGY.md**
+
 Guide complet couvrant:
+
 - Architecture des tests (3 niveaux: interaction, visuels, accessibilité)
 - Patterns recommandés avec exemples
 - API disponible dans les `play()` functions
@@ -48,13 +50,16 @@ Guide complet couvrant:
 - Ressources et guides de debug
 
 ### 2. **TESTING_EXAMPLES.md**
+
 Exemples détaillés pour:
+
 - Composants Atoms (Badge, Button)
 - Composants Molecules (Card, Input, Form)
 - Composants Organisms (Modal, Carousel)
 - Patterns spécifiques (accessibilité clavier, validation, async)
 
 ### 3. **TESTING_IMPLEMENTATION.md** (ce fichier)
+
 Résumé de l'implémentation et prochaines étapes
 
 ---
@@ -64,6 +69,7 @@ Résumé de l'implémentation et prochaines étapes
 ### Atoms
 
 #### Button.stories.ts
+
 ```typescript
 ✅ Default           - Test interaction + accessibilité
 ✅ Disabled          - Test état désactivé
@@ -71,6 +77,7 @@ Résumé de l'implémentation et prochaines étapes
 ```
 
 #### Badge.stories.ts
+
 ```typescript
 ✅ Primary           - Test rendu basique
 ✅ Secondary         - Test couleur secondaire
@@ -80,6 +87,7 @@ Résumé de l'implémentation et prochaines étapes
 ```
 
 #### Heading.stories.ts
+
 ```typescript
 ✅ H1               - Test sémantique HTML h1
 ✅ H2               - Test sémantique HTML h2
@@ -113,6 +121,7 @@ src/stories/atoms/
 ```
 
 #### Commande pour chaque Atom:
+
 1. Ouvrir `src/stories/atoms/[Component].stories.ts`
 2. Ajouter l'import: `import { expect, within, userEvent } from '@storybook/test';`
 3. Ajouter `play()` à au moins 2 stories clés
@@ -140,6 +149,7 @@ src/stories/molecules/
 ```
 
 Tester:
+
 - Interactions utilisateur
 - Changements d'état
 - Navigation au clavier
@@ -167,6 +177,7 @@ src/stories/organisms/
 ```
 
 Tester:
+
 - Workflows complets
 - États d'erreur
 - Animations
@@ -192,9 +203,9 @@ import { expect, userEvent, within } from '@storybook/test';
 import MyComponent from './MyComponent.svelte';
 
 const meta = {
-  title: 'Category/MyComponent',
-  component: MyComponent,
-  tags: ['autodocs']
+	title: 'Category/MyComponent',
+	component: MyComponent,
+	tags: ['autodocs']
 } satisfies Meta<typeof MyComponent>;
 
 export default meta;
@@ -202,23 +213,25 @@ type Story = StoryObj<typeof meta>;
 
 // 2. Ajouter un play() à chaque story importante
 export const Default: Story = {
-  args: { /* ... */ },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+	args: {
+		/* ... */
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
 
-    // Étape 1: Vérifier le rendu
-    const element = canvas.getByRole('...');
-    await expect(element).toBeInTheDocument();
+		// Étape 1: Vérifier le rendu
+		const element = canvas.getByRole('...');
+		await expect(element).toBeInTheDocument();
 
-    // Étape 2: Tester les interactions
-    await userEvent.click(element);
+		// Étape 2: Tester les interactions
+		await userEvent.click(element);
 
-    // Étape 3: Vérifier les résultats
-    await expect(element).toHaveAttribute('...', '...');
+		// Étape 3: Vérifier les résultats
+		await expect(element).toHaveAttribute('...', '...');
 
-    // Étape 4: Vérifier l'accessibilité
-    await expect(element).toHaveAccessibleName('...');
-  }
+		// Étape 4: Vérifier l'accessibilité
+		await expect(element).toHaveAccessibleName('...');
+	}
 };
 ```
 
@@ -248,6 +261,7 @@ npm run storybook -- --docs --title "Atoms/Button"
 - ✅ **Variantes**: Couleurs, tailles, styles
 
 ### Commande de vérification:
+
 ```bash
 # Dans Storybook, chaque story avec play() affiche les résultats
 # Look for ✅ checkmarks dans le panneau "Interactions"
@@ -258,6 +272,7 @@ npm run storybook -- --docs --title "Atoms/Button"
 ## 📊 Métriques de Couverture
 
 **Couverture actuelle (après Phase 1):**
+
 - Atoms: 3/13 composants testés
 - Molecules: 0/13 composants testés
 - Organisms: 0/14 composants testés
@@ -302,6 +317,7 @@ Screenshots (if visual changes):
 ### Problème: Tests ne s'exécutent pas dans Storybook
 
 **Solution:**
+
 1. Vérifier que `play()` est une fonction async
 2. Vérifier les imports de `@storybook/test`
 3. Rafraîchir Storybook (⌘+Shift+R ou Ctrl+Shift+R)
@@ -309,6 +325,7 @@ Screenshots (if visual changes):
 ### Problème: Éléments non trouvés
 
 **Solution:**
+
 1. Utiliser `canvas.debug()` pour voir le DOM
 2. Vérifier que les rôles ARIA sont corrects
 3. Utiliser `getByText` comme fallback
@@ -317,6 +334,7 @@ Screenshots (if visual changes):
 ### Problème: Tests timeouts
 
 **Solution:**
+
 1. Ajouter des délais si nécessaire: `await new Promise(r => setTimeout(r, 100))`
 2. Utiliser `waitFor` de Testing Library
 3. Vérifier les animations Svelte (peut avoir besoin de configuration)
@@ -326,17 +344,20 @@ Screenshots (if visual changes):
 ## 📚 Ressources Utiles
 
 ### Documentation Officielle
+
 - [Storybook Testing](https://storybook.js.org/docs/writing-stories/play-function)
 - [Testing Library](https://testing-library.com/docs/queries/about)
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 - [Axe Accessibility](https://www.deque.com/axe/)
 
 ### Outils
+
 - [Testing Playground](https://testing-playground.com/) - Trouvez les bons sélecteurs
 - [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - [Axe DevTools](https://www.deque.com/axe/devtools/) - Extension navigateur
 
 ### Exemples dans le projet
+
 - `src/stories/atoms/Button.stories.ts` - Exemple complet
 - `src/stories/atoms/Heading.stories.ts` - Tests sémantiques
 - `docs/TESTING_STRATEGY.md` - Documentation complète
@@ -347,16 +368,19 @@ Screenshots (if visual changes):
 ## ✨ Bénéfices Obtenus
 
 ### Qualité
+
 ✅ Tests automatisés qui s'exécutent à chaque story
 ✅ Accessibilité vérifiée systématiquement
 ✅ Régressions visuelles détectées avec Chromatic
 
 ### Productivité
+
 ✅ Documentation dans le code (stories interactives)
 ✅ Patterns réutilisables pour tous les composants
 ✅ Workflow de test clair et standardisé
 
 ### Maintenabilité
+
 ✅ Composants vérifiés au fil du temps
 ✅ Changements régressifs détectés immédiatement
 ✅ Confiance lors des refactorisations
@@ -383,6 +407,7 @@ Pour implémenter les tests des prochains composants:
 ## 📞 Support
 
 Pour des questions ou pour ajouter des tests:
+
 1. Consultez `docs/TESTING_STRATEGY.md`
 2. Consultez `docs/TESTING_EXAMPLES.md`
 3. Copier un pattern existant de `src/stories/atoms/Button.stories.ts`
