@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PillButton from '$lib/components/atoms/PillButton.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	let {
 		primary = null,
 		secondary = null,
@@ -13,10 +13,10 @@
 
 <div class={[align === 'center' ? 'justify-center' : 'justify-start', 'flex gap-3'].join(' ')}>
 	{#if primary}
-		<PillButton label={primary.label} href={primary.href} tone={primary.tone ?? 'primary'} />
+		<Button label={primary.label} href={primary.href} tone={primary.tone ?? 'primary'} />
 	{/if}
 	{#if secondary}
-		<PillButton
+		<Button
 			label={secondary.label}
 			href={secondary.href}
 			tone={secondary.tone ?? 'secondary'}

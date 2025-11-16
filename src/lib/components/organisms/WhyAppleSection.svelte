@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Heading from '../atoms/Heading.svelte';
 	import Paragraph from '../atoms/Paragraph.svelte';
-	import PillButton from '../atoms/PillButton.svelte';
+	import Button from '../atoms/Button.svelte';
 
 	/**
 	 * WhyAppleSection component - displays "Why Apple is the best place to buy Mac" section
@@ -98,9 +98,7 @@
 				Why Apple is the best place to buy Mac.
 			</Heading>
 			<div class="flex justify-center mb-8">
-				<PillButton tone="primary" size="lg" href="/us/shop/goto/buy_mac"
-					>Shop Mac</PillButton
-				>
+				<Button tone="primary" size="lg" href="/us/shop/goto/buy_mac">Shop Mac</Button>
 			</div>
 		</div>
 
@@ -119,9 +117,9 @@
 						{benefit.description}
 					</Paragraph>
 					<div class="text-center">
-						<PillButton tone="secondary" href={benefit.ctaLink}>
+						<Button tone="secondary" href={benefit.ctaLink}>
 							{benefit.ctaText}
-						</PillButton>
+						</Button>
 					</div>
 				</div>
 			{/each}

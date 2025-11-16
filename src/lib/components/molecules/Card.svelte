@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PillButton from '$lib/components/atoms/PillButton.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	import Linkable from '$lib/components/atoms/Linkable.svelte';
 	import type { ImageType } from '$lib/models';
 
@@ -101,9 +101,9 @@
 					{/if}
 					{#if buttonName && buttonLink}
 						<div class="mt-2 w-11/12 self-center">
-							<PillButton fullWidth={true} href={buttonLink}>
+							<Button fullWidth={true} href={buttonLink}>
 								{buttonName}
-							</PillButton>
+							</Button>
 						</div>
 					{/if}
 				</div>
@@ -136,14 +136,9 @@
 		{/if}
 		{#if buttonName && buttonLink}
 			<div class="mt-2 w-11/12 self-center">
-				<PillButton
-					color={backgroundColor}
-					rounded={true}
-					fullWidth={true}
-					href={buttonLink}
-				>
+				<Button color={backgroundColor} rounded={true} fullWidth={true} href={buttonLink}>
 					{buttonName}
-				</PillButton>
+				</Button>
 			</div>
 		{/if}
 	</div>

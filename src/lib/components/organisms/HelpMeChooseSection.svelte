@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Heading from '../atoms/Heading.svelte';
 	import Paragraph from '../atoms/Paragraph.svelte';
-	import PillButton from '../atoms/PillButton.svelte';
+	import Button from '../atoms/Button.svelte';
 
 	/**
 	 * HelpMeChooseSection component - displays "Help me choose" section
@@ -29,13 +29,13 @@
 			Answer a few questions to find the best Mac for you.
 		</Paragraph>
 
-		<PillButton
+		<Button
 			variant="primary"
 			size="lg"
 			href="/mac/best-mac/#help-me-choose"
 			className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4"
 		>
 			Get started
-		</PillButton>
+		</Button>
 	</div>
 </section>

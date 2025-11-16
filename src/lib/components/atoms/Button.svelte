@@ -2,24 +2,24 @@
 	import type { Snippet } from 'svelte';
 
 	/**
-	 * PillButton component - renders as <button> or <a> depending on href prop
+	 * Button component - renders as <button> or <a> depending on href prop
 	 * Pill-shaped button with full border radius
 	 *
 	 * @example
-	 * <PillButton tone="primary" size="md">Click me</PillButton>
-	 * <PillButton href="/path" tone="secondary">Link Button</PillButton>
+	 * <Button tone="primary" size="md">Click me</Button>
+	 * <Button href="/path" tone="secondary">Link Button</Button>
 	 */
 
-	export type PillButtonTone = 'primary' | 'secondary' | 'dark' | 'neutral';
-	export type PillButtonSize = 'sm' | 'md' | 'lg';
+	export type ButtonTone = 'primary' | 'secondary' | 'dark' | 'neutral';
+	export type ButtonSize = 'sm' | 'md' | 'lg';
 
 	interface Props {
 		/** Link href - if provided, renders as <a> instead of <button> */
 		href?: string;
 		/** Button size */
-		size?: PillButtonSize;
+		size?: ButtonSize;
 		/** Color tone/scheme */
-		tone?: PillButtonTone;
+		tone?: ButtonTone;
 		/** Disabled state */
 		disabled?: boolean;
 		/** Full width button */

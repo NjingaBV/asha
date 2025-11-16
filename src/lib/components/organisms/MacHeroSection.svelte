@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Heading from '../atoms/Heading.svelte';
 	import Paragraph from '../atoms/Paragraph.svelte';
-	import PillButton from '../atoms/PillButton.svelte';
+	import Button from '../atoms/Button.svelte';
 
 	/**
 	 * MacHeroSection component - displays the main hero section with video
@@ -49,20 +49,20 @@
 			</Paragraph>
 
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-				<PillButton
+				<Button
 					tone="primary"
 					size="lg"
 					class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4"
 				>
 					Watch the film
-				</PillButton>
-				<PillButton
+				</Button>
+				<Button
 					tone="secondary"
 					size="lg"
 					class="text-white border-white hover:bg-white hover:text-black px-8 py-4"
 				>
 					Learn more
-				</PillButton>
+				</Button>
 			</div>
 		</div>
 	</div>

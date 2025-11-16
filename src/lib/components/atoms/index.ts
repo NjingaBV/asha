@@ -19,5 +19,4 @@ export * from './MacSpecChip.svelte';
 export * from './Nav.svelte';
 export * from './Paragraph.svelte';
 export * from './PathLine.svelte';
-export * from './PillButton.svelte';
 export * from './Youtube.svelte';

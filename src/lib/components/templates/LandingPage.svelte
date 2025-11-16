@@ -3,7 +3,7 @@
 	import BenefitsSection from '../organisms/BenefitsSection.svelte';
 	import Heading from '../atoms/Heading.svelte';
 	import Paragraph from '../atoms/Paragraph.svelte';
-	import PillButton from '../atoms/PillButton.svelte';
+	import Button from '../atoms/Button.svelte';
 	import type { Product, Benefit, Action } from '../../models/product.type';
 
 	interface Props {
@@ -63,24 +63,24 @@
 				{#if primaryAction || secondaryAction}
 					<div class="flex flex-col sm:flex-row gap-4 justify-center">
 						{#if primaryAction}
-							<PillButton
+							<Button
 								tone="primary"
 								size="lg"
 								href={primaryAction.href}
 								onClick={primaryAction.onClick}
 							>
 								{primaryAction.label}
-							</PillButton>
+							</Button>
 						{/if}
 						{#if secondaryAction}
-							<PillButton
+							<Button
 								tone="secondary"
 								size="lg"
 								href={secondaryAction.href}
 								onClick={secondaryAction.onClick}
 							>
 								{secondaryAction.label}
-							</PillButton>
+							</Button>
 						{/if}
 					</div>
 				{/if}

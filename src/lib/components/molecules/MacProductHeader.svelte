@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
-	import PillButton from '$lib/components/atoms/PillButton.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	import MacBadge from '$lib/components/atoms/MacBadge.svelte';
 	import type { MacCTA } from '$lib/models';
 
@@ -70,7 +70,7 @@
 	{#if ctas.primary || ctas.secondary}
 		<div class="flex flex-wrap items-center gap-3">
 			{#if ctas.primary}
-				<PillButton
+				<Button
 					tone="primary"
 					fullWidth={false}
 					href={ctas.primary.href}
@@ -78,18 +78,18 @@
 					class={tone === 'dark' ? 'bg-white text-slate-900 hover:scale-[1.01]' : ''}
 				>
 					{ctas.primary.label}
-				</PillButton>
+				</Button>
 			{/if}
 
 			{#if ctas.secondary}
-				<PillButton
+				<Button
 					tone="secondary"
 					href={ctas.secondary.href}
 					onClick={ctas.secondary.onClick}
 					class={tone === 'dark' ? 'text-white hover:bg-white/10' : ''}
 				>
 					{ctas.secondary.label}
-				</PillButton>
+				</Button>
 			{/if}
 		</div>
 	{/if}

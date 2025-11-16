@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import PillButton from '../atoms/PillButton.svelte';
+	import Button from '../atoms/Button.svelte';
 	import ColorIndicator from '../atoms/ColorIndicator.svelte';
 	import Heading from '../atoms/Heading.svelte';
 	import Paragraph from '../atoms/Paragraph.svelte';
@@ -124,22 +124,22 @@
 		{#if primaryAction || secondaryAction}
 			<div class="flex flex-col sm:flex-row gap-3 pt-4">
 				{#if primaryAction}
-					<PillButton
+					<Button
 						tone="secondary"
 						href={primaryAction.href}
 						onClick={primaryAction.onClick}
 					>
 						{primaryAction.label}
-					</PillButton>
+					</Button>
 				{/if}
 				{#if secondaryAction}
-					<PillButton
+					<Button
 						tone="primary"
 						href={secondaryAction.href}
 						onClick={secondaryAction.onClick}
 					>
 						{secondaryAction.label}
-					</PillButton>
+					</Button>
 				{/if}
 			</div>
 		{/if}

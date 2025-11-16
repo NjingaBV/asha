@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
-	import PillButton from '$lib/components/atoms/PillButton.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 
 	let {
 		title = '',
@@ -77,14 +77,14 @@
 
 				<!-- Actions -->
 				<div class="flex flex-col sm:flex-row gap-4 pt-4 md:pt-6">
-					<PillButton tone="primary" size="lg" onClick={primaryAction.onClick}>
+					<Button tone="primary" size="lg" onClick={primaryAction.onClick}>
 						{primaryAction.label}
-					</PillButton>
+					</Button>
 
 					{#if secondaryAction}
-						<PillButton tone="secondary" size="lg" onClick={secondaryAction.onClick}>
+						<Button tone="secondary" size="lg" onClick={secondaryAction.onClick}>
 							{secondaryAction.label}
-						</PillButton>
+						</Button>
 					{/if}
 				</div>
 			</div>

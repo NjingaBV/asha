@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import PillButton from '@/lib/components/atoms/PillButton.svelte';
+import Button from '@/lib/components/atoms/Button.svelte';
 
 const meta = {
-	title: 'Atoms/PillButton',
-	component: PillButton,
+	title: 'Atoms/Button',
+	component: Button,
 	parameters: {
 		layout: 'centered',
 		actions: { handles: ['click'] },
@@ -60,7 +60,7 @@ Un bouton d'appel à l'action proéminent en forme de pilule, avec des coins arr
 				'Makes button expand to full width of its container. Useful for mobile layouts or form actions.'
 		}
 	}
-} satisfies Meta<typeof PillButton>;
+} satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -71,7 +71,7 @@ export const Primary: Story = {
 		tone: 'primary',
 		size: 'md'
 	},
-	render: (args) => ({ Component: PillButton, props: args })
+	render: (args) => ({ Component: Button, props: args })
 };
 
 export const Secondary: Story = {

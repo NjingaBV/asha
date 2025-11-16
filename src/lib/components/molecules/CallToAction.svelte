@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import PillButton from '$lib/components/atoms/PillButton.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 
@@ -217,7 +217,7 @@
 		{#if primaryAction || secondaryAction}
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
 				{#if primaryAction}
-					<PillButton
+					<Button
 						href={primaryAction.href}
 						tone="primary"
 						size="lg"
@@ -227,11 +227,11 @@
 						onClick={primaryAction.onClick}
 					>
 						{primaryAction.label}
-					</PillButton>
+					</Button>
 				{/if}
 
 				{#if secondaryAction}
-					<PillButton
+					<Button
 						href={secondaryAction.href}
 						tone={hasBackground ? 'neutral' : 'secondary'}
 						size="lg"
@@ -241,7 +241,7 @@
 						onClick={secondaryAction.onClick}
 					>
 						{secondaryAction.label}
-					</PillButton>
+					</Button>
 				{/if}
 			</div>
 		{/if}
