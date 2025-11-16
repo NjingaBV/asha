@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button.svelte';
+	import PillButton from '$lib/components/atoms/PillButton.svelte';
 
 	let {
 		cta = { url: '', label: '', color: '' },
@@ -31,9 +31,9 @@
 			{/each}
 		</div>
 		<div>
-			<Button color={cta.color} size="large" onClick={() => (location.href = cta.url)}>
+			<PillButton color={cta.color} size="large" onClick={() => (location.href = cta.url)}>
 				{cta.label}
-			</Button>
+			</PillButton>
 		</div>
 	</div>
 </section>

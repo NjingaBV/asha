@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button.svelte';
+	import PillButton from '$lib/components/atoms/PillButton.svelte';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Shelf from '$lib/components/templates/Shelf.svelte';
 
@@ -26,7 +26,7 @@
 
 <Header {navLinks} bind:open {logo}>
 	{#if isCta}
-		<Button onClick={() => (location.href = cta.url)}>{cta.label}</Button>
+		<PillButton onClick={() => (location.href = cta.url)}>{cta.label}</PillButton>
 	{/if}
 </Header>
 <Shelf {slices} bind:open {navLinks} {alternateColor} />

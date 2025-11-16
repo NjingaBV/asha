@@ -1,51 +1,78 @@
 <script lang="ts">
-	import Heading from '$lib/components/atoms/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
-	import Button from '$lib/components/atoms/Button.svelte';
+	import type { Snippet } from 'svelte';
+	import PillButton from '../atoms/PillButton.svelte';
+	import ColorIndicator from '../atoms/ColorIndicator.svelte';
+	import Heading from '../atoms/Heading.svelte';
+	import Paragraph from '../atoms/Paragraph.svelte';
+	import type { AppleColor, ColorType } from '../../models/color.type';
+
+	/**
+	 * ProductCard component - displays product cards with colors, badges, and actions
+	 *
+	 * @example
+	 * <ProductCard
+	 *   title="Product Name"
+	 *   subtitle="Product subtitle"
+	 *   description="Product description text."
+	 *   colors={['blue', 'silver', 'black']}
+	 *   primaryAction={{ label: 'Learn more', href: '/product' }}
+	 *   secondaryAction={{ label: 'Buy', href: '/buy' }}
+	 * />
+	 */
+
+	interface Action {
+		label: string;
+		href?: string;
+		onClick?: () => void;
+	}
+
+	interface Props {
+		/** Product title */
+		title: string;
+		/** Product subtitle (chip info, etc.) */
+		subtitle?: string;
+		/** Product description */
+		description: string;
+		/** Available colors */
+		colors?: AppleColor[];
+		/** Color type for indicators */
+		colorType?: ColorType;
+		/** Primary action button */
+		primaryAction?: Action;
+		/** Secondary action button */
+		secondaryAction?: Action;
+		/** Product image/thumbnail */
+		image?: string;
+		/** Image alt text */
+		imageAlt?: string;
+		/** Custom CSS classes */
+		className?: string;
+		/** Highlight badge (e.g., "New") */
+		badge?: string;
+		/** Slot for custom content */
+		children?: Snippet;
+	}
 
 	let {
-		title = '',
-		subtitle = '',
-		description = '',
-		image = '',
-		imageAlt = '',
+		title,
+		subtitle,
+		description,
 		colors = [],
-		primaryAction = undefined,
-		secondaryAction = undefined,
-		badge = undefined,
-		class: className = ''
-	}: {
-		title: string;
-		subtitle: string;
-		description: string;
-		image: string;
-		imageAlt: string;
-		colors: string[];
-		primaryAction: { label: string; href?: string; onClick?: () => void } | undefined;
-		secondaryAction: { label: string; href?: string; onClick?: () => void } | undefined;
-		badge: string | undefined;
-		class?: string;
-	} = $props();
+		colorType = 'solid',
+		primaryAction,
+		secondaryAction,
+		image,
+		imageAlt,
+		class: className = '',
+		badge,
+		children
+	}: Props = $props();
 
-	const colorMap: Record<string, string> = {
-		noir: 'bg-black',
-		blanc: 'bg-white',
-		rouge: 'bg-red-500',
-		bleu: 'bg-blue-500',
-		vert: 'bg-green-500',
-		jaune: 'bg-yellow-500',
-		gris: 'bg-gray-500',
-		rose: 'bg-pink-500',
-		violet: 'bg-purple-500',
-		orange: 'bg-orange-500',
-		marron: 'bg-amber-800',
-		argent: 'bg-gray-300',
-		or: 'bg-yellow-400'
-	};
-
-	let cardClasses = $derived(
+	// Card container classes
+	const cardClasses = $derived(
 		[
-			'group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02]',
+			'group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-lg transition-all duration-300',
+			'border border-gray-200 hover:border-gray-300',
 			className
 		]
 			.filter(Boolean)
@@ -54,101 +81,73 @@
 </script>
 
 <div class={cardClasses}>
-	<!-- Badge -->
 	{#if badge}
-		<div class="absolute top-5 left-5 z-10">
-			<span
-				class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-blue-600 text-white"
-			>
-				{badge}
-			</span>
+		<div
+			class="absolute -top-2 left-8 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium"
+		>
+			{badge}
 		</div>
 	{/if}
 
-	<!-- Image -->
-	<div class="aspect-square relative overflow-hidden bg-gray-100">
-		<img
-			src={image}
-			alt={imageAlt || title}
-			class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-		/>
-	</div>
-
-	<!-- Content -->
-	<div class="p-6 md:p-8 space-y-5 md:space-y-6 flex flex-col h-full">
-		<!-- Title and Subtitle -->
-		<div class="space-y-2">
-			<Heading level={3} size="xl" weight="black" class="text-slate-900 leading-tight">
-				{title}
-			</Heading>
-			{#if subtitle}
-				<Paragraph
-					size="sm"
-					color="text-slate-600"
-					weight="semibold"
-					class="tracking-wide uppercase text-xs"
-				>
-					{subtitle}
-				</Paragraph>
-			{/if}
+	{#if image}
+		<div class="mb-6">
+			<img src={image} alt={imageAlt || title} class="w-full h-48 object-contain" />
 		</div>
+	{/if}
 
-		<!-- Description -->
-		{#if description}
-			<Paragraph size="sm" color="text-slate-600" leading="relaxed" class="flex-grow">
-				{description}
-			</Paragraph>
+	<div class="space-y-4">
+		{#if subtitle}
+			<div class="text-blue-600 font-semibold text-sm uppercase tracking-wide">
+				{subtitle}
+			</div>
 		{/if}
 
-		<!-- Colors -->
+		<Heading level={3} class="text-2xl font-bold text-gray-900">
+			{title}
+		</Heading>
+
+		<Paragraph class="text-gray-600 leading-relaxed">
+			{description}
+		</Paragraph>
+
 		{#if colors.length > 0}
-			<div class="flex items-center gap-3 pt-2">
-				<Paragraph
-					size="xs"
-					color="text-slate-500"
-					class="font-semibold tracking-wide uppercase"
-				>
-					Couleurs :
-				</Paragraph>
+			<div class="flex items-center gap-2">
+				<span class="text-sm text-gray-500 mr-2">Available in:</span>
 				<div class="flex gap-2">
 					{#each colors as color}
-						<div
-							class="w-5 h-5 rounded-full border-2 border-gray-200 hover:border-slate-400 transition-colors duration-200 cursor-pointer {colorMap[
-								color.toLowerCase()
-							] || 'bg-gray-400'}"
-							title={color}
-						></div>
+						<ColorIndicator {color} type={colorType} size="sm" />
 					{/each}
 				</div>
 			</div>
 		{/if}
 
-		<!-- Actions -->
-		<div class="flex flex-col sm:flex-row gap-3 pt-4 mt-auto">
-			{#if primaryAction}
-				<Button
-					variant="solid"
-					tone="primary"
-					size="medium"
-					fullWidth
-					className="sm:flex-1"
-					onClick={primaryAction.onClick}
-				>
-					{primaryAction.label}
-				</Button>
-			{/if}
-			{#if secondaryAction}
-				<Button
-					variant="ghost"
-					tone="secondary"
-					size="medium"
-					fullWidth
-					className="sm:flex-1"
-					onClick={secondaryAction.onClick}
-				>
-					{secondaryAction.label}
-				</Button>
-			{/if}
-		</div>
+		{#if primaryAction || secondaryAction}
+			<div class="flex flex-col sm:flex-row gap-3 pt-4">
+				{#if primaryAction}
+					<PillButton
+						tone="secondary"
+						href={primaryAction.href}
+						onClick={primaryAction.onClick}
+					>
+						{primaryAction.label}
+					</PillButton>
+				{/if}
+				{#if secondaryAction}
+					<PillButton
+						tone="primary"
+						href={secondaryAction.href}
+						onClick={secondaryAction.onClick}
+					>
+						{secondaryAction.label}
+					</PillButton>
+				{/if}
+			</div>
+		{/if}
+
+		{#if children}
+			<div class="pt-4">
+				{@render children()}
+			</div>
+		{/if}
 	</div>
 </div>

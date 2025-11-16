@@ -1,20 +1,23 @@
 <script lang="ts">
-	import ComparisonCard from '$lib/components/molecules/ComparisonCard.svelte';
+	import MacCard from '$lib/components/molecules/MacCard.svelte';
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 
 	/**
-	 * MacComparison component - Side-by-side comparison section
-	 * Compare different Mac models with features
+	 * Showcase component - Grid of Mac product cards
+	 * Displays all Mac models in a responsive grid
 	 */
 
-	interface ComparisonItem {
+	interface MacProduct {
+		title: string;
+		tagline?: string;
 		image: string;
 		imageAlt?: string;
-		name: string;
 		price?: string;
-		features?: string[];
-		highlighted?: boolean;
+		isNew?: boolean;
+		colors?: string[];
+		learnMoreHref?: string;
+		buyHref?: string;
 	}
 
 	interface Props {
@@ -22,8 +25,8 @@
 		title?: string;
 		/** Section description */
 		description?: string;
-		/** Items to compare */
-		items: ComparisonItem[];
+		/** Mac products to display */
+		products: MacProduct[];
 		/** Additional CSS classes */
 		className?: string;
 	}
@@ -31,16 +34,16 @@
 	let {
 		title = undefined,
 		description = undefined,
-		items = [],
+		products = [],
 		className = ''
 	}: Props = $props();
 
-	const comparisonClasses = $derived(
-		['py-16 px-4 sm:px-6 lg:px-8 bg-gray-50', className].filter(Boolean).join(' ')
+	const showcaseClasses = $derived(
+		['py-16 px-4 sm:px-6 lg:px-8', className].filter(Boolean).join(' ')
 	);
 </script>
 
-<section class={comparisonClasses}>
+<section class={showcaseClasses}>
 	<div class="max-w-7xl mx-auto">
 		{#if title || description}
 			<div class="text-center mb-12 space-y-4">
@@ -57,9 +60,9 @@
 			</div>
 		{/if}
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-			{#each items as item}
-				<ComparisonCard {...item} />
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{#each products as product}
+				<MacCard {...product} />
 			{/each}
 		</div>
 	</div>

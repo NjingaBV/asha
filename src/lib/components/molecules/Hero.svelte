@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button.svelte';
+	import PillButton from '$lib/components/atoms/PillButton.svelte';
 	import type { ImageType } from '$lib/models';
 
 	let {
@@ -120,11 +120,7 @@
 			>
 				{#each callToActions as cta, i (i)}
 					<div class="transform transition-transform duration-300 hover:scale-105">
-						<Button
-							color={cta.color}
-							size="large"
-							onClick={() => (location.href = cta.url)}
-						>
+						<PillButton size="lg" onClick={() => (location.href = cta.url)}>
 							<div class="flex items-center gap-3 text-base md:text-lg">
 								{#if cta.icon}
 									<svg
@@ -137,7 +133,7 @@
 								{/if}
 								<span>{cta.label}</span>
 							</div>
-						</Button>
+						</PillButton>
 					</div>
 				{/each}
 			</div>

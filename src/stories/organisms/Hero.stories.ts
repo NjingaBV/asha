@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import MacHero from '$lib/components/organisms/MacHero.svelte';
+import Hero from '$lib/components/organisms/Hero.svelte';
 
 const meta = {
-	title: 'Organisms/MacHero',
-	component: MacHero,
+	title: 'Organisms/Hero',
+	component: Hero,
 	tags: ['autodocs'],
 	parameters: {
 		layout: 'fullscreen',
 		docs: {
 			description: {
 				component: `
-# Héros Mac (MacHero)
+# Héros Mac (Hero)
 
 Grande bannière héros pour la page Mac, présentant une image de produit, un titre et des liens d'appel à l'action.
 
@@ -40,7 +40,7 @@ Grande bannière héros pour la page Mac, présentant une image de produit, un t
 			description: 'Text color scheme'
 		}
 	}
-} satisfies Meta<typeof MacHero>;
+} satisfies Meta<typeof Hero>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

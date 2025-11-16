@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import MacComparison from '$lib/components/organisms/MacComparison.svelte';
+import Comparison from '$lib/components/organisms/Comparison.svelte';
 
 const meta = {
-	title: 'Organisms/MacComparison',
-	component: MacComparison,
+	title: 'Organisms/Comparison',
+	component: Comparison,
 	tags: ['autodocs'],
 	parameters: {
 		layout: 'fullscreen',
 		docs: {
 			description: {
 				component: `
-# Comparaison de Mac (MacComparison)
+# Comparaison de Mac (Comparison)
 
 Section de comparaison côte à côte pour les modèles de Mac avec leurs caractéristiques.
 
@@ -24,7 +24,7 @@ Section de comparaison côte à côte pour les modèles de Mac avec leurs caract
 			}
 		}
 	}
-} satisfies Meta<typeof MacComparison>;
+} satisfies Meta<typeof Comparison>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

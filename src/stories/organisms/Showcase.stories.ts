@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import MacShowcase from '$lib/components/organisms/MacShowcase.svelte';
+import Showcase from '$lib/components/organisms/Showcase.svelte';
 
 const meta = {
-	title: 'Organisms/MacShowcase',
-	component: MacShowcase,
+	title: 'Organisms/Showcase',
+	component: Showcase,
 	tags: ['autodocs'],
 	parameters: {
 		layout: 'fullscreen',
 		docs: {
 			description: {
 				component: `
-# Vitrine Mac (MacShowcase)
+# Vitrine Mac (Showcase)
 
 Grille de cartes de produits Mac présentant tous les modèles disponibles.
 
@@ -23,7 +23,7 @@ Grille de cartes de produits Mac présentant tous les modèles disponibles.
 			}
 		}
 	}
-} satisfies Meta<typeof MacShowcase>;
+} satisfies Meta<typeof Showcase>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

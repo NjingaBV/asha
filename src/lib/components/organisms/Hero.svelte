@@ -6,7 +6,7 @@
 	import Image from '$lib/components/atoms/Image.svelte';
 
 	/**
-	 * MacHero component - Large hero banner for Mac page
+	 * Hero component - Large hero banner for Mac page
 	 * Main hero section with product image and CTAs
 	 */
 

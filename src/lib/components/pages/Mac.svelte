@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Header from '$lib/components/organisms/Header.svelte';
-	import MacHero from '$lib/components/organisms/MacHero.svelte';
+	import Hero from '$lib/components/organisms/Hero.svelte';
 	import NavigationBar from '$lib/components/molecules/NavigationBar.svelte';
-	import MacShowcase from '$lib/components/organisms/MacShowcase.svelte';
-	import MacComparison from '$lib/components/organisms/MacComparison.svelte';
+	import Showcase from '$lib/components/organisms/Showcase.svelte';
+	import Comparison from '$lib/components/organisms/Comparison.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 
 	import type { LinkType, LogoType } from '$lib/models';
@@ -81,14 +81,14 @@
 	<Header {navLinks} bind:open {logo} />
 
 	<main>
-		<MacHero {...hero} />
+		<Hero {...hero} />
 
 		{#if macNavItems.length > 0}
 			<NavigationBar items={macNavItems} />
 		{/if}
 
 		{#if products.length > 0}
-			<MacShowcase
+			<Showcase
 				title="Which Mac is right for you?"
 				description="Choose the perfect Mac for your needs"
 				{products}
@@ -96,7 +96,7 @@
 		{/if}
 
 		{#if showComparison && comparisonItems.length > 0}
-			<MacComparison
+			<Comparison
 				title="Compare Mac models"
 				description="Find the perfect Mac that fits your workflow"
 				items={comparisonItems}
