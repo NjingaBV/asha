@@ -15,6 +15,6 @@
 			'mix-blend-multiply filter blur-xl opacity-70',
 			'rounded-full animate-blob'
 		].join(' ')}
-		style={`background-color:${color}; postion:${position}`}
+		style={`background-color:${color}; position:${position}`}
 	></div>
 </div>

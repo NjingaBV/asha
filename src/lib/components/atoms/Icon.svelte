@@ -1,8 +1,14 @@
 <script lang="ts">
-	export let name: 'search' | 'sun' | 'moon' | 'chevron-right' | 'chip' | 'color' | 'external' =
-		'chevron-right';
-	export let size: number = 20;
-	export let className: string = '';
+	type IconName = 'search' | 'sun' | 'moon' | 'chevron-right' | 'chip' | 'color' | 'external';
+
+	interface Props {
+		name?: IconName;
+		size?: number;
+		class?: string;
+	}
+
+	let { name = 'chevron-right', size = 20, class: className = '' }: Props = $props();
+
 	const paths: Record<string, string> = {
 		search: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm7-1-4.35-4.35',
 		sun: 'M12 4v2m0 12v2m8-8h-2M6 12H4m12.95 5.66-1.41-1.41M6.46 6.46 5.05 5.05m12.9 0-1.41 1.41M6.46 17.54 5.05 18.95M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8',

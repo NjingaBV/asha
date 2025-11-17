@@ -12,11 +12,9 @@
 		color?: string;
 	} = $props();
 
-	let regex = $derived(
-		/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color) as RegExpExecArray
-	);
+	let regex = $derived(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color));
 	let rgb = $derived(
-		regex.slice(1).reduce((acc: string[], val, i) => {
+		regex?.slice(1).reduce((acc: string[], val, i) => {
 			acc[i] = `${parseInt(val, 16)}`;
 			return acc;
 		}, []) || []
@@ -49,7 +47,17 @@
 	>
 		{#each links as link (link.href)}
 			<li class={[`${!headerMenu && 'py-2'}`].join(' ')} style={`${`color: ${textColor};`}`}>
-				<a href={link.href}>{link.label}</a>
+				<a
+					href={link.href}
+					role="menuitem"
+					on:click={() => {
+						if (!headerMenu) {
+							headerMenu = false;
+						}
+					}}
+				>
+					{link.label}
+				</a>
 			</li>
 		{/each}
 	</ul>

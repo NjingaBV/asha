@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import type { ImageType } from '$lib/models';
 
@@ -32,11 +33,9 @@
 		}
 	};
 
-	let regex = $derived(
-		/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor) as RegExpExecArray
-	);
+	let regex = $derived(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(backgroundColor));
 	let rgb = $derived(
-		regex.slice(1).reduce((acc: string[], val, i) => {
+		regex?.slice(1).reduce((acc: string[], val, i) => {
 			acc[i] = `${parseInt(val, 16)}`;
 			return acc;
 		}, []) || []
@@ -120,7 +119,7 @@
 			>
 				{#each callToActions as cta, i (i)}
 					<div class="transform transition-transform duration-300 hover:scale-105">
-						<Button size="lg" onClick={() => (location.href = cta.url)}>
+						<Button size="lg" onClick={() => goto(cta.url)}>
 							<div class="flex items-center gap-3 text-base md:text-lg">
 								{#if cta.icon}
 									<svg

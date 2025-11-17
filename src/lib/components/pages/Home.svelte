@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Shelf from '$lib/components/templates/Shelf.svelte';
@@ -26,7 +27,7 @@
 
 <Header {navLinks} bind:open {logo}>
 	{#if isCta}
-		<Button onClick={() => (location.href = cta.url)}>{cta.label}</Button>
+		<Button onClick={() => goto(cta.url)}>{cta.label}</Button>
 	{/if}
 </Header>
 <Shelf {slices} bind:open {navLinks} {alternateColor} />

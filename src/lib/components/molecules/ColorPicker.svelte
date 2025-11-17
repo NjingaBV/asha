@@ -3,8 +3,12 @@
 	import { colorPickerMachine } from '../../machines/colorPicker.machine';
 	import ColorDot from '../atoms/ColorDot.svelte';
 
-	export let options: string[] = [];
-	export let onChange: (value: string | undefined) => void = () => {};
+	interface Props {
+		options?: string[];
+		onChange?: (value: string | undefined) => void;
+	}
+
+	let { options = [], onChange = () => {} }: Props = $props();
 
 	const { state, send } = useMachine(
 		colorPickerMachine.provide({

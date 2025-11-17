@@ -1,8 +1,13 @@
 <script lang="ts">
 	import { colorMap } from '../../design-system/tokens';
-	export let color: string;
-	export let selected: boolean = false;
-	export let size: number = 20;
+
+	interface Props {
+		color: string;
+		selected?: boolean;
+		size?: number;
+	}
+
+	let { color, selected = false, size = 20 }: Props = $props();
 </script>
 
 // src/lib/atoms/ColorDot.svelte

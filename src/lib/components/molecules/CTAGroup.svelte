@@ -13,13 +13,13 @@
 
 <div class={[align === 'center' ? 'justify-center' : 'justify-start', 'flex gap-3'].join(' ')}>
 	{#if primary}
-		<Button label={primary.label} href={primary.href} tone={primary.tone ?? 'primary'} />
+		<Button href={primary.href} tone={primary.tone ?? 'primary'}>
+			{primary.label}
+		</Button>
 	{/if}
 	{#if secondary}
-		<Button
-			label={secondary.label}
-			href={secondary.href}
-			tone={secondary.tone ?? 'secondary'}
-		/>
+		<Button href={secondary.href} tone={secondary.tone ?? 'secondary'}>
+			{secondary.label}
+		</Button>
 	{/if}
 </div>

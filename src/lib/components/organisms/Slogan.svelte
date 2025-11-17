@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Button from '$lib/components/atoms/Button.svelte';
 
 	let {
@@ -31,7 +32,7 @@
 			{/each}
 		</div>
 		<div>
-			<Button color={cta.color} size="large" onClick={() => (location.href = cta.url)}>
+			<Button size="lg" tone="primary" onClick={() => goto(cta.url)}>
 				{cta.label}
 			</Button>
 		</div>
