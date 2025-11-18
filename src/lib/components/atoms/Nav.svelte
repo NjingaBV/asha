@@ -50,7 +50,7 @@
 				<a
 					href={link.href}
 					role="menuitem"
-					on:click={() => {
+					onclick={() => {
 						if (!headerMenu) {
 							headerMenu = false;
 						}
