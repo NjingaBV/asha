@@ -5,20 +5,37 @@ const meta = {
 	title: 'Atoms/Blob',
 	component: Blob,
 	parameters: {
-		layout: 'centered',
+		layout: 'fullscreen',
 		docs: {
 			description: {
 				component: `
-# Blob
+# Blob Component
 
-Un élément d'arrière-plan animé et flou qui crée des effets visuels organiques et fluides, parfaits pour les interfaces modernes et dynamiques.
+An animated, blurred background element that creates organic and fluid visual effects perfect for modern interfaces.
 
-## Caractéristiques Clés
+## Features
 
-- **Forme Organique**: Un cercle animé pour un mouvement naturel.
-- **Effet de Flou**: Un flou prononcé pour des visuels d'ambiance doux.
-- **Mode de Fusion**: Utilise \`mix-blend-multiply\` pour des interactions de couleurs intéressantes.
-- **Personnalisable**: La couleur et la position peuvent être ajustées.
+- **Organic Animation**: Smooth, continuous blob animation for natural movement
+- **Blur Effect**: CSS blur filter for soft, ambient visuals
+- **Blend Mode**: Uses \`mix-blend-multiply\` for interesting color interactions
+- **Customizable Colors**: Accepts any valid CSS color (hex, rgb, rgba, color names)
+- **Animation Control**: Adjustable delay and duration for choreography
+- **Background Element**: Ideal for decorative effects behind content
+
+## Best Practices
+
+- Use semi-transparent or muted colors for best results
+- Combine multiple blobs with different delays for rich effects
+- Place behind other content with absolute/relative positioning
+- Consider performance with multiple blobs
+
+## Use Cases
+
+- Hero section backgrounds
+- Gradient decorative effects
+- Landing page visuals
+- Feature section animations
+- Ambient visual elements
 `
 			}
 		}
@@ -28,12 +45,15 @@ Un élément d'arrière-plan animé et flou qui crée des effets visuels organiq
 		color: {
 			control: 'color',
 			description:
-				'The blob color. Accepts any valid CSS color value. The blur and blend modes will affect final appearance. Consider using semi-transparent or muted colors for best results.'
+				'Blob color (any valid CSS color). Consider semi-transparent colors (rgba) for better blending with content beneath.'
 		},
-		position: {
-			control: 'text',
-			description:
-				'CSS position value (though note there is a typo in the component - "postion"). Used for positioning the blob within its container.'
+		delay: {
+			control: { type: 'number', min: 0, max: 5, step: 0.5 },
+			description: 'Animation delay in seconds. Useful for choreographing multiple blobs.'
+		},
+		duration: {
+			control: { type: 'number', min: 1, max: 10, step: 0.5 },
+			description: 'Animation duration in seconds. Longer durations = slower movement.'
 		}
 	}
 } satisfies Meta<typeof Blob>;
@@ -41,15 +61,86 @@ Un élément d'arrière-plan animé et flou qui crée des effets visuels organiq
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Purple: Story = {
 	args: {
 		color: '#6c00e2',
-		position: ''
-	}
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
 };
 
-export const PurpleBlob: Story = {
+export const Orange: Story = {
 	args: {
-		...Primary.args
-	}
+		color: '#ff9800',
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const Blue: Story = {
+	args: {
+		color: '#2196F3',
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const Pink: Story = {
+	args: {
+		color: '#E91E63',
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const SemiTransparent: Story = {
+	args: {
+		color: 'rgba(108, 0, 226, 0.6)',
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const SlowAnimation: Story = {
+	args: {
+		color: '#6c00e2',
+		delay: 0,
+		duration: 8
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const DelayedAnimation: Story = {
+	args: {
+		color: '#ff9800',
+		delay: 2,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
 };
