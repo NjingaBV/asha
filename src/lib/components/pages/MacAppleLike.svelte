@@ -337,7 +337,7 @@
 											class="w-4 h-4 rounded-full border border-slate-300 hover:border-slate-600 cursor-pointer transition-colors"
 											style={`background-color: ${color.code}`}
 											title={color.name}
-										/>
+										></div>
 									{/each}
 								</div>
 							{/if}
