@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
@@ -216,20 +215,22 @@
 				>
 					{#each ctas as cta, i (i)}
 						<div class="transform transition-transform duration-300 hover:scale-105">
-							<Button size="lg" onClick={() => goto(cta.url || cta.href || '#')}>
-								<div class="flex items-center gap-3 text-base md:text-lg">
-									{#if cta.icon}
-										<svg
-											class="flex-none stroke-[2] h-5 w-5 md:h-6 md:w-6"
-											stroke-width="2"
-											viewBox="0 0 50 50"
-										>
-											<path d={cta.icon} />
-										</svg>
-									{/if}
-									<span>{cta.label}</span>
-								</div>
-							</Button>
+							<a href={cta.url || cta.href || '#'} class="contents">
+								<Button size="lg">
+									<div class="flex items-center gap-3 text-base md:text-lg">
+										{#if cta.icon}
+											<svg
+												class="flex-none stroke-[2] h-5 w-5 md:h-6 md:w-6"
+												stroke-width="2"
+												viewBox="0 0 50 50"
+											>
+												<path d={cta.icon} />
+											</svg>
+										{/if}
+										<span>{cta.label}</span>
+									</div>
+								</Button>
+							</a>
 						</div>
 					{/each}
 				</div>
