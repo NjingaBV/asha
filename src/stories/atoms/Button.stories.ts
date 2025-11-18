@@ -98,7 +98,7 @@ export const Primary: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'Acheter'
+		children: () => 'Acheter'
 	})
 };
 
@@ -110,7 +110,7 @@ export const Secondary: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'En savoir plus'
+		children: () => 'En savoir plus'
 	})
 };
 
@@ -122,7 +122,7 @@ export const Dark: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'Explorer'
+		children: () => 'Explorer'
 	})
 };
 
@@ -134,7 +134,7 @@ export const Neutral: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'Annuler'
+		children: () => 'Annuler'
 	})
 };
 
@@ -146,7 +146,7 @@ export const Small: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'Petit'
+		children: () => 'Petit'
 	})
 };
 
@@ -158,7 +158,7 @@ export const Large: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'Grand Bouton'
+		children: () => 'Grand Bouton'
 	})
 };
 
@@ -171,7 +171,7 @@ export const FullWidth: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'Pleine Largeur'
+		children: () => 'Pleine Largeur'
 	})
 };
 
@@ -184,7 +184,7 @@ export const Disabled: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'Désactivé'
+		children: () => 'Désactivé'
 	})
 };
 
@@ -197,7 +197,7 @@ export const Loading: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'En cours...'
+		children: () => 'En cours...'
 	})
 };
 
@@ -210,7 +210,7 @@ export const LinkButton: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'Lien Navigation'
+		children: () => 'Lien Navigation'
 	})
 };
 
@@ -223,6 +223,6 @@ export const SubmitButton: Story = {
 	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
 		Component: Button,
 		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: 'Soumettre Formulaire'
+		children: () => 'Soumettre Formulaire'
 	})
 };

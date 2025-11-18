@@ -105,7 +105,7 @@ export const H1: Story = {
 		weight: 'bold',
 		color: 'text-slate-900',
 		align: 'left',
-		children: 'Heading Level 1'
+		children: () => 'Heading Level 1'
 	},
 	parameters: {
 		docs: {
@@ -122,7 +122,7 @@ export const H2: Story = {
 		size: '5xl',
 		weight: 'bold',
 		color: 'text-slate-900',
-		children: 'Heading Level 2'
+		children: () => 'Heading Level 2'
 	},
 	parameters: {
 		docs: {
@@ -139,7 +139,7 @@ export const H3: Story = {
 		size: '4xl',
 		weight: 'semibold',
 		color: 'text-slate-900',
-		children: 'Heading Level 3'
+		children: () => 'Heading Level 3'
 	},
 	parameters: {
 		docs: {
@@ -156,7 +156,7 @@ export const H4: Story = {
 		size: '3xl',
 		weight: 'semibold',
 		color: 'text-slate-900',
-		children: 'Heading Level 4'
+		children: () => 'Heading Level 4'
 	},
 	parameters: {
 		docs: {
@@ -173,7 +173,7 @@ export const H5: Story = {
 		size: '2xl',
 		weight: 'medium',
 		color: 'text-slate-900',
-		children: 'Heading Level 5'
+		children: () => 'Heading Level 5'
 	},
 	parameters: {
 		docs: {
@@ -190,7 +190,7 @@ export const H6: Story = {
 		size: 'xl',
 		weight: 'medium',
 		color: 'text-slate-900',
-		children: 'Heading Level 6'
+		children: () => 'Heading Level 6'
 	},
 	parameters: {
 		docs: {
@@ -207,7 +207,7 @@ export const ExtraSmall: Story = {
 		level: 1,
 		size: 'xs',
 		weight: 'normal',
-		children: 'Extra Small Heading'
+		children: () => 'Extra Small Heading'
 	}
 };
 
@@ -216,7 +216,7 @@ export const Small: Story = {
 		level: 1,
 		size: 'sm',
 		weight: 'normal',
-		children: 'Small Heading'
+		children: () => 'Small Heading'
 	}
 };
 
@@ -225,7 +225,7 @@ export const Large: Story = {
 		level: 1,
 		size: '8xl',
 		weight: 'bold',
-		children: 'Large Heading'
+		children: () => 'Large Heading'
 	}
 };
 
@@ -234,7 +234,7 @@ export const XLarge: Story = {
 		level: 1,
 		size: '9xl',
 		weight: 'black',
-		children: 'Extra Large Heading'
+		children: () => 'Extra Large Heading'
 	}
 };
 
@@ -244,7 +244,7 @@ export const Light: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'light',
-		children: 'Light Weight'
+		children: () => 'Light Weight'
 	}
 };
 
@@ -253,7 +253,7 @@ export const Normal: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'normal',
-		children: 'Normal Weight'
+		children: () => 'Normal Weight'
 	}
 };
 
@@ -262,7 +262,7 @@ export const Medium: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'medium',
-		children: 'Medium Weight'
+		children: () => 'Medium Weight'
 	}
 };
 
@@ -271,7 +271,7 @@ export const Semibold: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'semibold',
-		children: 'Semibold Weight'
+		children: () => 'Semibold Weight'
 	}
 };
 
@@ -280,7 +280,7 @@ export const Bold: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'bold',
-		children: 'Bold Weight'
+		children: () => 'Bold Weight'
 	}
 };
 
@@ -289,7 +289,7 @@ export const Black: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'black',
-		children: 'Black Weight'
+		children: () => 'Black Weight'
 	}
 };
 
@@ -300,7 +300,7 @@ export const LeftAligned: Story = {
 		size: '4xl',
 		weight: 'bold',
 		align: 'left',
-		children: 'Left Aligned Heading'
+		children: () => 'Left Aligned Heading'
 	}
 };
 
@@ -310,7 +310,7 @@ export const Centered: Story = {
 		size: '4xl',
 		weight: 'bold',
 		align: 'center',
-		children: 'Centered Heading'
+		children: () => 'Centered Heading'
 	}
 };
 
@@ -320,7 +320,7 @@ export const RightAligned: Story = {
 		size: '4xl',
 		weight: 'bold',
 		align: 'right',
-		children: 'Right Aligned Heading'
+		children: () => 'Right Aligned Heading'
 	}
 };
 
@@ -330,7 +330,7 @@ export const Justified: Story = {
 		size: '4xl',
 		weight: 'bold',
 		align: 'justify',
-		children:
+		children: () =>
 			'Justified heading text that spans multiple lines and aligns to both left and right edges'
 	}
 };
@@ -342,7 +342,7 @@ export const PrimaryColor: Story = {
 		size: '4xl',
 		weight: 'bold',
 		color: 'text-blue-600',
-		children: 'Primary Color'
+		children: () => 'Primary Color'
 	}
 };
 
@@ -352,7 +352,7 @@ export const SecondaryColor: Story = {
 		size: '4xl',
 		weight: 'bold',
 		color: 'text-slate-500',
-		children: 'Secondary Color'
+		children: () => 'Secondary Color'
 	}
 };
 
@@ -362,7 +362,7 @@ export const SuccessColor: Story = {
 		size: '4xl',
 		weight: 'bold',
 		color: 'text-green-600',
-		children: 'Success Color'
+		children: () => 'Success Color'
 	}
 };
 
@@ -373,7 +373,8 @@ export const WithLeading: Story = {
 		size: '4xl',
 		weight: 'bold',
 		leading: 'relaxed',
-		children: 'Heading with relaxed line height that provides more breathing room between text'
+		children: () =>
+			'Heading with relaxed line height that provides more breathing room between text'
 	}
 };
 
@@ -383,7 +384,7 @@ export const WithTracking: Story = {
 		size: '4xl',
 		weight: 'bold',
 		tracking: 'wide',
-		children: 'Heading with Wide Letter Spacing'
+		children: () => 'Heading with Wide Letter Spacing'
 	}
 };
 
@@ -396,7 +397,7 @@ export const Combined: Story = {
 		align: 'center',
 		leading: 'snug',
 		tracking: 'wide',
-		children: 'Apple Watch Series 11'
+		children: () => 'Apple Watch Series 11'
 	},
 	parameters: {
 		docs: {
