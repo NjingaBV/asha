@@ -95,10 +95,19 @@ export const Primary: Story = {
 		tone: 'primary',
 		size: 'md'
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'Acheter'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Acheter'
+		}
 	})
 };
 
@@ -107,10 +116,19 @@ export const Secondary: Story = {
 		tone: 'secondary',
 		size: 'md'
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'En savoir plus'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'En savoir plus'
+		}
 	})
 };
 
@@ -119,10 +137,19 @@ export const Dark: Story = {
 		tone: 'dark',
 		size: 'md'
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'Explorer'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Explorer'
+		}
 	})
 };
 
@@ -131,10 +158,19 @@ export const Neutral: Story = {
 		tone: 'neutral',
 		size: 'md'
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'Annuler'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Annuler'
+		}
 	})
 };
 
@@ -143,10 +179,19 @@ export const Small: Story = {
 		tone: 'primary',
 		size: 'sm'
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'Petit'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Petit'
+		}
 	})
 };
 
@@ -155,10 +200,19 @@ export const Large: Story = {
 		tone: 'primary',
 		size: 'lg'
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'Grand Bouton'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Grand Bouton'
+		}
 	})
 };
 
@@ -168,10 +222,19 @@ export const FullWidth: Story = {
 		size: 'md',
 		fullWidth: true
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'Pleine Largeur'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Pleine Largeur'
+		}
 	})
 };
 
@@ -181,10 +244,19 @@ export const Disabled: Story = {
 		size: 'md',
 		disabled: true
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'Désactivé'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Désactivé'
+		}
 	})
 };
 
@@ -194,10 +266,19 @@ export const Loading: Story = {
 		size: 'md',
 		loading: true
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'En cours...'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'En cours...'
+		}
 	})
 };
 
@@ -207,10 +288,19 @@ export const LinkButton: Story = {
 		size: 'md',
 		href: '/about'
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'Lien Navigation'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Lien Navigation'
+		}
 	})
 };
 
@@ -220,9 +310,18 @@ export const SubmitButton: Story = {
 		size: 'md',
 		type: 'submit'
 	},
-	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
 		Component: Button,
-		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
-		children: () => 'Soumettre Formulaire'
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Soumettre Formulaire'
+		}
 	})
 };
