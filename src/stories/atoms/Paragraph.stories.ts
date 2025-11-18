@@ -55,6 +55,10 @@ A semantic paragraph component for structured text content with customizable siz
 		class: {
 			control: 'text',
 			description: 'Additional CSS classes for custom styling'
+		},
+		children: {
+			control: 'text',
+			description: 'Text content displayed in the paragraph'
 		}
 	}
 } satisfies Meta<typeof Paragraph>;
@@ -68,7 +72,7 @@ export const Base: Story = {
 		color: 'text-gray-700',
 		leading: 'relaxed'
 	},
-	render: ({ size, color, leading, class: className }) => ({
+	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
 		props: { size, color, leading, class: className },
 		children:
@@ -82,7 +86,7 @@ export const Small: Story = {
 		color: 'text-gray-600',
 		leading: 'normal'
 	},
-	render: ({ size, color, leading, class: className }) => ({
+	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
 		props: { size, color, leading, class: className },
 		children: 'Small paragraph text for captions, helper text, or secondary information.'
@@ -95,7 +99,7 @@ export const Large: Story = {
 		color: 'text-gray-800',
 		leading: 'relaxed'
 	},
-	render: ({ size, color, leading, class: className }) => ({
+	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
 		props: { size, color, leading, class: className },
 		children:
@@ -109,7 +113,7 @@ export const ExtraLarge: Story = {
 		color: 'text-gray-900',
 		leading: 'loose'
 	},
-	render: ({ size, color, leading, class: className }) => ({
+	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
 		props: { size, color, leading, class: className },
 		children:
@@ -123,11 +127,11 @@ export const Tight: Story = {
 		color: 'text-gray-700',
 		leading: 'tight'
 	},
-	render: ({ size, color, leading, class: className }) => ({
+	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
 		props: { size, color, leading, class: className },
 		children:
-			'Tight line height for dense text presentation.\nUseful for headlines or compact layouts.\nProvides visual emphasis through compression.'
+			'Tight line height for dense text presentation. Useful for headlines or compact layouts. Provides visual emphasis through compression. Compare this with the Relaxed or Loose variants to see the difference.'
 	})
 };
 
@@ -137,11 +141,11 @@ export const Loose: Story = {
 		color: 'text-gray-700',
 		leading: 'loose'
 	},
-	render: ({ size, color, leading, class: className }) => ({
+	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
 		props: { size, color, leading, class: className },
 		children:
-			'Loose line height for improved readability.\nGreat for long-form content.\nIncreases visual breathing room and reduces cognitive load.'
+			'Loose line height for improved readability. Great for long-form content and accessibility. Increases visual breathing room and reduces cognitive load when reading extended passages. Ideal for articles and blog posts.'
 	})
 };
 
@@ -151,11 +155,11 @@ export const Colored: Story = {
 		color: 'text-blue-600',
 		leading: 'relaxed'
 	},
-	render: ({ size, color, leading, class: className }) => ({
+	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
 		props: { size, color, leading, class: className },
 		children:
-			'This paragraph uses a blue color (text-blue-600) to demonstrate color customization.'
+			'This paragraph uses a blue color (text-blue-600) to demonstrate color customization. You can use any Tailwind color class.'
 	})
 };
 
@@ -166,10 +170,36 @@ export const WithCustomClass: Story = {
 		leading: 'relaxed',
 		class: 'italic font-semibold'
 	},
-	render: ({ size, color, leading, class: className }) => ({
+	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
 		props: { size, color, leading, class: className },
 		children:
 			'This paragraph has custom classes applied (italic font-semibold) for additional styling flexibility.'
+	})
+};
+
+export const RedText: Story = {
+	args: {
+		size: 'base',
+		color: 'text-red-600',
+		leading: 'relaxed'
+	},
+	render: ({ size, color, leading, class: className }: any) => ({
+		Component: Paragraph,
+		props: { size, color, leading, class: className },
+		children: 'This paragraph demonstrates the text-red-600 color class.'
+	})
+};
+
+export const GreenText: Story = {
+	args: {
+		size: 'base',
+		color: 'text-green-600',
+		leading: 'relaxed'
+	},
+	render: ({ size, color, leading, class: className }: any) => ({
+		Component: Paragraph,
+		props: { size, color, leading, class: className },
+		children: 'This paragraph demonstrates the text-green-600 color class.'
 	})
 };
