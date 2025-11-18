@@ -4,7 +4,7 @@
 	import Features from '$lib/components/organisms/Features.svelte';
 	import Hero from '$lib/components/organisms/Hero.svelte';
 	import HeroTile from '$lib/components/organisms/HeroTile.svelte';
-	import Nav from '$lib/components/atoms/Nav.svelte';
+	import NavigationBar from '$lib/components/molecules/NavigationBar.svelte';
 	import Slogan from '$lib/components/organisms/Slogan.svelte';
 	import TextAnimation from '$lib/components/organisms/TextAnimation.svelte';
 	import type { LinkType, SliceType } from '$lib/models';
@@ -51,7 +51,7 @@
 
 <main class={`flex flex-col h-full ${open && 'fixed'}`}>
 	{#if open}
-		<Nav headerMenu={false} links={navLinks} />
+		<NavigationBar links={navLinks} headerMenu={false} />
 	{/if}
 	{#each slices as slice, index}
 		{@const Component = getComponent(slice)}

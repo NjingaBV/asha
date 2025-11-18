@@ -30,8 +30,8 @@
 		class?: string;
 		/** ARIA label for accessibility */
 		ariaLabel?: string;
-		/** Slot for content (text or html) */
-		children?: Snippet;
+		/** Slot for content (text, html, or Svelte snippet) */
+		children?: Snippet | any;
 		/** Button type (only for <button>) */
 		type?: 'button' | 'submit' | 'reset';
 		/** Show loading state */
@@ -96,7 +96,11 @@
 {#if href && !isDisabled}
 	<a {href} aria-label={ariaLabel} class={buttonClasses} onclick={handleClick}>
 		{#if children}
-			{@render children()}
+			{#if typeof children === 'function'}
+				{@render children()}
+			{:else}
+				{children}
+			{/if}
 		{/if}
 	</a>
 {:else}
@@ -131,7 +135,11 @@
 				</svg>
 			</span>
 		{:else if children}
-			{@render children()}
+			{#if typeof children === 'function'}
+				{@render children()}
+			{:else}
+				{children}
+			{/if}
 		{/if}
 	</button>
 {/if}

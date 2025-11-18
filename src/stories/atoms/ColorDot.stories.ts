@@ -11,19 +11,22 @@ const meta = {
 				component: `
 # ColorDot Component
 
-A selectable color indicator button for displaying and selecting colors.
+A unified, selectable color indicator button for displaying and selecting colors. Supports both custom CSS colors and Apple's color palette with optional gradient effects.
 
 ## Features
 
-- **CSS Color Support**: Accepts any CSS color value (hex, rgb, color names)
-- **Selection State**: Visual feedback for selected color with border and scale animation
-- **Customizable Size**: Configurable diameter in pixels
-- **Accessible**: ARIA attributes, keyboard focus support, and screen reader text
+- **Flexible Color Support**: CSS colors (hex, rgb, names) or Apple color names
+- **Apple Color Palette**: 10+ built-in colors with optional dual-tone gradients
+- **Selection State**: Visual feedback with border, ring, and scale animation
+- **Multiple Size Options**: Pixel-based (any number) or named sizes (sm, md, lg)
+- **Gradient Effects**: Optional dual-tone gradient for visual richness
+- **Accessible**: Full ARIA support, keyboard navigation, and screen reader text
 - **Responsive**: Smooth transitions for all interactions
 
 ## Use Cases
 
 - Product color picker
+- Mac variant selector
 - Color palette selector
 - Design system color reference
 - Theme switcher
@@ -34,16 +37,32 @@ A selectable color indicator button for displaying and selecting colors.
 	tags: ['autodocs'],
 	argTypes: {
 		color: {
-			control: 'color',
-			description: 'CSS color value (hex code, rgb, or color name)'
+			control: 'text',
+			description:
+				'Color value: CSS color (hex, rgb, names) or Apple color name (blue, purple, pink, orange, yellow, green, silver, space-black, sky-blue, starlight, midnight)'
 		},
 		selected: {
 			control: 'boolean',
-			description: 'Whether the color dot is selected (shows border and scale animation)'
+			description:
+				'Whether the color dot is selected (shows border, ring, and scale animation)'
 		},
 		size: {
-			control: { type: 'number', min: 12, max: 48, step: 2 },
-			description: 'Diameter of the color dot in pixels'
+			control: 'select',
+			options: ['sm', 'md', 'lg'],
+			description: 'Size: named sizes (sm=16px, md=24px, lg=32px) or custom pixel value'
+		},
+		type: {
+			control: 'select',
+			options: ['solid', 'dual-tone'],
+			description: 'Color type: "solid" for flat color, "dual-tone" for gradient effect'
+		},
+		label: {
+			control: 'text',
+			description: 'Accessible label for the color (used as aria-label and title)'
+		},
+		ariaLabel: {
+			control: 'text',
+			description: 'ARIA label (alternative to label prop)'
 		}
 	}
 } satisfies Meta<typeof ColorDot>;
@@ -51,15 +70,16 @@ A selectable color indicator button for displaying and selecting colors.
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// CSS Color Examples
 export const Default: Story = {
 	args: {
 		color: '#0a84ff',
 		selected: false,
-		size: 20
+		size: 'md'
 	},
-	render: ({ color, selected, size, class: className }: any) => ({
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
 		Component: ColorDot,
-		props: { color, selected, size, class: className }
+		props: { color, selected, size, type, label, ariaLabel, class: className }
 	})
 };
 
@@ -67,11 +87,12 @@ export const Selected: Story = {
 	args: {
 		color: '#0a84ff',
 		selected: true,
-		size: 20
+		size: 'md',
+		label: 'Bleu'
 	},
-	render: ({ color, selected, size, class: className }: any) => ({
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
 		Component: ColorDot,
-		props: { color, selected, size, class: className }
+		props: { color, selected, size, type, label, ariaLabel, class: className }
 	})
 };
 
@@ -79,11 +100,11 @@ export const Small: Story = {
 	args: {
 		color: '#0a84ff',
 		selected: false,
-		size: 12
+		size: 'sm'
 	},
-	render: ({ color, selected, size, class: className }: any) => ({
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
 		Component: ColorDot,
-		props: { color, selected, size, class: className }
+		props: { color, selected, size, type, label, ariaLabel, class: className }
 	})
 };
 
@@ -91,11 +112,11 @@ export const Large: Story = {
 	args: {
 		color: '#0a84ff',
 		selected: false,
-		size: 36
+		size: 'lg'
 	},
-	render: ({ color, selected, size, class: className }: any) => ({
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
 		Component: ColorDot,
-		props: { color, selected, size, class: className }
+		props: { color, selected, size, type, label, ariaLabel, class: className }
 	})
 };
 
@@ -103,11 +124,11 @@ export const Red: Story = {
 	args: {
 		color: '#ff3b30',
 		selected: false,
-		size: 20
+		size: 'md'
 	},
-	render: ({ color, selected, size, class: className }: any) => ({
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
 		Component: ColorDot,
-		props: { color, selected, size, class: className }
+		props: { color, selected, size, type, label, ariaLabel, class: className }
 	})
 };
 
@@ -115,10 +136,102 @@ export const Green: Story = {
 	args: {
 		color: '#34c759',
 		selected: false,
-		size: 20
+		size: 'md'
 	},
-	render: ({ color, selected, size, class: className }: any) => ({
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
 		Component: ColorDot,
-		props: { color, selected, size, class: className }
+		props: { color, selected, size, type, label, ariaLabel, class: className }
+	})
+};
+
+// Apple Color Palette Examples
+export const AppleBlue: Story = {
+	args: {
+		color: 'blue',
+		type: 'solid',
+		size: 'md',
+		label: 'Bleu'
+	},
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
+		Component: ColorDot,
+		props: { color, selected, size, type, label, ariaLabel, class: className }
+	})
+};
+
+export const AppleBlueDualTone: Story = {
+	args: {
+		color: 'blue',
+		type: 'dual-tone',
+		size: 'md',
+		label: 'Bleu dégradé'
+	},
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
+		Component: ColorDot,
+		props: { color, selected, size, type, label, ariaLabel, class: className }
+	})
+};
+
+export const AppleSilver: Story = {
+	args: {
+		color: 'silver',
+		type: 'solid',
+		size: 'md',
+		label: 'Argent'
+	},
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
+		Component: ColorDot,
+		props: { color, selected, size, type, label, ariaLabel, class: className }
+	})
+};
+
+export const AppleSpaceBlack: Story = {
+	args: {
+		color: 'space-black',
+		type: 'solid',
+		size: 'md',
+		label: 'Noir sidéral'
+	},
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
+		Component: ColorDot,
+		props: { color, selected, size, type, label, ariaLabel, class: className }
+	})
+};
+
+export const ApplePurple: Story = {
+	args: {
+		color: 'purple',
+		type: 'dual-tone',
+		size: 'lg',
+		label: 'Grand violet dégradé'
+	},
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
+		Component: ColorDot,
+		props: { color, selected, size, type, label, ariaLabel, class: className }
+	})
+};
+
+export const AppleStarlight: Story = {
+	args: {
+		color: 'starlight',
+		type: 'solid',
+		size: 'md',
+		label: 'Clair étoilé'
+	},
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
+		Component: ColorDot,
+		props: { color, selected, size, type, label, ariaLabel, class: className }
+	})
+};
+
+export const AppleMidnight: Story = {
+	args: {
+		color: 'midnight',
+		type: 'solid',
+		size: 'md',
+		label: 'Minuit'
+	},
+	render: ({ color, selected, size, type, label, ariaLabel, class: className }: any) => ({
+		Component: ColorDot,
+		props: { color, selected, size, type, label, ariaLabel, class: className }
 	})
 };

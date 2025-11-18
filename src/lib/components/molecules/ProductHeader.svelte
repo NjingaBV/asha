@@ -2,7 +2,7 @@
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
-	import MacBadge from '$lib/components/atoms/MacBadge.svelte';
+	import PromoBadge from '$lib/components/atoms/PromoBadge.svelte';
 	import type { MacCTA } from '$lib/models';
 
 	interface Props {
@@ -40,7 +40,7 @@
 
 <div class={`flex flex-col gap-4 ${layoutClass}`}>
 	{#if badge}
-		<MacBadge label={badge} tone={badgeTone} />
+		<PromoBadge label={badge} tone={badgeTone} />
 	{/if}
 
 	<div class="space-y-3">

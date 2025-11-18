@@ -33,8 +33,8 @@
 		link?: Link;
 		/** Custom CSS classes */
 		class?: string;
-		/** Slot for custom content */
-		children?: Snippet;
+		/** Slot for custom content (text, html, or Svelte snippet) */
+		children?: Snippet | any;
 	}
 
 	let { icon, title, description, link, class: className = '', children }: Props = $props();
@@ -91,7 +91,11 @@
 
 		{#if children}
 			<div class="pt-4">
-				{@render children()}
+				{#if typeof children === 'function'}
+					{@render children()}
+				{:else}
+					{children}
+				{/if}
 			</div>
 		{/if}
 	</div>

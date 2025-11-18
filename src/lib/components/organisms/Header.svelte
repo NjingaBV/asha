@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import Hamburger from '$lib/components/atoms/Hamburger.svelte';
-	import Nav from '$lib/components/atoms/Nav.svelte';
+	import NavigationBar from '$lib/components/molecules/NavigationBar.svelte';
 	import Logo from '$lib/components/molecules/Logo.svelte';
 
 	import type { LinkType, LogoType } from '$lib/models';
@@ -46,7 +46,7 @@
 	bind:clientHeight
 >
 	<Logo {...logo} {link} />
-	<Nav headerMenu={true} links={navLinks} />
+	<NavigationBar links={navLinks} headerMenu={true} />
 	{@render children?.()}
 	<Hamburger bind:open />
 </header>

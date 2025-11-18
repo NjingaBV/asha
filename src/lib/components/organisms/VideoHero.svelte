@@ -4,10 +4,10 @@
 	import Button from '../atoms/Button.svelte';
 
 	/**
-	 * MacHeroSection component - displays the main hero section with video
+	 * VideoHero component - displays the main hero section with video
 	 *
 	 * @example
-	 * <MacHeroSection />
+	 * <VideoHero />
 	 */
 </script>
 

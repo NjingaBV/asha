@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import MacHeroSection from '$lib/components/organisms/MacHeroSection.svelte';
+import MacHeroSection from '$lib/components/organisms/HeroSection.svelte';
 import ProductGrid from '$lib/components/organisms/ProductGrid.svelte';
 import GetToKnowMacSection from '$lib/components/organisms/GetToKnowMacSection.svelte';
 import HelpMeChooseSection from '$lib/components/organisms/HelpMeChooseSection.svelte';

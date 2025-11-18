@@ -4,20 +4,13 @@
 
 	/**
 	 * ProductGrid component - displays a responsive grid of product cards
+	 * Uses ProductCard molecule which has custom color/action logic
 	 *
 	 * @example
 	 * <ProductGrid
 	 *   title="Our Products"
-	 *   products={[
-	 *     {
-	 *       title: "Product Name",
-	 *       subtitle: "Product subtitle",
-	 *       description: "Product description.",
-	 *       colors: ['blue', 'silver'],
-	 *       primaryAction: { label: 'Learn more', href: '/product' },
-	 *       secondaryAction: { label: 'Buy', href: '/buy' }
-	 *     }
-	 *   ]}
+	 *   products={[...]}
+	 *   columns={2}
 	 * />
 	 */
 

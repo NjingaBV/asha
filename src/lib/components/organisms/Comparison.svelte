@@ -6,6 +6,12 @@
 	/**
 	 * Comparison component - Side-by-side comparison section
 	 * Compare different Mac models with features
+	 *
+	 * @example
+	 * <Comparison
+	 *   title="Compare Models"
+	 *   items={[...]}
+	 * />
 	 */
 
 	interface ComparisonItem {

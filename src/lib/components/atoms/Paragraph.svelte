@@ -19,8 +19,8 @@
 		leading?: 'tight' | 'normal' | 'relaxed' | 'loose';
 		/** Custom CSS classes */
 		class?: string;
-		/** Slot for content */
-		children?: Snippet;
+		/** Slot for content (text, html, or Svelte snippet) */
+		children?: Snippet | any;
 	}
 
 	let {
@@ -52,6 +52,10 @@
 
 <p class={paragraphClass}>
 	{#if children}
-		{@render children()}
+		{#if typeof children === 'function'}
+			{@render children()}
+		{:else}
+			{children}
+		{/if}
 	{/if}
 </p>

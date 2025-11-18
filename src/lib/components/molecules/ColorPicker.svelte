@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { useMachine } from 'xstate';
+	import { useMachine } from '@xstate/svelte';
 	import { colorPickerMachine } from '../../machines/colorPicker.machine';
 	import ColorDot from '../atoms/ColorDot.svelte';
 
@@ -10,25 +10,32 @@
 
 	let { options = [], onChange = () => {} }: Props = $props();
 
-	const { state, send } = useMachine(
+	const { snapshot, send } = useMachine(
 		colorPickerMachine.provide({
 			context: { options, selected: undefined }
 		})
 	);
 
-	$: selected = state.context.selected;
-	$: onChange(selected);
+	let selected = $derived($snapshot.context.selected);
+
+	$effect(() => {
+		onChange(selected);
+	});
 </script>
 
 <div class="flex items-center gap-2">
 	{#each options as c}
-		<div on:click={() => send({ type: 'SELECT', value: c })}>
+		<button
+			type="button"
+			class="appearance-none focus:outline-none"
+			onclick={() => send({ type: 'SELECT', value: c })}
+		>
 			<ColorDot color={c} selected={selected === c} size={22} />
-		</div>
+		</button>
 	{/each}
 	<button
 		class="ml-2 text-xs text-brand-gray hover:text-brand-black"
-		on:click={() => send({ type: 'RESET' })}
+		onclick={() => send({ type: 'RESET' })}
 	>
 		Reset
 	</button>

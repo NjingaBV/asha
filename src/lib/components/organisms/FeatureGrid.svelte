@@ -1,6 +1,14 @@
 <script lang="ts">
-	import FeatureItem from '$lib/components/atoms/FeatureItem.svelte';
-	import FeatureCard from '$lib/components/molecules/FeatureCard.svelte';
+	import CardGrid from './CardGrid.svelte';
+
+	/**
+	 * FeatureGrid - Thin wrapper around CardGrid with feature variant
+	 * Displays feature cards in stacked or alternating layout
+	 *
+	 * @deprecated Use CardGrid component with cardVariant="feature" instead
+	 * @example
+	 * <CardGrid cardVariant="feature" layout="alternating" items={[...]} />
+	 */
 
 	let {
 		features = [],
@@ -19,39 +27,14 @@
 		layout: 'stacked' | 'alternating';
 		class?: string;
 	} = $props();
-
-	let containerClasses = $derived(
-		['space-y-16 lg:space-y-24', className].filter(Boolean).join(' ')
-	);
 </script>
 
-<div class={containerClasses}>
-	{#each features as feature, index}
-		{#if feature.image}
-			<FeatureCard
-				title={feature.title}
-				description={feature.description}
-				image={feature.image}
-				imageAlt={feature.imageAlt || feature.title}
-				imagePosition={layout === 'alternating'
-					? index % 2 === 0
-						? 'right'
-						: 'left'
-					: feature.imagePosition || 'right'}
-				icon={feature.icon}
-				badge={feature.badge}
-			/>
-		{:else}
-			<!-- Fallback for features without images -->
-			<div class="max-w-4xl mx-auto">
-				<div class="p-8 rounded-2xl bg-slate-50">
-					<FeatureItem
-						title={feature.title}
-						description={feature.description}
-						icon={feature.icon ?? null}
-					/>
-				</div>
-			</div>
-		{/if}
-	{/each}
-</div>
+<CardGrid
+	cardVariant="feature"
+	items={features}
+	columns={1}
+	{layout}
+	backgroundColor="transparent"
+	gap="large"
+	{className}
+/>

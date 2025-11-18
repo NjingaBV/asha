@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import MacCard from '$lib/components/molecules/MacCard.svelte';
+import CommerceCard from '$lib/components/molecules/CommerceCard.svelte';
 
 const meta = {
-	title: 'Molecules/MacCard',
-	component: MacCard,
+	title: 'Molecules/CommerceCard',
+	component: CommerceCard,
 	tags: ['autodocs'],
 	parameters: {
 		docs: {
 			description: {
 				component: `
-# Carte Mac (MacCard)
+# Carte Commerce (CommerceCard)
 
-Composant de carte produit pour afficher les modèles de Mac avec une image, un titre, un prix et des liens d'appel à l'action.
+Composant de carte produit pour afficher les modèles de produits avec une image, un titre, un prix et des liens d'appel à l'action.
 
 ## Caractéristiques
 - Affichage de l'image du produit.
@@ -43,7 +43,7 @@ Composant de carte produit pour afficher les modèles de Mac avec une image, un 
 			description: 'Show new badge'
 		}
 	}
-} satisfies Meta<typeof MacCard>;
+} satisfies Meta<typeof CommerceCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { useMachine } from 'xstate';
+	import { useMachine } from '@xstate/svelte';
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
-	import MacBadge from '$lib/components/atoms/MacBadge.svelte';
-	import MacProductHeader from '$lib/components/molecules/MacProductHeader.svelte';
-	import MacVariantSelector from '$lib/components/molecules/MacVariantSelector.svelte';
-	import MacSpecGrid from '$lib/components/molecules/MacSpecGrid.svelte';
+	import PromoBadge from '$lib/components/atoms/PromoBadge.svelte';
+	import ProductHeader from '$lib/components/molecules/ProductHeader.svelte';
+	import VariantSelector from '$lib/components/molecules/VariantSelector.svelte';
+	import SpecGrid from '$lib/components/molecules/SpecGrid.svelte';
 	import { macLineupMachine } from '$lib/machines/macLineup.machine';
 	import type { MacProduct } from '$lib/models';
 
@@ -16,8 +16,8 @@
 	}
 
 	let {
-		title = 'La gamme Mac',
-		description = 'Une grille interactive inspirée de la page Apple.com/mac pour parcourir chaque modèle avec des finitions, spécifications et appels à l’action.',
+		title = 'La gamme',
+		description = 'Une grille interactive pour parcourir chaque modèle avec des finitions, spécifications et appels à l’action.',
 		products = []
 	}: Props = $props();
 
@@ -170,19 +170,24 @@
 		products && products.length > 0 ? products : defaultProducts
 	);
 
-	const { state, send } = useMachine(
+	const { snapshot, send } = useMachine(
 		macLineupMachine.provide({
 			input: { products: actualProducts }
 		})
 	);
 
-	$: activeProduct =
-		state.context.products.find((product) => product.slug === state.context.activeSlug) ||
-		state.context.products[0];
+	let activeProduct = $derived(
+		$snapshot.context.products.find(
+			(product) => product.slug === $snapshot.context.activeSlug
+		) || $snapshot.context.products[0]
+	);
 
-	$: selectedColor =
-		state.context.selectedColor ||
-		(state.context.products[0]?.colors ? state.context.products[0].colors[0]?.name : undefined);
+	let selectedColor = $derived(
+		$snapshot.context.selectedColor ||
+			($snapshot.context.products[0]?.colors
+				? $snapshot.context.products[0].colors[0]?.name
+				: undefined)
+	);
 
 	const tone = $derived<'light' | 'dark'>(activeProduct?.textOnDark ? 'dark' : 'light');
 	const heroBackground = $derived(
@@ -209,19 +214,19 @@
 				</Paragraph>
 
 				<div class="flex flex-wrap items-center gap-3">
-					{#each state.context.products as product}
+					{#each $snapshot.context.products as product}
 						<button
 							type="button"
-							on:click={() => send({ type: 'SELECT_PRODUCT', slug: product.slug })}
+							onclick={() => send({ type: 'SELECT_PRODUCT', slug: product.slug })}
 							class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${
-								product.slug === state.context.activeSlug
+								product.slug === $snapshot.context.activeSlug
 									? 'bg-slate-900 text-white shadow-lg'
 									: 'bg-white text-slate-700 ring-1 ring-slate-200 hover:-translate-y-0.5 hover:shadow'
 							}`}
 						>
 							{product.name}
 							{#if product.badge}
-								<MacBadge label={product.badge} tone="neutral" />
+								<PromoBadge label={product.badge} tone="neutral" />
 							{/if}
 						</button>
 					{/each}
@@ -230,7 +235,7 @@
 						<button
 							type="button"
 							class="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition hover:-translate-y-0.5 hover:shadow"
-							on:click={() => send({ type: 'PREVIOUS' })}
+							onclick={() => send({ type: 'PREVIOUS' })}
 							aria-label="Modèle précédent"
 						>
 							←
@@ -238,7 +243,7 @@
 						<button
 							type="button"
 							class="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition hover:-translate-y-0.5 hover:shadow"
-							on:click={() => send({ type: 'NEXT' })}
+							onclick={() => send({ type: 'NEXT' })}
 							aria-label="Modèle suivant"
 						>
 							→
@@ -258,7 +263,7 @@
 				<div class="relative grid gap-10 p-8 lg:grid-cols-5 lg:items-center lg:p-12">
 					<div class="flex flex-col gap-3 lg:col-span-3">
 						{#if activeProduct.badge}
-							<MacBadge
+							<PromoBadge
 								label={activeProduct.badge}
 								tone={tone === 'dark' ? 'neutral' : 'accent'}
 							/>
@@ -289,7 +294,7 @@
 					</div>
 
 					<div class="flex flex-col gap-6 lg:col-span-2">
-						<MacProductHeader
+						<ProductHeader
 							name={activeProduct.name}
 							tagline={activeProduct.tagline}
 							description={activeProduct.description}
@@ -300,14 +305,14 @@
 							ctas={activeProduct.ctas}
 						/>
 
-						<MacVariantSelector
+						<VariantSelector
 							colors={activeProduct.colors}
 							selected={selectedColor}
 							{tone}
 							onChange={(color) => send({ type: 'SELECT_COLOR', color })}
 						/>
 
-						<MacSpecGrid specs={activeProduct.specs} {tone} />
+						<SpecGrid specs={activeProduct.specs} {tone} />
 
 						{#if activeProduct.highlights && activeProduct.highlights.length > 0}
 							<ul

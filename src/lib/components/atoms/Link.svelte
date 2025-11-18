@@ -22,8 +22,8 @@
 		ariaLabel?: string;
 		/** Open in new tab */
 		target?: '_blank' | '_self';
-		/** Slot for content */
-		children?: Snippet;
+		/** Slot for content (text, html, or Svelte snippet) */
+		children?: Snippet | any;
 	}
 
 	let {
@@ -59,6 +59,10 @@
 	rel={target === '_blank' ? 'noopener noreferrer' : undefined}
 >
 	{#if children}
-		{@render children()}
+		{#if typeof children === 'function'}
+			{@render children()}
+		{:else}
+			{children}
+		{/if}
 	{/if}
 </a>

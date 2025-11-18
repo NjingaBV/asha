@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ColorSwatch from '$lib/components/atoms/ColorSwatch.svelte';
+	import ColorDot from '$lib/components/atoms/ColorDot.svelte';
 	import type { MacColorOption } from '$lib/models';
 
 	interface Props {
@@ -32,15 +32,16 @@
 			{#each colors as color}
 				<button
 					type="button"
-					on:click={() => handleSelect(color.name)}
+					onclick={() => handleSelect(color.name)}
 					class="flex items-center gap-2 rounded-full border border-transparent bg-white/40 px-2 py-1 pr-3 transition hover:-translate-y-0.5 hover:shadow"
 					class:text-white={tone === 'dark'}
 					aria-pressed={selected === color.name}
 				>
-					<ColorSwatch
+					<ColorDot
 						color={color.swatch}
 						selected={selected === color.name}
 						label={color.name}
+						size={20}
 					/>
 					<span class="text-xs font-medium">{color.name}</span>
 				</button>

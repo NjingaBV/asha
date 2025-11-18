@@ -3,10 +3,10 @@
 	import Paragraph from '../atoms/Paragraph.svelte';
 
 	/**
-	 * GetToKnowMacSection component - displays "Get to know Mac" features section
+	 * FeatureDiscovery component - displays "Get to know" features section
 	 *
 	 * @example
-	 * <GetToKnowMacSection />
+	 * <FeatureDiscovery />
 	 */
 
 	interface Feature {

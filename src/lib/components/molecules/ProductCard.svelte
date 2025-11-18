@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import Button from '../atoms/Button.svelte';
-	import ColorIndicator from '../atoms/ColorIndicator.svelte';
+	import ColorDot from '../atoms/ColorDot.svelte';
 	import Heading from '../atoms/Heading.svelte';
 	import Paragraph from '../atoms/Paragraph.svelte';
 	import type { AppleColor, ColorType } from '../../models/color.type';
@@ -49,8 +49,8 @@
 		className?: string;
 		/** Highlight badge (e.g., "New") */
 		badge?: string;
-		/** Slot for custom content */
-		children?: Snippet;
+		/** Slot for custom content (text, html, or Svelte snippet) */
+		children?: Snippet | any;
 	}
 
 	let {
@@ -115,7 +115,7 @@
 				<span class="text-sm text-gray-500 mr-2">Available in:</span>
 				<div class="flex gap-2">
 					{#each colors as color}
-						<ColorIndicator {color} type={colorType} size="sm" />
+						<ColorDot {color} type={colorType} size="sm" />
 					{/each}
 				</div>
 			</div>
@@ -146,7 +146,11 @@
 
 		{#if children}
 			<div class="pt-4">
-				{@render children()}
+				{#if typeof children === 'function'}
+					{@render children()}
+				{:else}
+					{children}
+				{/if}
 			</div>
 		{/if}
 	</div>
