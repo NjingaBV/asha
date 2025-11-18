@@ -18,25 +18,34 @@ Un bouton d'appel à l'action proéminent en forme de pilule, avec des coins arr
 
 - **Forme de Pilule**: Des coins entièrement arrondis pour une apparence moderne et distinctive.
 - **Lien ou Bouton**: Se rend automatiquement en tant que \`<a>\` si \`href\` est fourni, sinon en tant que \`<button>\`.
-- **Trois Tons**: Variantes \`primary\` (bleu), \`secondary\` (blanc) et \`dark\` (noir).
+- **Quatre Tons**: Variantes \`primary\` (bleu), \`secondary\` (blanc), \`dark\` (noir) et \`neutral\` (gris).
 - **Dimensionnement Flexible**: Tailles petite, moyenne et grande pour différents contextes.
 - **Option Pleine Largeur**: Peut s'étendre pour remplir la largeur de son conteneur.
+- **État de Chargement**: Affiche un spinner SVG pendant les opérations asynchrones.
+
+## Props
+
+- \`children\`: Snippet de contenu (texte ou HTML) à afficher dans le bouton
+- \`tone\`: Style visuel - 'primary' (bleu), 'secondary' (blanc), 'dark' (noir), 'neutral' (gris)
+- \`size\`: Dimensions - 'sm' (petit), 'md' (moyen), 'lg' (grand)
+- \`href\`: URL optionnelle pour rendre un \`<a>\` au lieu de \`<button>\`
+- \`disabled\`: Désactiver l'interaction et réduire l'opacité
+- \`fullWidth\`: Remplir la largeur du conteneur parent
+- \`loading\`: Afficher l'état de chargement avec spinner
+- \`type\`: Type de bouton - 'button', 'submit' ou 'reset' (défaut: 'button')
+- \`ariaLabel\`: Label ARIA pour l'accessibilité
+- \`onClick\`: Gestionnaire d'événement click
 `
 			}
 		}
 	},
 	tags: ['autodocs'],
 	argTypes: {
-		label: {
-			control: 'text',
-			description:
-				'Button text label. Keep it short and action-oriented (1-3 words recommended).'
-		},
 		tone: {
 			control: { type: 'select' },
-			options: ['primary', 'secondary', 'dark'],
+			options: ['primary', 'secondary', 'dark', 'neutral'],
 			description:
-				'Visual style: "primary" (blue background, high emphasis), "secondary" (white background with border, medium emphasis), "dark" (black background, bold statement). Default is "primary".'
+				'Visual style: "primary" (blue background, high emphasis), "secondary" (white background with border, medium emphasis), "dark" (black background, bold statement), "neutral" (gray background, low emphasis). Default is "primary".'
 		},
 		size: {
 			control: { type: 'select' },
@@ -52,12 +61,28 @@ Un bouton d'appel à l'action proéminent en forme de pilule, avec des coins arr
 		disabled: {
 			control: 'boolean',
 			description:
-				'Disables interaction and reduces opacity to 50%. For links, adds aria-disabled and removes from tab order.'
+				'Disables interaction and reduces opacity to 50%. For links with href, prevents rendering as link.'
 		},
 		fullWidth: {
 			control: 'boolean',
 			description:
 				'Makes button expand to full width of its container. Useful for mobile layouts or form actions.'
+		},
+		loading: {
+			control: 'boolean',
+			description:
+				'Shows a loading spinner inside the button and disables interaction. Useful for async actions.'
+		},
+		type: {
+			control: { type: 'select' },
+			options: ['button', 'submit', 'reset'],
+			description:
+				'Button type (only for <button> elements). Default is "button". Use "submit" for form submission.'
+		},
+		ariaLabel: {
+			control: 'text',
+			description:
+				'Aria label for accessibility. Use when button content is an icon or needs additional context.'
 		}
 	}
 } satisfies Meta<typeof Button>;
@@ -67,26 +92,137 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
 	args: {
-		label: 'Acheter',
 		tone: 'primary',
 		size: 'md'
 	},
-	render: (args) => ({ Component: Button, props: args })
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'Acheter'
+	})
 };
 
 export const Secondary: Story = {
 	args: {
-		...Primary.args,
-		label: 'En savoir plus',
-		tone: 'secondary'
-	}
+		tone: 'secondary',
+		size: 'md'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'En savoir plus'
+	})
 };
 
-export const DarkLarge: Story = {
+export const Dark: Story = {
 	args: {
-		...Primary.args,
-		label: 'Explorer',
 		tone: 'dark',
+		size: 'md'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'Explorer'
+	})
+};
+
+export const Neutral: Story = {
+	args: {
+		tone: 'neutral',
+		size: 'md'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'Annuler'
+	})
+};
+
+export const Small: Story = {
+	args: {
+		tone: 'primary',
+		size: 'sm'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'Petit'
+	})
+};
+
+export const Large: Story = {
+	args: {
+		tone: 'primary',
 		size: 'lg'
-	}
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'Grand Bouton'
+	})
+};
+
+export const FullWidth: Story = {
+	args: {
+		tone: 'primary',
+		size: 'md',
+		fullWidth: true
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'Pleine Largeur'
+	})
+};
+
+export const Disabled: Story = {
+	args: {
+		tone: 'primary',
+		size: 'md',
+		disabled: true
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'Désactivé'
+	})
+};
+
+export const Loading: Story = {
+	args: {
+		tone: 'primary',
+		size: 'md',
+		loading: true
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'En cours...'
+	})
+};
+
+export const LinkButton: Story = {
+	args: {
+		tone: 'secondary',
+		size: 'md',
+		href: '/about'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'Lien Navigation'
+	})
+};
+
+export const SubmitButton: Story = {
+	args: {
+		tone: 'primary',
+		size: 'md',
+		type: 'submit'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }) => ({
+		Component: Button,
+		props: { tone, size, disabled, fullWidth, loading, type, ariaLabel, href },
+		children: 'Soumettre Formulaire'
+	})
 };
