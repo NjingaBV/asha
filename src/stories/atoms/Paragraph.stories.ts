@@ -74,9 +74,14 @@ export const Base: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () =>
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+		}
 	})
 };
 
@@ -88,8 +93,14 @@ export const Small: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children: 'Small paragraph text for captions, helper text, or secondary information.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () =>
+				'Small paragraph text for captions, helper text, or secondary information.'
+		}
 	})
 };
 
@@ -101,9 +112,14 @@ export const Large: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children:
-			'Large paragraph text for highlighted content, introductions, or featured descriptions.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () =>
+				'Large paragraph text for highlighted content, introductions, or featured descriptions.'
+		}
 	})
 };
 
@@ -115,9 +131,14 @@ export const ExtraLarge: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children:
-			'Extra large paragraph text for prominent content, hero sections, or main messages.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () =>
+				'Extra large paragraph text for prominent content, hero sections, or main messages.'
+		}
 	})
 };
 
@@ -129,9 +150,14 @@ export const Tight: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children:
-			'Tight line height for dense text presentation. Useful for headlines or compact layouts. Provides visual emphasis through compression. Compare this with the Relaxed or Loose variants to see the difference.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () =>
+				'Tight line height for dense text presentation. Useful for headlines or compact layouts. Provides visual emphasis through compression. Compare this with the Relaxed or Loose variants to see the difference.'
+		}
 	})
 };
 
@@ -143,9 +169,14 @@ export const Loose: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children:
-			'Loose line height for improved readability. Great for long-form content and accessibility. Increases visual breathing room and reduces cognitive load when reading extended passages. Ideal for articles and blog posts.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () =>
+				'Loose line height for improved readability. Great for long-form content and accessibility. Increases visual breathing room and reduces cognitive load when reading extended passages. Ideal for articles and blog posts.'
+		}
 	})
 };
 
@@ -157,9 +188,14 @@ export const Colored: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children:
-			'This paragraph uses a blue color (text-blue-600) to demonstrate color customization. You can use any Tailwind color class.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () =>
+				'This paragraph uses a blue color (text-blue-600) to demonstrate color customization. You can use any Tailwind color class.'
+		}
 	})
 };
 
@@ -172,9 +208,14 @@ export const WithCustomClass: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children:
-			'This paragraph has custom classes applied (italic font-semibold) for additional styling flexibility.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () =>
+				'This paragraph has custom classes applied (italic font-semibold) for additional styling flexibility.'
+		}
 	})
 };
 
@@ -186,8 +227,13 @@ export const RedText: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children: 'This paragraph demonstrates the text-red-600 color class.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () => 'This paragraph demonstrates the text-red-600 color class.'
+		}
 	})
 };
 
@@ -199,7 +245,12 @@ export const GreenText: Story = {
 	},
 	render: ({ size, color, leading, class: className }: any) => ({
 		Component: Paragraph,
-		props: { size, color, leading, class: className },
-		children: 'This paragraph demonstrates the text-green-600 color class.'
+		props: {
+			size,
+			color,
+			leading,
+			class: className,
+			children: () => 'This paragraph demonstrates the text-green-600 color class.'
+		}
 	})
 };
