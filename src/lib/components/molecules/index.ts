@@ -5,7 +5,6 @@ export * from './Card.svelte';
 export * from './ColorPicker.svelte';
 export * from './ComparisonCard.svelte';
 export * from './Feature.svelte';
-export * from './Hero.svelte';
 export * from './Logo.svelte';
 export * from './MacCard.svelte';
 export * from './NavigationBar.svelte';

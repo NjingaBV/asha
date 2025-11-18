@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
-	import HeroSection from '$lib/components/organisms/HeroSection.svelte';
+	import Hero from '$lib/components/organisms/Hero.svelte';
 	import ProductGrid from '$lib/components/organisms/ProductGrid.svelte';
 	import CallToAction from '$lib/components/molecules/CallToAction.svelte';
 	import FeatureGrid from '$lib/components/organisms/FeatureGrid.svelte';
@@ -137,7 +137,8 @@
 
 <main class="min-h-screen bg-white">
 	<!-- Hero Section -->
-	<HeroSection
+	<Hero
+		variant="section"
 		title={actualHeroData.title}
 		subtitle={actualHeroData.subtitle}
 		description={actualHeroData.description}

@@ -2,7 +2,7 @@
 	import CallToAction from '$lib/components/molecules/CallToAction.svelte';
 	import Carousel from '$lib/components/organisms/Carousel.svelte';
 	import Features from '$lib/components/organisms/Features.svelte';
-	import Hero from '$lib/components/molecules/Hero.svelte';
+	import Hero from '$lib/components/organisms/Hero.svelte';
 	import HeroTile from '$lib/components/organisms/HeroTile.svelte';
 	import Nav from '$lib/components/atoms/Nav.svelte';
 	import Slogan from '$lib/components/organisms/Slogan.svelte';
