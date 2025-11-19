@@ -20,7 +20,7 @@ const products = [
         subtitle: 'M3 chip',
         description: 'Strikingly thin and fast so you can work, play, or create anywhere.',
         priceDetail: 'From $999 or $83.25/mo. for 12 mo.**',
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-midnight-select-202402?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1707329548751',
+        image: 'https://www.apple.com/assets-www/en_WW/mac/01_product_tile/xlarge/mba_13_15_140e630d3_2x.jpg',
         colors: ['midnight', 'starlight', 'silver', 'space-gray'],
         primaryAction: { label: 'Learn more', href: '#' },
         secondaryAction: { label: 'Buy', href: '#' },
@@ -46,7 +46,7 @@ const products = [
         subtitle: 'M4 chip',
         description: 'A stunning all-in-one desktop for creativity and productivity.',
         priceDetail: 'From $1299 or $108.25/mo. for 12 mo.**',
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/imac-24-no-id-blue-selection-hero-202310?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1697303845805',
+        image: 'https://www.apple.com/assets-www/en_WW/mac/01_product_tile/xlarge/imac_24_cc965acc1_2x.jpg',
         colors: ['blue', 'green', 'pink', 'silver', 'yellow', 'orange', 'purple'],
         primaryAction: { label: 'Learn more', href: '#' },
         secondaryAction: { label: 'Buy', href: '#' },
@@ -58,7 +58,7 @@ const products = [
         subtitle: 'M4 or M4 Pro chip',
         description: 'The mini-est, mightiest Mac ever.',
         priceDetail: 'From $599 or $49.91/mo. for 12 mo.**',
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mac-mini-hero-202410?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1728342375460',
+        image: 'https://www.apple.com/assets-www/en_WW/mac/01_product_tile/xlarge/mac_mini_f6ea6b417_2x.jpg',
         colors: ['silver'],
         primaryAction: { label: 'Learn more', href: '#' },
         secondaryAction: { label: 'Buy', href: '#' },
@@ -70,7 +70,7 @@ const products = [
         subtitle: 'Retina 5K display',
         description: 'A 27-inch 5K Retina display paired with a 12MP Ultra Wide camera.',
         priceDetail: 'From $1599 or $133.25/mo. for 12 mo.**',
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/studio-display-standard-glass-tilt-stand-select-202203?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1645128503722',
+        image: 'https://www.apple.com/assets-www/en_WW/mac/01_product_tile/xlarge/studio_display_5958bd8d8_2x.jpg',
         colors: [],
         primaryAction: { label: 'Learn more', href: '#' },
         secondaryAction: { label: 'Buy', href: '#' },
@@ -102,6 +102,58 @@ export const AppleStoreReplica: Story = {
             { id: 'displays', label: 'Displays' }
         ],
         cardVariant: 'minimal',
-        imageContainerClass: 'bg-gray-50 rounded-3xl p-8 mb-8'
+        imageContainerClass: 'bg-gray-50 rounded-3xl overflow-hidden'
+    }
+};
+
+export const NjingaCollection: Story = {
+    args: {
+        title: 'Accessoires de cheveux',
+        tabs: [
+            { id: 'all', label: 'All products' },
+            { id: 'turbans', label: 'Turbans' },
+            { id: 'headbands', label: 'Headbands' },
+            { id: 'scarves', label: 'Scarves' }
+        ],
+        cardVariant: 'minimal',
+        imageContainerClass: 'bg-gray-50 rounded-3xl overflow-hidden',
+        products: [
+            {
+                id: 'turban-dore',
+                title: 'Doré',
+                subtitle: 'Accessoire de cheveux',
+                description: 'Un turban élégant et modulable pour toutes les occasions.',
+                priceDetail: '€49,99',
+                image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_121_large.jpg?v=1621181269',
+                colors: ['gold', 'silver', 'black'],
+                primaryAction: { label: 'Voir', href: '#' },
+                secondaryAction: { label: 'Acheter', href: '#' },
+                category: 'turbans'
+            },
+            {
+                id: 'turban-panthere',
+                title: 'Panthère',
+                subtitle: 'Accessoire de cheveux',
+                description: 'Osez le motif panthère pour un look audacieux.',
+                priceDetail: '€49,99',
+                image: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/products/Welda_84_large.jpg?v=1621175957',
+                colors: ['gold', 'silver', 'black'],
+                primaryAction: { label: 'Voir', href: '#' },
+                secondaryAction: { label: 'Acheter', href: '#' },
+                category: 'headbands'
+            },
+            {
+                id: 'turban-malabo',
+                title: 'Malabo',
+                subtitle: 'Accessoire de cheveux',
+                description: 'Le modèle Malabo apporte une touche de couleur et de fraîcheur.',
+                priceDetail: '€49,99',
+                image: 'https://njinga.fr/cdn/shop/files/EC_les_gars_540x.jpg?v=1645791000',
+                colors: ['red', 'blue', 'black'],
+                primaryAction: { label: 'Voir', href: '#' },
+                secondaryAction: { label: 'Acheter', href: '#' },
+                category: 'scarves'
+            }
+        ]
     }
 };

@@ -96,11 +96,12 @@
 
 	const badgeClasses = $derived(
 		[
-			'absolute top-4 text-xs font-medium z-10',
-			layout === 'center' ? 'left-1/2 -translate-x-1/2' : 'left-8',
-			badgeColor === 'blue' && 'bg-blue-600 text-white px-3 py-1 rounded-full',
-			badgeColor === 'orange' && 'text-orange-600 uppercase tracking-wide',
-			badgeColor === 'neutral' && 'bg-gray-100 text-gray-800 px-3 py-1 rounded-full'
+			'text-xs font-medium z-10',
+			layout === 'center' ? 'flex justify-center' : '',
+			badgeColor === 'blue' && 'bg-blue-600 text-white px-3 py-1 rounded-full inline-block',
+			badgeColor === 'orange' && 'text-orange-600 uppercase tracking-wide inline-block',
+			badgeColor === 'neutral' &&
+				'bg-gray-100 text-gray-800 px-3 py-1 rounded-full inline-block'
 		]
 			.filter(Boolean)
 			.join(' ')
@@ -108,15 +109,14 @@
 </script>
 
 <div class={cardClasses}>
-	{#if badge}
-		<div class={badgeClasses}>
-			{badge}
-		</div>
-	{/if}
-
 	{#if image}
-		<div class={['mb-6 flex justify-center items-center', imageContainerClass].join(' ')}>
-			<img src={image} alt={imageAlt || title} class="h-48 object-contain" />
+		<div
+			class={[
+				'mb-6 flex justify-center items-center h-48 sm:h-56 md:h-64 lg:h-80',
+				imageContainerClass
+			].join(' ')}
+		>
+			<img src={image} alt={imageAlt || title} class="w-full h-full object-cover" />
 		</div>
 	{/if}
 
@@ -127,6 +127,12 @@
 				{#each colors as color}
 					<ColorDot {color} type={colorType} size="sm" />
 				{/each}
+			</div>
+		{/if}
+
+		{#if badge}
+			<div class={badgeClasses}>
+				{badge}
 			</div>
 		{/if}
 
