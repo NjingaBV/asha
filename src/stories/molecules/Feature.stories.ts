@@ -8,74 +8,19 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Feature
+				component: `
+# Caractéristique (Feature)
 
-A content-rich feature display molecule designed to showcase products, services, or content offerings with visual impact. Combines decorative path lines, bold typography, and flexible image-text layouts.
+Une molécule d'affichage de caractéristique riche en contenu, conçue pour présenter des produits, des services ou des offres de contenu avec un impact visuel. Combine des lignes de parcours décoratives, une typographie audacieuse et des mises en page image-texte flexibles.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Numbered Path Indicator**: Decorative PathLine atom showing feature order and title
-- **Large Impact Typography**: Extra-large subtitle text (5xl-7xl) for immediate visual hierarchy
-- **Flexible Layouts**: Supports image-only, text-only, or image-text split layouts
-- **HTML Rich Content**: Details section supports HTML for formatted text with bold, links, etc.
-- **Responsive Design**: Stacks vertically on mobile, side-by-side on desktop
-- **Image Hover Effects**: Subtle scale-up animation on hover for engagement
-- **Color Theming**: Custom accent colors for path lines to match brand or content
-
-## Use Cases
-
-- **Product Showcases**: Display product collections with descriptions and imagery
-- **Service Highlights**: Present service offerings with detailed explanations
-- **Content Series**: Showcase podcasts, video series, or content collections
-- **Feature Pages**: Build dedicated pages for specific products or services
-- **Portfolio Items**: Display creative work or case studies with context
-- **Event Promotion**: Highlight events, workshops, or experiences
-
-## Best Practices
-
-- Use sequential order numbers for multiple features on the same page
-- Keep subtitles concise but impactful (under 10 words ideal)
-- Use description for high-level overview, details.description for specifics
-- Choose accent colors that complement your images and brand
-- Use high-quality images (at least 800px wide) for best results
-- Format details.description with \`<strong>\` tags for emphasis on key points
-- Consider alternating image-left and image-right layouts for multiple features
-
-## Accessibility Notes
-
-- Semantic HTML structure with proper text hierarchy
-- Images require alt text via details.cover.alt property
-- Strong tags properly marked for screen reader emphasis
-- Sufficient color contrast in default text styles (slate-600)
-- Focus states supported for interactive elements
-- Keyboard navigation supported for all interactive elements
-
-## Composition
-
-This molecule is composed of:
-- **PathLine atom**: Decorative numbered indicator with custom color
-- **Native typography**: Bold, extra-large headings for maximum impact
-- **Image elements**: Responsive images with hover effects
-- **HTML content**: Rich text rendering with @html directive
-
-## Responsive Behavior
-
-- Subtitle scales from 5xl (mobile) to 6xl (tablet) to 7xl (desktop)
-- Layout switches from stacked (mobile) to side-by-side (md+) for image-text
-- Text alignment changes from left (mobile) to center (tablet+) for description
-- Spacing scales up on larger screens (mb-8 to mb-12, gap-8 to gap-16)
-- Images always full-width on mobile, 50% width on desktop splits
-- Padding adjusts from px-4 (mobile) to px-8 (desktop)
-
-## Differences from Atoms
-
-Unlike simple Heading or PathLine atoms, this molecule provides:
-- Complete feature section structure with multiple content types
-- Integrated number indicator with theming
-- Complex responsive layout orchestration
-- Image-text relationship management
-- Rich HTML content rendering with custom styling
-- Multi-element composition with proper semantic structure`
+- **Indicateur de Parcours Numéroté**: Atome \`PathLine\` décoratif montrant l'ordre et le titre de la caractéristique.
+- **Typographie à Grand Impact**: Texte de sous-titre extra-large pour une hiérarchie visuelle immédiate.
+- **Mises en Page Flexibles**: Prend en charge les mises en page image seule, texte seul ou image-texte partagé.
+- **Contenu Riche en HTML**: La section des détails prend en charge le HTML pour du texte formaté.
+- **Design Réactif**: S'empile verticalement sur mobile, côte à côte sur ordinateur.
+`
 			}
 		}
 	},

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Card from '$lib/components/molecules/Card.svelte';
+	import CarouselControls from '$lib/components/molecules/CarouselControls.svelte';
 	import type { CardType } from '$lib/models';
+	import { onMount } from 'svelte';
 
 	let {
 		title = '',
@@ -16,61 +18,79 @@
 		cards?: Array<CardType>;
 	} = $props();
 
-	let onlyOneItem = $derived(cards.length === 1);
-	let isEven = $derived(cards.length % 2 === 0);
+	let scrollContainer: HTMLElement;
+	let canScrollLeft = $state(false);
+	let canScrollRight = $state(false);
+
+	function checkScroll() {
+		if (!scrollContainer) return;
+		const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+		canScrollLeft = scrollLeft > 0;
+		canScrollRight = scrollLeft < scrollWidth - clientWidth - 10;
+	}
+
+	function scroll(direction: 'left' | 'right') {
+		if (!scrollContainer) return;
+		const scrollAmount = scrollContainer.clientWidth * 0.8;
+		scrollContainer.scrollBy({
+			left: direction === 'left' ? -scrollAmount : scrollAmount,
+			behavior: 'smooth'
+		});
+	}
+
+	onMount(() => {
+		checkScroll();
+		window.addEventListener('resize', checkScroll);
+		return () => window.removeEventListener('resize', checkScroll);
+	});
 </script>
 
-<div
-	class={[
-		'px-4 md:px-6 lg:px-8',
-		`${onlyOneItem && 'md:flex md:items-center md:justify-between'}`
-	].join(' ')}
->
-	{#if title}
-		<div class="mb-8 md:mb-12 lg:mb-14 max-w-3xl">
-			{#if category}
-				<h5
-					class="text-sm md:text-xs font-semibold tracking-widest uppercase letter-spacing category-color opacity-80 mb-3 md:mb-4"
-					style="--text-color: {color};"
-				>
-					{category}
-				</h5>{/if}
-			<h2
-				class="font-black text-3xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-4 md:mb-6"
-			>
-				{title}
-			</h2>
-			{#if overview}
-				<p
-					class="text-base md:text-lg lg:text-xl leading-relaxed text-opacity-75 max-w-2xl"
-				>
-					{overview}
-				</p>
+<section class="py-8 px-4 sm:px-6 lg:px-8 bg-white">
+	<div class="max-w-[90rem] mx-auto">
+		<div class="flex flex-col items-start mb-6 gap-6">
+			{#if title}
+				<div>
+					{#if category}
+						<h5
+							class="text-sm md:text-xs font-semibold tracking-widest uppercase letter-spacing category-color opacity-80 mb-3 md:mb-4"
+							style="--text-color: {color};"
+						>
+							{category}
+						</h5>
+					{/if}
+					<h2
+						class="font-black text-3xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-4 md:mb-6"
+					>
+						{title}
+					</h2>
+					{#if overview}
+						<p
+							class="text-base md:text-lg lg:text-xl leading-relaxed text-opacity-75 max-w-2xl"
+						>
+							{overview}
+						</p>
+					{/if}
+				</div>
 			{/if}
 		</div>
-	{/if}
-	<ul
-		class={[
-			'flex gap-5 md:gap-6 lg:gap-8 w-full',
-			'overflow-x-auto snap-x',
-			'no-scrollbar',
-			`${title ? 'pb-4 md:pb-6' : ''}`
-		].join(' ')}
-	>
-		{#each cards as card, i (i)}
-			<li
-				class={[
-					'flex-none',
-					`${onlyOneItem ? 'w-full' : 'w-[90%] md:w-[calc(50%-12px)]'}`,
-					`${isEven ? 'lg:w-[calc(50%-16px)]' : 'lg:w-[calc(33.33%-16px)]'}`,
-					'snap-center md:snap-none'
-				].join(' ')}
-			>
-				<Card {...card} />
-			</li>
-		{/each}
-	</ul>
-</div>
+
+		<div
+			bind:this={scrollContainer}
+			onscroll={checkScroll}
+			class="flex gap-6 overflow-x-auto pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 no-scrollbar snap-x"
+		>
+			{#each cards as card, i (i)}
+				<div class="flex-none w-[320px] md:w-[400px] snap-center">
+					<Card {...card} />
+				</div>
+			{/each}
+		</div>
+
+		<div class="flex justify-end mt-2">
+			<CarouselControls {canScrollLeft} {canScrollRight} onScroll={scroll} />
+		</div>
+	</div>
+</section>
 
 <style>
 	.category-color {

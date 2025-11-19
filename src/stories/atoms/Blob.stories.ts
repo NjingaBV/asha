@@ -5,46 +5,38 @@ const meta = {
 	title: 'Atoms/Blob',
 	component: Blob,
 	parameters: {
-		layout: 'centered',
+		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# Blob
+				component: `
+# Blob Component
 
-An animated, blurred background element that creates organic, flowing visual effects perfect for modern, dynamic interfaces.
+An animated, blurred background element that creates organic and fluid visual effects perfect for modern interfaces.
 
-## Key Features
+## Features
 
-- **Organic Shape**: Circular blob with animation for natural movement
-- **Blur Effect**: Heavy blur creates soft, ambient background visuals
-- **Blend Mode**: Mix-blend-multiply creates interesting color interactions
-- **Responsive Sizing**: Scales from 48 to 72 (192px to 288px) based on screen size
-- **Animated**: Built-in animation class for continuous motion
-- **Customizable Color**: Any CSS color value for brand matching
-
-## Use Cases
-
-- **Hero Backgrounds**: Create dynamic, eye-catching hero section backgrounds
-- **Decorative Elements**: Add visual interest to feature sections or cards
-- **Brand Ambiance**: Reinforce brand colors through subtle background elements
-- **Loading States**: Animated blobs can indicate activity or loading
-- **Abstract Designs**: Modern, minimalist design aesthetic
+- **Organic Animation**: Smooth, continuous blob animation for natural movement
+- **Blur Effect**: CSS blur filter for soft, ambient visuals
+- **Blend Mode**: Uses \`mix-blend-multiply\` for interesting color interactions
+- **Customizable Colors**: Accepts any valid CSS color (hex, rgb, rgba, color names)
+- **Animation Control**: Adjustable delay and duration for choreography
+- **Background Element**: Ideal for decorative effects behind content
 
 ## Best Practices
 
-- **Layer Multiple Blobs**: Use several blobs with different colors for richer effects
-- **Contrasting Colors**: Choose colors that blend well together when overlapped
-- **Behind Content**: Blobs work best as background elements behind text/content
-- **Performance**: Limit number of animated blobs on a single page (3-5 recommended)
-- **Subtle Colors**: Pastels and muted colors work better than highly saturated ones
-- **Position Carefully**: The position prop can help place blobs strategically
+- Use semi-transparent or muted colors for best results
+- Combine multiple blobs with different delays for rich effects
+- Place behind other content with absolute/relative positioning
+- Consider performance with multiple blobs
 
-## Accessibility
+## Use Cases
 
-- Purely decorative element with no semantic meaning
-- Does not interfere with content readability when used appropriately
-- Should not be the sole means of conveying information
-- No interactive elements, so no accessibility concerns
-- Ensure sufficient contrast between blob backgrounds and text content`
+- Hero section backgrounds
+- Gradient decorative effects
+- Landing page visuals
+- Feature section animations
+- Ambient visual elements
+`
 			}
 		}
 	},
@@ -53,12 +45,15 @@ An animated, blurred background element that creates organic, flowing visual eff
 		color: {
 			control: 'color',
 			description:
-				'The blob color. Accepts any valid CSS color value. The blur and blend modes will affect final appearance. Consider using semi-transparent or muted colors for best results.'
+				'Blob color (any valid CSS color). Consider semi-transparent colors (rgba) for better blending with content beneath.'
 		},
-		position: {
-			control: 'text',
-			description:
-				'CSS position value (though note there is a typo in the component - "postion"). Used for positioning the blob within its container.'
+		delay: {
+			control: { type: 'number', min: 0, max: 5, step: 0.5 },
+			description: 'Animation delay in seconds. Useful for choreographing multiple blobs.'
+		},
+		duration: {
+			control: { type: 'number', min: 1, max: 10, step: 0.5 },
+			description: 'Animation duration in seconds. Longer durations = slower movement.'
 		}
 	}
 } satisfies Meta<typeof Blob>;
@@ -66,15 +61,86 @@ An animated, blurred background element that creates organic, flowing visual eff
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Purple: Story = {
 	args: {
 		color: '#6c00e2',
-		position: ''
-	}
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
 };
 
-export const PurpleBlob: Story = {
+export const Orange: Story = {
 	args: {
-		...Primary.args
-	}
+		color: '#ff9800',
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const Blue: Story = {
+	args: {
+		color: '#2196F3',
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const Pink: Story = {
+	args: {
+		color: '#E91E63',
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const SemiTransparent: Story = {
+	args: {
+		color: 'rgba(108, 0, 226, 0.6)',
+		delay: 0,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const SlowAnimation: Story = {
+	args: {
+		color: '#6c00e2',
+		delay: 0,
+		duration: 8
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
+};
+
+export const DelayedAnimation: Story = {
+	args: {
+		color: '#ff9800',
+		delay: 2,
+		duration: 4
+	},
+	render: ({ color, delay, duration }: any) => ({
+		Component: Blob,
+		props: { color, delay, duration }
+	})
 };

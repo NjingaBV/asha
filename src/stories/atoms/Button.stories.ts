@@ -4,84 +4,85 @@ import Button from '@/lib/components/atoms/Button.svelte';
 const meta = {
 	title: 'Atoms/Button',
 	component: Button,
-	tags: ['autodocs'],
 	parameters: {
 		layout: 'centered',
+		actions: { handles: ['click'] },
 		docs: {
 			description: {
 				component: `
-# Button Component
+# Bouton Pilule (Pill Button)
 
-A versatile, accessible button component that supports multiple variants, sizes, and states.
+Un bouton d'appel à l'action proéminent en forme de pilule, avec des coins arrondis lisses, inspiré des motifs de design d'interface utilisateur modernes.
 
-## Key Features
-- **Multiple Variants**: primary, ghost, outline, solid for different visual styles
-- **Flexible Sizing**: sm, md, lg sizes for various contexts
-- **Rich States**: loading, disabled, and focus states with proper visual feedback
-- **Icon Support**: Built-in slots for icons before and after text
-- **Accessibility**: Full keyboard support, ARIA labels, and focus indicators
-- **Link Support**: Can render as &lt;a&gt; tag when href is provided
-- **Type Support**: Supports button, submit, and reset types
+## Caractéristiques Clés
 
-## Use Cases
-- Call-to-action buttons in forms
-- Navigation links styled as buttons
-- Submit buttons in forms with loading states
-- Icon buttons with optional text
-- Full-width button groups
-- Disabled interactive states
+- **Forme de Pilule**: Des coins entièrement arrondis pour une apparence moderne et distinctive.
+- **Lien ou Bouton**: Se rend automatiquement en tant que \`<a>\` si \`href\` est fourni, sinon en tant que \`<button>\`.
+- **Quatre Tons**: Variantes \`primary\` (bleu), \`secondary\` (blanc), \`dark\` (noir) et \`neutral\` (gris).
+- **Dimensionnement Flexible**: Tailles petite, moyenne et grande pour différents contextes.
+- **Option Pleine Largeur**: Peut s'étendre pour remplir la largeur de son conteneur.
+- **État de Chargement**: Affiche un spinner SVG pendant les opérations asynchrones.
 
-## Best Practices
-- Use semantic type attributes (submit for form submissions)
-- Provide loading feedback for async operations
-- Use icon slots for visual emphasis
-- Ensure sufficient color contrast
-- Use aria-label for icon-only buttons
-- Keep button text concise and actionable
-				`
+## Props
+
+- \`children\`: Snippet de contenu (texte ou HTML) à afficher dans le bouton
+- \`tone\`: Style visuel - 'primary' (bleu), 'secondary' (blanc), 'dark' (noir), 'neutral' (gris)
+- \`size\`: Dimensions - 'sm' (petit), 'md' (moyen), 'lg' (grand)
+- \`href\`: URL optionnelle pour rendre un \`<a>\` au lieu de \`<button>\`
+- \`disabled\`: Désactiver l'interaction et réduire l'opacité
+- \`fullWidth\`: Remplir la largeur du conteneur parent
+- \`loading\`: Afficher l'état de chargement avec spinner
+- \`type\`: Type de bouton - 'button', 'submit' ou 'reset' (défaut: 'button')
+- \`ariaLabel\`: Label ARIA pour l'accessibilité
+- \`onClick\`: Gestionnaire d'événement click
+`
 			}
 		}
 	},
+	tags: ['autodocs'],
 	argTypes: {
-		variant: {
+		tone: {
 			control: { type: 'select' },
-			options: ['primary', 'ghost', 'outline', 'solid'],
-			description: 'Visual style variant of the button (primary, ghost, outline, solid)'
+			options: ['primary', 'secondary', 'dark', 'neutral'],
+			description:
+				'Visual style: "primary" (blue background, high emphasis), "secondary" (white background with border, medium emphasis), "dark" (black background, bold statement), "neutral" (gray background, low emphasis). Default is "primary".'
 		},
 		size: {
 			control: { type: 'select' },
 			options: ['sm', 'md', 'lg'],
-			description: 'Size of the button (sm: small, md: medium, lg: large)'
+			description:
+				'Button size: "sm" (compact padding, text-sm), "md" (standard padding, base text), "lg" (large padding, text-lg). Default is "md".'
 		},
-		tone: {
-			control: { type: 'select' },
-			options: ['primary', 'secondary', 'neutral'],
-			description: 'Color tone/theme of the button'
+		href: {
+			control: 'text',
+			description:
+				'Optional URL for navigation. When provided, renders an <a> element instead of <button>. Omit for in-page actions.'
+		},
+		disabled: {
+			control: 'boolean',
+			description:
+				'Disables interaction and reduces opacity to 50%. For links with href, prevents rendering as link.'
+		},
+		fullWidth: {
+			control: 'boolean',
+			description:
+				'Makes button expand to full width of its container. Useful for mobile layouts or form actions.'
+		},
+		loading: {
+			control: 'boolean',
+			description:
+				'Shows a loading spinner inside the button and disables interaction. Useful for async actions.'
 		},
 		type: {
 			control: { type: 'select' },
 			options: ['button', 'submit', 'reset'],
-			description: 'HTML button type (button, submit, reset)'
+			description:
+				'Button type (only for <button> elements). Default is "button". Use "submit" for form submission.'
 		},
-		disabled: {
-			control: 'boolean',
-			description: 'Disable the button and prevent interactions'
-		},
-		loading: {
-			control: 'boolean',
-			description: 'Show loading spinner and disable interaction during async operations'
-		},
-		fullWidth: {
-			control: 'boolean',
-			description: 'Make button take full width of its container'
-		},
-		rounded: {
-			control: 'boolean',
-			description: 'Apply rounded corners (border-radius)'
-		},
-		href: {
+		ariaLabel: {
 			control: 'text',
-			description: 'URL for navigation (renders as &lt;a&gt; tag instead of &lt;button&gt;)'
+			description:
+				'Aria label for accessibility. Use when button content is an icon or needs additional context.'
 		}
 	}
 } satisfies Meta<typeof Button>;
@@ -89,142 +90,238 @@ A versatile, accessible button component that supports multiple variants, sizes,
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default button
-export const Default: Story = {
+export const Primary: Story = {
 	args: {
-		variant: 'primary',
-		size: 'md',
-		disabled: false,
-		loading: false,
-		children: 'Click me'
-	}
+		tone: 'primary',
+		size: 'md'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Acheter'
+		}
+	})
 };
 
-// Variants
-export const Ghost: Story = {
-	args: {
-		...Default.args,
-		variant: 'ghost',
-		children: 'Ghost Button'
-	}
-};
-
-export const Outline: Story = {
-	args: {
-		...Default.args,
-		variant: 'outline',
-		children: 'Outline Button'
-	}
-};
-
-export const Solid: Story = {
-	args: {
-		...Default.args,
-		variant: 'solid',
-		children: 'Solid Button'
-	}
-};
-
-// Sizes
-export const Small: Story = {
-	args: {
-		...Default.args,
-		size: 'sm',
-		children: 'Small'
-	}
-};
-
-export const Large: Story = {
-	args: {
-		...Default.args,
-		size: 'lg',
-		children: 'Large'
-	}
-};
-
-// Tones
 export const Secondary: Story = {
 	args: {
-		...Default.args,
 		tone: 'secondary',
-		children: 'Secondary Button'
-	}
+		size: 'md'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'En savoir plus'
+		}
+	})
+};
+
+export const Dark: Story = {
+	args: {
+		tone: 'dark',
+		size: 'md'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Explorer'
+		}
+	})
 };
 
 export const Neutral: Story = {
 	args: {
-		...Default.args,
 		tone: 'neutral',
-		children: 'Neutral Button'
-	}
+		size: 'md'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Annuler'
+		}
+	})
 };
 
-// States
+export const Small: Story = {
+	args: {
+		tone: 'primary',
+		size: 'sm'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Petit'
+		}
+	})
+};
+
+export const Large: Story = {
+	args: {
+		tone: 'primary',
+		size: 'lg'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Grand Bouton'
+		}
+	})
+};
+
+export const FullWidth: Story = {
+	args: {
+		tone: 'primary',
+		size: 'md',
+		fullWidth: true
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Pleine Largeur'
+		}
+	})
+};
+
 export const Disabled: Story = {
 	args: {
-		...Default.args,
-		disabled: true,
-		children: 'Disabled'
-	}
+		tone: 'primary',
+		size: 'md',
+		disabled: true
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Désactivé'
+		}
+	})
 };
 
 export const Loading: Story = {
 	args: {
-		...Default.args,
-		loading: true,
-		children: 'Loading...'
-	}
+		tone: 'primary',
+		size: 'md',
+		loading: true
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'En cours...'
+		}
+	})
 };
 
-// Shapes
-export const Rounded: Story = {
+export const LinkButton: Story = {
 	args: {
-		...Default.args,
-		rounded: true,
-		children: 'Rounded Pill'
-	}
+		tone: 'secondary',
+		size: 'md',
+		href: '/about'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Lien Navigation'
+		}
+	})
 };
 
-// Link button
-export const AsLink: Story = {
+export const SubmitButton: Story = {
 	args: {
-		...Default.args,
-		href: '#',
-		children: 'Link Button'
-	}
-};
-
-// Full width
-export const FullWidth: Story = {
-	args: {
-		...Default.args,
-		fullWidth: true,
-		children: 'Full Width Button'
-	}
-};
-
-// Button types
-export const Submit: Story = {
-	args: {
-		...Default.args,
-		type: 'submit',
-		children: 'Submit'
-	}
-};
-
-export const Reset: Story = {
-	args: {
-		...Default.args,
-		type: 'reset',
-		children: 'Reset'
-	}
-};
-
-// Custom color
-export const CustomColor: Story = {
-	args: {
-		...Default.args,
-		color: '#ff6b6b',
-		children: 'Custom Color'
-	}
+		tone: 'primary',
+		size: 'md',
+		type: 'submit'
+	},
+	render: ({ tone, size, disabled, fullWidth, loading, type, ariaLabel, href }: any) => ({
+		Component: Button,
+		props: {
+			tone,
+			size,
+			disabled,
+			fullWidth,
+			loading,
+			type,
+			ariaLabel,
+			href,
+			children: () => 'Soumettre Formulaire'
+		}
+	})
 };

@@ -8,65 +8,19 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# Player
+				component: `
+# Lecteur (Player)
 
-A comprehensive video player molecule that combines a YouTube embed with rich metadata display, including title, subtitle, overview, and thumbnail preview.
+Une molécule de lecteur vidéo complète qui combine une intégration YouTube avec un affichage riche de métadonnées, incluant le titre, le sous-titre, un aperçu et une vignette.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Flexible Video ID Input**: Accepts YouTube video IDs or full YouTube URLs (youtube.com, youtu.be)
-- **Thumbnail Preview**: Shows custom thumbnail with play button overlay before video loads
-- **Rich Metadata**: Displays title, subtitle, and expandable overview text
-- **Smart Text Truncation**: Automatically truncates long descriptions with "Show more/less" toggle
-- **Autoplay Support**: Optional autoplay functionality when play button is clicked
-- **Event Callbacks**: Provides hooks for play, expand/collapse, and player ready events
-
-## Use Cases
-
-- **Video Libraries**: Display featured or catalog videos with context
-- **Tutorial Sections**: Present educational content with detailed descriptions
-- **Marketing Pages**: Showcase product demos or promotional videos
-- **Content Galleries**: Build video collections with metadata
-- **Episode Players**: Display serialized content (e.g., "Episode 1", "Episode 2")
-
-## Best Practices
-
-- Always provide a thumbnail for better user experience and faster perceived loading
-- Keep titles concise (under 60 characters) for better readability
-- Use subtitles for episode numbers, categories, or artist names
-- Set appropriate \`overviewLines\` based on your layout (3-5 for most cases)
-- Consider disabling autoplay for better accessibility and user control
-- Provide meaningful callbacks to track user engagement
-
-## Accessibility Notes
-
-- Play button includes proper \`aria-label\` for screen readers
-- Expand/collapse button uses \`aria-expanded\` to indicate state
-- Thumbnail images include descriptive alt text
-- Keyboard navigation fully supported for all interactive elements
-- Respects user's reduced motion preferences
-
-## Composition
-
-This molecule is composed of:
-- **Youtube atom**: Handles the embedded video player functionality
-- **Native HTML elements**: Button, image, and text elements for metadata display
-
-## Responsive Behavior
-
-- Video maintains 16:9 aspect ratio across all screen sizes
-- Title text scales from 3xl to 4xl on medium+ screens
-- Metadata section uses responsive padding
-- Play button scales proportionally to container width (25% of video width)
-
-## Differences from Atoms
-
-Unlike the simple Youtube atom which only embeds a player, this molecule provides:
-- Complete video presentation with metadata
-- Thumbnail preview state management
-- Text truncation and expansion logic
-- Integrated play/pause state handling
-- Rich semantic structure for better SEO`
+- **Entrée d'ID Vidéo Flexible**: Accepte les ID de vidéo YouTube ou les URL complètes.
+- **Aperçu par Vignette**: Affiche une vignette personnalisée avec un bouton de lecture en superposition avant le chargement de la vidéo.
+- **Métadonnées Riches**: Affiche le titre, le sous-titre et un aperçu extensible.
+- **Troncature de Texte Intelligente**: Tronque automatiquement les longues descriptions avec un bouton "Afficher plus/moins".
+- **Support de l'Autoplay**: Fonctionnalité d'autoplay optionnelle lorsque le bouton de lecture est cliqué.
+`
 			}
 		}
 	},

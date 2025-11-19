@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import Hamburger from '$lib/components/atoms/Hamburger.svelte';
-	import Nav from '$lib/components/atoms/Nav.svelte';
+	import NavigationBar from '$lib/components/molecules/NavigationBar.svelte';
 	import Logo from '$lib/components/molecules/Logo.svelte';
 
 	import type { LinkType, LogoType } from '$lib/models';
@@ -39,14 +39,18 @@
 
 <header
 	class={[
-		`flex justify-between items-center top-0 z-50 px-2 md:px-0 sticky h-[var(--header-height)]`,
-		'container md:mx-auto bg-surface-1/50 text-lg backdrop-blur-sm transition-transform ease-in'
+		`sticky top-0 z-50 w-full bg-white/80 text-lg backdrop-blur-md transition-transform ease-in`,
+		'h-[var(--header-height)]'
 	].join(' ')}
 	class:motion-safe:-translate-y-full={offscreen}
 	bind:clientHeight
 >
-	<Logo {...logo} {link} />
-	<Nav headerMenu={true} links={navLinks} />
-	{@render children?.()}
-	<Hamburger bind:open />
+	<div
+		class="flex justify-between items-center px-2 md:px-6 lg:px-8 h-full max-w-[90rem] mx-auto"
+	>
+		<Logo {...logo} {link} />
+		<NavigationBar links={navLinks} headerMenu={true} transparent={true} />
+		{@render children?.()}
+		<Hamburger bind:open />
+	</div>
 </header>

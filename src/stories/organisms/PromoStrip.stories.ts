@@ -5,7 +5,21 @@ const meta = {
 	title: 'Organisms/PromoStrip',
 	component: PromoStrip,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'fullscreen',
+		docs: {
+			description: {
+				component: `
+# Bandeau Promotionnel (PromoStrip)
+
+Un bandeau simple et pleine largeur pour afficher des messages promotionnels ou des annonces importantes.
+
+## Caractéristiques Clés
+- **Pleine Largeur**: S'étend sur toute la largeur de la fenêtre.
+- **Message Simple**: Affiche un message texte centré.
+- **Tons Clair et Sombre**: Variantes pour s'adapter à différents thèmes de page.
+`
+			}
+		}
 	},
 	tags: ['autodocs'],
 	argTypes: {

@@ -5,7 +5,21 @@ const meta = {
 	title: 'Organisms/Slogan',
 	component: Slogan,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'fullscreen',
+		docs: {
+			description: {
+				component: `
+# Slogan
+
+Un organisme qui affiche une série de slogans percutants avec des sous-titres, combinés à un appel à l'action final, pour créer un message marketing puissant.
+
+## Caractéristiques Clés
+- **Slogans Multiples**: Affiche une liste de slogans pour renforcer un message.
+- **Appel à l'Action Final**: Se termine par un bouton d'appel à l'action clair.
+- **Arrière-plan Personnalisable**: La couleur de fond peut être modifiée pour correspondre à l'identité de la marque.
+`
+			}
+		}
 	},
 	tags: ['autodocs'],
 	argTypes: {

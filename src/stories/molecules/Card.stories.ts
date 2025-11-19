@@ -8,66 +8,19 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Card
+				component: `
+# Carte (Card)
 
-A versatile card molecule for displaying content, products, or media with optional imagery, text overlays, and action buttons. Supports multiple layouts and styling options for diverse use cases.
+Une molécule de carte polyvalente pour afficher du contenu, des produits ou des médias avec des images optionnelles, des superpositions de texte et des boutons d'action. Prend en charge plusieurs mises en page et options de style pour divers cas d'utilisation.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Flexible Layouts**: Text on image overlay or below image
-- **Responsive Images**: Picture element with mobile/tablet/desktop sources
-- **Mix Blend Mode**: Optional screen blend effect for creative imagery
-- **Aspect Ratio Control**: Auto-adjusts based on content (4:5, square, video)
-- **Hover Effects**: Subtle scale animation on hover
-- **Linkable Wrapper**: Entire card becomes clickable when button omitted
-- **Rounded Corners**: Toggleable border radius
-- **Text Truncation**: Automatic line-clamping for long descriptions
-
-## Use Cases
-
-- **Content Cards**: Blog posts, articles, media content
-- **Product Cards**: E-commerce product displays with prices
-- **Video Thumbnails**: Video content previews
-- **Portfolio Items**: Creative work showcases
-- **Service Cards**: Service offerings with CTAs
-- **Event Cards**: Event or show promotions
-
-## Best Practices
-
-- Use high-quality images (800px+ wide) for best results
-- Choose background colors that complement images when using mix blend
-- Keep titles under 40 characters for optimal display
-- Use subtitle for prices, categories, or metadata
-- TextOnImage works best with darker images or solid overlays
-- Rounded corners (true) for modern look, false for editorial layouts
-
-## Accessibility Notes
-
-- Semantic HTML structure with proper headings
-- Image lazy loading for performance
-- Alt text required via title prop
-- Keyboard accessible buttons and links
-- Sufficient contrast in overlay gradients
-- Focus states on interactive elements
-
-## Composition
-
-- **Button atoms**: For call-to-action functionality
-- **Linkable atom**: For making entire card clickable
-- **Picture element**: For responsive image delivery
-- **Gradient overlays**: For text readability on images
-
-## Responsive Behavior
-
-- Images switch at 650px and 950px breakpoints
-- Typography scales from mobile to desktop
-- Padding increases on larger screens (p-6 to p-8)
-- Title scales from 2xl to 4xl to 5xl
-- Aspect ratios adapt based on content type
-
-## Differences from Atoms
-
-Unlike simple Image or Button atoms, provides complete card structure with integrated image-text-action composition, gradient overlays, responsive layouts, and clickable wrappers.`
+- **Mises en Page Flexibles**: Texte superposé sur l'image ou en dessous.
+- **Images Réactives**: Élément \`<picture>\` avec des sources pour mobile, tablette et ordinateur.
+- **Contrôle du Format d'Image**: S'ajuste automatiquement en fonction du contenu (4:5, carré, vidéo).
+- **Effets de Survol**: Animation de mise à l'échelle subtile au survol.
+- **Enveloppe Cliquable**: La carte entière devient cliquable lorsque le bouton est omis.
+`
 			}
 		}
 	},

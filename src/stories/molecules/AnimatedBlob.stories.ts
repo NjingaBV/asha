@@ -8,62 +8,18 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# AnimatedBlob
+				component: `
+# Blob Animé (AnimatedBlob)
 
-A dynamic, animated gradient blob molecule for adding visual interest and modern aesthetics to backgrounds. Features smooth morphing animations and customizable color gradients.
+Une molécule de blob de dégradé dynamique et animée pour ajouter un intérêt visuel et une esthétique moderne aux arrière-plans. Comprend des animations de morphing fluides et des dégradés de couleurs personnalisables.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Fluid Animation**: Smooth, organic morphing animations
-- **Custom Colors**: Multi-color gradient support
-- **Full-screen Coverage**: Designed for background use
-- **Performance Optimized**: GPU-accelerated CSS animations
-- **Configurable Gradients**: Flexible color combinations
-- **Non-intrusive**: Works as decorative background element
-
-## Use Cases
-
-- **Hero Backgrounds**: Dynamic landing page backgrounds
-- **Section Dividers**: Animated transitions between sections
-- **Loading States**: Engaging loading experiences
-- **Brand Elements**: Unique visual identity elements
-- **Modal Backgrounds**: Backdrop for overlays and dialogs
-- **Ambient Decoration**: Subtle motion in otherwise static layouts
-
-## Best Practices
-
-- Use 2-4 colors for optimal gradient appearance
-- Choose colors that complement your brand palette
-- Consider color contrast with foreground content
-- Use as background layer, not primary content
-- Test performance on lower-end devices
-- Ensure animations respect prefers-reduced-motion
-
-## Accessibility Notes
-
-- Respects prefers-reduced-motion user preference
-- Purely decorative (does not convey information)
-- Does not interfere with interactive elements
-- Background role - content remains accessible
-- No flashing or seizure-inducing patterns
-
-## Composition
-
-- **CSS Animations**: For blob morphing
-- **Gradient Backgrounds**: Multi-color transitions
-- **SVG or CSS shapes**: For blob shapes
-- **Keyframe animations**: For smooth motion
-
-## Responsive Behavior
-
-- Scales to fill container or viewport
-- Animation speed consistent across devices
-- Performance degrades gracefully on slower devices
-- May reduce complexity on mobile for performance
-
-## Differences from Atoms
-
-Unlike static background elements, AnimatedBlob provides dynamic, continuously animated gradient backgrounds with complex morphing shapes for modern, engaging visual experiences.`
+- **Animation Fluide**: Animations de morphing organiques et douces.
+- **Couleurs Personnalisées**: Prise en charge des dégradés de plusieurs couleurs.
+- **Couverture Plein Écran**: Conçu pour être utilisé en arrière-plan.
+- **Optimisé pour la Performance**: Animations CSS accélérées par le GPU.
+`
 			}
 		}
 	},

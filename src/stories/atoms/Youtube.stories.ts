@@ -8,54 +8,19 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# YouTube Player
+				component: `
+# Lecteur YouTube (Youtube Player)
 
-A fully-featured, responsive YouTube video player component with comprehensive API integration and lifecycle management.
+Un composant de lecteur vidéo YouTube complet et réactif, avec une intégration API complète et une gestion du cycle de vie.
 
-## Key Features
+## Caractéristiques Clés
 
-- **YouTube API Integration**: Automatically loads and initializes YouTube IFrame API
-- **Responsive Design**: Maintains aspect ratio (16:9 or 4:3) across all screen sizes
-- **Event Callbacks**: Ready, play, pause, end, and error event handlers
-- **Player Controls**: Configurable autoplay, controls, fullscreen, and branding
-- **Dynamic Video Loading**: Update videoId reactively to load new videos
-- **Mobile Optimized**: Plays inline on mobile devices by default
-- **Lifecycle Management**: Proper cleanup on component unmount
-
-## Use Cases
-
-- **Video Content**: Embed marketing, tutorial, or product videos
-- **Documentation**: Video guides and how-to content
-- **Testimonials**: Customer video testimonials
-- **Product Demos**: Showcase products with video demonstrations
-- **Background Videos**: Hero sections with video backgrounds (muted autoplay)
-
-## Best Practices
-
-- **Video IDs**: Extract ID from YouTube URL (youtube.com/watch?v=VIDEO_ID)
-- **Autoplay**: Use sparingly and only with muted audio for better UX
-- **Related Videos**: Set showRelated to false to keep users on your site
-- **Modest Branding**: Enable for cleaner, less branded appearance
-- **Aspect Ratio**: Use 16:9 for modern content, 4:3 for legacy content
-- **Loading State**: Consider showing placeholder while API loads
-- **Error Handling**: Implement onError callback for graceful failures
-
-## Accessibility
-
-- Uses YouTube's built-in player accessibility features
-- Keyboard controls available when focus is on player
-- Closed captions available if provided in YouTube video
-- Fullscreen functionality respects user preferences
-- Consider providing video transcripts for full accessibility
-- Test with screen readers to ensure YouTube controls are announced
-
-## Event Codes
-
-Error codes passed to onError callback:
-- 2: Invalid video ID
-- 5: HTML5 player error
-- 100: Video not found or private
-- 101/150: Video not allowed to be played in embedded players`
+- **Intégration de l'API YouTube**: Charge et initialise automatiquement l'API IFrame de YouTube.
+- **Design Réactif**: Maintient le rapport d'aspect (16:9 ou 4:3) sur toutes les tailles d'écran.
+- **Callbacks d'Événements**: Gestionnaires d'événements pour \`ready\`, \`play\`, \`pause\`, \`end\`, et \`error\`.
+- **Contrôles du Lecteur**: Options configurables pour l'autoplay, les contrôles, le plein écran, etc.
+- **Gestion du Cycle de Vie**: Nettoyage approprié lors du démontage du composant.
+`
 			}
 		}
 	},
