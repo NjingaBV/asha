@@ -91,7 +91,7 @@ export const Default: Story = {
     }
 };
 
-export const AppleStoreReplica: Story = {
+export const AppleStore: Story = {
     args: {
         title: 'Mac',
         products,
