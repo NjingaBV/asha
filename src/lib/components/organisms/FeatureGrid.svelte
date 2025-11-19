@@ -1,40 +1,66 @@
 <script lang="ts">
-	import CardGrid from './CardGrid.svelte';
+	import FeatureCard from '$lib/components/molecules/FeatureCard.svelte';
 
 	/**
-	 * FeatureGrid - Thin wrapper around CardGrid with feature variant
-	 * Displays feature cards in stacked or alternating layout
+	 * FeatureGrid - Displays feature cards in stacked or alternating layout
 	 *
-	 * @deprecated Use CardGrid component with cardVariant="feature" instead
 	 * @example
-	 * <CardGrid cardVariant="feature" layout="alternating" items={[...]} />
+	 * <FeatureGrid
+	 *   features={[{title: '...', description: '...', image: '...'}]}
+	 *   layout="alternating"
+	 * />
 	 */
 
-	let {
-		features = [],
-		layout = 'stacked',
-		class: className = ''
-	}: {
-		features: Array<{
-			title: string;
-			description: string;
-			image: string;
-			imageAlt?: string;
-			imagePosition?: 'left' | 'right';
-			icon?: string;
-			badge?: string;
-		}>;
-		layout: 'stacked' | 'alternating';
+	interface Feature {
+		title: string;
+		description: string;
+		image: string;
+		imageAlt?: string;
+		imagePosition?: 'left' | 'right';
+		icon?: string;
+		badge?: string;
 		class?: string;
-	} = $props();
+	}
+
+	interface Props {
+		features: Feature[];
+		layout?: 'stacked' | 'alternating';
+		gap?: 'small' | 'medium' | 'large';
+		class?: string;
+	}
+
+	let { features = [], layout = 'stacked', gap = 'large' }: Props = $props();
+
+	// Gap classes
+	const gapMap = {
+		small: 'gap-4',
+		medium: 'gap-8',
+		large: 'gap-12'
+	};
+
+	const containerClasses = 'py-16 px-4 sm:px-6 lg:px-8 bg-white';
+	const gridClasses = `grid grid-cols-1 ${gapMap[gap]}`;
 </script>
 
-<CardGrid
-	cardVariant="feature"
-	items={features}
-	columns={1}
-	{layout}
-	backgroundColor="transparent"
-	gap="large"
-	{className}
-/>
+<section class={containerClasses}>
+	<div class="max-w-7xl mx-auto">
+		<div class={gridClasses}>
+			{#each features as item, index}
+				<FeatureCard
+					title={item.title}
+					description={item.description}
+					image={item.image}
+					imageAlt={item.imageAlt || item.title}
+					imagePosition={layout === 'alternating'
+						? index % 2 === 0
+							? 'right'
+							: 'left'
+						: item.imagePosition || 'right'}
+					icon={item.icon}
+					badge={item.badge}
+					class={item.class}
+				/>
+			{/each}
+		</div>
+	</div>
+</section>

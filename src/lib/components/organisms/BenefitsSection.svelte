@@ -1,17 +1,14 @@
 <script lang="ts">
-	import CardGrid from './CardGrid.svelte';
+	import BenefitCard from '$lib/components/molecules/BenefitCard.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
 
 	/**
-	 * BenefitsSection - Thin wrapper around CardGrid with benefit variant
-	 * Displays benefit/feature cards in a responsive grid
+	 * BenefitsSection - Displays benefit cards in a responsive grid
 	 *
-	 * @deprecated Use CardGrid component with cardVariant="benefit" instead
 	 * @example
-	 * <CardGrid
-	 *   cardVariant="benefit"
+	 * <BenefitsSection
 	 *   title="Benefits"
-	 *   columns={3}
-	 *   items={[...]}
+	 *   benefits={[{icon: '...', title: '...', description: '...'}]}
 	 * />
 	 */
 
@@ -20,6 +17,7 @@
 		title: string;
 		description: string;
 		link?: { label: string; href?: string; onClick?: () => void };
+		class?: string;
 	}
 
 	interface Props {
@@ -31,15 +29,40 @@
 		class?: string;
 	}
 
-	let { title, benefits, class: className = '' }: Props = $props();
+	let { title, benefits }: Props = $props();
+
+	// Gap classes
+	const gapMap = {
+		small: 'gap-4',
+		medium: 'gap-8',
+		large: 'gap-12'
+	};
+
+	const containerClasses = 'py-16 px-4 sm:px-6 lg:px-8 bg-gray-50';
+	const gridClasses = `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 ${gapMap['medium']}`;
+	const titleClasses = 'mb-12 space-y-4 text-center';
 </script>
 
-<CardGrid
-	cardVariant="benefit"
-	{title}
-	items={benefits}
-	columns={5}
-	backgroundColor="bg-gray-50"
-	gap="medium"
-	{className}
-/>
+<section class={containerClasses}>
+	<div class="max-w-7xl mx-auto">
+		{#if title}
+			<div class={titleClasses}>
+				<Heading level={2} size="4xl" weight="bold" class="text-slate-900">
+					{title}
+				</Heading>
+			</div>
+		{/if}
+
+		<div class={gridClasses}>
+			{#each benefits as item}
+				<BenefitCard
+					icon={item.icon}
+					title={item.title}
+					description={item.description}
+					link={item.link}
+					class={item.class}
+				/>
+			{/each}
+		</div>
+	</div>
+</section>

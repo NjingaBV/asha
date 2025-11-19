@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import ProductCard from '$lib/components/molecules/ProductCard.svelte';
+	import Card from '$lib/components/molecules/Card.svelte';
 	import FilterTabs from '$lib/components/molecules/FilterTabs.svelte';
 	import CarouselControls from '$lib/components/molecules/CarouselControls.svelte';
 	import type { AppleColor } from '$lib/models/color.type';
@@ -19,6 +20,7 @@
 		primaryAction: { label: string; href: string };
 		secondaryAction: { label: string; href: string };
 		category: string;
+		textColor?: 'white' | 'black';
 	}
 
 	interface Tab {
@@ -31,13 +33,15 @@
 		products = [],
 		tabs = [],
 		cardVariant = 'default',
-		imageContainerClass = ''
+		imageContainerClass = '',
+		cardType = 'product'
 	}: {
 		title?: string;
 		products?: Product[];
 		tabs?: Tab[];
 		cardVariant?: 'default' | 'minimal';
 		imageContainerClass?: string;
+		cardType?: 'product' | 'feature';
 	} = $props();
 
 	let activeTab = $state(tabs[0]?.id ?? 'all');
@@ -81,7 +85,9 @@
 				{title}
 			</Heading>
 
-			<FilterTabs {tabs} {activeTab} onSelect={(id) => (activeTab = id)} />
+			{#if tabs.length > 0}
+				<FilterTabs {tabs} {activeTab} onSelect={(id) => (activeTab = id)} />
+			{/if}
 		</div>
 
 		<div
@@ -91,22 +97,38 @@
 		>
 			{#each filteredProducts as product (product.id)}
 				<div class="flex-none w-[320px] md:w-[400px] snap-center">
-					<ProductCard
-						title={product.title}
-						subtitle={product.subtitle}
-						description={product.description}
-						priceDetail={product.priceDetail}
-						image={product.image}
-						colors={product.colors}
-						badge={product.badge}
-						badgeColor={product.badgeColor}
-						primaryAction={product.primaryAction}
-						secondaryAction={product.secondaryAction}
-						layout="center"
-						className="h-full"
-						variant={cardVariant}
-						{imageContainerClass}
-					/>
+					{#if cardType === 'feature'}
+						<Card
+							variant="image"
+							title={product.title}
+							subtitle={product.subtitle}
+							overview={product.description}
+							imgSrc={product.image}
+							buttonLink={product.primaryAction.href}
+							overlayButton={true}
+							textPosition="top"
+							textColor={product.textColor || 'black'}
+							className="h-[500px]"
+							rounded={true}
+						/>
+					{:else}
+						<ProductCard
+							title={product.title}
+							subtitle={product.subtitle}
+							description={product.description}
+							priceDetail={product.priceDetail}
+							image={product.image}
+							colors={product.colors}
+							badge={product.badge}
+							badgeColor={product.badgeColor}
+							primaryAction={product.primaryAction}
+							secondaryAction={product.secondaryAction}
+							layout="center"
+							className="h-full"
+							variant={cardVariant}
+							{imageContainerClass}
+						/>
+					{/if}
 				</div>
 			{/each}
 		</div>

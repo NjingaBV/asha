@@ -36,6 +36,10 @@
 		type?: 'button' | 'submit' | 'reset';
 		/** Show loading state */
 		loading?: boolean;
+		/** Custom background color */
+		color?: string;
+		/** Rounded corners (defaults to true/pill) */
+		rounded?: boolean;
 	}
 
 	let {
@@ -49,7 +53,9 @@
 		ariaLabel = undefined,
 		children,
 		type = 'button',
-		loading = false
+		loading = false,
+		color = undefined,
+		rounded = true
 	}: Props = $props();
 
 	const isDisabled = $derived(disabled || loading);
@@ -75,13 +81,20 @@
 
 	const baseClasses = [
 		'inline-flex items-center justify-center',
-		'rounded-full font-medium transition-all',
+		'font-medium transition-all',
 		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
 		'disabled:opacity-50 disabled:cursor-not-allowed'
 	];
 
 	const buttonClasses = $derived(
-		[...baseClasses, fullWidth ? 'w-full' : '', getSizeClasses(), getToneClasses(), className]
+		[
+			...baseClasses,
+			rounded ? 'rounded-full' : 'rounded-md',
+			fullWidth ? 'w-full' : '',
+			getSizeClasses(),
+			color ? 'text-white hover:opacity-90' : getToneClasses(),
+			className
+		]
 			.filter(Boolean)
 			.join(' ')
 	);
@@ -94,7 +107,13 @@
 </script>
 
 {#if href && !isDisabled}
-	<a {href} aria-label={ariaLabel} class={buttonClasses} onclick={handleClick}>
+	<a
+		{href}
+		aria-label={ariaLabel}
+		class={buttonClasses}
+		onclick={handleClick}
+		style={color ? `background-color: ${color}; border-color: ${color}` : undefined}
+	>
 		{#if children}
 			{#if typeof children === 'function'}
 				{@render children()}
@@ -110,6 +129,7 @@
 		disabled={isDisabled}
 		class={buttonClasses}
 		onclick={handleClick}
+		style={color ? `background-color: ${color}; border-color: ${color}` : undefined}
 	>
 		{#if loading}
 			<span class="inline-flex items-center gap-2">

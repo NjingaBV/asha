@@ -20,13 +20,15 @@
 
 	type CardVariant = 'image' | 'feature' | 'mac';
 	type ImagePosition = 'left' | 'right';
+	type TextPosition = 'top' | 'bottom';
+	type TextColor = 'white' | 'black';
 
 	// Image variant props
 	interface ImageCardProps {
 		title?: string;
 		subtitle?: string;
 		overview?: string;
-		imgSrc?: ImageType;
+		imgSrc?: ImageType | string;
 		buttonName?: string;
 		buttonLink?: string;
 		backgroundColor?: `#${string}`;
@@ -34,6 +36,9 @@
 		textOnImage?: boolean;
 		rounded?: boolean;
 		isVideo?: boolean;
+		textPosition?: TextPosition;
+		textColor?: TextColor;
+		overlayButton?: boolean;
 	}
 
 	// Feature variant props
@@ -82,6 +87,9 @@
 		textOnImage = true,
 		rounded = true,
 		isVideo = false,
+		textPosition = 'bottom',
+		textColor = 'white',
+		overlayButton = false,
 		// Feature variant
 		description = '',
 		image = '',
@@ -99,6 +107,8 @@
 	}: Props = $props();
 
 	let isLinkable = $derived(Boolean(!buttonName && buttonLink));
+	let imageSrcString = $derived(typeof imgSrc === 'string' ? imgSrc : undefined);
+	let imageSrcObject = $derived(typeof imgSrc === 'object' ? imgSrc : undefined);
 </script>
 
 {#if variant === 'image'}
@@ -106,9 +116,9 @@
 	<Linkable {isLinkable} link={buttonLink}>
 		<div
 			class={[
-				'relative max-h-screen transition-transform duration-300 hover:scale-[1.02]',
+				'relative max-h-screen transition-transform duration-300 hover:scale-[1.02] w-full',
 				rounded && 'rounded-2xl',
-				buttonName && imgSrc && 'aspect-[4/5]',
+				buttonName && imgSrc && 'aspect-4/5',
 				!buttonName && imgSrc && isVideo && 'aspect-video',
 				!buttonName && imgSrc && !isVideo && 'aspect-square',
 				className
@@ -118,66 +128,112 @@
 		>
 			<div class="flex flex-col h-full">
 				<div
-					class="bg relative h-full w-full"
+					class="bg relative h-full w-full bg-cover bg-center bg-no-repeat"
 					class:rounded-2xl={rounded}
-					style="--bg-color: {backgroundColor}"
+					style="--bg-color: {backgroundColor}; {imageSrcString
+						? `background-image: url('${imageSrcString}')`
+						: ''}"
 				>
-					{#if imgSrc}
+					{#if imageSrcObject}
 						<picture>
-							{#if imgSrc.desktop}<source
+							{#if imageSrcObject.desktop}<source
 									media="(min-width: 950px)"
-									srcset={imgSrc.desktop}
+									srcset={imageSrcObject.desktop}
 								/>{/if}
-							{#if imgSrc.tablet}<source
+							{#if imageSrcObject.tablet}<source
 									media="(min-width: 650px)"
-									srcset={imgSrc.tablet}
+									srcset={imageSrcObject.tablet}
 								/>{/if}
 							<img
-								src={imgSrc.mobile}
+								src={imageSrcObject.mobile}
 								alt={title}
 								loading="lazy"
-								class="absolute inset-0 object-cover object-center md:object-top h-full w-full"
-								class:mix-blend-screen={mixColor}
-								class:rounded-2xl={rounded}
+								class={[
+									'absolute inset-0 object-cover object-center md:object-top h-full w-full',
+									mixColor && 'mix-blend-screen',
+									rounded && 'rounded-2xl'
+								]
+									.filter(Boolean)
+									.join(' ')}
 							/>
 						</picture>
 					{/if}
 				</div>
 				{#if (buttonName || title) && textOnImage}
 					<div
-						class="absolute w-full h-fit bottom-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent p-6 md:p-8 flex flex-col gap-3"
-						class:rounded-b-2xl={rounded}
+						class={[
+							'absolute w-full h-fit p-6 md:p-8 flex flex-col gap-3',
+							textPosition === 'bottom'
+								? 'bottom-0 bg-linear-to-t from-stone-950 via-stone-950/80 to-transparent'
+								: 'top-0',
+							rounded && textPosition === 'bottom' && 'rounded-b-2xl',
+							rounded && textPosition === 'top' && 'rounded-t-2xl'
+						]
+							.filter(Boolean)
+							.join(' ')}
 					>
 						{#if subtitle}
 							<p
-								class="text-slate-200 text-sm md:text-base font-semibold tracking-wide uppercase opacity-90"
+								class={[
+									'text-sm md:text-base font-semibold tracking-wide uppercase opacity-90',
+									textColor === 'white' ? 'text-slate-200' : 'text-slate-900'
+								]
+									.filter(Boolean)
+									.join(' ')}
 							>
 								{subtitle}
 							</p>
 						{/if}
 						{#if title}
 							<h2
-								class="text-white text-2xl md:text-4xl lg:text-5xl font-black leading-tight"
-								class:text-left={subtitle}
-								class:text-center={!subtitle}
+								class={[
+									'text-2xl md:text-4xl lg:text-5xl font-black leading-tight',
+									subtitle ? 'text-left' : 'text-center',
+									textColor === 'white' ? 'text-white' : 'text-slate-900'
+								]
+									.filter(Boolean)
+									.join(' ')}
 							>
 								{title}
 							</h2>
 						{/if}
 						{#if overview}
 							<p
-								class="text-slate-300 font-light text-left text-sm md:text-base leading-relaxed line-clamp-4 opacity-90"
+								class={[
+									'font-light text-left text-sm md:text-base leading-relaxed line-clamp-4 opacity-90',
+									textColor === 'white' ? 'text-slate-300' : 'text-slate-700'
+								]
+									.filter(Boolean)
+									.join(' ')}
 							>
 								{overview}
 							</p>
 						{/if}
 						{#if buttonName && buttonLink}
 							<div class="mt-2 w-11/12 self-center">
-								<Button fullWidth={true} href={buttonLink}>
+								<Button fullWidth={true} href={buttonLink} colors={backgroundColor}>
 									{buttonName}
 								</Button>
 							</div>
 						{/if}
+					</div>
+				{/if}
+				{#if overlayButton}
+					<div class="absolute bottom-6 right-6 z-20">
+						<div
+							class="w-8 h-8 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white transition-colors hover:bg-black/50"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 20 20"
+								fill="currentColor"
+								class="w-5 h-5"
+							>
+								<path
+									d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"
+								/>
+							</svg>
+						</div>
 					</div>
 				{/if}
 			</div>
@@ -285,82 +341,79 @@
 			>
 				<img src={image} alt={imageAlt || title} class="w-full h-full object-cover" />
 				<div
-					class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent lg:hidden"
+					class="absolute inset-0 bg-linear-to-r from-white/20 to-transparent lg:hidden"
 				></div>
 			</div>
 		</div>
 	</div>
 {:else if variant === 'mac'}
-	<!-- MAC VARIANT: Mac product card with price, colors, and CTAs -->
-	<div
-		class={[
-			'group relative bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300',
-			className
-		]
-			.filter(Boolean)
-			.join(' ')}
+	class={[
+		'group relative bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300',
+		className
+	]
+		.filter(Boolean)
+		.join(' ')}
 	>
-		{#if isNew}
-			<div class="absolute top-4 left-4 z-10">
-				<Label color="orange">New</Label>
+	{#if isNew}
+		<div class="absolute top-4 left-4 z-10">
+			<Label color="orange">New</Label>
+		</div>
+	{/if}
+
+	<!-- Image -->
+	<div class="relative aspect-4/3 bg-gray-50 flex items-center justify-center p-8">
+		<Image
+			src={image}
+			alt={imageAlt || title}
+			className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+		/>
+	</div>
+
+	<!-- Content -->
+	<div class="p-6 space-y-4 text-center">
+		<div class="space-y-2">
+			<Heading level={3} size="2xl" weight="bold" class="text-slate-900">
+				{title}
+			</Heading>
+			{#if tagline}
+				<Paragraph size="lg" color="text-slate-600" class="font-medium">
+					{tagline}
+				</Paragraph>
+			{/if}
+			{#if price}
+				<Paragraph size="sm" color="text-slate-500">
+					{price}
+				</Paragraph>
+			{/if}
+		</div>
+
+		<!-- Colors -->
+		{#if colors.length > 0}
+			<div class="flex items-center justify-center gap-2 pt-2">
+				{#each colors as color}
+					<div
+						class="w-4 h-4 rounded-full border border-gray-300"
+						style="background-color: {color}"
+						title={color}
+					></div>
+				{/each}
 			</div>
 		{/if}
 
-		<!-- Image -->
-		<div class="relative aspect-[4/3] bg-gray-50 flex items-center justify-center p-8">
-			<Image
-				src={image}
-				alt={imageAlt || title}
-				className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-			/>
-		</div>
-
-		<!-- Content -->
-		<div class="p-6 space-y-4 text-center">
-			<div class="space-y-2">
-				<Heading level={3} size="2xl" weight="bold" class="text-slate-900">
-					{title}
-				</Heading>
-				{#if tagline}
-					<Paragraph size="lg" color="text-slate-600" class="font-medium">
-						{tagline}
-					</Paragraph>
-				{/if}
-				{#if price}
-					<Paragraph size="sm" color="text-slate-500">
-						{price}
-					</Paragraph>
-				{/if}
-			</div>
-
-			<!-- Colors -->
-			{#if colors.length > 0}
-				<div class="flex items-center justify-center gap-2 pt-2">
-					{#each colors as color}
-						<div
-							class="w-4 h-4 rounded-full border border-gray-300"
-							style="background-color: {color}"
-							title={color}
-						></div>
-					{/each}
-				</div>
-			{/if}
-
-			<!-- Actions -->
-			<div class="flex items-center justify-center gap-4 pt-2">
-				<Link href={learnMoreHref} variant="cta">
-					Learn more
-					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9 5l7 7-7 7"
-						/>
-					</svg>
-				</Link>
-				<Link href={buyHref} variant="cta">Buy</Link>
-			</div>
+		<!-- Actions -->
+		<div class="flex items-center justify-center gap-4 pt-2">
+			<Link href={learnMoreHref} variant="cta">
+				Learn more
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M9 5l7 7-7 7"
+					/>
+				</svg>
+			</Link>
+			<Link href={buyHref} variant="cta">Buy</Link>
 		</div>
 	</div>
 {/if}

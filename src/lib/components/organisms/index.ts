@@ -1,5 +1,4 @@
 export * from './BenefitsSection.svelte';
-export * from './CardGrid.svelte';
 export * from './Carousel.svelte';
 export * from './Comparison.svelte';
 export * from './Features.svelte';

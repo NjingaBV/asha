@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from '@storybook/sveltekit';
 import MacPage from '$lib/components/templates/MacPage.svelte';
 
 const meta = {
-    title: 'Templates/MacPage',
-    component: MacPage,
-    parameters: {
-        layout: 'fullscreen',
-        docs: {
-            description: {
-                component: `
+	title: 'Templates/MacPage',
+	component: MacPage,
+	parameters: {
+		layout: 'fullscreen',
+		docs: {
+			description: {
+				component: `
 # Page Mac
 
 Reproduction de la page d'accueil Mac d'Apple (https://www.apple.com/mac/).
@@ -23,17 +23,17 @@ Reproduction de la page d'accueil Mac d'Apple (https://www.apple.com/mac/).
 - **FeatureDiscovery**: Section de découverte des fonctionnalités.
 - **Footer**: Pied de page global.
 `
-            }
-        }
-    },
-    tags: ['autodocs']
+			}
+		}
+	},
+	tags: ['autodocs']
 } satisfies Meta<typeof MacPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => ({
-        Component: MacPage
-    })
+	render: () => ({
+		Component: MacPage
+	})
 };

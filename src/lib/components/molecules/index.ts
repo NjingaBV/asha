@@ -7,7 +7,6 @@ export * from './ColorPicker.svelte';
 export * from './ComparisonCard.svelte';
 export * from './Feature.svelte';
 export * from './Logo.svelte';
-export * from './CommerceCard.svelte';
 export * from './ProductHeader.svelte';
 export * from './VariantSelector.svelte';
 export * from './SpecGrid.svelte';
