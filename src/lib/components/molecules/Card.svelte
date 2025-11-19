@@ -39,6 +39,7 @@
 		textPosition?: TextPosition;
 		textColor?: TextColor;
 		overlayButton?: boolean;
+		duration?: string;
 	}
 
 	// Feature variant props
@@ -90,6 +91,7 @@
 		textPosition = 'bottom',
 		textColor = 'white',
 		overlayButton = false,
+		duration = undefined,
 		// Feature variant
 		description = '',
 		image = '',
@@ -209,6 +211,33 @@
 								{overview}
 							</p>
 						{/if}
+						{#if overlayButton}
+							<div class="flex items-center gap-3 mt-3">
+								<button
+									type="button"
+									class="shrink-0 transition-opacity hover:opacity-70"
+									aria-label="Play"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										class={['w-5 h-5', textColor === 'white' ? 'text-white' : 'text-slate-900']
+											.filter(Boolean)
+											.join(' ')}
+									>
+										<path d="M8 5v14l11-7z" />
+									</svg>
+								</button>
+								{#if duration}
+									<span class={['text-xs font-medium', textColor === 'white' ? 'text-slate-200' : 'text-slate-700']
+										.filter(Boolean)
+										.join(' ')}>
+										{duration}
+									</span>
+								{/if}
+							</div>
+						{/if}
 						{#if buttonName && buttonLink}
 							<div class="mt-2 w-11/12 self-center">
 								<Button fullWidth={true} href={buttonLink} colors={backgroundColor}>
@@ -216,24 +245,6 @@
 								</Button>
 							</div>
 						{/if}
-					</div>
-				{/if}
-				{#if overlayButton}
-					<div class="absolute bottom-6 right-6 z-20">
-						<div
-							class="w-8 h-8 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white transition-colors hover:bg-black/50"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 20 20"
-								fill="currentColor"
-								class="w-5 h-5"
-							>
-								<path
-									d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"
-								/>
-							</svg>
-						</div>
 					</div>
 				{/if}
 			</div>

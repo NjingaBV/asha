@@ -243,7 +243,7 @@
 		class={`relative min-h-[600px] flex items-center justify-center overflow-hidden ${className}`}
 		style="background-color: {backgroundColor};"
 	>
-		<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+		<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
 			{#if isNew}
 				<div class="flex justify-center mb-4">
 					<Label color="orange">New</Label>

@@ -26,7 +26,10 @@
 			"Bash(npm run storybook:build:*)",
 			"Bash(npm run:*)",
 			"Bash(wc:*)",
-			"Bash(git push:*)"
+			"Bash(git push:*)",
+			"Bash(rm:*)",
+			"WebFetch(domain:www.djfacemaker.com)",
+			"Bash(perl:*)"
 		],
 		"deny": [],
 		"ask": []

@@ -1,6 +1,4 @@
 export * from './AnimatedBlob.svelte';
-export * from './BenefitCard.svelte';
-export * from './CallToAction.svelte';
 export * from './Card.svelte';
 export * from './ChapterNav.svelte';
 export * from './ColorPicker.svelte';

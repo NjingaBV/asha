@@ -29,6 +29,8 @@
 		backgroundColor?: string;
 		/** Sticky positioning (horizontal only) */
 		sticky?: boolean;
+		/** Transparent background (for use inside Header) */
+		transparent?: boolean;
 		/** Additional CSS classes */
 		className?: string;
 	}
@@ -41,6 +43,7 @@
 		headerMenu = undefined,
 		backgroundColor = '#ffffff',
 		sticky = true,
+		transparent = false,
 		className = ''
 	}: Props = $props();
 
@@ -70,8 +73,11 @@
 	// Horizontal layout classes
 	const horizontalClasses = $derived(
 		[
-			'bg-white/95 backdrop-blur-md border-b border-gray-200 z-40',
+			transparent
+				? 'bg-transparent backdrop-blur-none'
+				: 'bg-white/95 backdrop-blur-md border-b border-gray-200',
 			sticky ? 'sticky top-0' : '',
+			'z-40',
 			className
 		]
 			.filter(Boolean)

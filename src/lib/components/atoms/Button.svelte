@@ -60,6 +60,38 @@
 
 	const isDisabled = $derived(disabled || loading);
 
+	const getTextColor = (bgColor: string): string => {
+		if (!bgColor) return '#ffffff'; // Default to white if no color
+
+		// Handle RGB(A) format
+		const rgbMatch = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+		if (rgbMatch) {
+			const r = parseInt(rgbMatch[1]);
+			const g = parseInt(rgbMatch[2]);
+			const b = parseInt(rgbMatch[3]);
+			// HSP formula to determine brightness
+			const hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
+			return hsp > 127.5 ? '#000000' : '#ffffff';
+		}
+
+		// Handle HEX format
+		let hex = bgColor.startsWith('#') ? bgColor.slice(1) : bgColor;
+		if (hex.length === 3) {
+			hex = hex
+				.split('')
+				.map((char) => char + char)
+				.join('');
+		}
+		if (hex.length !== 6) {
+			return '#ffffff'; // Default for invalid hex
+		}
+		const r = parseInt(hex.substring(0, 2), 16);
+		const g = parseInt(hex.substring(2, 4), 16);
+		const b = parseInt(hex.substring(4, 6), 16);
+		const hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
+		return hsp > 127.5 ? '#000000' : '#ffffff';
+	};
+
 	const getSizeClasses = (): string => {
 		const sizes = {
 			sm: 'px-3 py-1 text-sm',
@@ -92,12 +124,14 @@
 			rounded ? 'rounded-full' : 'rounded-md',
 			fullWidth ? 'w-full' : '',
 			getSizeClasses(),
-			color ? 'text-white hover:opacity-90' : getToneClasses(),
+			color ? 'hover:opacity-90' : getToneClasses(),
 			className
 		]
 			.filter(Boolean)
 			.join(' ')
 	);
+
+	const textColor = $derived(color ? getTextColor(color) : undefined);
 
 	const handleClick = (event: MouseEvent) => {
 		if (!isDisabled && onClick) {
@@ -112,7 +146,9 @@
 		aria-label={ariaLabel}
 		class={buttonClasses}
 		onclick={handleClick}
-		style={color ? `background-color: ${color}; border-color: ${color}` : undefined}
+		style={color
+			? `background-color: ${color}; border-color: ${color}; color: ${textColor}`
+			: undefined}
 	>
 		{#if children}
 			{#if typeof children === 'function'}
@@ -129,7 +165,9 @@
 		disabled={isDisabled}
 		class={buttonClasses}
 		onclick={handleClick}
-		style={color ? `background-color: ${color}; border-color: ${color}` : undefined}
+		style={color
+			? `background-color: ${color}; border-color: ${color}; color: ${textColor}`
+			: undefined}
 	>
 		{#if loading}
 			<span class="inline-flex items-center gap-2">

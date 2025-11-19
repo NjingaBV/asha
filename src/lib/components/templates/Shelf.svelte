@@ -1,5 +1,4 @@
 <script lang="ts">
-	import CallToAction from '$lib/components/molecules/CallToAction.svelte';
 	import Carousel from '$lib/components/organisms/Carousel.svelte';
 	import Features from '$lib/components/organisms/Features.svelte';
 	import Hero from '$lib/components/organisms/Hero.svelte';
@@ -31,8 +30,6 @@
 	// Relaxed typing to accommodate varying component prop types
 	const getComponent = (slice: SliceType): any => {
 		switch (slice.name) {
-			case 'call-to-action':
-				return CallToAction;
 			case 'carousel':
 				return Carousel;
 			case 'hero':

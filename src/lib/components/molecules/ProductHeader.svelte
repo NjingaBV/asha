@@ -44,7 +44,7 @@
 	{/if}
 
 	<div class="space-y-3">
-		<Heading level={2} size="4xl" weight="black" class={textClass}>
+		<Heading level={1} size="6xl" weight="black" {align} class={`${textClass}`}>
 			{name}
 		</Heading>
 

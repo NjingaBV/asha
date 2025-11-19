@@ -1,10 +1,9 @@
 <script lang="ts">
 	import ProductGrid from '../organisms/ProductGrid.svelte';
-	import BenefitsSection from '../organisms/BenefitsSection.svelte';
 	import Heading from '../atoms/Heading.svelte';
 	import Paragraph from '../atoms/Paragraph.svelte';
 	import Button from '../atoms/Button.svelte';
-	import type { Product, Benefit, Action } from '../../models/product.type';
+	import type { Product, Action } from '../../models/product.type';
 
 	interface Props {
 		/** Hero section title */
@@ -19,10 +18,6 @@
 		productsTitle?: string;
 		/** Array of products to display */
 		products?: Product[];
-		/** Benefits section title */
-		benefitsTitle?: string;
-		/** Array of benefits to display */
-		benefits?: Benefit[];
 		/** Features section title */
 		featuresTitle?: string;
 		/** Custom CSS classes */
@@ -36,8 +31,6 @@
 		secondaryAction,
 		productsTitle = 'Our Products',
 		products = [],
-		benefitsTitle = 'Why Choose Us',
-		benefits = [],
 		featuresTitle = 'Features',
 		class: className = ''
 	}: Props = $props();
@@ -91,11 +84,6 @@
 	<!-- Products Section -->
 	{#if products.length > 0}
 		<ProductGrid title={productsTitle} {products} columns={2} />
-	{/if}
-
-	<!-- Benefits Section -->
-	{#if benefits.length > 0}
-		<BenefitsSection title={benefitsTitle} {benefits} />
 	{/if}
 
 	<!-- Features Section -->
