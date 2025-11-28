@@ -149,7 +149,7 @@
 	<!-- Molecule variant: Full-featured with dynamic background -->
 	<div
 		class={[
-			'relative w-screen',
+			'relative w-full',
 			`${moleculeImage ? 'aspect-[9/13] md:aspect-[16/9]' : 'aspect-square md:aspect-[16/9]'}`
 		].join(' ')}
 		style="--text-color: {moleculeTextColor}"
@@ -175,27 +175,27 @@
 			style="--bg-color: {backgroundColor}"
 		></div>
 		<div
-			class="flex flex-col items-center absolute bottom-0 left-0 right-0 w-full md:w-auto md:left-1/2 md:transform md:-translate-x-1/2 md:max-w-2xl lg:max-w-4xl px-6 md:px-8 lg:px-12 py-8 md:py-10 lg:py-16 pb-12 md:pb-16 h-fit z-20 gap-6 md:gap-8"
+			class="flex flex-col items-start absolute bottom-0 left-0 w-full md:w-auto md:max-w-2xl lg:max-w-4xl px-6 md:px-8 lg:px-12 py-6 md:py-8 lg:py-12 pb-8 md:pb-12 h-fit z-20 gap-2 md:gap-3 lg:gap-4"
 			style="color: var(--text-color);"
 		>
 			{#if details}
 				<div
-					class="inline-flex items-center px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wide uppercase bg-white/10 backdrop-blur-sm"
+					class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-white/10 backdrop-blur-sm opacity-75"
 				>
-					<span class="text-color opacity-90">{details}</span>
+					<span class="text-color opacity-80">{details}</span>
 				</div>
 			{/if}
 			{#if title}
 				<h1
-					class="text-color text-center font-black text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight max-w-4xl"
+					class="text-color text-left font-black text-6xl md:text-8xl lg:text-9xl leading-tight tracking-tight max-w-full"
 				>
 					{title}
 				</h1>
 			{/if}
 			{#if description}
 				<p
-					class={`text-color text-center font-light text-base md:text-lg leading-relaxed max-w-2xl opacity-95 ${
-						lineClampEnabled && 'line-clamp-4'
+					class={`text-color text-left font-light text-sm md:text-base leading-relaxed max-w-xl opacity-90 ${
+						lineClampEnabled && 'line-clamp-2'
 					}`}
 				>
 					{description}
@@ -203,7 +203,7 @@
 				{#if truncated}
 					<button
 						onclick={toggleLineClamp}
-						class="mt-2 text-sm font-semibold opacity-70 hover:opacity-100 transition-opacity duration-300"
+						class="mt-1 text-sm font-semibold opacity-70 hover:opacity-100 transition-opacity duration-300"
 					>
 						{lineClampEnabled ? 'Lire plus' : 'Réduire'}
 					</button>
@@ -211,16 +211,16 @@
 			{/if}
 			{#if ctas.length > 0}
 				<div
-					class="w-full flex flex-col md:flex-row justify-center gap-4 md:gap-6 pt-4 md:pt-2"
+					class="w-full flex flex-col md:flex-row justify-start gap-3 md:gap-4 pt-2 md:pt-1"
 				>
 					{#each ctas as cta, i (i)}
 						<div class="transform transition-transform duration-300 hover:scale-105">
 							<a href={cta.url || cta.href || '#'} class="contents">
 								<Button size="lg">
-									<div class="flex items-center gap-3 text-base md:text-lg">
+									<div class="flex items-center gap-2 text-sm md:text-base">
 										{#if cta.icon}
 											<svg
-												class="flex-none stroke-[2] h-5 w-5 md:h-6 md:w-6"
+												class="flex-none stroke-[2] h-4 w-4 md:h-5 md:w-5"
 												stroke-width="2"
 												viewBox="0 0 50 50"
 											>

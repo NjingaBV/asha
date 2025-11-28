@@ -11,7 +11,7 @@ const meta = {
 				component: `
 # Carte (Card)
 
-Une molécule de carte polyvalente pour afficher du contenu, des produits ou des médias avec des images optionnelles, des superpositions de texte et des boutons d'action. Prend en charge plusieurs mises en page et options de style pour divers cas d'utilisation.
+Une molécule de carte polyvalente pour afficher du contenu, des produits ou des médias avec des images optionnelles, des superpositions de texte et des boutons d'action.
 
 ## Caractéristiques Clés
 
@@ -80,6 +80,15 @@ Une molécule de carte polyvalente pour afficher du contenu, des produits ou des
 			control: 'boolean',
 			description:
 				'Use video aspect ratio (16:9) instead of square. Only applies when buttonName and imgSrc are both present. Default false.'
+		},
+		showExpandButton: {
+			control: 'boolean',
+			description:
+				'Show an expand button (+) in the bottom-right corner. Apple-style expandable card control. Default false.'
+		},
+		onExpandClick: {
+			action: 'expand clicked',
+			description: 'Callback function triggered when the expand button is clicked.'
 		}
 	}
 } satisfies Meta<typeof Card>;
@@ -105,6 +114,7 @@ export const Primary: Story = {
 		mixColor: false,
 		textOnImage: true,
 		rounded: true,
+		titleSize: 'sm',
 		isVideo: false
 	}
 };
@@ -240,5 +250,30 @@ export const TurbanMalaboVariant: Story = {
 		textOnImage: false,
 		rounded: false
 		// omit overview/buttonName/buttonLink/backgroundColor
+	}
+};
+
+export const AppleStylePerformance: Story = {
+	args: {
+		title: 'Go fast. Go far.',
+		subtitle: 'Performance and Battery Life',
+		imgSrc:
+			'https://www.apple.com/v/macbook-pro/ai/images/overview/hero/hero_static__bpt7y5o1cgqe_large.jpg',
+		textOnImage: true,
+		textPosition: 'top',
+		textColor: 'white',
+		titleSize: 'xl',
+		rounded: true,
+		backgroundColor: '#000000',
+		showExpandButton: true,
+		onExpandClick: () => {
+			alert('Card expanded!');
+		}
+	},
+	parameters: {
+		layout: 'fullscreen',
+		viewport: {
+			defaultViewport: 'responsive'
+		}
 	}
 };

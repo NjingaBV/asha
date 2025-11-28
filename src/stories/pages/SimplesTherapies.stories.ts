@@ -243,14 +243,22 @@ const episodes = {
 const slices: SliceType[] = [
 	{
 		name: 'hero',
-		title: 'Simples Thérapies',
-		overview:
-			"Leurs succès, leurs échecs et leurs doutes les ont conduits sur le chemin de leur destinée. DJ Face Maker va à la rencontre des personnalités qui animent la culture, les médias, la musique et l'entrepreneuriat en Afrique et dans sa diaspora au travers du podcast Simples Thérapies.",
-		details: 'FMK Originals',
-		imgSrc: 'https://images.prismic.io/djfacemakerv2/98cee906-6156-4bc7-84d6-1efa8428a959_Almok+cover.png',
-		ctaLabel: 'Listen Now',
-		ctaIcon: 'play',
-		backgroundColor: '#1F2937'
+		variant: 'molecule',
+		title: episodes.season3[0].name,
+		description: episodes.season3[0].description,
+		details: 'Season 3 - Episode 1',
+		image: {
+			src: episodes.season3[0].image,
+			alt: episodes.season3[0].name
+		},
+		backgroundColor: '#1F2937',
+		ctas: [
+			{
+				label: 'Listen Now',
+				url: '#',
+				icon: 'M5 3l14 11-14 11V3z'
+			}
+		]
 	} as any,
 	{
 		name: 'carousel',
@@ -263,7 +271,8 @@ const slices: SliceType[] = [
 			imgSrc: ep.image,
 			buttonLink: '#',
 			overlayButton: true,
-			duration: ep.duration
+			duration: ep.duration,
+			titleSize: 'sm'
 		}))
 	} as any,
 	{
@@ -277,7 +286,8 @@ const slices: SliceType[] = [
 			imgSrc: ep.image,
 			buttonLink: '#',
 			overlayButton: true,
-			duration: ep.duration
+			duration: ep.duration,
+			titleSize: 'sm'
 		}))
 	} as any,
 	{
@@ -291,7 +301,8 @@ const slices: SliceType[] = [
 			imgSrc: ep.image,
 			buttonLink: '#',
 			overlayButton: true,
-			duration: ep.duration
+			duration: ep.duration,
+			titleSize: 'sm'
 		}))
 	} as any
 ];
