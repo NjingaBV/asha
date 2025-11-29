@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import ProductHeader from '$lib/components/molecules/ProductHeader.svelte';
+import ProductHeader from '$lib/components/organisms/ProductHeader.svelte';
 
 const meta = {
-	title: 'Molecules/ProductHeader',
+	title: 'Organisms/ProductHeader',
 	component: ProductHeader,
 	tags: ['autodocs'],
 	argTypes: {

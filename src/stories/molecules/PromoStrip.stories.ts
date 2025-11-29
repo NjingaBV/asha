@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import PromoStrip from '@/lib/components/organisms/PromoStrip.svelte';
+import PromoStrip from '@/lib/components/molecules/PromoStrip.svelte';
 
 const meta = {
-	title: 'Organisms/PromoStrip',
+	title: 'Molecules/PromoStrip',
 	component: PromoStrip,
 	parameters: {
 		layout: 'fullscreen',

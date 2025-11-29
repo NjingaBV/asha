@@ -4,6 +4,7 @@ export * from './Features.svelte';
 export * from './FeatureDiscovery.svelte';
 export * from './FeatureSection.svelte';
 export * from './Footer.svelte';
+export * from './ProductHeader.svelte';
 export * from './ProductLineup.svelte';
 export * from './VideoHero.svelte';
 export * from './WhyAppleSection.svelte';

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import FeatureItem from '@/lib/components/atoms/FeatureItem.svelte';
+import FeatureItem from '@/lib/components/molecules/FeatureItem.svelte';
 
 const meta = {
-	title: 'Atoms/FeatureItem',
+	title: 'Molecules/FeatureItem',
 	component: FeatureItem,
 	parameters: {
 		layout: 'centered',

@@ -3,7 +3,7 @@
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 	import PromoBadge from '$lib/components/atoms/PromoBadge.svelte';
-	import ProductHeader from '$lib/components/molecules/ProductHeader.svelte';
+	import ProductHeader from '$lib/components/organisms/ProductHeader.svelte';
 	import VariantSelector from '$lib/components/molecules/VariantSelector.svelte';
 	import SpecGrid from '$lib/components/molecules/SpecGrid.svelte';
 	import { macLineupMachine } from '$lib/machines/macLineup.machine';

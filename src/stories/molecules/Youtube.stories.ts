@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Youtube from '@/lib/components/atoms/Youtube.svelte';
+import Youtube from '@/lib/components/molecules/Youtube.svelte';
 
 const meta = {
-	title: 'Atoms/Youtube',
+	title: 'Molecules/Youtube',
 	component: Youtube,
 	parameters: {
 		layout: 'fullscreen',
