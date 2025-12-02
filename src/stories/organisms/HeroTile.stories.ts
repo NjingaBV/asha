@@ -5,7 +5,21 @@ const meta = {
 	title: 'Organisms/HeroTile',
 	component: HeroTile,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'fullscreen',
+		docs: {
+			description: {
+				component: `
+# Tuile Héros (HeroTile)
+
+Une section héros visuellement attrayante qui affiche une grille d'images avec un logo central, créant un effet visuel dynamique et moderne.
+
+## Caractéristiques Clés
+- **Grille d'Images**: Affiche une collection d'images dans une disposition en grille.
+- **Logo Central**: Superpose un logo au centre de la grille pour une identité de marque forte.
+- **Effet Visuel Dynamique**: Crée une expérience d'en-tête immersive et moderne.
+`
+			}
+		}
 	},
 	tags: ['autodocs'],
 	argTypes: {

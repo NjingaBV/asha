@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Youtube from '$lib/components/atoms/Youtube.svelte';
+	import Youtube from '$lib/components/molecules/Youtube.svelte';
 
 	/**
 	 * Player component - video player with metadata display

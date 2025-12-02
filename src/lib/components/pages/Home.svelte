@@ -26,7 +26,9 @@
 
 <Header {navLinks} bind:open {logo}>
 	{#if isCta}
-		<Button onClick={() => (location.href = cta.url)}>{cta.label}</Button>
+		<a href={cta.url || '#'} class="contents">
+			<Button>{cta.label}</Button>
+		</a>
 	{/if}
 </Header>
 <Shelf {slices} bind:open {navLinks} {alternateColor} />

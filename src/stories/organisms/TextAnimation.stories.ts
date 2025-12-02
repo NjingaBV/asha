@@ -8,89 +8,18 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# TextAnimation
+				component: `
+# Animation de Texte (TextAnimation)
 
-A dynamic, animated text display organism that creates eye-catching sequential animations with customizable colors for each text label. Perfect for hero sections, landing pages, or promotional content that needs to emphasize multiple value propositions.
+Un organisme d'affichage de texte dynamique et animé qui crée des animations séquentielles attrayantes avec des couleurs personnalisables pour chaque étiquette de texte. Parfait pour les sections héros, les pages de destination ou le contenu promotionnel qui doit mettre en évidence plusieurs propositions de valeur.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Sequential Animations**: Each label animates in sequence with configurable delays
-- **Custom Colors**: Individual color control for each text label
-- **Large Typography**: Extra-bold, responsive text (5xl to 8xl) for maximum impact
-- **Smooth Animations**: Built-in blink/fade animation for visual interest
-- **Stacked Layout**: Vertical text arrangement for dramatic effect
-- **Responsive Sizing**: Scales from mobile (text-5xl) to desktop (text-8xl)
-- **Color Gradient Support**: Text uses CSS color property for full customization
-
-## Use Cases
-
-- **Value Propositions**: Highlight multiple product benefits with animated emphasis
-- **Brand Attributes**: Showcase brand qualities or mission statements
-- **Feature Highlights**: Draw attention to key features one at a time
-- **Landing Page Heroes**: Create engaging, animated hero content
-- **Marketing Campaigns**: Emphasize campaign themes or taglines
-- **Product Benefits**: Sequentially reveal product advantages
-
-## Best Practices
-
-- Limit to 3-5 labels for optimal impact and readability
-- Use contrasting colors that align with your brand palette
-- Keep label text short (1-3 words) for maximum punch
-- Choose colors with sufficient contrast against the background
-- Consider animation timing - default 1s delay per label works well
-- Test on various devices to ensure text remains readable
-- Use for high-impact sections where animation adds value
-
-## Accessibility
-
-- Uses semantic \`<h1>\` heading for proper document structure
-- Text remains readable even without animation support
-- Color is supplementary, not the sole means of conveying information
-- High contrast recommended for all color choices
-- Animations use standard CSS, respects prefers-reduced-motion
-- Keyboard navigation unaffected by animations
-- Screen readers announce text sequentially as it appears in markup
-
-## Component Composition
-
-This is a self-contained organism component that:
-- Uses pure HTML and CSS for animations
-- No external molecule or atom dependencies
-- Implements custom animation timing via CSS variables
-- Leverages Svelte's reactivity for color application
-
-## Animation Behavior
-
-- **Blink Animation**: Custom CSS animation defined in component styles
-- **Delay Pattern**: Each label has staggered animation-delay (index * 1s)
-- **Color Application**: CSS custom property (--txt-color) for dynamic coloring
-- **Performance**: GPU-accelerated animations for smooth rendering
-
-## Page Layout Considerations
-
-- **Width**: Full width with responsive padding (px-4 sm:px-6 md:px-8)
-- **Height**: Auto-sized based on text content and line-height
-- **Spacing**:
-  - Top padding: pt-20 (sm:pt-24 lg:pt-32) for breathing room
-  - Bottom margin: mb-16 provides space below
-- **Text Alignment**: Center-aligned for maximum visual impact
-- **Positioning**: Best used in hero sections or focal points
-- **Background**: Transparent, inherits from parent container
-- **Responsive Behavior**:
-  - Mobile: text-5xl with leading-none
-  - Tablet: text-6xl or text-7xl
-  - Desktop: text-8xl for maximum drama
-- **Layout Context**: Works with 'centered' layout in Storybook
-- **Integration**: Pairs well above CTAs or product showcases
-- **Z-index**: No special z-index, flows with document order
-
-## Styling Notes
-
-- Uses \`bg-clip-text text-transparent\` for color effects
-- \`tracking-tighter\` for modern, tight letter spacing
-- Block display for each span creates vertical stack
-- Custom CSS variables enable dynamic color injection
-- Animation keyframes defined in component \`<style>\` block`
+- **Animations Séquentielles**: Chaque étiquette s'anime en séquence avec des délais configurables.
+- **Couleurs Personnalisées**: Contrôle individuel de la couleur pour chaque étiquette de texte.
+- **Grande Typographie**: Texte extra-audacieux et réactif pour un impact maximal.
+- **Animations Fluides**: Animation de clignotement/fondu intégrée pour un intérêt visuel.
+`
 			}
 		}
 	},

@@ -2,11 +2,11 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 
 	let {
-		cta = { url: '', label: '', color: '' },
+		cta = { url: '', label: '', color: '', onClick: undefined },
 		backgroundColor = '#000000',
 		slogans = []
 	}: {
-		cta: { url: string; label: string; color: string };
+		cta: { url: string; label: string; color: string; onClick?: () => void };
 		backgroundColor: `#${string}`;
 		slogans?: Array<{ title: string; subtitle: string }>;
 	} = $props();
@@ -31,9 +31,11 @@
 			{/each}
 		</div>
 		<div>
-			<Button color={cta.color} size="large" onClick={() => (location.href = cta.url)}>
-				{cta.label}
-			</Button>
+			<a href={cta.url || '#'} class="contents">
+				<Button size="lg" tone="primary" onClick={cta.onClick}>
+					{cta.label}
+				</Button>
+			</a>
 		</div>
 	</div>
 </section>

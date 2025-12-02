@@ -8,61 +8,18 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# CTAGroup
+				component: `
+# Groupe d'Appel à l'Action (CTAGroup)
 
-A grouped button molecule for displaying primary and optional secondary call-to-action buttons with consistent spacing and alignment. Simplifies dual-action patterns common in UI design.
+Une molécule de boutons groupés pour afficher un bouton d'appel à l'action principal et un bouton secondaire optionnel, avec un espacement et un alignement cohérents. Simplifie les motifs à double action courants dans la conception d'interfaces.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Dual Button Support**: Primary and optional secondary actions
-- **Flexible Alignment**: Left or center alignment options
-- **Consistent Spacing**: Unified gap between buttons
-- **Responsive Layout**: Stacks on mobile, side-by-side on desktop
-- **Tone Control**: Independent tone settings per button
-- **Optional Secondary**: Works with primary-only or dual-button layouts
-
-## Use Cases
-
-- **Form Actions**: Submit and cancel buttons
-- **Product Pages**: Buy and details buttons
-- **Modal Dialogs**: Confirm and cancel actions
-- **Content Actions**: Download and preview buttons
-- **Navigation Flows**: Next and back buttons
-- **Conversion Points**: Primary and alternative actions
-
-## Best Practices
-
-- Primary action should be most important path (e.g., "Buy", "Submit")
-- Secondary provides alternative (e.g., "Cancel", "Learn More")
-- Use center alignment for hero sections and modals
-- Use left alignment for forms and content sections
-- Keep button labels concise (1-3 words)
-- Ensure color contrast for both button types
-
-## Accessibility Notes
-
-- Proper button semantics from Button atoms
-- Keyboard navigation supported
-- Focus states on all buttons
-- Clear visual hierarchy between primary and secondary
-- Touch-friendly spacing on mobile
-
-## Composition
-
-- **Button atoms**: For individual action buttons
-- **Flex layout**: For responsive arrangement
-- **Gap utilities**: For consistent spacing
-
-## Responsive Behavior
-
-- Buttons stack vertically on small screens
-- Side-by-side layout on tablet and desktop
-- Spacing adjusts for different viewports
-- Button widths adapt to content and layout
-
-## Differences from Atoms
-
-Unlike standalone Button atoms, CTAGroup provides coordinated multi-button layout with consistent spacing, alignment control, and responsive stacking behavior.`
+- **Support Double Bouton**: Actions principale et secondaire optionnelle.
+- **Alignement Flexible**: Options d'alignement à gauche ou au centre.
+- **Espacement Cohérent**: Un écart unifié entre les boutons.
+- **Mise en Page Réactive**: S'empile sur mobile, côte à côte sur ordinateur.
+`
 			}
 		}
 	},

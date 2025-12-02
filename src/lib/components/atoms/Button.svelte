@@ -1,268 +1,425 @@
+<!--
+  @component Button
+  
+  A versatile button component with multiple variants, tones, and sizes.
+  Renders as `<button>` or `<a>` depending on whether `href` is provided.
+  
+  @example Basic usage
+  ```svelte
+  <Button tone="primary" size="md">Click me</Button>
+  ```
+  
+  @example As link
+  ```svelte
+  <Button href="/path" variant="ghost">Learn more</Button>
+  ```
+  
+  @example With loading state
+  ```svelte
+  <Button loading={isSubmitting}>Submit</Button>
+  ```
+  
+  @example With icons
+  ```svelte
+  <Button>
+    {#snippet iconLeft()}<Icon name="plus" />{/snippet}
+    Add item
+  </Button>
+  ```
+-->
+<script lang="ts" module>
+	// ============================================
+	// Type Exports
+	// ============================================
+
+	/** Button visual variant */
+	export type ButtonVariant = 'solid' | 'outline' | 'ghost' | 'link';
+
+	/** Button color tone */
+	export type ButtonTone = 'primary' | 'secondary' | 'neutral' | 'danger' | 'success';
+
+	/** Button size */
+	export type ButtonSize = 'sm' | 'md' | 'lg';
+
+	/** Prop definitions for documentation and validation */
+	export const propDefs = {
+		variant: {
+			type: 'string',
+			options: ['solid', 'outline', 'ghost', 'link'],
+			default: 'solid',
+			description: 'Visual style variant'
+		},
+		tone: {
+			type: 'string',
+			options: ['primary', 'secondary', 'neutral', 'danger', 'success'],
+			default: 'primary',
+			description: 'Color tone/scheme'
+		},
+		size: {
+			type: 'string',
+			options: ['sm', 'md', 'lg'],
+			default: 'md',
+			description: 'Button size'
+		}
+	} as const;
+</script>
+
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	/**
-	 * Button component - renders as <button> or <a> depending on href prop
-	 *
-	 * @example
-	 * <Button variant="primary" size="md">Click me</Button>
-	 * <Button href="/path" tone="secondary">Link Button</Button>
-	 * <Button loading type="submit">Submit</Button>
-	 */
-
-	export type ButtonVariant = 'primary' | 'ghost' | 'outline' | 'solid';
-	export type ButtonSize = 'sm' | 'md' | 'lg' | 'small' | 'medium' | 'large';
-	export type ButtonTone = 'primary' | 'secondary' | 'neutral';
-	export type ButtonType = 'button' | 'submit' | 'reset';
+	// ============================================
+	// Props
+	// ============================================
 
 	interface Props {
-		/** Link href - if provided, renders as <a> instead of <button> */
-		href?: string;
 		/** Visual style variant */
 		variant?: ButtonVariant;
-		/** Button size */
+		/** Color tone */
+		tone?: ButtonTone;
+		/** Size */
 		size?: ButtonSize;
+		/** Link href - renders as <a> if provided */
+		href?: string;
+		/** Link target */
+		target?: '_blank' | '_self' | '_parent' | '_top';
 		/** Disabled state */
 		disabled?: boolean;
+		/** Loading state - shows spinner and disables interaction */
+		loading?: boolean;
 		/** Full width button */
 		fullWidth?: boolean;
-		/** Custom background color */
-		color?: string;
-		/** Color tone/scheme */
-		tone?: ButtonTone;
-		/** Click handler */
-		onClick?: (event: MouseEvent) => void;
-		/** Additional CSS classes */
-		className?: string;
-		/** Rounded pill shape */
-		rounded?: boolean;
-		/** Show loading spinner */
-		loading?: boolean;
 		/** Button type (only for <button>) */
-		type?: ButtonType;
+		type?: 'button' | 'submit' | 'reset';
+		/** Custom CSS classes */
+		class?: string;
 		/** ARIA label for accessibility */
 		ariaLabel?: string;
-		/** Slot for content (text or html) */
-		children?: Snippet | any;
-		/** Slot for icon before text */
-		iconBefore?: Snippet | any;
-		/** Slot for icon after text */
-		iconAfter?: Snippet | any;
+		/** ID for the button element */
+		id?: string;
+		/** Name attribute */
+		name?: string;
+		/** Value attribute */
+		value?: string;
+		/** Form ID to associate with */
+		form?: string;
+		/** Icon slot - appears before content */
+		iconLeft?: Snippet;
+		/** Icon slot - appears after content */
+		iconRight?: Snippet;
+		/** Button content */
+		children?: Snippet;
+		/** Click handler */
+		onclick?: (event: MouseEvent) => void;
+		/** Focus handler */
+		onfocus?: (event: FocusEvent) => void;
+		/** Blur handler */
+		onblur?: (event: FocusEvent) => void;
+		/** Keydown handler */
+		onkeydown?: (event: KeyboardEvent) => void;
 	}
 
 	let {
-		href = undefined,
-		variant = 'primary',
+		variant = 'solid',
+		tone = 'primary',
 		size = 'md',
+		href,
+		target,
 		disabled = false,
-		fullWidth = false,
-		color = undefined,
-		tone = undefined,
-		onClick = undefined,
-		className = '',
-		rounded = false,
 		loading = false,
+		fullWidth = false,
 		type = 'button',
-		ariaLabel = undefined,
+		class: className = '',
+		ariaLabel,
+		id,
+		name,
+		value,
+		form,
+		iconLeft,
+		iconRight,
 		children,
-		iconBefore,
-		iconAfter
+		onclick,
+		onfocus,
+		onblur,
+		onkeydown
 	}: Props = $props();
 
-	// Normalize size aliases
-	const normalizedSize =
-		size === 'small' ? 'sm' : size === 'medium' ? 'md' : size === 'large' ? 'lg' : size;
+	// ============================================
+	// Derived State
+	// ============================================
 
-	// Normalize variant (solid is an alias for primary)
-	const normalizedVariant = variant === 'solid' ? 'primary' : variant;
-
-	// Effective disabled state includes loading
 	const isDisabled = $derived(disabled || loading);
+	const isLink = $derived(!!href && !isDisabled);
 
-	/**
-	 * Get size-based padding and text classes
-	 */
-	const getSizeClasses = (): string => {
-		const sizes = {
-			sm: 'px-3 py-1 text-xs gap-1.5',
-			md: 'px-4 py-2 text-sm gap-2',
-			lg: 'px-5 py-3 text-base gap-2.5'
-		};
-		return sizes[normalizedSize];
-	};
+	// ============================================
+	// Style Classes
+	// ============================================
 
-	/**
-	 * Get style classes based on tone, color prop, or variant
-	 */
-	const getVariantClasses = (): string => {
-		// Custom color overrides everything
-		if (color) {
-			return 'text-white shadow-[0_0_32px_rgba(0,199,190,0.35)] hover:scale-[1.01]';
-		}
-
-		// Tone-based styling
-		if (tone) {
-			if (normalizedVariant === 'ghost') {
-				const tones = {
-					neutral: 'bg-transparent text-surface-on hover:bg-surface/40',
-					secondary: 'bg-transparent text-secondary hover:bg-surface/40',
-					primary: 'bg-transparent text-primary hover:bg-surface/40'
-				};
-				return tones[tone];
-			}
-
-			// Solid variant with tone
-			const tones = {
-				neutral: 'bg-surface text-surface-on shadow-sm hover:scale-[1.01]',
-				secondary: 'bg-secondary text-white shadow-sm hover:scale-[1.01]',
-				primary:
-					'bg-primary text-white shadow-[0_0_32px_rgba(0,199,190,0.35)] hover:scale-[1.01]'
-			};
-			return tones[tone];
-		}
-
-		// Default variant styling (no tone specified)
-		const variants = {
-			primary:
-				'bg-primary text-white shadow-[0_0_32px_rgba(0,199,190,0.35)] hover:scale-[1.01]',
-			ghost: 'bg-transparent text-primary hover:bg-surface/40',
-			outline: 'border border-border text-primary hover:bg-surface/40',
-			solid: 'bg-primary text-white shadow-[0_0_32px_rgba(0,199,190,0.35)] hover:scale-[1.01]'
-		};
-		return variants[normalizedVariant];
-	};
-
-	/**
-	 * Base styles applied to all buttons
-	 */
+	/** Base classes applied to all buttons */
 	const baseClasses = [
-		'inline-flex items-center justify-center',
-		'font-medium transition-all',
-		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-		'disabled:opacity-50 disabled:cursor-not-allowed'
-	];
+		// Layout
+		'inline-flex items-center justify-center gap-2',
+		// Typography
+		'font-medium leading-none whitespace-nowrap',
+		// Transitions
+		'transition-all duration-fast ease-standard',
+		// Focus ring
+		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+		// Disabled state
+		'disabled:pointer-events-none disabled:opacity-disabled',
+		// Cursor
+		'cursor-pointer'
+	].join(' ');
 
-	/**
-	 * Build final class string
-	 */
+	/** Size-specific classes */
+	const sizeClasses: Record<ButtonSize, string> = {
+		sm: 'h-8 px-3 text-sm rounded-md',
+		md: 'h-10 px-4 text-base rounded-lg',
+		lg: 'h-12 px-6 text-lg rounded-lg'
+	};
+
+	/** Variant + Tone combinations */
+	const variantToneClasses: Record<ButtonVariant, Record<ButtonTone, string>> = {
+		solid: {
+			primary: [
+				'bg-accent text-fg-on-accent',
+				'hover:bg-accent-hover active:bg-accent-active',
+				'focus-visible:ring-accent'
+			].join(' '),
+			secondary: [
+				'bg-secondary text-fg-on-accent',
+				'hover:bg-secondary-hover active:bg-secondary-active',
+				'focus-visible:ring-secondary'
+			].join(' '),
+			neutral: [
+				'bg-fg text-bg',
+				'hover:opacity-90 active:opacity-80',
+				'focus-visible:ring-fg'
+			].join(' '),
+			danger: [
+				'bg-error text-fg-on-accent',
+				'hover:opacity-90 active:opacity-80',
+				'focus-visible:ring-error'
+			].join(' '),
+			success: [
+				'bg-success text-fg-on-accent',
+				'hover:opacity-90 active:opacity-80',
+				'focus-visible:ring-success'
+			].join(' ')
+		},
+		outline: {
+			primary: [
+				'border border-accent text-accent bg-transparent',
+				'hover:bg-accent hover:text-fg-on-accent',
+				'focus-visible:ring-accent'
+			].join(' '),
+			secondary: [
+				'border border-secondary text-secondary bg-transparent',
+				'hover:bg-secondary hover:text-fg-on-accent',
+				'focus-visible:ring-secondary'
+			].join(' '),
+			neutral: [
+				'border border-border text-fg bg-transparent',
+				'hover:bg-bg-muted',
+				'focus-visible:ring-border-focus'
+			].join(' '),
+			danger: [
+				'border border-error text-error bg-transparent',
+				'hover:bg-error hover:text-fg-on-accent',
+				'focus-visible:ring-error'
+			].join(' '),
+			success: [
+				'border border-success text-success bg-transparent',
+				'hover:bg-success hover:text-fg-on-accent',
+				'focus-visible:ring-success'
+			].join(' ')
+		},
+		ghost: {
+			primary: [
+				'text-accent bg-transparent',
+				'hover:bg-accent-subtle',
+				'focus-visible:ring-accent'
+			].join(' '),
+			secondary: [
+				'text-secondary bg-transparent',
+				'hover:bg-bg-muted',
+				'focus-visible:ring-secondary'
+			].join(' '),
+			neutral: [
+				'text-fg bg-transparent',
+				'hover:bg-bg-muted',
+				'focus-visible:ring-border-focus'
+			].join(' '),
+			danger: [
+				'text-error bg-transparent',
+				'hover:bg-error-subtle',
+				'focus-visible:ring-error'
+			].join(' '),
+			success: [
+				'text-success bg-transparent',
+				'hover:bg-success-subtle',
+				'focus-visible:ring-success'
+			].join(' ')
+		},
+		link: {
+			primary: [
+				'text-accent bg-transparent underline-offset-4',
+				'hover:underline',
+				'focus-visible:ring-accent'
+			].join(' '),
+			secondary: [
+				'text-secondary bg-transparent underline-offset-4',
+				'hover:underline',
+				'focus-visible:ring-secondary'
+			].join(' '),
+			neutral: [
+				'text-fg bg-transparent underline-offset-4',
+				'hover:underline',
+				'focus-visible:ring-border-focus'
+			].join(' '),
+			danger: [
+				'text-error bg-transparent underline-offset-4',
+				'hover:underline',
+				'focus-visible:ring-error'
+			].join(' '),
+			success: [
+				'text-success bg-transparent underline-offset-4',
+				'hover:underline',
+				'focus-visible:ring-success'
+			].join(' ')
+		}
+	};
+
+	/** Combined classes */
 	const buttonClasses = $derived(
 		[
-			...baseClasses,
-			rounded ? 'rounded-full' : 'rounded-2xl',
+			baseClasses,
+			sizeClasses[size],
+			variantToneClasses[variant][tone],
 			fullWidth ? 'w-full' : '',
-			getSizeClasses(),
-			getVariantClasses(),
+			loading ? 'cursor-wait' : '',
 			className
 		]
 			.filter(Boolean)
 			.join(' ')
 	);
 
-	const handleClick = (event: MouseEvent) => {
-		if (!isDisabled && onClick) {
-			onClick(event);
+	// ============================================
+	// Event Handlers
+	// ============================================
+
+	function handleClick(event: MouseEvent) {
+		if (isDisabled) {
+			event.preventDefault();
+			return;
 		}
-	};
+		onclick?.(event);
+	}
+
+	function handleKeydown(event: KeyboardEvent) {
+		// Handle Enter/Space for link-like behavior on buttons
+		if (event.key === 'Enter' || event.key === ' ') {
+			if (isLink && event.key === ' ') {
+				event.preventDefault(); // Prevent scroll on space
+			}
+		}
+		onkeydown?.(event);
+	}
 </script>
 
-{#if href && !isDisabled}
+{#if isLink}
 	<a
 		{href}
-		{ariaLabel}
+		{target}
+		{id}
 		class={buttonClasses}
+		aria-label={ariaLabel}
+		aria-disabled={disabled ? 'true' : undefined}
+		rel={target === '_blank' ? 'noopener noreferrer' : undefined}
 		onclick={handleClick}
-		style={color ? `background-color: ${color}` : ''}
+		{onfocus}
+		{onblur}
+		onkeydown={handleKeydown}
+		data-variant={variant}
+		data-tone={tone}
+		data-size={size}
 	>
-		{#if iconBefore}
-			<span class="flex items-center">
-				{#if typeof iconBefore === 'function'}
-					{@render iconBefore()}
-				{:else}
-					{iconBefore}
-				{/if}
+		{#if iconLeft}
+			<span class="shrink-0" aria-hidden="true">
+				{@render iconLeft()}
 			</span>
 		{/if}
-		<span>
-			{#if typeof children === 'function'}
-				{@render children()}
-			{:else}
-				{children}
-			{/if}
-		</span>
-		{#if iconAfter}
-			<span class="flex items-center">
-				{#if typeof iconAfter === 'function'}
-					{@render iconAfter()}
-				{:else}
-					{iconAfter}
-				{/if}
+
+		{#if children}
+			{@render children()}
+		{/if}
+
+		{#if iconRight}
+			<span class="shrink-0" aria-hidden="true">
+				{@render iconRight()}
 			</span>
 		{/if}
 	</a>
 {:else}
 	<button
 		{type}
-		{ariaLabel}
+		{id}
+		{name}
+		{value}
+		{form}
 		disabled={isDisabled}
 		class={buttonClasses}
+		aria-label={ariaLabel}
+		aria-busy={loading ? 'true' : undefined}
 		onclick={handleClick}
-		style={color ? `background-color: ${color}` : ''}
+		{onfocus}
+		{onblur}
+		onkeydown={handleKeydown}
+		data-variant={variant}
+		data-tone={tone}
+		data-size={size}
+		data-loading={loading ? '' : undefined}
 	>
-		{#if iconBefore}
-			<span class="flex items-center">
-				{#if typeof iconBefore === 'function'}
-					{@render iconBefore()}
-				{:else}
-					{iconBefore}
-				{/if}
-			</span>
-		{/if}
 		{#if loading}
-			<span class="inline-flex items-center gap-2">
-				<svg
-					class="inline-block h-4 w-4 animate-spin"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-				>
-					<circle
-						class="opacity-25"
-						cx="12"
-						cy="12"
-						r="10"
-						stroke="currentColor"
-						stroke-width="4"
-					></circle>
-					<path
-						class="opacity-75"
-						fill="currentColor"
-						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-					></path>
-				</svg>
-				<span>
-					{#if typeof children === 'function'}
-						{@render children()}
-					{:else}
-						{children}
-					{/if}
-				</span>
-			</span>
-		{:else}
-			<span>
-				{#if typeof children === 'function'}
-					{@render children()}
-				{:else}
-					{children}
-				{/if}
+			<!-- Spinner -->
+			<svg
+				class="h-4 w-4 animate-spin"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				aria-hidden="true"
+			>
+				<circle
+					class="opacity-25"
+					cx="12"
+					cy="12"
+					r="10"
+					stroke="currentColor"
+					stroke-width="4"
+				></circle>
+				<path
+					class="opacity-75"
+					fill="currentColor"
+					d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+				></path>
+			</svg>
+			<span class="sr-only">Loading...</span>
+		{/if}
+
+		{#if iconLeft && !loading}
+			<span class="shrink-0" aria-hidden="true">
+				{@render iconLeft()}
 			</span>
 		{/if}
-		{#if iconAfter}
-			<span class="flex items-center">
-				{#if typeof iconAfter === 'function'}
-					{@render iconAfter()}
-				{:else}
-					{iconAfter}
-				{/if}
+
+		{#if children}
+			<span class={loading ? 'opacity-0' : ''}>
+				{@render children()}
+			</span>
+		{/if}
+
+		{#if iconRight && !loading}
+			<span class="shrink-0" aria-hidden="true">
+				{@render iconRight()}
 			</span>
 		{/if}
 	</button>

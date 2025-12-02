@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PillButton from '$lib/components/atoms/PillButton.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	let {
 		logo = { title: 'Apple Watch' },
 		links = [
@@ -32,12 +32,9 @@
 		</ul>
 		{#if cta}
 			<div class="hidden md:block">
-				<PillButton
-					label={cta.label}
-					href={cta.href}
-					tone={dark ? 'secondary' : 'dark'}
-					size="sm"
-				/>
+				<Button href={cta.href} tone={dark ? 'secondary' : 'dark'} size="sm">
+					{cta.label}
+				</Button>
 			</div>
 		{/if}
 	</div>
@@ -49,12 +46,9 @@
 			{/each}
 			{#if cta}
 				<li class="flex-none">
-					<PillButton
-						label={cta.label}
-						href={cta.href}
-						tone={dark ? 'secondary' : 'dark'}
-						size="sm"
-					/>
+					<Button href={cta.href} tone={dark ? 'secondary' : 'dark'} size="sm">
+						{cta.label}
+					</Button>
 				</li>
 			{/if}
 		</ul>

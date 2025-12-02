@@ -8,42 +8,19 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Hamburger Menu Button
+				component: `
+# Bouton Hamburger
 
-An animated, accessible hamburger menu toggle button designed for mobile navigation with smooth SVG path transitions.
+Un bouton de menu hamburger animé et accessible, conçu pour la navigation mobile avec des transitions SVG fluides.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Smooth Animations**: SVG-based morphing transitions between states
-- **Multiple Variants**: Four distinct visual styles (default, cross, arrow, plus)
-- **Fully Accessible**: ARIA labels, keyboard navigation, and focus management
-- **Customizable**: Control size, color, stroke width, and animation duration
-- **Bindable State**: Two-way binding with \`bind:open\` for easy state management
-- **Mobile-First**: Hidden on desktop by default with \`md:hidden\` utility
-
-## Use Cases
-
-- **Mobile Navigation**: Primary use for toggling mobile menu drawers
-- **Sidebar Toggles**: Collapsible sidebar panels on mobile devices
-- **Modal Triggers**: Opening full-screen modal menus on small screens
-- **Overlay Menus**: Triggering off-canvas navigation overlays
-
-## Best Practices
-
-- **Always Provide ARIA Label**: Essential for screen reader users to understand the button's purpose
-- **Match Animation Duration**: Coordinate with your menu's transition timing for polished UX
-- **Choose Appropriate Variant**: Use 'default' for traditional menus, 'cross' for modals, 'arrow' for expanding sections
-- **Test Touch Targets**: Ensure minimum 44x44px touch area for mobile usability
-- **Consider Color Contrast**: Ensure icon is visible against navigation background
-
-## Accessibility
-
-- Button includes proper ARIA attributes (\`aria-expanded\`, \`aria-label\`)
-- Keyboard accessible (Enter and Space keys)
-- Focus visible indicator with ring outline
-- Screen readers announce current state
-- Disabled state prevents interaction and reduces opacity
-- Hidden on desktop with semantic approach (not display:none)`
+- **Animations Fluides**: Transitions SVG pour des changements d'état élégants.
+- **Variantes Multiples**: Quatre styles visuels distincts (défaut, croix, flèche, plus).
+- **Entièrement Accessible**: Labels ARIA, navigation au clavier et gestion du focus.
+- **Personnalisable**: Contrôlez la taille, la couleur, l'épaisseur du trait et la durée de l'animation.
+- **État Liable**: Liaison bidirectionnelle avec \`bind:open\` pour une gestion facile de l'état.
+`
 			}
 		}
 	},

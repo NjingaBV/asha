@@ -5,7 +5,21 @@ const meta = {
 	title: 'Organisms/Features',
 	component: Features,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'fullscreen',
+		docs: {
+			description: {
+				component: `
+# Caractéristiques (Features)
+
+Un organisme qui affiche une série de molécules \`Feature\` dans une séquence verticale. Souvent utilisé pour détailler les principaux arguments de vente d'un produit ou d'un service.
+
+## Caractéristiques Clés
+- **Séquence Verticale**: Organise plusieurs composants \`Feature\` les uns après les autres.
+- **Titre Global**: Un titre principal pour introduire la section des caractéristiques.
+- **Contenu Riche**: Chaque caractéristique peut inclure des images, des titres, des descriptions et du contenu HTML.
+`
+			}
+		}
 	},
 	tags: ['autodocs'],
 	argTypes: {
