@@ -1,7 +1,29 @@
 :root[data-theme='light'] {
-	--ds-color-bg: 245 245 247;
-	--ds-color-surface: 255 255 255;
-	--ds-color-border: 214 214 214;
-	--ds-color-text: 0 0 0;
+	/* Light Theme - Apple.com inspired */
+	--ds-color-bg: 245 245 247; /* Off-white background */
+	--ds-color-surface: 255 255 255; /* Pure white */
+	--ds-color-border: 214 214 214; /* Light gray borders */
+	--ds-color-text: 29 29 31; /* Almost black text */
+	--ds-color-text-muted: 107 114 128; /* Muted text */
+
+	/* Primary - Apple blue */
 	--ds-color-primary: 0 122 255;
+	--ds-color-primary-hover: 0 102 235;
+
+	/* Accent - Secondary highlight */
+	--ds-color-accent: 0 199 190; /* Teal */
+	--ds-color-accent-hover: 0 179 170;
+
+	/* Semantic colors adjusted for light theme */
+	--ds-color-success: 52 199 89; /* Green */
+	--ds-color-warning: 255 149 0; /* Orange */
+	--ds-color-danger: 255 59 48; /* Red */
+	--ds-color-info: 0 122 255; /* Blue */
+
+	/* Lighter shadows for light theme */
+	--ds-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--ds-shadow-md: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+	--ds-shadow-lg: 0 8px 24px 0 rgba(0, 0, 0, 0.1);
+	--ds-shadow-xl: 0 16px 48px 0 rgba(0, 0, 0, 0.12);
+	--ds-shadow-2xl: 0 24px 64px 0 rgba(0, 0, 0, 0.15);
 }
