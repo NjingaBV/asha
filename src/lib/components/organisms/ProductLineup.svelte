@@ -170,11 +170,9 @@
 		products && products.length > 0 ? products : defaultProducts
 	);
 
-	const { snapshot, send } = useMachine(
-		macLineupMachine.provide({
-			input: { products: actualProducts }
-		})
-	);
+	const { snapshot, send } = useMachine(macLineupMachine, {
+		input: { products: actualProducts }
+	});
 
 	let activeProduct = $derived(
 		$snapshot.context.products.find(
@@ -198,7 +196,7 @@
 {#if !activeProduct}
 	<section class="rounded-3xl border border-dashed border-slate-200 p-10 text-center">
 		<Heading level={3} size="2xl" class="text-slate-800">Aucun produit</Heading>
-		<Paragraph size="md" class="text-slate-600">
+		<Paragraph size="base" class="text-slate-600">
 			Ajoutez des produits dans la prop `products` pour afficher la grille inspirée d’Apple.
 		</Paragraph>
 	</section>

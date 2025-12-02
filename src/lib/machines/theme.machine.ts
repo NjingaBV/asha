@@ -1,26 +1,48 @@
-import { createMachine } from 'xstate';
+import { setup, assign } from 'xstate';
 
-export type ThemeContext = {
-	theme: 'light' | 'dark' | 'system';
-};
-export type ThemeEvent = { type: 'SET'; value: 'light' | 'dark' | 'system' } | { type: 'TOGGLE' };
+export type Theme = 'light' | 'dark' | 'system';
 
-export const themeMachine = createMachine<ThemeContext, ThemeEvent>({
+export const themeMachine = setup({
+	types: {
+		context: {} as {
+			theme: Theme;
+		},
+		events: {} as { type: 'SET'; value: Theme } | { type: 'TOGGLE' }
+	},
+	actions: {
+		setTheme: assign({
+			theme: (_, params: { value: Theme }) => params.value
+		}),
+		toggleTheme: assign({
+			theme: ({ context }) => (context.theme === 'dark' ? 'light' : 'dark')
+		})
+	}
+}).createMachine({
 	id: 'theme',
-	initial: 'system',
+	initial: 'active',
+	context: {
+		theme: 'system'
+	},
 	states: {
 		active: {}
 	},
 	on: {
 		SET: {
-			actions: ({ context, event }) => {
-				context.theme = event.value;
-			}
+			actions: [
+				{
+					type: 'setTheme',
+					params: ({ event }) => ({ value: event.value })
+				}
+			]
 		},
 		TOGGLE: {
-			actions: ({ context }) => {
-				context.theme = context.theme === 'dark' ? 'light' : 'dark';
-			}
+			actions: ['toggleTheme']
 		}
 	}
 });
+
+// Re-export types for consumers
+export type ThemeContext = {
+	theme: Theme;
+};
+export type ThemeEvent = { type: 'SET'; value: Theme } | { type: 'TOGGLE' };

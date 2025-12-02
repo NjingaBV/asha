@@ -1,7 +1,131 @@
-:root[data-theme='dark'] {
+/**
+ * Dark Theme
+ * 
+ * Applied via data-theme="dark" on <html> or ancestor element.
+ * Optimized for low-light environments with controlled contrast.
+ */
+
+:root[data-theme='dark'],
+[data-theme='dark'] {
+	/* Background Colors - Deep, rich darks */
 	--ds-color-bg: 10 10 10;
+	--ds-color-bg-subtle: 18 18 18;
+	--ds-color-bg-muted: 26 26 26;
+	--ds-color-bg-elevated: 38 38 38;
+	--ds-color-bg-overlay: 0 0 0;
+
+	/* Foreground Colors */
+	--ds-color-fg: 245 245 247;
+	--ds-color-fg-muted: 163 163 163;
+	--ds-color-fg-subtle: 115 115 115;
+	--ds-color-fg-on-accent: 255 255 255;
+	--ds-color-fg-on-dark: 255 255 255;
+
+	/* Surface Colors */
 	--ds-color-surface: 26 26 26;
-	--ds-color-border: 64 64 64;
-	--ds-color-text: 255 255 255;
-	--ds-color-primary: 0 199 190;
+	--ds-color-surface-raised: 38 38 38;
+	--ds-color-surface-sunken: 18 18 18;
+
+	/* Border Colors */
+	--ds-color-border: 44 44 46;
+	--ds-color-border-subtle: 38 38 40;
+	--ds-color-border-strong: 68 68 70;
+	--ds-color-border-focus: 0 199 190;
+
+	/* Accent Colors - Teal for dark mode */
+	--ds-color-accent: 0 199 190;
+	--ds-color-accent-hover: 26 214 205;
+	--ds-color-accent-active: 51 224 216;
+	--ds-color-accent-subtle: 0 40 38;
+
+	/* Secondary */
+	--ds-color-secondary: 94 92 230;
+	--ds-color-secondary-hover: 114 112 240;
+	--ds-color-secondary-active: 134 132 250;
+
+	/* State Colors - Adjusted for dark backgrounds */
+	--ds-color-success: 48 209 88;
+	--ds-color-success-subtle: 20 60 30;
+	--ds-color-warning: 255 159 10;
+	--ds-color-warning-subtle: 60 45 15;
+	--ds-color-error: 255 69 58;
+	--ds-color-error-subtle: 60 25 25;
+	--ds-color-info: 10 132 255;
+	--ds-color-info-subtle: 20 40 70;
+
+	/* Shadows - Deeper for dark mode */
+	--ds-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+	--ds-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.2);
+	--ds-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+	--ds-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.35), 0 4px 6px rgba(0, 0, 0, 0.25);
+	--ds-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4), 0 8px 10px rgba(0, 0, 0, 0.25);
+	--ds-shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.5);
+	--ds-shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+	--ds-shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
+
+	/* Focus ring */
+	--ds-ring-color: rgb(0 199 190 / 0.5);
+
+	/* Overlay opacity */
+	--ds-opacity-overlay: 0.6;
+}
+
+/* System preference auto-detection */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		/* Background Colors */
+		--ds-color-bg: 10 10 10;
+		--ds-color-bg-subtle: 18 18 18;
+		--ds-color-bg-muted: 26 26 26;
+		--ds-color-bg-elevated: 38 38 38;
+		--ds-color-bg-overlay: 0 0 0;
+
+		/* Foreground Colors */
+		--ds-color-fg: 245 245 247;
+		--ds-color-fg-muted: 163 163 163;
+		--ds-color-fg-subtle: 115 115 115;
+
+		/* Surface Colors */
+		--ds-color-surface: 26 26 26;
+		--ds-color-surface-raised: 38 38 38;
+		--ds-color-surface-sunken: 18 18 18;
+
+		/* Border Colors */
+		--ds-color-border: 44 44 46;
+		--ds-color-border-subtle: 38 38 40;
+		--ds-color-border-strong: 68 68 70;
+		--ds-color-border-focus: 0 199 190;
+
+		/* Accent */
+		--ds-color-accent: 0 199 190;
+		--ds-color-accent-hover: 26 214 205;
+		--ds-color-accent-active: 51 224 216;
+		--ds-color-accent-subtle: 0 40 38;
+
+		/* State Colors */
+		--ds-color-success: 48 209 88;
+		--ds-color-success-subtle: 20 60 30;
+		--ds-color-warning: 255 159 10;
+		--ds-color-warning-subtle: 60 45 15;
+		--ds-color-error: 255 69 58;
+		--ds-color-error-subtle: 60 25 25;
+		--ds-color-info: 10 132 255;
+		--ds-color-info-subtle: 20 40 70;
+
+		/* Shadows */
+		--ds-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+		--ds-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.2);
+		--ds-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+		--ds-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.35), 0 4px 6px rgba(0, 0, 0, 0.25);
+		--ds-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4), 0 8px 10px rgba(0, 0, 0, 0.25);
+		--ds-shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.5);
+		--ds-shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+		--ds-shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
+
+		/* Focus ring */
+		--ds-ring-color: rgb(0 199 190 / 0.5);
+
+		/* Overlay */
+		--ds-opacity-overlay: 0.6;
+	}
 }

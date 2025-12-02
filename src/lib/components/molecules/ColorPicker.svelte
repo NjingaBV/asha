@@ -10,11 +10,9 @@
 
 	let { options = [], onChange = () => {} }: Props = $props();
 
-	const { snapshot, send } = useMachine(
-		colorPickerMachine.provide({
-			context: { options, selected: undefined }
-		})
-	);
+	const { snapshot, send } = useMachine(colorPickerMachine, {
+		input: { options }
+	});
 
 	let selected = $derived($snapshot.context.selected);
 

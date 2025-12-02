@@ -1,4 +1,4 @@
-import { setup } from 'xstate';
+import { setup, assign } from 'xstate';
 import type { MacProduct } from '$lib/models';
 
 const getProductIndex = (products: MacProduct[], slug: string) =>
@@ -15,7 +15,54 @@ export const macLineupMachine = setup({
 			| { type: 'SELECT_PRODUCT'; slug: string }
 			| { type: 'SELECT_COLOR'; color: string }
 			| { type: 'NEXT' }
-			| { type: 'PREVIOUS' }
+			| { type: 'PREVIOUS' },
+		input: {} as {
+			products?: MacProduct[];
+		}
+	},
+	actions: {
+		selectProduct: assign(({ context, event }) => {
+			if (event.type !== 'SELECT_PRODUCT') return context;
+			const nextProduct = context.products.find((product) => product.slug === event.slug);
+			return {
+				...context,
+				activeSlug: event.slug,
+				selectedColor: nextProduct?.colors?.[0]?.name
+			};
+		}),
+		selectColor: assign(({ context, event }) => {
+			if (event.type !== 'SELECT_COLOR') return context;
+			return {
+				...context,
+				selectedColor: event.color
+			};
+		}),
+		nextProduct: assign(({ context }) => {
+			const currentIndex = getProductIndex(context.products, context.activeSlug);
+			const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % context.products.length : 0;
+			const nextProduct = context.products[nextIndex];
+			return {
+				...context,
+				activeSlug: nextProduct.slug,
+				selectedColor: nextProduct.colors?.[0]?.name
+			};
+		}),
+		previousProduct: assign(({ context }) => {
+			const currentIndex = getProductIndex(context.products, context.activeSlug);
+			const prevIndex = currentIndex > 0 ? currentIndex - 1 : context.products.length - 1;
+			const prevProduct = context.products[prevIndex];
+			return {
+				...context,
+				activeSlug: prevProduct.slug,
+				selectedColor: prevProduct.colors?.[0]?.name
+			};
+		})
+	},
+	guards: {
+		hasProducts: ({ context }) => context.products.length > 0,
+		productExists: ({ context, event }) =>
+			event.type === 'SELECT_PRODUCT' &&
+			context.products.some((product) => product.slug === event.slug)
 	}
 }).createMachine({
 	id: 'macLineup',
@@ -31,46 +78,19 @@ export const macLineupMachine = setup({
 	},
 	on: {
 		SELECT_PRODUCT: {
-			guard: ({ context, event }) =>
-				context.products.some((product) => product.slug === event.slug),
-			actions: [
-				({ context, event }) => {
-					context.activeSlug = event.slug;
-					const nextProduct = context.products.find(
-						(product) => product.slug === event.slug
-					);
-					context.selectedColor = nextProduct?.colors?.[0]?.name;
-				}
-			]
+			guard: 'productExists',
+			actions: ['selectProduct']
 		},
 		SELECT_COLOR: {
-			actions: [({ context, event }) => (context.selectedColor = event.color)]
+			actions: ['selectColor']
 		},
 		NEXT: {
-			guard: ({ context }) => context.products.length > 0,
-			actions: [
-				({ context }) => {
-					const currentIndex = getProductIndex(context.products, context.activeSlug);
-					const nextIndex =
-						currentIndex >= 0 ? (currentIndex + 1) % context.products.length : 0;
-					const nextProduct = context.products[nextIndex];
-					context.activeSlug = nextProduct.slug;
-					context.selectedColor = nextProduct.colors?.[0]?.name;
-				}
-			]
+			guard: 'hasProducts',
+			actions: ['nextProduct']
 		},
 		PREVIOUS: {
-			guard: ({ context }) => context.products.length > 0,
-			actions: [
-				({ context }) => {
-					const currentIndex = getProductIndex(context.products, context.activeSlug);
-					const prevIndex =
-						currentIndex > 0 ? currentIndex - 1 : context.products.length - 1;
-					const prevProduct = context.products[prevIndex];
-					context.activeSlug = prevProduct.slug;
-					context.selectedColor = prevProduct.colors?.[0]?.name;
-				}
-			]
+			guard: 'hasProducts',
+			actions: ['previousProduct']
 		}
 	}
 });

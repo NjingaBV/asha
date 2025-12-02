@@ -1,3 +1,7 @@
+<script lang="ts" module>
+	export type ParagraphSize = 'sm' | 'base' | 'lg' | 'xl' | '2xl';
+</script>
+
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
@@ -7,8 +11,6 @@
 	 * @example
 	 * <Paragraph size="lg" color="text-slate-600">Large paragraph text</Paragraph>
 	 */
-
-	type ParagraphSize = 'sm' | 'base' | 'lg' | 'xl';
 
 	interface Props {
 		/** Text size */
@@ -35,7 +37,8 @@
 		sm: 'text-sm',
 		base: 'text-base',
 		lg: 'text-lg',
-		xl: 'text-xl'
+		xl: 'text-xl',
+		'2xl': 'text-2xl'
 	};
 
 	const leadingClasses = {

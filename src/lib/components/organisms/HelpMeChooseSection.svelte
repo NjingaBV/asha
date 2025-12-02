@@ -29,13 +29,6 @@
 			Answer a few questions to find the best Mac for you.
 		</Paragraph>
 
-		<Button
-			variant="primary"
-			size="lg"
-			href="/mac/best-mac/#help-me-choose"
-			className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4"
-		>
-			Get started
-		</Button>
+		<Button tone="primary" size="lg" href="/mac/best-mac/#help-me-choose">Get started</Button>
 	</div>
 </section>

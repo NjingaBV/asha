@@ -1,44 +1,71 @@
-import { createMachine } from 'xstate';
+import { setup, assign } from 'xstate';
 
-export type ColorPickerContext = {
-	options: string[];
-	selected?: string;
-};
-export type ColorPickerEvent = { type: 'SELECT'; value: string } | { type: 'RESET' };
-
-export const colorPickerMachine = createMachine<ColorPickerContext, ColorPickerEvent>({
+export const colorPickerMachine = setup({
+	types: {
+		context: {} as {
+			options: string[];
+			selected?: string;
+		},
+		events: {} as { type: 'SELECT'; value: string } | { type: 'RESET' },
+		input: {} as {
+			options?: string[];
+			selected?: string;
+		}
+	},
+	actions: {
+		selectColor: assign({
+			selected: (_, params: { value: string }) => params.value
+		}),
+		resetColor: assign({
+			selected: () => undefined
+		})
+	}
+}).createMachine({
 	id: 'colorPicker',
 	initial: 'idle',
+	context: ({ input }) => ({
+		options: input?.options ?? [],
+		selected: input?.selected
+	}),
 	states: {
 		idle: {
 			on: {
 				SELECT: {
 					target: 'selected',
-					actions: ({ context, event }) => {
-						context.selected = event.value;
-					}
+					actions: [
+						{
+							type: 'selectColor',
+							params: ({ event }) => ({ value: event.value })
+						}
+					]
 				},
 				RESET: {
-					actions: ({ context }) => {
-						context.selected = undefined;
-					}
+					actions: ['resetColor']
 				}
 			}
 		},
 		selected: {
 			on: {
 				SELECT: {
-					actions: ({ context, event }) => {
-						context.selected = event.value;
-					}
+					actions: [
+						{
+							type: 'selectColor',
+							params: ({ event }) => ({ value: event.value })
+						}
+					]
 				},
 				RESET: {
 					target: 'idle',
-					actions: ({ context }) => {
-						context.selected = undefined;
-					}
+					actions: ['resetColor']
 				}
 			}
 		}
 	}
 });
+
+// Re-export types for consumers
+export type ColorPickerContext = {
+	options: string[];
+	selected?: string;
+};
+export type ColorPickerEvent = { type: 'SELECT'; value: string } | { type: 'RESET' };

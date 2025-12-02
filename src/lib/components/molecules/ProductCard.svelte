@@ -180,7 +180,7 @@
 					<Button
 						tone="primary"
 						href={primaryAction.href}
-						onClick={primaryAction.onClick}
+						onclick={primaryAction.onClick}
 						size="sm"
 						class="rounded-full px-6"
 					>

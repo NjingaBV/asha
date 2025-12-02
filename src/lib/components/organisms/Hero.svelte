@@ -362,13 +362,13 @@
 					<!-- Actions -->
 					<div class="flex flex-col sm:flex-row gap-4 pt-4 md:pt-6">
 						{#if primaryAction}
-							<Button tone="primary" size="lg" onClick={primaryAction.onClick}>
+							<Button tone="primary" size="lg" onclick={primaryAction.onClick}>
 								{primaryAction.label}
 							</Button>
 						{/if}
 
 						{#if secondaryAction}
-							<Button tone="secondary" size="lg" onClick={secondaryAction.onClick}>
+							<Button tone="secondary" size="lg" onclick={secondaryAction.onClick}>
 								{secondaryAction.label}
 							</Button>
 						{/if}

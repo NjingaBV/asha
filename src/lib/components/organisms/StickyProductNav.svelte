@@ -32,12 +32,9 @@
 		</ul>
 		{#if cta}
 			<div class="hidden md:block">
-				<Button
-					label={cta.label}
-					href={cta.href}
-					tone={dark ? 'secondary' : 'dark'}
-					size="sm"
-				/>
+				<Button href={cta.href} tone={dark ? 'secondary' : 'dark'} size="sm">
+					{cta.label}
+				</Button>
 			</div>
 		{/if}
 	</div>
@@ -49,12 +46,9 @@
 			{/each}
 			{#if cta}
 				<li class="flex-none">
-					<Button
-						label={cta.label}
-						href={cta.href}
-						tone={dark ? 'secondary' : 'dark'}
-						size="sm"
-					/>
+					<Button href={cta.href} tone={dark ? 'secondary' : 'dark'} size="sm">
+						{cta.label}
+					</Button>
 				</li>
 			{/if}
 		</ul>

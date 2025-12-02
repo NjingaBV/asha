@@ -257,8 +257,7 @@ export const AppleStylePerformance: Story = {
 	args: {
 		title: 'Go fast. Go far.',
 		subtitle: 'Performance and Battery Life',
-		imgSrc:
-			'https://www.apple.com/v/macbook-pro/ai/images/overview/hero/hero_static__bpt7y5o1cgqe_large.jpg',
+		imgSrc: 'https://www.apple.com/v/macbook-pro/ai/images/overview/hero/hero_static__bpt7y5o1cgqe_large.jpg',
 		textOnImage: true,
 		textPosition: 'top',
 		textColor: 'white',
