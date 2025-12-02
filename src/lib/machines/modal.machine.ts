@@ -53,7 +53,12 @@ export const modalMachine = createMachine({
 				OPEN: {
 					target: 'opening',
 					actions: assign({
-						triggerElement: ({ event }: any) => event.triggerElement
+						triggerElement: ({ event }) => {
+							if (event.type === 'OPEN') {
+								return event.triggerElement;
+							}
+							return undefined;
+						}
 					})
 				}
 			}
@@ -138,7 +143,9 @@ export const modalActions = {
 				context.contentElement.querySelectorAll(focusableSelectors)
 			) as HTMLElement[];
 
-			return { focusableElements: elements };
+			// Store in context via side effect
+			// Note: This should be handled through assign in the machine definition
+			context.focusableElements = elements;
 		}
 	},
 	focusFirstElement: ({ context }: { context: ModalContext }) => {

@@ -59,18 +59,28 @@ export default {
 				bold: 'var(--ds-font-bold)'
 			},
 
-			/* Spacing - 4pt grid */
+			/* Spacing - Extended to include common Tailwind values */
 			spacing: {
-				1: 'var(--ds-space-1)',
-				2: 'var(--ds-space-2)',
-				3: 'var(--ds-space-3)',
-				4: 'var(--ds-space-4)',
-				6: 'var(--ds-space-6)',
-				8: 'var(--ds-space-8)',
-				12: 'var(--ds-space-12)',
-				16: 'var(--ds-space-16)',
-				24: 'var(--ds-space-24)',
-				32: 'var(--ds-space-32)'
+				0: '0',
+				px: '1px',
+				0.5: '0.125rem',
+				1: 'var(--ds-space-1)', // 4px
+				1.5: '0.375rem',
+				2: 'var(--ds-space-2)', // 8px
+				2.5: '0.625rem',
+				3: 'var(--ds-space-3)', // 12px
+				4: 'var(--ds-space-4)', // 16px
+				5: '1.25rem',
+				6: 'var(--ds-space-6)', // 24px
+				8: 'var(--ds-space-8)', // 32px
+				10: '2.5rem',
+				12: 'var(--ds-space-12)', // 48px
+				14: '3.5rem',
+				16: 'var(--ds-space-16)', // 64px
+				20: '5rem',
+				24: 'var(--ds-space-24)', // 96px
+				28: '7rem',
+				32: 'var(--ds-space-32)' // 128px
 			},
 
 			/* Border Radius */

@@ -100,8 +100,9 @@
 		iconRight
 	}: Props = $props();
 
-	// Generate unique ID for accessibility
-	const id = `input-${Math.random().toString(36).slice(2, 11)}`;
+	// Generate unique ID for accessibility (SSR-safe)
+	let idCounter = 0;
+	const id = `input-${typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `fallback-${++idCounter}`}`;
 	const errorId = `${id}-error`;
 	const hintId = `${id}-hint`;
 
@@ -230,8 +231,7 @@
 			{step}
 			{maxlength}
 			{pattern}
-			class={inputClasses}
-			style={iconLeft ? 'padding-left: 2.5rem;' : iconRight ? 'padding-right: 2.5rem;' : ''}
+			class={`${inputClasses} ${iconLeft ? 'pl-10' : ''} ${iconRight ? 'pr-10' : ''}`}
 			aria-label={ariaLabel || label}
 			aria-required={required}
 			aria-invalid={invalid || !!error}
