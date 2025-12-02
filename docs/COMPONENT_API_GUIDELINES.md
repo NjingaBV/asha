@@ -7,22 +7,26 @@ Ce document définit les standards d'API pour tous les composants du design syst
 ## Principes de Base
 
 ### 1. Cohérence avant tout
+
 - Utiliser les mêmes noms de props pour les mêmes concepts
 - Suivre les mêmes patterns de nomenclature
 - Maintenir des valeurs par défaut prévisibles
 
 ### 2. TypeScript First
+
 - Tous les composants doivent être typés avec TypeScript
 - Exporter les types d'interface pour réutilisation
 - Utiliser des types union pour les variantes/options
 
 ### 3. Accessibilité intégrée
+
 - WCAG 2.2 AA minimum
 - Support clavier complet
 - ARIA attributes appropriés
 - Focus management
 
 ### 4. SSR-Friendly
+
 - Pas d'accès à `window`/`document` au niveau module
 - Feature detection dans `onMount` uniquement
 - Hydration sans surprises
@@ -34,17 +38,20 @@ Ce document définit les standards d'API pour tous les composants du design syst
 Définit le style visuel principal du composant.
 
 **Valeurs standards :**
+
 - `solid` - Fond plein avec couleur (default pour la plupart)
 - `outline` - Bordure seulement, fond transparent
 - `ghost` - Texte coloré, pas de bordure ni fond
 - `soft` - Fond subtil (semi-transparent)
 
 **Type :**
+
 ```typescript
 export type Variant = 'solid' | 'outline' | 'ghost' | 'soft';
 ```
 
 **Usage :**
+
 ```svelte
 <Button variant="solid">Solid Button</Button>
 <Button variant="ghost">Ghost Button</Button>
@@ -57,6 +64,7 @@ export type Variant = 'solid' | 'outline' | 'ghost' | 'soft';
 Définit le contexte sémantique ou la couleur du composant.
 
 **Valeurs standards :**
+
 - `default` - Couleur par défaut du thème
 - `primary` - Action principale (bleu Apple)
 - `neutral` - Neutre, gris
@@ -66,11 +74,13 @@ Définit le contexte sémantique ou la couleur du composant.
 - `info` - Information (bleu clair)
 
 **Type :**
+
 ```typescript
 export type Tone = 'default' | 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'info';
 ```
 
 **Usage :**
+
 ```svelte
 <Button tone="primary">Primary</Button>
 <Badge tone="success">Success</Badge>
@@ -84,22 +94,26 @@ export type Tone = 'default' | 'primary' | 'neutral' | 'success' | 'warning' | '
 Définit les dimensions du composant.
 
 **Valeurs standards :**
+
 - `sm` - Petit (small)
 - `md` - Moyen (medium) - DEFAULT
 - `lg` - Grand (large)
 - `xl` - Très grand (optional pour certains composants)
 
 **Type :**
+
 ```typescript
 export type Size = 'sm' | 'md' | 'lg' | 'xl';
 ```
 
 **Dimensions suggérées :**
+
 - `sm`: padding `px-3 py-1`, text `text-sm`
 - `md`: padding `px-4 py-2`, text `text-base`
 - `lg`: padding `px-6 py-3`, text `text-lg`
 
 **Usage :**
+
 ```svelte
 <Button size="sm">Small</Button>
 <Input size="md">Medium</Input>
@@ -111,23 +125,27 @@ export type Size = 'sm' | 'md' | 'lg' | 'xl';
 ### États (`disabled`, `loading`, `readonly`)
 
 **`disabled`** (boolean)
+
 - Désactive les interactions
 - Applique `opacity-disabled` (0.5)
 - Cursor `not-allowed`
 - Ajoute `aria-disabled="true"`
 
 **`loading`** (boolean)
+
 - Affiche un spinner/indicateur
 - Désactive implicitement les interactions
 - Garde le même layout (évite CLS)
 - État temporaire pour actions async
 
 **`readonly`** (boolean)
+
 - Formulaires seulement
 - Affiche la valeur mais empêche modification
 - Différent de `disabled` (visible/focusable)
 
 **Usage :**
+
 ```svelte
 <Button disabled>Disabled</Button>
 <Button loading>Loading...</Button>
@@ -139,11 +157,13 @@ export type Size = 'sm' | 'md' | 'lg' | 'xl';
 ### Classes personnalisées
 
 **`class`** ou **`className`** (string)
+
 - Permet d'ajouter des classes Tailwind personnalisées
 - S'ajoute aux classes existantes (ne remplace pas)
 - Utiliser `class` en Svelte 5
 
 **Usage :**
+
 ```svelte
 <Button class="mt-4">Custom Margin</Button>
 <Card class="shadow-xl">Custom Shadow</Card>
@@ -156,18 +176,19 @@ export type Size = 'sm' | 'md' | 'lg' | 'xl';
 ### Composants de Formulaire
 
 **Props communes :**
+
 ```typescript
 interface FormFieldProps {
-	name?: string;          // Nom du champ
-	value?: string;         // Valeur
-	placeholder?: string;   // Placeholder
-	disabled?: boolean;     // Désactivé
-	readonly?: boolean;     // Lecture seule
-	required?: boolean;     // Requis
-	invalid?: boolean;      // État d'erreur
-	error?: string;         // Message d'erreur
-	hint?: string;          // Texte d'aide
-	label?: string;         // Label du champ
+	name?: string; // Nom du champ
+	value?: string; // Valeur
+	placeholder?: string; // Placeholder
+	disabled?: boolean; // Désactivé
+	readonly?: boolean; // Lecture seule
+	required?: boolean; // Requis
+	invalid?: boolean; // État d'erreur
+	error?: string; // Message d'erreur
+	hint?: string; // Texte d'aide
+	label?: string; // Label du champ
 	onChange?: (value: string) => void;
 	onBlur?: () => void;
 	onFocus?: () => void;
@@ -177,25 +198,27 @@ interface FormFieldProps {
 ### Composants Interactifs
 
 **Props communes :**
+
 ```typescript
 interface InteractiveProps {
 	onClick?: (event: MouseEvent) => void;
 	onHover?: (hovered: boolean) => void;
 	onFocus?: (focused: boolean) => void;
-	ariaLabel?: string;     // Pour accessibilité
-	tabIndex?: number;      // Ordre de tabulation
+	ariaLabel?: string; // Pour accessibilité
+	tabIndex?: number; // Ordre de tabulation
 }
 ```
 
 ### Composants Containers
 
 **Props communes :**
+
 ```typescript
 interface ContainerProps {
-	fullWidth?: boolean;    // Largeur 100%
-	centered?: boolean;     // Centré
-	padding?: Size;         // Padding interne
-	gap?: Size;            // Espace entre enfants
+	fullWidth?: boolean; // Largeur 100%
+	centered?: boolean; // Centré
+	padding?: Size; // Padding interne
+	gap?: Size; // Espace entre enfants
 	direction?: 'row' | 'column'; // Direction flex
 }
 ```
@@ -207,6 +230,7 @@ interface ContainerProps {
 ### Préfixes standards
 
 **`on` prefix** - Tous les événements
+
 ```typescript
 onClick?: (event: MouseEvent) => void;
 onChange?: (value: string) => void;
@@ -234,10 +258,11 @@ onSubmit?: (data: FormData) => void;
 ### Svelte 5 Snippets
 
 **`children`** - Contenu principal (default slot)
+
 ```svelte
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	
+
 	let { children }: { children?: Snippet } = $props();
 </script>
 
@@ -247,11 +272,15 @@ onSubmit?: (data: FormData) => void;
 ```
 
 **`iconLeft` / `iconRight`** - Icônes avant/après
+
 ```svelte
 <script lang="ts">
-	let { iconLeft, iconRight }: { 
-		iconLeft?: Snippet; 
-		iconRight?: Snippet; 
+	let {
+		iconLeft,
+		iconRight
+	}: {
+		iconLeft?: Snippet;
+		iconRight?: Snippet;
 	} = $props();
 </script>
 
@@ -263,6 +292,7 @@ onSubmit?: (data: FormData) => void;
 ```
 
 **Slots nommés communs :**
+
 - `header` - En-tête
 - `footer` - Pied de page
 - `leading` - Début (alternative à iconLeft)
@@ -278,6 +308,7 @@ onSubmit?: (data: FormData) => void;
 ### Quand utiliser XState
 
 Utiliser XState pour :
+
 - États complexes avec transitions multiples
 - Comportements interactifs avancés (hover, press, focus)
 - Gestion du focus trap (modals, dropdowns)
@@ -285,6 +316,7 @@ Utiliser XState pour :
 - Animations séquentielles
 
 **Exemple : Button avec états**
+
 ```typescript
 buttonMachine: idle → hover → pressed → loading → success/error
 ```
@@ -295,16 +327,16 @@ buttonMachine: idle → hover → pressed → loading → success/error
 <script lang="ts">
 	import { useMachine } from '@xstate/svelte';
 	import { buttonMachine } from '$lib/machines';
-	
+
 	const { snapshot, send } = useMachine(buttonMachine);
-	
+
 	$effect(() => {
 		// React to state changes
 		console.log('Current state:', $snapshot.value);
 	});
 </script>
 
-<button 
+<button
 	onmouseenter={() => send({ type: 'HOVER' })}
 	onmouseleave={() => send({ type: 'UNHOVER' })}
 	onclick={() => send({ type: 'CLICK' })}
@@ -346,8 +378,8 @@ const buttonClasses = $derived(
 		disabled && 'opacity-disabled cursor-not-allowed',
 		className
 	]
-	.filter(Boolean)
-	.join(' ')
+		.filter(Boolean)
+		.join(' ')
 );
 ```
 
@@ -356,11 +388,13 @@ const buttonClasses = $derived(
 Toujours référencer les tokens CSS au lieu de valeurs en dur :
 
 **❌ Mauvais :**
+
 ```svelte
 <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">
 ```
 
 **✅ Bon :**
+
 ```svelte
 <button class="bg-primary text-bg px-4 py-2 rounded-md">
 ```
@@ -372,12 +406,14 @@ Toujours référencer les tokens CSS au lieu de valeurs en dur :
 ### Checklist WCAG 2.2 AA
 
 #### Clavier
+
 - [ ] Accessible au clavier (Tab, Enter, Space, Esc)
 - [ ] Focus visible (`focus-visible:ring-2`)
 - [ ] Ordre de tabulation logique
 - [ ] Pas de piège de focus (sauf modals avec trap intentionnel)
 
 #### ARIA
+
 - [ ] Roles appropriés (`button`, `dialog`, `tab`, etc.)
 - [ ] Labels (`aria-label`, `aria-labelledby`)
 - [ ] États (`aria-disabled`, `aria-expanded`, `aria-selected`)
@@ -385,11 +421,13 @@ Toujours référencer les tokens CSS au lieu de valeurs en dur :
 - [ ] Annonces dynamiques (`role="status"`, `aria-live`)
 
 #### Contraste
+
 - [ ] Texte normal : min 4.5:1
 - [ ] Texte large (≥18px bold ou ≥24px) : min 3:1
 - [ ] Éléments UI non-texte : min 3:1
 
 #### Focus Management
+
 - [ ] Focus visible avec `outline` ou `ring`
 - [ ] Restaurer le focus après fermeture de modal
 - [ ] Focus trap dans les overlays
@@ -397,6 +435,7 @@ Toujours référencer les tokens CSS au lieu de valeurs en dur :
 ### Patterns d'accessibilité
 
 **Button :**
+
 ```svelte
 <button
 	type="button"
@@ -411,6 +450,7 @@ Toujours référencer les tokens CSS au lieu de valeurs en dur :
 ```
 
 **Modal :**
+
 ```svelte
 <div
 	role="dialog"
@@ -424,6 +464,7 @@ Toujours référencer les tokens CSS au lieu de valeurs en dur :
 ```
 
 **Form Input :**
+
 ```svelte
 <label for={id}>{label}</label>
 <input
@@ -454,6 +495,7 @@ Chaque composant doit avoir des tests couvrant :
 5. **Accessibilité** - ARIA, rôles, focus
 
 **Exemple :**
+
 ```typescript
 describe('Button', () => {
 	describe('Rendu de base', () => {
@@ -461,42 +503,42 @@ describe('Button', () => {
 			// Test
 		});
 	});
-	
+
 	describe('Variantes', () => {
 		it('should apply solid variant', () => {
 			// Test
 		});
-		
+
 		it('should apply ghost variant', () => {
 			// Test
 		});
 	});
-	
+
 	describe('États', () => {
 		it('should be disabled when disabled prop is true', () => {
 			// Test
 		});
-		
+
 		it('should show loading spinner', () => {
 			// Test
 		});
 	});
-	
+
 	describe('Interactions', () => {
 		it('should call onClick when clicked', () => {
 			// Test
 		});
-		
+
 		it('should not call onClick when disabled', () => {
 			// Test
 		});
 	});
-	
+
 	describe('Accessibilité', () => {
 		it('should have correct ARIA attributes', () => {
 			// Test
 		});
-		
+
 		it('should be keyboard accessible', () => {
 			// Test
 		});
@@ -521,6 +563,7 @@ Chaque composant doit avoir :
 7. **Stories d'accessibilité** (Focus, Keyboard navigation)
 
 **Template minimal :**
+
 ```typescript
 import type { Meta, StoryObj } from '@storybook/sveltekit';
 import Component from './Component.svelte';
@@ -593,13 +636,14 @@ Pour déprécier une prop :
 4. Supprimer dans version majeure suivante
 
 **Exemple :**
+
 ```typescript
 interface ButtonProps {
 	/**
 	 * @deprecated Use `tone` instead. Will be removed in v2.0.0
 	 */
 	color?: 'primary' | 'secondary';
-	
+
 	/** Preferred: use tone */
 	tone?: Tone;
 }
