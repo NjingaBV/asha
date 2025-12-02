@@ -5,8 +5,9 @@
 	   ========================================== */
 
 	/* Typography - SF Pro-like system font stack */
-	--ds-font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-		Arial, sans-serif;
+	--ds-font-sans:
+		system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+		sans-serif;
 
 	/* Font Sizes - Apple scale: 12, 14, 16, 18, 20, 24, 32, 40, 56, 72 */
 	--ds-text-xs: 0.75rem; /* 12px */
