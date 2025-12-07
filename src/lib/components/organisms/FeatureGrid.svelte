@@ -1,57 +1,66 @@
 <script lang="ts">
-	import FeatureItem from '$lib/components/atoms/FeatureItem.svelte';
 	import FeatureCard from '$lib/components/molecules/FeatureCard.svelte';
 
-	let {
-		features = [],
-		layout = 'stacked',
-		class: className = ''
-	}: {
-		features: Array<{
-			title: string;
-			description: string;
-			image: string;
-			imageAlt?: string;
-			imagePosition?: 'left' | 'right';
-			icon?: string;
-			badge?: string;
-		}>;
-		layout: 'stacked' | 'alternating';
-		class?: string;
-	} = $props();
+	/**
+	 * FeatureGrid - Displays feature cards in stacked or alternating layout
+	 *
+	 * @example
+	 * <FeatureGrid
+	 *   features={[{title: '...', description: '...', image: '...'}]}
+	 *   layout="alternating"
+	 * />
+	 */
 
-	let containerClasses = $derived(
-		['space-y-16 lg:space-y-24', className].filter(Boolean).join(' ')
-	);
+	interface Feature {
+		title: string;
+		description: string;
+		image: string;
+		imageAlt?: string;
+		imagePosition?: 'left' | 'right';
+		icon?: string;
+		badge?: string;
+		class?: string;
+	}
+
+	interface Props {
+		features: Feature[];
+		layout?: 'stacked' | 'alternating';
+		gap?: 'small' | 'medium' | 'large';
+		class?: string;
+	}
+
+	let { features = [], layout = 'stacked', gap = 'large' }: Props = $props();
+
+	// Gap classes
+	const gapMap = {
+		small: 'gap-4',
+		medium: 'gap-8',
+		large: 'gap-12'
+	};
+
+	const containerClasses = 'py-16 px-4 sm:px-6 lg:px-8 bg-bg';
+	const gridClasses = `grid grid-cols-1 ${gapMap[gap]}`;
 </script>
 
-<div class={containerClasses}>
-	{#each features as feature, index}
-		{#if feature.image}
-			<FeatureCard
-				title={feature.title}
-				description={feature.description}
-				image={feature.image}
-				imageAlt={feature.imageAlt || feature.title}
-				imagePosition={layout === 'alternating'
-					? index % 2 === 0
-						? 'right'
-						: 'left'
-					: feature.imagePosition || 'right'}
-				icon={feature.icon}
-				badge={feature.badge}
-			/>
-		{:else}
-			<!-- Fallback for features without images -->
-			<div class="max-w-4xl mx-auto">
-				<div class="p-8 rounded-2xl bg-slate-50">
-					<FeatureItem
-						title={feature.title}
-						description={feature.description}
-						icon={feature.icon ?? null}
-					/>
-				</div>
-			</div>
-		{/if}
-	{/each}
-</div>
+<section class={containerClasses}>
+	<div class="max-w-7xl mx-auto">
+		<div class={gridClasses}>
+			{#each features as item, index}
+				<FeatureCard
+					title={item.title}
+					description={item.description}
+					image={item.image}
+					imageAlt={item.imageAlt || item.title}
+					imagePosition={layout === 'alternating'
+						? index % 2 === 0
+							? 'right'
+							: 'left'
+						: item.imagePosition || 'right'}
+					icon={item.icon}
+					badge={item.badge}
+					class={item.class}
+				/>
+			{/each}
+		</div>
+	</div>
+</section>

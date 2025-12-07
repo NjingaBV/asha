@@ -8,55 +8,18 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# Footer
+				component: `
+# Pied de Page (Footer)
 
-A full-width footer organism that serves as the bottom-most section of a page, providing essential brand information and copyright notice.
+Un organisme de pied de page pleine largeur qui sert de section la plus basse d'une page, fournissant des informations essentielles sur la marque et un avis de droit d'auteur.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Brand Identity Display**: Incorporates the Logo molecule to maintain consistent branding
-- **Copyright Notice**: Automatically displays current year with brand name
-- **Responsive Layout**: Adapts gracefully from mobile to desktop viewports
-- **Semantic HTML**: Uses proper \`<footer>\` element for accessibility
-
-## Use Cases
-
-- **Site-wide Footer**: Place at the bottom of every page for consistent brand presence
-- **Landing Pages**: Essential anchor point for single-page marketing sites
-- **Web Applications**: Provides legal and brand information in app layouts
-- **Marketing Sites**: Maintains brand consistency across all pages
-
-## Best Practices
-
-- Always provide a complete logo object with all required properties
-- Use consistent brandName across your application
-- Place at the bottom of your page layout (after all main content)
-- Ensure the footer link navigates to your homepage or appropriate destination
-- Test footer visibility on all viewport sizes
-
-## Accessibility
-
-- Uses semantic \`<footer>\` element for proper document structure
-- Logo includes proper alt text and link semantics
-- Copyright text is readable with sufficient color contrast
-- Keyboard navigable links
-- Screen reader friendly structure
-
-## Component Composition
-
-This organism composes:
-- **Logo** (Molecule): Displays brand identity with image and text
-- Inherits all Logo molecule accessibility features
-
-## Page Layout Considerations
-
-- **Width**: Full viewport width with contained content (max-w-7xl)
-- **Spacing**: Generous padding (py-12 lg:py-16) for breathing room
-- **Border**: Top border for visual separation from main content
-- **Background**: Light gray (bg-gray-100) for subtle contrast
-- **Responsive Padding**: Adjusts from mobile (px-4) to desktop (lg:px-8)
-- **Positioning**: Should be placed after all main page content
-- **Sticky Footer**: Can be combined with flexbox layouts for sticky-to-bottom behavior`
+- **Affichage de l'Identité de la Marque**: Intègre la molécule \`Logo\` pour maintenir une image de marque cohérente.
+- **Avis de Droit d'Auteur**: Affiche automatiquement l'année en cours avec le nom de la marque.
+- **Mise en Page Réactive**: S'adapte avec élégance des affichages mobiles aux ordinateurs de bureau.
+- **HTML Sémantique**: Utilise l'élément \`<footer>\` approprié pour l'accessibilité.
+`
 			}
 		}
 	},

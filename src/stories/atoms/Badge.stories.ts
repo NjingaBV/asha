@@ -8,40 +8,18 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Badge
+				component: `
+# Badge
 
-A compact, versatile label component for highlighting status, categories, or supplementary information.
+Un composant d'étiquette compact et polyvalent pour mettre en évidence des statuts, des catégories ou des informations supplémentaires.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Multiple Variants**: Solid, outline, and ghost styles for different emphasis levels
-- **Semantic Colors**: Six color options (primary, secondary, success, warning, danger, neutral) with meaningful associations
-- **Flexible Sizing**: Three size options (sm, base, lg) for different contexts
-- **Rounded Options**: Toggle between fully rounded (pill shape) or slightly rounded corners
-- **Snippet Support**: Use label prop for simple text or children for custom content
-
-## Use Cases
-
-- **Status Indicators**: Show product availability, order status, or account status
-- **Category Labels**: Tag content with categories, topics, or filters
-- **Notifications**: Display unread counts or new content indicators
-- **Feature Highlights**: Call attention to new features or special offers
-- **Metadata Tags**: Show version numbers, edition types, or other metadata
-
-## Best Practices
-
-- **Color Meaning**: Use semantic colors consistently (success=available, danger=error, warning=caution)
-- **Text Length**: Keep badge text short (1-2 words) for optimal readability
-- **Contrast**: Solid variant provides best contrast, use for critical information
-- **Sizing Context**: Use sm for inline text, base for cards/lists, lg for prominent displays
-- **Avoid Overuse**: Too many badges can overwhelm users; use sparingly for emphasis
-
-## Accessibility
-
-- Badges are inline elements that screen readers will announce naturally
-- Color is not the sole indicator of meaning (text provides context)
-- Sufficient contrast ratios for all color variants (WCAG AA compliant)
-- Consider adding aria-label for icon-only badges`
+- **Variantes Multiples**: Styles _solid_, _outline_, et _ghost_ pour différents niveaux d'emphase.
+- **Couleurs Sémantiques**: Options de couleur pour représenter le succès, l'avertissement, le danger, etc.
+- **Tailles Flexibles**: Plusieurs tailles pour s'adapter à divers contextes d'interface.
+- **Contenu Personnalisable**: Utilisez la prop \`label\` pour du texte simple ou le slot par défaut pour du contenu riche (icônes, etc.).
+`
 			}
 		}
 	},
@@ -52,11 +30,11 @@ A compact, versatile label component for highlighting status, categories, or sup
 			description:
 				'Text content for the badge. Use for simple string labels. Omit to use children slot for custom content.'
 		},
-		color: {
+		tone: {
 			control: { type: 'select' },
 			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral'],
 			description:
-				'Semantic color scheme: "primary" (blue) for brand/main actions, "secondary" (slate) for less prominent info, "success" (emerald) for positive states, "warning" (amber) for caution, "danger" (red) for errors/critical, "neutral" (gray) for general labels. Default is "primary".'
+				'Semantic color tone: "primary" (accent) for brand/main actions, "secondary" for less prominent info, "success" for positive states, "warning" for caution, "danger" for errors/critical, "neutral" for general labels. Default is "primary".'
 		},
 		variant: {
 			control: { type: 'select' },
@@ -64,7 +42,7 @@ A compact, versatile label component for highlighting status, categories, or sup
 			description:
 				'Visual style: "solid" for filled backgrounds (high emphasis), "outline" for bordered badges (medium emphasis), "ghost" for text-only (low emphasis). Default is "solid".'
 		},
-		badgeSize: {
+		size: {
 			control: { type: 'select' },
 			options: ['sm', 'base', 'lg'],
 			description:
@@ -88,9 +66,9 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
 	args: {
 		label: 'New',
-		color: 'primary',
+		tone: 'primary',
 		variant: 'solid',
-		badgeSize: 'base',
+		size: 'base',
 		children: null
 	}
 };
@@ -98,7 +76,7 @@ export const Primary: Story = {
 export const Secondary: Story = {
 	args: {
 		...Primary.args,
-		color: 'secondary'
+		tone: 'secondary'
 	}
 };
 
@@ -106,7 +84,7 @@ export const Success: Story = {
 	args: {
 		...Primary.args,
 		label: 'Available',
-		color: 'success'
+		tone: 'success'
 	}
 };
 
@@ -114,7 +92,7 @@ export const Warning: Story = {
 	args: {
 		...Primary.args,
 		label: 'Limited',
-		color: 'warning'
+		tone: 'warning'
 	}
 };
 
@@ -122,7 +100,7 @@ export const Danger: Story = {
 	args: {
 		...Primary.args,
 		label: 'Sold Out',
-		color: 'danger'
+		tone: 'danger'
 	}
 };
 
@@ -130,8 +108,8 @@ export const Neutral: Story = {
 	args: {
 		...Primary.args,
 		label: 'Edition',
-		color: 'neutral',
-		badgeSize: 'sm'
+		tone: 'neutral',
+		size: 'sm'
 	}
 };
 

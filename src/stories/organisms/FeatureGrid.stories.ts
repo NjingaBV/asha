@@ -8,76 +8,18 @@ const meta = {
 		layout: 'padded',
 		docs: {
 			description: {
-				component: `# FeatureGrid
+				component: `
+# Grille de Caractéristiques (FeatureGrid)
 
-A flexible layout organism that displays multiple features or content items in a vertical stack with configurable image positioning. Ideal for showcasing products, services, or content highlights with rich imagery and descriptions.
+Un organisme de mise en page flexible qui affiche plusieurs caractéristiques ou éléments de contenu dans une pile verticale avec un positionnement d'image configurable. Idéal pour présenter des produits, des services ou des points forts de contenu avec des images et des descriptions riches.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Flexible Layout Modes**: Choose between stacked (consistent image position) or alternating (zigzag pattern) layouts
-- **Rich Content Display**: Combines images, titles, descriptions, badges, and optional icons
-- **Responsive Images**: Large, prominent images that adapt to viewport sizes
-- **Badge Support**: Optional badges for highlighting special attributes or categories
-- **Fallback Rendering**: Gracefully handles features without images using FeatureItem atoms
-- **Generous Spacing**: Vertical rhythm with lg:space-y-24 for visual breathing room
-
-## Use Cases
-
-- **Product Showcases**: Display product collections with images, descriptions, and category badges
-- **Service Offerings**: Highlight multiple services or features with rich visual content
-- **Content Sections**: Create engaging landing page sections with alternating content blocks
-- **Portfolio Items**: Present work samples or case studies with detailed descriptions
-- **Feature Comparisons**: Show different plans, tiers, or options side-by-side
-
-## Best Practices
-
-- Provide high-quality images (recommended: 1200x800px or larger)
-- Keep descriptions concise (2-3 sentences) for optimal readability
-- Use consistent image aspect ratios across all features
-- Include descriptive badges to categorize or highlight key attributes
-- For alternating layout, use odd number of features for balanced appearance
-- Always provide imageAlt text for accessibility (defaults to title if omitted)
-- Limit to 3-6 features per grid to avoid overwhelming users
-
-## Accessibility
-
-- Semantic HTML structure with proper heading hierarchy
-- All images require alt text (auto-generated from title if not provided)
-- Keyboard navigable if features include interactive elements
-- Sufficient color contrast in text overlays and badges
-- Responsive text sizing for readability at all viewport sizes
-- Screen reader friendly content structure
-
-## Component Composition
-
-This organism composes:
-- **FeatureCard** (Molecule): Main display component for features with images
-- **FeatureItem** (Atom): Fallback component for features without images
-- Inherits Badge, Icon, and image handling from child components
-
-## Layout Behavior
-
-### Stacked Layout
-- All images appear on the same side (controlled by imagePosition prop)
-- Consistent, predictable visual rhythm
-- Best for related items in the same category
-
-### Alternating Layout
-- Images automatically alternate left/right based on index
-- Creates dynamic zigzag pattern
-- Best for diverse content or breaking visual monotony
-
-## Page Layout Considerations
-
-- **Width**: Content width determined by FeatureCard molecules (typically max-w-7xl)
-- **Spacing**: Vertical spacing of 16 (lg:24) between items provides clear separation
-- **Padding**: Requires container padding (provided by 'padded' layout)
-- **Responsive Behavior**:
-  - Mobile: Single column stack, full-width images
-  - Tablet: Two-column layout begins to emerge
-  - Desktop: Full side-by-side image + content layout
-- **Background**: Transparent, inherits from parent container
-- **Integration**: Works well between hero sections and CTAs or footers`
+- **Modes de Mise en Page Flexibles**: Choisissez entre des mises en page empilées (position d'image cohérente) ou alternées (motif en zigzag).
+- **Affichage de Contenu Riche**: Combine des images, des titres, des descriptions, des badges et des icônes optionnelles.
+- **Images Réactives**: Grandes images proéminentes qui s'adaptent à la taille de la fenêtre.
+- **Support de Badge**: Badges optionnels pour mettre en évidence des attributs ou des catégories spéciales.
+`
 			}
 		}
 	},

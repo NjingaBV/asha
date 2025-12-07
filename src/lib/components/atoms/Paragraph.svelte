@@ -1,29 +1,64 @@
+<script lang="ts" module>
+	export type ParagraphSize = 'sm' | 'base' | 'lg' | 'xl' | '2xl';
+</script>
+
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	/**
+	 * Paragraph component - renders semantic <p> tag with customizable sizing and styling
+	 *
+	 * @example
+	 * <Paragraph size="lg" color="text-slate-600">Large paragraph text</Paragraph>
+	 */
+
+	interface Props {
+		/** Text size */
+		size?: ParagraphSize;
+		/** Text color class */
+		color?: string;
+		/** Line height class */
+		leading?: 'tight' | 'normal' | 'relaxed' | 'loose';
+		/** Custom CSS classes */
+		class?: string;
+		/** Slot for content (text, html, or Svelte snippet) */
+		children?: Snippet | any;
+	}
+
 	let {
 		size = 'base',
-		weight = 'normal',
-		color = 'text-slate-600',
-		align = 'left',
-		leading = 'normal',
-		class: className = undefined,
+		color = 'text-fg-muted',
+		leading = 'relaxed',
+		class: className = '',
 		children
-	}: {
-		size?: string;
-		weight?: string;
-		color?: string;
-		align?: string;
-		leading?: string;
-		class?: string;
-		children: any;
-	} = $props();
+	}: Props = $props();
 
-	let paragraphClasses = $derived(
-		['text-' + size, 'font-' + weight, color, 'text-' + align, 'leading-' + leading, className]
-			.filter(Boolean)
-			.join(' ')
+	const sizeClasses = {
+		sm: 'text-sm',
+		base: 'text-base',
+		lg: 'text-lg',
+		xl: 'text-xl',
+		'2xl': 'text-2xl'
+	};
+
+	const leadingClasses = {
+		tight: 'leading-tight',
+		normal: 'leading-normal',
+		relaxed: 'leading-relaxed',
+		loose: 'leading-loose'
+	};
+
+	const paragraphClass = $derived(
+		[sizeClasses[size], color, leadingClasses[leading], className].filter(Boolean).join(' ')
 	);
 </script>
 
-<p class={paragraphClasses}>
-	{@render children?.()}
+<p class={paragraphClass}>
+	{#if children}
+		{#if typeof children === 'function'}
+			{@render children()}
+		{:else}
+			{children}
+		{/if}
+	{/if}
 </p>

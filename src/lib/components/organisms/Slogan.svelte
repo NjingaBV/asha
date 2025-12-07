@@ -2,17 +2,17 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 
 	let {
-		cta = { url: '', label: '', color: '' },
+		cta = { url: '', label: '', color: '', onClick: undefined },
 		backgroundColor = '#000000',
 		slogans = []
 	}: {
-		cta: { url: string; label: string; color: string };
+		cta: { url: string; label: string; color: string; onClick?: () => void };
 		backgroundColor: `#${string}`;
 		slogans?: Array<{ title: string; subtitle: string }>;
 	} = $props();
 </script>
 
-<section class="bg text-slate-100" style="--bg-color: {backgroundColor}">
+<section class="bg text-fg-inverse" style="--bg-color: {backgroundColor}">
 	<div
 		class="container mx-auto flex flex-col md:flex-row p-12 items-center justify-between space-y-4 md:space-y-0"
 	>
@@ -24,16 +24,18 @@
 					<div class="font-extrabold text-4xl md:text-2xl lg:text-4xl">
 						{slogan.title}
 					</div>
-					<div class="font-light text-base text-slate-400">
+					<div class="font-light text-base text-fg-inverse/60">
 						{slogan.subtitle}
 					</div>
 				</div>
 			{/each}
 		</div>
 		<div>
-			<Button color={cta.color} size="large" onClick={() => (location.href = cta.url)}>
-				{cta.label}
-			</Button>
+			<a href={cta.url || '#'} class="contents">
+				<Button size="lg" tone="primary" onClick={cta.onClick}>
+					{cta.label}
+				</Button>
+			</a>
 		</div>
 	</div>
 </section>

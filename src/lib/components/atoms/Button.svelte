@@ -1,268 +1,529 @@
+<!--
+  @component Button
+  
+  A versatile button component with multiple variants, tones, and sizes.
+  Renders as `<button>` or `<a>` depending on whether `href` is provided.
+  Uses XState for robust state management.
+  
+  @example Basic usage
+  ```svelte
+  <Button tone="primary" size="md">Click me</Button>
+  ```
+  
+  @example As link
+  ```svelte
+  <Button href="/path" variant="ghost">Learn more</Button>
+  ```
+  
+  @example With loading state
+  ```svelte
+  <Button loading={isSubmitting}>Submit</Button>
+  ```
+-->
+<script lang="ts" module>
+	// ============================================
+	// Type Exports
+	// ============================================
+
+	/** Button visual variant */
+	export type ButtonVariant = 'solid' | 'outline' | 'ghost' | 'link';
+
+	/** Button color tone */
+	export type ButtonTone = 'primary' | 'secondary' | 'neutral' | 'danger' | 'success';
+
+	/** Button size */
+	export type ButtonSize = 'sm' | 'md' | 'lg';
+
+	/** Prop definitions for documentation and validation */
+	export const propDefs = {
+		variant: {
+			type: 'string',
+			options: ['solid', 'outline', 'ghost', 'link'],
+			default: 'solid',
+			description: 'Visual style variant'
+		},
+		tone: {
+			type: 'string',
+			options: ['primary', 'secondary', 'neutral', 'danger', 'success'],
+			default: 'primary',
+			description: 'Color tone/scheme'
+		},
+		size: {
+			type: 'string',
+			options: ['sm', 'md', 'lg'],
+			default: 'md',
+			description: 'Button size'
+		}
+	} as const;
+</script>
+
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { createActor } from 'xstate';
+	import {
+		buttonMachine,
+		getButtonDataAttributes,
+		getButtonStateClasses,
+		type ButtonState
+	} from '$lib/machines/button.machine';
 
-	/**
-	 * Button component - renders as <button> or <a> depending on href prop
-	 *
-	 * @example
-	 * <Button variant="primary" size="md">Click me</Button>
-	 * <Button href="/path" tone="secondary">Link Button</Button>
-	 * <Button loading type="submit">Submit</Button>
-	 */
-
-	export type ButtonVariant = 'primary' | 'ghost' | 'outline' | 'solid';
-	export type ButtonSize = 'sm' | 'md' | 'lg' | 'small' | 'medium' | 'large';
-	export type ButtonTone = 'primary' | 'secondary' | 'neutral';
-	export type ButtonType = 'button' | 'submit' | 'reset';
+	// ============================================
+	// Props
+	// ============================================
 
 	interface Props {
-		/** Link href - if provided, renders as <a> instead of <button> */
-		href?: string;
 		/** Visual style variant */
 		variant?: ButtonVariant;
-		/** Button size */
+		/** Color tone */
+		tone?: ButtonTone;
+		/** Size */
 		size?: ButtonSize;
+		/** Link href - renders as <a> if provided */
+		href?: string;
+		/** Link target */
+		target?: '_blank' | '_self' | '_parent' | '_top';
 		/** Disabled state */
 		disabled?: boolean;
+		/** Loading state - shows spinner and disables interaction */
+		loading?: boolean;
 		/** Full width button */
 		fullWidth?: boolean;
-		/** Custom background color */
-		color?: string;
-		/** Color tone/scheme */
-		tone?: ButtonTone;
-		/** Click handler */
-		onClick?: (event: MouseEvent) => void;
-		/** Additional CSS classes */
-		className?: string;
-		/** Rounded pill shape */
-		rounded?: boolean;
-		/** Show loading spinner */
-		loading?: boolean;
 		/** Button type (only for <button>) */
-		type?: ButtonType;
+		type?: 'button' | 'submit' | 'reset';
+		/** Custom CSS classes */
+		class?: string;
 		/** ARIA label for accessibility */
 		ariaLabel?: string;
-		/** Slot for content (text or html) */
-		children?: Snippet | any;
-		/** Slot for icon before text */
-		iconBefore?: Snippet | any;
-		/** Slot for icon after text */
-		iconAfter?: Snippet | any;
+		/** ID for the button element */
+		id?: string;
+		/** Name attribute */
+		name?: string;
+		/** Value attribute */
+		value?: string;
+		/** Form ID to associate with */
+		form?: string;
+		/** Icon slot - appears before content */
+		iconLeft?: Snippet;
+		/** Icon slot - appears after content */
+		iconRight?: Snippet;
+		/** Button content */
+		children?: Snippet;
+		/** Click handler */
+		onclick?: (event: MouseEvent) => void;
+		/** Focus handler */
+		onfocus?: (event: FocusEvent) => void;
+		/** Blur handler */
+		onblur?: (event: FocusEvent) => void;
+		/** Keydown handler */
+		onkeydown?: (event: KeyboardEvent) => void;
 	}
 
 	let {
-		href = undefined,
-		variant = 'primary',
+		variant = 'solid',
+		tone = 'primary',
 		size = 'md',
+		href,
+		target,
 		disabled = false,
-		fullWidth = false,
-		color = undefined,
-		tone = undefined,
-		onClick = undefined,
-		className = '',
-		rounded = false,
 		loading = false,
+		fullWidth = false,
 		type = 'button',
-		ariaLabel = undefined,
+		class: className = '',
+		ariaLabel,
+		id,
+		name,
+		value,
+		form,
+		iconLeft,
+		iconRight,
 		children,
-		iconBefore,
-		iconAfter
+		onclick,
+		onfocus,
+		onblur,
+		onkeydown
 	}: Props = $props();
 
-	// Normalize size aliases
-	const normalizedSize =
-		size === 'small' ? 'sm' : size === 'medium' ? 'md' : size === 'large' ? 'lg' : size;
+	// ============================================
+	// State Machine
+	// ============================================
 
-	// Normalize variant (solid is an alias for primary)
-	const normalizedVariant = variant === 'solid' ? 'primary' : variant;
+	const actor = createActor(buttonMachine);
+	actor.start();
 
-	// Effective disabled state includes loading
-	const isDisabled = $derived(disabled || loading);
+	// Subscribe to state changes
+	let state = $state(actor.getSnapshot());
 
-	/**
-	 * Get size-based padding and text classes
-	 */
-	const getSizeClasses = (): string => {
-		const sizes = {
-			sm: 'px-3 py-1 text-xs gap-1.5',
-			md: 'px-4 py-2 text-sm gap-2',
-			lg: 'px-5 py-3 text-base gap-2.5'
-		};
-		return sizes[normalizedSize];
-	};
+	actor.subscribe((snapshot) => {
+		state = snapshot;
+	});
 
-	/**
-	 * Get style classes based on tone, color prop, or variant
-	 */
-	const getVariantClasses = (): string => {
-		// Custom color overrides everything
-		if (color) {
-			return 'text-white shadow-[0_0_32px_rgba(0,199,190,0.35)] hover:scale-[1.01]';
+	// Sync props with machine
+	$effect(() => {
+		if (loading) {
+			actor.send({ type: 'START_LOADING' });
+		} else {
+			actor.send({ type: 'STOP_LOADING' });
 		}
+	});
 
-		// Tone-based styling
-		if (tone) {
-			if (normalizedVariant === 'ghost') {
-				const tones = {
-					neutral: 'bg-transparent text-surface-on hover:bg-surface/40',
-					secondary: 'bg-transparent text-secondary hover:bg-surface/40',
-					primary: 'bg-transparent text-primary hover:bg-surface/40'
-				};
-				return tones[tone];
-			}
-
-			// Solid variant with tone
-			const tones = {
-				neutral: 'bg-surface text-surface-on shadow-sm hover:scale-[1.01]',
-				secondary: 'bg-secondary text-white shadow-sm hover:scale-[1.01]',
-				primary:
-					'bg-primary text-white shadow-[0_0_32px_rgba(0,199,190,0.35)] hover:scale-[1.01]'
-			};
-			return tones[tone];
+	$effect(() => {
+		if (disabled) {
+			actor.send({ type: 'DISABLE' });
+		} else {
+			actor.send({ type: 'ENABLE' });
 		}
+	});
 
-		// Default variant styling (no tone specified)
-		const variants = {
-			primary:
-				'bg-primary text-white shadow-[0_0_32px_rgba(0,199,190,0.35)] hover:scale-[1.01]',
-			ghost: 'bg-transparent text-primary hover:bg-surface/40',
-			outline: 'border border-border text-primary hover:bg-surface/40',
-			solid: 'bg-primary text-white shadow-[0_0_32px_rgba(0,199,190,0.35)] hover:scale-[1.01]'
-		};
-		return variants[normalizedVariant];
-	};
+	// Cleanup
+	$effect(() => {
+		return () => actor.stop();
+	});
 
-	/**
-	 * Base styles applied to all buttons
-	 */
+	// ============================================
+	// Derived State
+	// ============================================
+
+	const currentState = $derived(state.value as ButtonState);
+	const context = $derived(state.context);
+	const isDisabled = $derived(context.isDisabled || context.isLoading);
+	const isLink = $derived(!!href && !isDisabled);
+
+	const dataAttributes = $derived(getButtonDataAttributes(currentState, context));
+	const stateClasses = $derived(getButtonStateClasses(currentState));
+
+	// ============================================
+	// Style Classes
+	// ============================================
+
+	/** Base classes applied to all buttons */
 	const baseClasses = [
-		'inline-flex items-center justify-center',
-		'font-medium transition-all',
-		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-		'disabled:opacity-50 disabled:cursor-not-allowed'
-	];
+		// Layout
+		'inline-flex items-center justify-center gap-2',
+		// Typography
+		'font-medium leading-none whitespace-nowrap',
+		// Transitions
+		'transition-all duration-fast ease-standard',
+		// Focus ring (handled by machine state + focus-visible)
+		'outline-none',
+		// Disabled state
+		'disabled:pointer-events-none disabled:opacity-disabled',
+		// Cursor
+		'cursor-pointer'
+	].join(' ');
 
-	/**
-	 * Build final class string
-	 */
+	/** Size-specific classes */
+	const sizeClasses: Record<ButtonSize, string> = {
+		sm: 'h-8 px-3 text-sm rounded-md',
+		md: 'h-10 px-4 text-base rounded-lg',
+		lg: 'h-12 px-6 text-lg rounded-lg'
+	};
+
+	/** Variant + Tone combinations */
+	const variantToneClasses: Record<ButtonVariant, Record<ButtonTone, string>> = {
+		solid: {
+			primary: [
+				'bg-accent text-fg-on-accent shadow-sm',
+				'hover:bg-accent-hover active:bg-accent-active',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			secondary: [
+				'bg-secondary text-fg-on-accent shadow-sm',
+				'hover:bg-secondary-hover active:bg-secondary-active',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-secondary data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			neutral: [
+				'bg-fg text-bg shadow-sm',
+				'hover:opacity-90 active:opacity-80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-fg data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			danger: [
+				'bg-error text-fg-on-accent shadow-sm',
+				'hover:opacity-90 active:opacity-80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-error data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			success: [
+				'bg-success text-fg-on-accent shadow-sm',
+				'hover:opacity-90 active:opacity-80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
+			].join(' ')
+		},
+		outline: {
+			primary: [
+				'border border-accent text-accent bg-transparent',
+				'hover:bg-accent hover:text-fg-on-accent',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			secondary: [
+				'border border-secondary text-secondary bg-transparent',
+				'hover:bg-secondary hover:text-fg-on-accent',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-secondary data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			neutral: [
+				'border border-border text-fg bg-transparent',
+				'hover:bg-bg-muted hover:border-fg',
+				'active:bg-bg-subtle',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-border-focus data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			danger: [
+				'border border-error text-error bg-transparent',
+				'hover:bg-error hover:text-fg-on-accent',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-error data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			success: [
+				'border border-success text-success bg-transparent',
+				'hover:bg-success hover:text-fg-on-accent',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
+			].join(' ')
+		},
+		ghost: {
+			primary: [
+				'text-accent bg-transparent',
+				'hover:bg-accent-subtle',
+				'active:bg-accent-subtle/80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			secondary: [
+				'text-secondary bg-transparent',
+				'hover:bg-bg-muted',
+				'active:bg-bg-subtle',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-secondary data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			neutral: [
+				'text-fg bg-transparent',
+				'hover:bg-bg-muted',
+				'active:bg-bg-subtle',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-border-focus data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			danger: [
+				'text-error bg-transparent',
+				'hover:bg-error-subtle',
+				'active:bg-error-subtle/80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-error data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			success: [
+				'text-success bg-transparent',
+				'hover:bg-success-subtle',
+				'active:bg-success-subtle/80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
+			].join(' ')
+		},
+		link: {
+			primary: [
+				'text-accent bg-transparent underline-offset-4',
+				'hover:underline',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			secondary: [
+				'text-secondary bg-transparent underline-offset-4',
+				'hover:underline',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-secondary data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			neutral: [
+				'text-fg bg-transparent underline-offset-4',
+				'hover:underline',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-border-focus data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			danger: [
+				'text-error bg-transparent underline-offset-4',
+				'hover:underline',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-error data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			success: [
+				'text-success bg-transparent underline-offset-4',
+				'hover:underline',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
+			].join(' ')
+		}
+	};
+
+	/** Combined classes */
 	const buttonClasses = $derived(
 		[
-			...baseClasses,
-			rounded ? 'rounded-full' : 'rounded-2xl',
+			baseClasses,
+			sizeClasses[size],
+			variantToneClasses[variant][tone],
+			stateClasses,
 			fullWidth ? 'w-full' : '',
-			getSizeClasses(),
-			getVariantClasses(),
+			loading ? 'cursor-wait' : '',
 			className
 		]
 			.filter(Boolean)
 			.join(' ')
 	);
 
-	const handleClick = (event: MouseEvent) => {
-		if (!isDisabled && onClick) {
-			onClick(event);
+	// ============================================
+	// Event Handlers
+	// ============================================
+
+	function handleMouseEnter() {
+		actor.send({ type: 'HOVER' });
+	}
+
+	function handleMouseLeave() {
+		actor.send({ type: 'UNHOVER' });
+	}
+
+	function handleMouseDown() {
+		actor.send({ type: 'PRESS' });
+	}
+
+	function handleMouseUp() {
+		actor.send({ type: 'RELEASE' });
+	}
+
+	function handleFocus(event: FocusEvent) {
+		// Simple heuristic for keyboard focus - can be improved with useFocusVisible
+		const fromKeyboard = (event.target as HTMLElement).matches(':focus-visible');
+		actor.send({ type: 'FOCUS', fromKeyboard });
+		onfocus?.(event);
+	}
+
+	function handleBlur(event: FocusEvent) {
+		actor.send({ type: 'BLUR' });
+		onblur?.(event);
+	}
+
+	function handleClick(event: MouseEvent) {
+		if (isDisabled) {
+			event.preventDefault();
+			return;
 		}
-	};
+		actor.send({ type: 'CLICK' });
+		onclick?.(event);
+	}
+
+	function handleKeydown(event: KeyboardEvent) {
+		// Handle Enter/Space for link-like behavior on buttons
+		if (event.key === 'Enter' || event.key === ' ') {
+			actor.send({ type: 'PRESS' });
+			if (isLink && event.key === ' ') {
+				event.preventDefault(); // Prevent scroll on space
+			}
+		}
+		onkeydown?.(event);
+	}
+
+	function handleKeyup(event: KeyboardEvent) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			actor.send({ type: 'RELEASE' });
+		}
+	}
 </script>
 
-{#if href && !isDisabled}
+{#if isLink}
 	<a
 		{href}
-		{ariaLabel}
+		{target}
+		{id}
 		class={buttonClasses}
+		aria-label={ariaLabel}
+		aria-disabled={disabled ? 'true' : undefined}
+		rel={target === '_blank' ? 'noopener noreferrer' : undefined}
 		onclick={handleClick}
-		style={color ? `background-color: ${color}` : ''}
+		onmouseenter={handleMouseEnter}
+		onmouseleave={handleMouseLeave}
+		onmousedown={handleMouseDown}
+		onmouseup={handleMouseUp}
+		onfocus={handleFocus}
+		onblur={handleBlur}
+		onkeydown={handleKeydown}
+		onkeyup={handleKeyup}
+		data-variant={variant}
+		data-tone={tone}
+		data-size={size}
+		{...dataAttributes}
 	>
-		{#if iconBefore}
-			<span class="flex items-center">
-				{#if typeof iconBefore === 'function'}
-					{@render iconBefore()}
-				{:else}
-					{iconBefore}
-				{/if}
+		{#if iconLeft}
+			<span class="shrink-0" aria-hidden="true">
+				{@render iconLeft()}
 			</span>
 		{/if}
-		<span>
-			{#if typeof children === 'function'}
-				{@render children()}
-			{:else}
-				{children}
-			{/if}
-		</span>
-		{#if iconAfter}
-			<span class="flex items-center">
-				{#if typeof iconAfter === 'function'}
-					{@render iconAfter()}
-				{:else}
-					{iconAfter}
-				{/if}
+
+		{#if children}
+			{@render children()}
+		{/if}
+
+		{#if iconRight}
+			<span class="shrink-0" aria-hidden="true">
+				{@render iconRight()}
 			</span>
 		{/if}
 	</a>
 {:else}
 	<button
 		{type}
-		{ariaLabel}
+		{id}
+		{name}
+		{value}
+		{form}
 		disabled={isDisabled}
 		class={buttonClasses}
+		aria-label={ariaLabel}
+		aria-busy={loading ? 'true' : undefined}
 		onclick={handleClick}
-		style={color ? `background-color: ${color}` : ''}
+		onmouseenter={handleMouseEnter}
+		onmouseleave={handleMouseLeave}
+		onmousedown={handleMouseDown}
+		onmouseup={handleMouseUp}
+		onfocus={handleFocus}
+		onblur={handleBlur}
+		onkeydown={handleKeydown}
+		onkeyup={handleKeyup}
+		data-variant={variant}
+		data-tone={tone}
+		data-size={size}
+		{...dataAttributes}
 	>
-		{#if iconBefore}
-			<span class="flex items-center">
-				{#if typeof iconBefore === 'function'}
-					{@render iconBefore()}
-				{:else}
-					{iconBefore}
-				{/if}
-			</span>
-		{/if}
 		{#if loading}
-			<span class="inline-flex items-center gap-2">
-				<svg
-					class="inline-block h-4 w-4 animate-spin"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-				>
-					<circle
-						class="opacity-25"
-						cx="12"
-						cy="12"
-						r="10"
-						stroke="currentColor"
-						stroke-width="4"
-					></circle>
-					<path
-						class="opacity-75"
-						fill="currentColor"
-						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-					></path>
-				</svg>
-				<span>
-					{#if typeof children === 'function'}
-						{@render children()}
-					{:else}
-						{children}
-					{/if}
-				</span>
-			</span>
-		{:else}
-			<span>
-				{#if typeof children === 'function'}
-					{@render children()}
-				{:else}
-					{children}
-				{/if}
+			<!-- Spinner -->
+			<svg
+				class="h-4 w-4 animate-spin"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				aria-hidden="true"
+			>
+				<circle
+					class="opacity-25"
+					cx="12"
+					cy="12"
+					r="10"
+					stroke="currentColor"
+					stroke-width="4"
+				></circle>
+				<path
+					class="opacity-75"
+					fill="currentColor"
+					d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+				></path>
+			</svg>
+			<span class="sr-only">Loading...</span>
+		{/if}
+
+		{#if iconLeft && !loading}
+			<span class="shrink-0" aria-hidden="true">
+				{@render iconLeft()}
 			</span>
 		{/if}
-		{#if iconAfter}
-			<span class="flex items-center">
-				{#if typeof iconAfter === 'function'}
-					{@render iconAfter()}
-				{:else}
-					{iconAfter}
-				{/if}
+
+		{#if children}
+			<span class={loading ? 'opacity-0' : ''}>
+				{@render children()}
+			</span>
+		{/if}
+
+		{#if iconRight && !loading}
+			<span class="shrink-0" aria-hidden="true">
+				{@render iconRight()}
 			</span>
 		{/if}
 	</button>

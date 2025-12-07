@@ -21,7 +21,16 @@
 			"Bash(npm install:*)",
 			"Bash(pnpm add:*)",
 			"Bash(npm run test:unit:*)",
-			"Bash(timeout 30 npm run storybook:*)"
+			"Bash(timeout 30 npm run storybook:*)",
+			"Bash(timeout 30 npm run storybook:dev:*)",
+			"Bash(npm run storybook:build:*)",
+			"Bash(npm run:*)",
+			"Bash(wc:*)",
+			"Bash(git push:*)",
+			"Bash(rm:*)",
+			"WebFetch(domain:www.djfacemaker.com)",
+			"Bash(perl:*)",
+			"Bash(npx storybook:*)"
 		],
 		"deny": [],
 		"ask": []

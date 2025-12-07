@@ -1,87 +1,101 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
 import Button from '@/lib/components/atoms/Button.svelte';
 
+/**
+ * # Button
+ *
+ * A versatile button component with multiple variants, tones, and sizes.
+ * Renders as `<button>` or `<a>` depending on whether `href` is provided.
+ *
+ * ## Features
+ *
+ * - **4 Variants**: `solid`, `outline`, `ghost`, `link`
+ * - **5 Tones**: `primary`, `secondary`, `neutral`, `danger`, `success`
+ * - **3 Sizes**: `sm`, `md`, `lg`
+ * - **Loading State**: Shows spinner and disables interaction
+ * - **Icon Support**: Left and right icon slots
+ * - **Link Mode**: Renders as `<a>` when `href` is provided
+ *
+ * ## Accessibility
+ *
+ * - Focus-visible ring for keyboard navigation
+ * - `aria-busy` during loading state
+ * - `aria-disabled` for disabled links
+ * - Proper `type` attribute for form buttons
+ *
+ * ## Usage
+ *
+ * ```svelte
+ * <Button tone="primary" variant="solid" size="md">Click me</Button>
+ * <Button href="/about" variant="ghost">Learn more</Button>
+ * <Button loading={isSubmitting}>Submit</Button>
+ * ```
+ */
 const meta = {
 	title: 'Atoms/Button',
 	component: Button,
-	tags: ['autodocs'],
 	parameters: {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `
-# Button Component
-
-A versatile, accessible button component that supports multiple variants, sizes, and states.
-
-## Key Features
-- **Multiple Variants**: primary, ghost, outline, solid for different visual styles
-- **Flexible Sizing**: sm, md, lg sizes for various contexts
-- **Rich States**: loading, disabled, and focus states with proper visual feedback
-- **Icon Support**: Built-in slots for icons before and after text
-- **Accessibility**: Full keyboard support, ARIA labels, and focus indicators
-- **Link Support**: Can render as &lt;a&gt; tag when href is provided
-- **Type Support**: Supports button, submit, and reset types
-
-## Use Cases
-- Call-to-action buttons in forms
-- Navigation links styled as buttons
-- Submit buttons in forms with loading states
-- Icon buttons with optional text
-- Full-width button groups
-- Disabled interactive states
-
-## Best Practices
-- Use semantic type attributes (submit for form submissions)
-- Provide loading feedback for async operations
-- Use icon slots for visual emphasis
-- Ensure sufficient color contrast
-- Use aria-label for icon-only buttons
-- Keep button text concise and actionable
-				`
+				component:
+					'A versatile button component with multiple variants, tones, and sizes. Follows Apple-like design principles with refined focus states and smooth transitions.'
 			}
 		}
 	},
+	tags: ['autodocs'],
 	argTypes: {
 		variant: {
 			control: { type: 'select' },
-			options: ['primary', 'ghost', 'outline', 'solid'],
-			description: 'Visual style variant of the button (primary, ghost, outline, solid)'
+			options: ['solid', 'outline', 'ghost', 'link'],
+			description: 'Visual style variant',
+			table: {
+				type: { summary: 'solid | outline | ghost | link' },
+				defaultValue: { summary: 'solid' }
+			}
+		},
+		tone: {
+			control: { type: 'select' },
+			options: ['primary', 'secondary', 'neutral', 'danger', 'success'],
+			description: 'Color tone/scheme',
+			table: {
+				type: { summary: 'primary | secondary | neutral | danger | success' },
+				defaultValue: { summary: 'primary' }
+			}
 		},
 		size: {
 			control: { type: 'select' },
 			options: ['sm', 'md', 'lg'],
-			description: 'Size of the button (sm: small, md: medium, lg: large)'
+			description: 'Button size',
+			table: {
+				type: { summary: 'sm | md | lg' },
+				defaultValue: { summary: 'md' }
+			}
 		},
-		tone: {
-			control: { type: 'select' },
-			options: ['primary', 'secondary', 'neutral'],
-			description: 'Color tone/theme of the button'
+		href: {
+			control: 'text',
+			description: 'Link href - renders as <a> if provided'
+		},
+		disabled: {
+			control: 'boolean',
+			description: 'Disabled state',
+			table: { defaultValue: { summary: 'false' } }
+		},
+		loading: {
+			control: 'boolean',
+			description: 'Loading state with spinner',
+			table: { defaultValue: { summary: 'false' } }
+		},
+		fullWidth: {
+			control: 'boolean',
+			description: 'Full width button',
+			table: { defaultValue: { summary: 'false' } }
 		},
 		type: {
 			control: { type: 'select' },
 			options: ['button', 'submit', 'reset'],
-			description: 'HTML button type (button, submit, reset)'
-		},
-		disabled: {
-			control: 'boolean',
-			description: 'Disable the button and prevent interactions'
-		},
-		loading: {
-			control: 'boolean',
-			description: 'Show loading spinner and disable interaction during async operations'
-		},
-		fullWidth: {
-			control: 'boolean',
-			description: 'Make button take full width of its container'
-		},
-		rounded: {
-			control: 'boolean',
-			description: 'Apply rounded corners (border-radius)'
-		},
-		href: {
-			control: 'text',
-			description: 'URL for navigation (renders as &lt;a&gt; tag instead of &lt;button&gt;)'
+			description: 'Button type (only for <button>)',
+			table: { defaultValue: { summary: 'button' } }
 		}
 	}
 } satisfies Meta<typeof Button>;
@@ -89,142 +103,362 @@ A versatile, accessible button component that supports multiple variants, sizes,
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default button
-export const Default: Story = {
-	args: {
-		variant: 'primary',
-		size: 'md',
-		disabled: false,
-		loading: false,
-		children: 'Click me'
-	}
-};
+// ============================================
+// Variant Stories
+// ============================================
 
-// Variants
-export const Ghost: Story = {
+export const Solid: Story = {
 	args: {
-		...Default.args,
-		variant: 'ghost',
-		children: 'Ghost Button'
-	}
+		variant: 'solid',
+		tone: 'primary',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Solid Button'
+		}
+	})
 };
 
 export const Outline: Story = {
 	args: {
-		...Default.args,
 		variant: 'outline',
-		children: 'Outline Button'
-	}
+		tone: 'primary',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Outline Button'
+		}
+	})
 };
 
-export const Solid: Story = {
+export const Ghost: Story = {
 	args: {
-		...Default.args,
+		variant: 'ghost',
+		tone: 'primary',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Ghost Button'
+		}
+	})
+};
+
+export const Link: Story = {
+	args: {
+		variant: 'link',
+		tone: 'primary',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Link Button'
+		}
+	})
+};
+
+// ============================================
+// Tone Stories
+// ============================================
+
+export const Primary: Story = {
+	args: {
 		variant: 'solid',
-		children: 'Solid Button'
-	}
+		tone: 'primary',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Primary'
+		}
+	})
 };
 
-// Sizes
-export const Small: Story = {
-	args: {
-		...Default.args,
-		size: 'sm',
-		children: 'Small'
-	}
-};
-
-export const Large: Story = {
-	args: {
-		...Default.args,
-		size: 'lg',
-		children: 'Large'
-	}
-};
-
-// Tones
 export const Secondary: Story = {
 	args: {
-		...Default.args,
+		variant: 'solid',
 		tone: 'secondary',
-		children: 'Secondary Button'
-	}
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Secondary'
+		}
+	})
 };
 
 export const Neutral: Story = {
 	args: {
-		...Default.args,
+		variant: 'solid',
 		tone: 'neutral',
-		children: 'Neutral Button'
-	}
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Neutral'
+		}
+	})
 };
 
-// States
-export const Disabled: Story = {
+export const Danger: Story = {
 	args: {
-		...Default.args,
-		disabled: true,
-		children: 'Disabled'
-	}
+		variant: 'solid',
+		tone: 'danger',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Danger'
+		}
+	})
 };
+
+export const Success: Story = {
+	args: {
+		variant: 'solid',
+		tone: 'success',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Success'
+		}
+	})
+};
+
+// ============================================
+// Size Stories
+// ============================================
+
+export const Small: Story = {
+	args: {
+		variant: 'solid',
+		tone: 'primary',
+		size: 'sm'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Small'
+		}
+	})
+};
+
+export const Medium: Story = {
+	args: {
+		variant: 'solid',
+		tone: 'primary',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Medium'
+		}
+	})
+};
+
+export const Large: Story = {
+	args: {
+		variant: 'solid',
+		tone: 'primary',
+		size: 'lg'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Large'
+		}
+	})
+};
+
+// ============================================
+// State Stories
+// ============================================
 
 export const Loading: Story = {
 	args: {
-		...Default.args,
-		loading: true,
-		children: 'Loading...'
-	}
+		variant: 'solid',
+		tone: 'primary',
+		size: 'md',
+		loading: true
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Loading...'
+		}
+	})
 };
 
-// Shapes
-export const Rounded: Story = {
+export const Disabled: Story = {
 	args: {
-		...Default.args,
-		rounded: true,
-		children: 'Rounded Pill'
-	}
+		variant: 'solid',
+		tone: 'primary',
+		size: 'md',
+		disabled: true
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Disabled'
+		}
+	})
 };
 
-// Link button
-export const AsLink: Story = {
-	args: {
-		...Default.args,
-		href: '#',
-		children: 'Link Button'
-	}
-};
-
-// Full width
 export const FullWidth: Story = {
 	args: {
-		...Default.args,
-		fullWidth: true,
-		children: 'Full Width Button'
-	}
+		variant: 'solid',
+		tone: 'primary',
+		size: 'md',
+		fullWidth: true
+	},
+	parameters: {
+		layout: 'padded'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Full Width Button'
+		}
+	})
 };
 
-// Button types
-export const Submit: Story = {
+// ============================================
+// Link Stories
+// ============================================
+
+export const AsLink: Story = {
 	args: {
-		...Default.args,
-		type: 'submit',
-		children: 'Submit'
-	}
+		variant: 'solid',
+		tone: 'primary',
+		size: 'md',
+		href: '/about'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Navigate'
+		}
+	})
 };
 
-export const Reset: Story = {
+export const ExternalLink: Story = {
 	args: {
-		...Default.args,
-		type: 'reset',
-		children: 'Reset'
-	}
+		variant: 'outline',
+		tone: 'primary',
+		size: 'md',
+		href: 'https://example.com',
+		target: '_blank'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'External Link'
+		}
+	})
 };
 
-// Custom color
-export const CustomColor: Story = {
+// ============================================
+// Form Stories
+// ============================================
+
+export const SubmitButton: Story = {
 	args: {
-		...Default.args,
-		color: '#ff6b6b',
-		children: 'Custom Color'
-	}
+		variant: 'solid',
+		tone: 'primary',
+		size: 'md',
+		type: 'submit'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Submit Form'
+		}
+	})
+};
+
+// ============================================
+// All Variants Grid (for visual testing)
+// ============================================
+
+export const AllVariants: Story = {
+	parameters: {
+		layout: 'padded',
+		docs: {
+			description: {
+				story: 'Visual overview of all button variants and tones. Use this to compare styles and ensure visual consistency.'
+			}
+		}
+	},
+	render: () => ({
+		Component: Button,
+		props: {
+			variant: 'solid',
+			tone: 'primary',
+			children: () => 'All Variants - See Docs for Grid'
+		}
+	})
+};
+
+// ============================================
+// Design Guidelines
+// ============================================
+
+/**
+ * # Design Guidelines
+ *
+ * ## Usage
+ * - Use **Solid** buttons for primary actions (e.g., "Save", "Submit").
+ * - Use **Outline** buttons for secondary actions (e.g., "Cancel", "Back").
+ * - Use **Ghost** buttons for tertiary actions or in toolbars.
+ * - Use **Link** buttons for navigation within text or less prominent actions.
+ *
+ * ## Do's
+ * - Use clear, action-oriented labels (e.g., "Create Account" instead of "Go").
+ * - Maintain hierarchy by using different variants on the same page.
+ * - Use the `loading` state for async actions to prevent double submissions.
+ *
+ * ## Don'ts
+ * - Avoid using multiple **Solid** buttons in the same group (competing attention).
+ * - Don't use **Danger** tone unless the action is destructive and irreversible.
+ * - Don't overcrowd the interface with too many buttons; group them if necessary.
+ */
+export const Guidelines: Story = {
+	tags: ['!dev'],
+	render: () => ({
+		Component: Button,
+		props: {
+			children: () => 'See Guidelines in Docs'
+		}
+	})
 };

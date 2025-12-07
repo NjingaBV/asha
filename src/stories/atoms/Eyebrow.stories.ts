@@ -8,40 +8,18 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Eyebrow
+				component: `
+# Eyebrow
 
-A small, uppercase label that appears above headings to provide context, category, or branding information.
+Une petite étiquette en majuscules qui apparaît au-dessus des titres pour fournir un contexte, une catégorie ou une information de marque.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Uppercase Styling**: Automatically transforms text to uppercase with wide letter spacing
-- **Semantic Hierarchy**: Positioned above main headings to establish content hierarchy
-- **Simple Alignment**: Center or left alignment options
-- **Subtle Styling**: Slate gray color and small size for non-intrusive labeling
-- **Flexible Content**: Accepts text prop or children for custom content
-
-## Use Cases
-
-- **Section Labels**: Identify content sections (e.g., "Features", "Pricing", "About")
-- **Product Categories**: Show product line or category (e.g., "Apple Watch", "MacBook Pro")
-- **Content Tags**: Indicate content type (e.g., "Blog Post", "Tutorial", "News")
-- **Temporal Context**: Display date or time context (e.g., "Coming Soon", "Now Available")
-- **Brand Identity**: Reinforce brand or sub-brand naming
-
-## Best Practices
-
-- **Pair with Headings**: Always use immediately above a heading element for proper hierarchy
-- **Keep Brief**: Use 1-3 words maximum for optimal readability and impact
-- **Consistent Styling**: Don't override the uppercase transformation—it's a key characteristic
-- **Use Sparingly**: Eyebrows add visual weight; use only when context is needed
-- **Alignment Consistency**: Match alignment with the heading below
-
-## Accessibility
-
-- Uses semantic \`<p>\` element for proper text flow
-- Screen readers will announce eyebrow text before the associated heading
-- Color contrast meets WCAG AA standards
-- Natural reading order when placed before heading elements`
+- **Style Majuscule**: Transforme automatiquement le texte en majuscules avec un espacement large.
+- **Hiérarchie Sémantique**: Se positionne au-dessus des titres principaux pour établir la hiérarchie du contenu.
+- **Alignement Simple**: Options d'alignement à gauche ou au centre.
+- **Style Subtil**: Couleur discrète et petite taille pour un étiquetage non intrusif.
+`
 			}
 		}
 	},

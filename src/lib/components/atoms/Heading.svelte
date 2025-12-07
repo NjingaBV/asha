@@ -104,7 +104,7 @@
 		level = 1,
 		size = 'base',
 		weight = 'normal',
-		color = 'text-slate-900',
+		color = 'text-fg',
 		align = 'left',
 		leading = undefined,
 		tracking = undefined,

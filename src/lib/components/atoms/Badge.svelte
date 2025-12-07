@@ -1,59 +1,111 @@
+<script lang="ts" module>
+	// ============================================
+	// Type Exports
+	// ============================================
+
+	/** Semantic tone values for Badge */
+	export type BadgeTone = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral';
+	export type BadgeVariant = 'solid' | 'outline' | 'ghost';
+	export type BadgeSize = 'sm' | 'base' | 'lg';
+
+	/** Props interface for Badge component */
+	export interface BadgeProps {
+		/** Badge text label */
+		label?: string;
+		/** Visual style variant */
+		variant?: BadgeVariant;
+		/** Semantic color tone */
+		tone?: BadgeTone;
+		/** Size variant */
+		size?: BadgeSize;
+		/** Pill shape (fully rounded) or subtle corners */
+		rounded?: boolean;
+		/** Slot for custom content */
+		children?: any;
+	}
+
+	/** Prop definitions for documentation */
+	export const propDefs = {
+		label: {
+			type: 'string',
+			default: undefined,
+			description: 'Badge text label'
+		},
+		variant: {
+			type: 'string',
+			options: ['solid', 'outline', 'ghost'],
+			default: 'solid',
+			description: 'Visual style variant'
+		},
+		tone: {
+			type: 'string',
+			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral'],
+			default: 'primary',
+			description: 'Semantic color tone'
+		},
+		size: {
+			type: 'string',
+			options: ['sm', 'base', 'lg'],
+			default: 'base',
+			description: 'Size variant'
+		},
+		rounded: {
+			type: 'boolean',
+			default: true,
+			description: 'Pill shape (fully rounded) or subtle corners'
+		}
+	} as const;
+</script>
+
 <script lang="ts">
 	let {
 		label = undefined,
 		variant = 'solid',
-		color = 'primary',
-		badgeSize = 'base',
+		tone = 'primary',
+		size = 'base',
 		rounded = true,
 		children
-	}: {
-		label?: string;
-		variant?: 'solid' | 'outline' | 'ghost';
-		color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral';
-		badgeSize?: 'sm' | 'base' | 'lg';
-		rounded?: boolean;
-		children: any;
-	} = $props();
+	}: BadgeProps = $props();
 
-	// Color schemes inspired by Apple Watch
-	const colorSchemes: Record<string, Record<string, string>> = {
+	// Color schemes using design tokens
+	const toneSchemes: Record<BadgeTone, Record<BadgeVariant, string>> = {
 		primary: {
-			solid: 'bg-blue-600 text-white',
-			outline: 'border border-blue-600 text-blue-600',
-			ghost: 'text-blue-600'
+			solid: 'bg-accent text-fg-on-accent',
+			outline: 'border border-accent text-accent',
+			ghost: 'text-accent'
 		},
 		secondary: {
-			solid: 'bg-slate-600 text-white',
-			outline: 'border border-slate-600 text-slate-600',
-			ghost: 'text-slate-600'
+			solid: 'bg-secondary text-fg-on-accent',
+			outline: 'border border-secondary text-secondary',
+			ghost: 'text-secondary'
 		},
 		success: {
-			solid: 'bg-emerald-600 text-white',
-			outline: 'border border-emerald-600 text-emerald-600',
-			ghost: 'text-emerald-600'
+			solid: 'bg-success text-white',
+			outline: 'border border-success text-success',
+			ghost: 'text-success'
 		},
 		warning: {
-			solid: 'bg-amber-600 text-white',
-			outline: 'border border-amber-600 text-amber-600',
-			ghost: 'text-amber-600'
+			solid: 'bg-warning text-white',
+			outline: 'border border-warning text-warning',
+			ghost: 'text-warning'
 		},
 		danger: {
-			solid: 'bg-red-600 text-white',
-			outline: 'border border-red-600 text-red-600',
-			ghost: 'text-red-600'
+			solid: 'bg-error text-white',
+			outline: 'border border-error text-error',
+			ghost: 'text-error'
 		},
 		neutral: {
-			solid: 'bg-gray-900 text-white',
-			outline: 'border border-gray-900 text-gray-900',
-			ghost: 'text-gray-900'
+			solid: 'bg-fg text-bg',
+			outline: 'border border-fg text-fg',
+			ghost: 'text-fg'
 		}
 	};
 
-	let scheme = $derived(colorSchemes[color][variant]);
+	let scheme = $derived(toneSchemes[tone][variant]);
 	let sizeClasses = $derived(
-		badgeSize === 'sm'
+		size === 'sm'
 			? 'px-2 py-0.5 text-xs'
-			: badgeSize === 'lg'
+			: size === 'lg'
 				? 'px-3 py-1 text-sm'
 				: 'px-2.5 py-0.5 text-xs'
 	);

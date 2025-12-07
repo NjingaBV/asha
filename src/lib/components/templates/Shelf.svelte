@@ -1,10 +1,9 @@
 <script lang="ts">
-	import CallToAction from '$lib/components/molecules/CallToAction.svelte';
 	import Carousel from '$lib/components/organisms/Carousel.svelte';
 	import Features from '$lib/components/organisms/Features.svelte';
-	import Hero from '$lib/components/molecules/Hero.svelte';
+	import Hero from '$lib/components/organisms/Hero.svelte';
 	import HeroTile from '$lib/components/organisms/HeroTile.svelte';
-	import Nav from '$lib/components/atoms/Nav.svelte';
+	import NavigationBar from '$lib/components/molecules/NavigationBar.svelte';
 	import Slogan from '$lib/components/organisms/Slogan.svelte';
 	import TextAnimation from '$lib/components/organisms/TextAnimation.svelte';
 	import type { LinkType, SliceType } from '$lib/models';
@@ -21,18 +20,16 @@
 		alternateColor?: boolean;
 	} = $props();
 
-	const bgColor = (index: number) => {
+	const getBgClass = (index: number) => {
 		if (alternateColor) {
-			return index % 2 === 1 ? '#f5f5f5' : '#ffffff';
+			return index % 2 === 1 ? 'bg-page-alt' : 'bg-page';
 		}
-		return '#ffffff';
+		return 'bg-page';
 	};
 
 	// Relaxed typing to accommodate varying component prop types
 	const getComponent = (slice: SliceType): any => {
 		switch (slice.name) {
-			case 'call-to-action':
-				return CallToAction;
 			case 'carousel':
 				return Carousel;
 			case 'hero':
@@ -51,11 +48,11 @@
 
 <main class={`flex flex-col h-full ${open && 'fixed'}`}>
 	{#if open}
-		<Nav headerMenu={false} links={navLinks} />
+		<NavigationBar links={navLinks} headerMenu={false} />
 	{/if}
 	{#each slices as slice, index}
 		{@const Component = getComponent(slice)}
-		<section class="w-full h-full" style="background-color:{bgColor(index)}">
+		<section class="w-full h-full {getBgClass(index)}">
 			{#if Component}
 				<Component {...slice} />
 			{/if}

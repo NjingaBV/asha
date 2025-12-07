@@ -5,7 +5,21 @@ const meta = {
 	title: 'Organisms/Carousel',
 	component: Carousel,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'fullscreen',
+		docs: {
+			description: {
+				component: `
+# Carrousel (Carousel)
+
+Un organisme pour afficher une collection de cartes dans une vue à défilement horizontal. Comprend un titre et une catégorie pour contextualiser le contenu.
+
+## Caractéristiques Clés
+- **Défilement Horizontal**: Présente les cartes dans un format de carrousel.
+- **Titre et Catégorie**: En-têtes pour organiser et décrire le groupe de cartes.
+- **Contenu Riche**: Utilise des molécules de carte pour afficher des informations détaillées.
+`
+			}
+		}
 	},
 	tags: ['autodocs'],
 	argTypes: {

@@ -1,26 +1,29 @@
-import { createMachine } from 'xstate';
+import { createMachine, assign } from 'xstate';
 
 export type PlayerEvents =
 	| { type: 'PLAY' }
 	| { type: 'PAUSE' }
 	| { type: 'RESET' }
-	| { type: 'END' };
+	| { type: 'END' }
+	| { type: 'TOGGLE_EXPAND' };
 
 export interface PlayerContext {
-	mediaId: string;
-	mediaUrl: string;
-	mediaTitle: string;
-	mediaDescription: string;
-	mediaDuration: number;
-	mediaCurrentTime: number;
-	mediaThumbnail: string;
-	mediaViews: number;
-	type: 'playerContext';
+	mediaId?: string;
+	mediaUrl?: string;
+	mediaTitle?: string;
+	mediaDescription?: string;
+	mediaDuration?: number;
+	mediaCurrentTime?: number;
+	mediaThumbnail?: string;
+	mediaViews?: number;
+	expanded: boolean;
 }
 
 export const playerMachine = createMachine({
 	id: 'playerMachine',
-	context: {} as PlayerContext,
+	context: {
+		expanded: false
+	} as PlayerContext,
 	types: {} as {
 		context: PlayerContext;
 		events: PlayerEvents;
@@ -28,29 +31,48 @@ export const playerMachine = createMachine({
 	initial: 'ready',
 	states: {
 		ready: {
-			entry: () => console.log('ready'),
 			on: {
 				PLAY: {
 					target: 'playing',
 					actions: ['playMedia']
+				},
+				TOGGLE_EXPAND: {
+					actions: assign({
+						expanded: ({ context }) => !context.expanded
+					})
 				}
 			}
 		},
 		playing: {
 			on: {
 				PAUSE: 'paused',
-				END: 'ended'
+				END: 'ended',
+				TOGGLE_EXPAND: {
+					actions: assign({
+						expanded: ({ context }) => !context.expanded
+					})
+				}
 			}
 		},
 		paused: {
 			on: {
 				PLAY: 'playing',
-				END: 'ended'
+				END: 'ended',
+				TOGGLE_EXPAND: {
+					actions: assign({
+						expanded: ({ context }) => !context.expanded
+					})
+				}
 			}
 		},
 		ended: {
 			on: {
-				RESET: 'ready'
+				RESET: 'ready',
+				TOGGLE_EXPAND: {
+					actions: assign({
+						expanded: ({ context }) => !context.expanded
+					})
+				}
 			}
 		}
 	}

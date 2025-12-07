@@ -5,7 +5,21 @@ const meta = {
 	title: 'Organisms/Header',
 	component: Header,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'fullscreen',
+		docs: {
+			description: {
+				component: `
+# En-tête (Header)
+
+Un en-tête de site réactif qui inclut un logo, des liens de navigation pour le bureau et un menu hamburger pour le mobile.
+
+## Caractéristiques Clés
+- **Navigation Réactive**: S'adapte pour afficher les liens sur les grands écrans et un menu hamburger sur les plus petits.
+- **Intégration du Logo**: Affiche le logo de la marque de manière cohérente.
+- **Gestion de l'État du Menu**: L'état ouvert/fermé du menu mobile est gérable.
+`
+			}
+		}
 	},
 	tags: ['autodocs'],
 	argTypes: {

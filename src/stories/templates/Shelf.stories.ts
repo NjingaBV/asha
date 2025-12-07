@@ -8,132 +8,21 @@ const meta = {
 		layout: 'fullscreen',
 		docs: {
 			description: {
-				component: `# Shelf Template
+				component: `
+# Modèle d'Étagère (Shelf Template)
 
-A flexible, slice-based template that enables the creation of dynamic, multi-section page layouts with optional navigation and alternating background colors.
+Un modèle flexible basé sur des "tranches" (slices) qui permet la création de mises en page de page dynamiques et multi-sections avec une navigation optionnelle et des couleurs de fond alternées.
 
-## Overview
+## Vue d'ensemble
 
-The Shelf template is a foundational layout component that orchestrates multiple content slices into a cohesive page structure. It provides a flexible container that can display various organisms and molecules in a vertical stack, making it ideal for building landing pages, marketing sites, and content-rich applications.
+Le modèle Shelf est un composant de mise en page fondamental qui orchestre plusieurs tranches de contenu en une structure de page cohérente. Il fournit un conteneur flexible qui peut afficher divers organismes et molécules dans une pile verticale, ce qui le rend idéal pour construire des pages de destination, des sites marketing et des applications riches en contenu.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Slice-Based Architecture**: Dynamically renders different content types (hero, carousel, features, etc.) based on configuration
-- **Navigation Integration**: Optional full-screen navigation overlay that can be toggled
-- **Alternating Backgrounds**: Supports alternating background colors for visual rhythm and content separation
-- **Flexible Content Composition**: Seamlessly integrates various organisms including Hero, Carousel, Features, TextAnimation, Slogan, HeroTile, and CallToAction
-- **Responsive Design**: Adapts to all screen sizes with mobile-first approach
-- **Consistent Spacing**: Maintains visual consistency across different slice types
-
-## Page Layout Structure
-
-The template follows this hierarchical structure:
-
-\`\`\`
-<main>
-  └── Nav (conditional, overlay)
-  └── Section (per slice)
-      └── Component (CallToAction | Carousel | Hero | Slogan | Features | TextAnimation | HeroTile)
-\`\`\`
-
-Each slice is wrapped in a full-width section with configurable background color, and the appropriate component is dynamically rendered based on the slice's \`name\` property.
-
-## Component Composition
-
-### Atoms
-- **Nav**: Primary navigation component (conditionally rendered)
-
-### Molecules
-- **CallToAction**: Action-oriented content with buttons
-- **Hero**: Hero banner with title, description, and media
-
-### Organisms
-- **Carousel**: Image/content carousel
-- **Features**: Feature showcase grid
-- **Slogan**: Animated or static slogan display
-- **TextAnimation**: Animated text with labels and colors
-- **HeroTile**: Tile-based hero layout with logo and images
-
-## Use Cases
-
-- **Landing Pages**: Create dynamic landing pages with multiple content sections
-- **Marketing Sites**: Build product pages with alternating content blocks
-- **Portfolio Sites**: Showcase work with varied content types
-- **Campaign Pages**: Design promotional pages with flexible layouts
-- **Multi-Section Content**: Any page requiring multiple distinct content areas
-
-## Best Practices
-
-1. **Slice Ordering**: Place hero or high-impact content first for user engagement
-2. **Visual Rhythm**: Use alternateColor for pages with 3+ slices to create visual hierarchy
-3. **Content Balance**: Mix different slice types to maintain user interest
-4. **Navigation State**: Ensure navigation state is properly managed when overlay is active
-5. **Performance**: Consider lazy-loading for pages with many image-heavy slices
-6. **Accessibility**: Ensure each slice has proper semantic structure and ARIA labels
-
-## Accessibility
-
-- Semantic \`<main>\` landmark for primary content
-- Individual \`<section>\` elements for each slice provide clear content boundaries
-- Navigation overlay is keyboard-accessible
-- Fixed positioning when navigation is open prevents scroll issues
-- Each composed organism should implement its own accessibility requirements
-
-## Content Guidelines
-
-### Slices Array
-Each slice object should include:
-- \`name\`: Component identifier (matches switch case in template)
-- Component-specific props (varies by slice type)
-- Consistent data structure for similar content types
-
-### Navigation Links
-- Keep link text concise (1-2 words ideally)
-- Ensure hrefs are valid and tested
-- Consider mobile menu item count (max 5-7 recommended)
-
-### Background Colors
-- Use high contrast ratios for text readability
-- Maintain brand consistency
-- Test alternating colors for visual harmony
-
-## Customization Points
-
-1. **Background Colors**: Modify \`bgColor\` function for custom color schemes
-2. **Slice Components**: Add new cases in \`getComponent\` switch statement
-3. **Layout Direction**: Currently vertical, can be modified for horizontal sections
-4. **Navigation Behavior**: Customize overlay appearance and behavior
-5. **Section Styling**: Add custom classes or styles to section elements
-6. **Responsive Breakpoints**: Adjust responsive behavior per slice type
-
-## Responsive Behavior
-
-- **Mobile**: Full-width sections with vertical stacking
-- **Tablet**: Maintains vertical stack with optimized spacing
-- **Desktop**: Full viewport width with component-specific responsive behavior
-- **Navigation**: Transforms to full-screen overlay on mobile
-
-## Data Requirements
-
-### Required Props
-- None (all props have defaults)
-
-### Optional Props
-- \`navLinks\`: Array of navigation link objects
-- \`slices\`: Array of slice configuration objects
-- \`open\`: Boolean for navigation state
-- \`alternateColor\`: Boolean for alternating backgrounds
-
-## Integration Notes
-
-This template is designed to work with a slice-based CMS (like Prismic) but can be used with any data source. Ensure slice data matches the expected structure for each component type. The template handles missing components gracefully by not rendering them if no match is found.
-
-## Technical Considerations
-
-- Uses Svelte 5's \`$bindable\` for two-way binding on \`open\` state
-- Dynamic component rendering with spread props
-- Fixed positioning applied when navigation is open
-- Each slice receives full-width, full-height dimensions
+- **Architecture Basée sur les Tranches**: Rend dynamiquement différents types de contenu (héros, carrousel, caractéristiques, etc.) en fonction de la configuration.
+- **Intégration de la Navigation**: Superposition de navigation plein écran optionnelle qui peut être basculée.
+- **Arrière-plans Alternés**: Prend en charge les couleurs de fond alternées pour un rythme visuel et une séparation du contenu.
+- **Composition de Contenu Flexible**: Intègre de manière transparente divers organismes.
 `
 			}
 		}

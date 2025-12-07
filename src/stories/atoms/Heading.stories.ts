@@ -8,39 +8,19 @@ const meta = {
 		layout: 'centered',
 		docs: {
 			description: {
-				component: `# Heading
+				component: `
+# Titre (Heading)
 
-A flexible heading component that renders semantic HTML heading elements (h1-h6) with comprehensive typographic controls.
+Un composant de titre flexible qui rend les éléments de titre HTML sémantiques (h1-h6) avec des contrôles typographiques complets.
 
-## Key Features
+## Caractéristiques Clés
 
-- **Semantic HTML**: Renders appropriate h1-h6 elements for accessibility
-- **Flexible Sizing**: 14 size options from xs to 9xl independent of heading level
-- **Typography Controls**: Fine-tune weight, leading, tracking, and alignment
-- **Color Customization**: Accepts any Tailwind color class
-- **Snippet Support**: Can render Svelte snippets as children
-
-## Use Cases
-
-- **Hero Titles**: Use h1 with 6xl-9xl sizes for prominent page headings
-- **Section Headers**: Use h2-h3 with 4xl-5xl for organizing content hierarchy
-- **Subsections**: Use h4-h6 with 2xl-3xl for smaller content divisions
-- **Custom Typography**: Mix and match level and size for perfect visual hierarchy while maintaining semantic structure
-
-## Best Practices
-
-- **Semantic Structure**: Always maintain proper heading hierarchy (h1 → h2 → h3, etc.) regardless of visual size
-- **Visual vs. Semantic**: Use \`level\` for semantic meaning and \`size\` for visual appearance
-- **Contrast**: Ensure sufficient color contrast (WCAG 4.5:1 for normal text, 3:1 for large text)
-- **Responsive Design**: Consider using different sizes for different breakpoints
-- **Line Length**: Use appropriate \`leading\` for multi-line headings (relaxed/loose for longer text)
-
-## Accessibility
-
-- Uses semantic HTML heading elements for proper document outline
-- Screen readers announce the heading level automatically
-- Proper heading hierarchy helps users navigate with assistive technology
-- Color is not used as the sole means of conveying information`
+- **HTML Sémantique**: Rend les éléments h1-h6 appropriés pour l'accessibilité et le SEO.
+- **Dimensionnement Flexible**: De nombreuses options de taille, indépendantes du niveau de titre sémantique.
+- **Contrôles Typographiques**: Ajustez la graisse, l'interligne, l'espacement et l'alignement.
+- **Personnalisation de la Couleur**: Accepte n'importe quelle classe de couleur Tailwind.
+- **Séparation de la Sémantique et du Style**: Permet d'avoir un \`<h1>\` avec un style visuel de \`<h3>\`, et vice-versa.
+`
 			}
 		}
 	},
@@ -125,7 +105,7 @@ export const H1: Story = {
 		weight: 'bold',
 		color: 'text-slate-900',
 		align: 'left',
-		children: 'Heading Level 1'
+		children: () => 'Heading Level 1'
 	},
 	parameters: {
 		docs: {
@@ -142,7 +122,7 @@ export const H2: Story = {
 		size: '5xl',
 		weight: 'bold',
 		color: 'text-slate-900',
-		children: 'Heading Level 2'
+		children: () => 'Heading Level 2'
 	},
 	parameters: {
 		docs: {
@@ -159,7 +139,7 @@ export const H3: Story = {
 		size: '4xl',
 		weight: 'semibold',
 		color: 'text-slate-900',
-		children: 'Heading Level 3'
+		children: () => 'Heading Level 3'
 	},
 	parameters: {
 		docs: {
@@ -176,7 +156,7 @@ export const H4: Story = {
 		size: '3xl',
 		weight: 'semibold',
 		color: 'text-slate-900',
-		children: 'Heading Level 4'
+		children: () => 'Heading Level 4'
 	},
 	parameters: {
 		docs: {
@@ -193,7 +173,7 @@ export const H5: Story = {
 		size: '2xl',
 		weight: 'medium',
 		color: 'text-slate-900',
-		children: 'Heading Level 5'
+		children: () => 'Heading Level 5'
 	},
 	parameters: {
 		docs: {
@@ -210,7 +190,7 @@ export const H6: Story = {
 		size: 'xl',
 		weight: 'medium',
 		color: 'text-slate-900',
-		children: 'Heading Level 6'
+		children: () => 'Heading Level 6'
 	},
 	parameters: {
 		docs: {
@@ -227,7 +207,7 @@ export const ExtraSmall: Story = {
 		level: 1,
 		size: 'xs',
 		weight: 'normal',
-		children: 'Extra Small Heading'
+		children: () => 'Extra Small Heading'
 	}
 };
 
@@ -236,7 +216,7 @@ export const Small: Story = {
 		level: 1,
 		size: 'sm',
 		weight: 'normal',
-		children: 'Small Heading'
+		children: () => 'Small Heading'
 	}
 };
 
@@ -245,7 +225,7 @@ export const Large: Story = {
 		level: 1,
 		size: '8xl',
 		weight: 'bold',
-		children: 'Large Heading'
+		children: () => 'Large Heading'
 	}
 };
 
@@ -254,7 +234,7 @@ export const XLarge: Story = {
 		level: 1,
 		size: '9xl',
 		weight: 'black',
-		children: 'Extra Large Heading'
+		children: () => 'Extra Large Heading'
 	}
 };
 
@@ -264,7 +244,7 @@ export const Light: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'light',
-		children: 'Light Weight'
+		children: () => 'Light Weight'
 	}
 };
 
@@ -273,7 +253,7 @@ export const Normal: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'normal',
-		children: 'Normal Weight'
+		children: () => 'Normal Weight'
 	}
 };
 
@@ -282,7 +262,7 @@ export const Medium: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'medium',
-		children: 'Medium Weight'
+		children: () => 'Medium Weight'
 	}
 };
 
@@ -291,7 +271,7 @@ export const Semibold: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'semibold',
-		children: 'Semibold Weight'
+		children: () => 'Semibold Weight'
 	}
 };
 
@@ -300,7 +280,7 @@ export const Bold: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'bold',
-		children: 'Bold Weight'
+		children: () => 'Bold Weight'
 	}
 };
 
@@ -309,7 +289,7 @@ export const Black: Story = {
 		level: 1,
 		size: '4xl',
 		weight: 'black',
-		children: 'Black Weight'
+		children: () => 'Black Weight'
 	}
 };
 
@@ -320,7 +300,7 @@ export const LeftAligned: Story = {
 		size: '4xl',
 		weight: 'bold',
 		align: 'left',
-		children: 'Left Aligned Heading'
+		children: () => 'Left Aligned Heading'
 	}
 };
 
@@ -330,7 +310,7 @@ export const Centered: Story = {
 		size: '4xl',
 		weight: 'bold',
 		align: 'center',
-		children: 'Centered Heading'
+		children: () => 'Centered Heading'
 	}
 };
 
@@ -340,7 +320,7 @@ export const RightAligned: Story = {
 		size: '4xl',
 		weight: 'bold',
 		align: 'right',
-		children: 'Right Aligned Heading'
+		children: () => 'Right Aligned Heading'
 	}
 };
 
@@ -350,7 +330,7 @@ export const Justified: Story = {
 		size: '4xl',
 		weight: 'bold',
 		align: 'justify',
-		children:
+		children: () =>
 			'Justified heading text that spans multiple lines and aligns to both left and right edges'
 	}
 };
@@ -362,7 +342,7 @@ export const PrimaryColor: Story = {
 		size: '4xl',
 		weight: 'bold',
 		color: 'text-blue-600',
-		children: 'Primary Color'
+		children: () => 'Primary Color'
 	}
 };
 
@@ -372,7 +352,7 @@ export const SecondaryColor: Story = {
 		size: '4xl',
 		weight: 'bold',
 		color: 'text-slate-500',
-		children: 'Secondary Color'
+		children: () => 'Secondary Color'
 	}
 };
 
@@ -382,7 +362,7 @@ export const SuccessColor: Story = {
 		size: '4xl',
 		weight: 'bold',
 		color: 'text-green-600',
-		children: 'Success Color'
+		children: () => 'Success Color'
 	}
 };
 
@@ -393,7 +373,8 @@ export const WithLeading: Story = {
 		size: '4xl',
 		weight: 'bold',
 		leading: 'relaxed',
-		children: 'Heading with relaxed line height that provides more breathing room between text'
+		children: () =>
+			'Heading with relaxed line height that provides more breathing room between text'
 	}
 };
 
@@ -403,7 +384,7 @@ export const WithTracking: Story = {
 		size: '4xl',
 		weight: 'bold',
 		tracking: 'wide',
-		children: 'Heading with Wide Letter Spacing'
+		children: () => 'Heading with Wide Letter Spacing'
 	}
 };
 
@@ -416,7 +397,7 @@ export const Combined: Story = {
 		align: 'center',
 		leading: 'snug',
 		tracking: 'wide',
-		children: 'Apple Watch Series 11'
+		children: () => 'Apple Watch Series 11'
 	},
 	parameters: {
 		docs: {
