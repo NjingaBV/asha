@@ -62,7 +62,7 @@
 		/** Product grid items */
 		products?: Array<{ name: string; image: string; badge?: string }>;
 		/** Additional CSS classes */
-		className?: string;
+		class?: string;
 		/** Line clamp toggle callback */
 		onLineClampToggle?: (enabled: boolean) => void;
 	}
@@ -85,7 +85,7 @@
 		buyHref = '#',
 		backgroundImage = undefined,
 		products = [],
-		className = '',
+		class: className = '',
 		onLineClampToggle = () => {}
 	}: Props = $props();
 
@@ -117,8 +117,8 @@
 	let hasDetails = $derived(Boolean(title || details));
 
 	// Text color classes
-	const textColorClass = $derived(textColor === 'light' ? 'text-white' : 'text-slate-900');
-	const subtextColorClass = $derived(textColor === 'light' ? 'text-gray-300' : 'text-slate-600');
+	const textColorClass = $derived(textColor === 'light' ? 'text-white' : 'text-fg');
+	const subtextColorClass = $derived(textColor === 'light' ? 'text-white/70' : 'text-fg-muted');
 
 	const toggleLineClamp = () => {
 		if (truncated) {
@@ -246,7 +246,7 @@
 		<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
 			{#if isNew}
 				<div class="flex justify-center mb-4">
-					<Label color="orange">New</Label>
+					<Label tone="warning">New</Label>
 				</div>
 			{/if}
 
@@ -272,7 +272,7 @@
 				<Link
 					href={learnMoreHref}
 					variant="cta"
-					className={textColor === 'light' ? 'text-blue-400' : ''}
+					class={textColor === 'light' ? 'text-accent-light' : ''}
 				>
 					Learn more
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -287,7 +287,7 @@
 				<Link
 					href={buyHref}
 					variant="cta"
-					className={textColor === 'light' ? 'text-blue-400' : ''}
+					class={textColor === 'light' ? 'text-accent-light' : ''}
 				>
 					Buy
 				</Link>
@@ -300,7 +300,7 @@
 						tablet={image.tablet || image.desktop || image.src}
 						mobile={image.mobile || image.desktop || image.src}
 						alt={image.alt || title}
-						className="w-full max-w-5xl mx-auto"
+						class="w-full max-w-5xl mx-auto"
 					/>
 				</div>
 			{/if}
@@ -330,7 +330,7 @@
 					{#if subtitle}
 						<div>
 							<span
-								class="inline-flex items-center px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wide uppercase bg-blue-50 text-blue-700"
+								class="inline-flex items-center px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wide uppercase bg-accent/10 text-accent"
 							>
 								{subtitle}
 							</span>
@@ -342,7 +342,7 @@
 						level={1}
 						size="6xl"
 						weight="black"
-						class="text-slate-900 leading-tight tracking-tight"
+						class="text-fg leading-tight tracking-tight"
 					>
 						{title}
 					</Heading>
@@ -351,7 +351,7 @@
 					{#if description}
 						<Paragraph
 							size="lg"
-							color="text-slate-700"
+							color="text-fg-muted"
 							leading="relaxed"
 							class="max-w-lg md:text-lg"
 						>
@@ -387,7 +387,7 @@
 								{#if product.badge}
 									<div class="absolute -top-2 -right-2 z-10">
 										<span
-											class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-blue-600 text-white"
+											class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-accent text-fg-on-accent"
 										>
 											{product.badge}
 										</span>
@@ -406,7 +406,7 @@
 									level={4}
 									size="base"
 									weight="semibold"
-									class="text-center text-slate-900 leading-snug"
+									class="text-center text-fg leading-snug"
 								>
 									{product.name}
 								</Heading>
@@ -426,7 +426,7 @@
 			{/if}
 			<h1 class="mt-3 text-4xl md:text-6xl font-extrabold tracking-tight">{title}</h1>
 			{#if subtitle}
-				<p class="mt-4 text-lg md:text-xl text-slate-200">{subtitle}</p>
+				<p class="mt-4 text-lg md:text-xl text-white/80">{subtitle}</p>
 			{/if}
 			<div class="mt-8">
 				<CTAGroup

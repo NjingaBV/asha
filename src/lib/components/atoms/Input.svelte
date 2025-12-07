@@ -3,6 +3,7 @@
   
   A versatile text input component with validation states, icons, and accessibility.
   Integrates with form field patterns and supports various input types.
+  Uses XState for robust state management.
   
   @example Basic usage
   ```svelte
@@ -17,13 +18,6 @@
     required
     error="Password must be at least 8 characters"
   />
-  ```
-  
-  @example With icons
-  ```svelte
-  <Input label="Search">
-    {#snippet iconLeft()}<Icon name="search" />{/snippet}
-  </Input>
   ```
 -->
 <script lang="ts" module>
@@ -69,6 +63,13 @@
 
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { createActor } from 'xstate';
+	import {
+		inputMachine,
+		getInputDataAttributes,
+		getInputAriaAttributes,
+		type InputState
+	} from '$lib/machines/input.machine';
 
 	// ============================================
 	// Props
@@ -102,7 +103,7 @@
 		/** Autofocus on mount */
 		autofocus?: boolean;
 		/** Autocomplete attribute */
-		autocomplete?: AutoFill;
+		autocomplete?: string;
 		/** ID for the input */
 		id?: string;
 		/** Name attribute */
@@ -180,18 +181,66 @@
 	}: Props = $props();
 
 	// ============================================
+	// State Machine
+	// ============================================
+
+	const actor = createActor(inputMachine);
+	actor.start();
+
+	// Subscribe to state changes
+	let state = $state(actor.getSnapshot());
+
+	actor.subscribe((snapshot) => {
+		state = snapshot;
+	});
+
+	// Sync props with machine
+	$effect(() => {
+		actor.send({ type: 'CHANGE', value });
+	});
+
+	$effect(() => {
+		if (error) {
+			actor.send({ type: 'VALIDATION_ERROR', message: error });
+		} else if (success) {
+			actor.send({ type: 'VALIDATION_SUCCESS' });
+		} else {
+			actor.send({ type: 'CLEAR_ERROR' });
+		}
+	});
+
+	$effect(() => {
+		if (disabled) {
+			actor.send({ type: 'DISABLE' });
+		} else {
+			actor.send({ type: 'ENABLE' });
+		}
+	});
+
+	// Cleanup
+	$effect(() => {
+		return () => actor.stop();
+	});
+
+	// ============================================
 	// Derived State
 	// ============================================
+
+	const currentState = $derived(state.value as InputState);
+	const context = $derived(state.context);
 
 	/** Generate unique ID for accessibility */
 	const inputId = $derived(id || `input-${Math.random().toString(36).slice(2, 9)}`);
 	const errorId = $derived(`${inputId}-error`);
 	const helperId = $derived(`${inputId}-helper`);
 
-	const hasError = $derived(!!error);
-	const hasSuccess = $derived(!!success && !hasError);
+	const hasError = $derived(currentState === 'invalid' || !!error);
+	const hasSuccess = $derived(currentState === 'valid' || (!!success && !hasError));
 	const hasLeftContent = $derived(!!iconLeft || !!prefix);
 	const hasRightContent = $derived(!!iconRight || !!suffix);
+
+	const dataAttributes = $derived(getInputDataAttributes(currentState, context));
+	const ariaAttributes = $derived(getInputAriaAttributes(currentState, context, errorId));
 
 	// ============================================
 	// Style Classes
@@ -226,23 +275,25 @@
 		{ base: string; focus: string; error: string; success: string }
 	> = {
 		outline: {
-			base: 'border border-border bg-bg',
-			focus: 'focus-within:border-accent focus-within:ring-accent',
-			error: 'border-error focus-within:border-error focus-within:ring-error',
-			success: 'border-success focus-within:border-success focus-within:ring-success'
+			base: 'border border-border bg-bg shadow-sm',
+			focus: 'focus-within:border-accent focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-0',
+			error: 'border-error focus-within:border-error focus-within:ring-2 focus-within:ring-error focus-within:ring-offset-0',
+			success:
+				'border-success focus-within:border-success focus-within:ring-2 focus-within:ring-success focus-within:ring-offset-0'
 		},
 		filled: {
 			base: 'border border-transparent bg-bg-muted',
-			focus: 'focus-within:border-accent focus-within:ring-accent focus-within:bg-bg',
-			error: 'border-error bg-error-subtle focus-within:border-error focus-within:ring-error',
+			focus: 'focus-within:border-accent focus-within:ring-2 focus-within:ring-accent focus-within:bg-bg focus-within:ring-offset-0',
+			error: 'border-error bg-error-subtle focus-within:border-error focus-within:ring-2 focus-within:ring-error focus-within:ring-offset-0',
 			success:
-				'border-success bg-success-subtle focus-within:border-success focus-within:ring-success'
+				'border-success bg-success-subtle focus-within:border-success focus-within:ring-2 focus-within:ring-success focus-within:ring-offset-0'
 		},
 		ghost: {
 			base: 'border border-transparent bg-transparent',
-			focus: 'focus-within:border-border focus-within:ring-border-focus focus-within:bg-bg-subtle',
-			error: 'border-error focus-within:border-error focus-within:ring-error',
-			success: 'border-success focus-within:border-success focus-within:ring-success'
+			focus: 'focus-within:border-border focus-within:ring-2 focus-within:ring-border-focus focus-within:bg-bg-subtle focus-within:ring-offset-0',
+			error: 'border-error focus-within:border-error focus-within:ring-2 focus-within:ring-error focus-within:ring-offset-0',
+			success:
+				'border-success focus-within:border-success focus-within:ring-2 focus-within:ring-success focus-within:ring-offset-0'
 		}
 	};
 
@@ -255,7 +306,7 @@
 			containerSizeClasses[size],
 			v.base,
 			stateClass,
-			disabled ? 'opacity-disabled cursor-not-allowed' : ''
+			disabled ? 'opacity-disabled cursor-not-allowed bg-bg-subtle' : ''
 		]
 			.filter(Boolean)
 			.join(' ');
@@ -296,11 +347,22 @@
 
 	function handleInput(event: Event & { currentTarget: HTMLInputElement }) {
 		value = event.currentTarget.value;
+		actor.send({ type: 'CHANGE', value });
 		oninput?.(event);
+	}
+
+	function handleFocus(event: FocusEvent) {
+		actor.send({ type: 'FOCUS' });
+		onfocus?.(event);
+	}
+
+	function handleBlur(event: FocusEvent) {
+		actor.send({ type: 'BLUR' });
+		onblur?.(event);
 	}
 </script>
 
-<div class={wrapperClasses} data-variant={variant} data-size={size}>
+<div class={wrapperClasses} data-variant={variant} data-size={size} {...dataAttributes}>
 	{#if label}
 		<label for={inputId} class={labelClasses}>
 			{label}
@@ -341,14 +403,13 @@
 			{step}
 			bind:value
 			class={inputClasses}
-			aria-invalid={hasError}
 			aria-describedby={error ? errorId : helperText ? helperId : undefined}
-			aria-required={required}
 			oninput={handleInput}
 			{onchange}
-			{onfocus}
-			{onblur}
+			onfocus={handleFocus}
+			onblur={handleBlur}
 			{onkeydown}
+			{...ariaAttributes}
 		/>
 
 		{#if suffix}

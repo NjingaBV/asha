@@ -11,7 +11,7 @@
 	 */
 </script>
 
-<section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-100">
+<section class="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-blue-50 to-indigo-100">
 	<div class="max-w-4xl mx-auto text-center">
 		<div class="mb-8">
 			<img
@@ -21,11 +21,11 @@
 			/>
 		</div>
 
-		<Heading level={2} class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+		<Heading level={2} class="text-3xl md:text-4xl font-bold text-primary mb-4">
 			Help me choose.
 		</Heading>
 
-		<Paragraph class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+		<Paragraph class="text-xl text-secondary mb-8 max-w-2xl mx-auto">
 			Answer a few questions to find the best Mac for you.
 		</Paragraph>
 

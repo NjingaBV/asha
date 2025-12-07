@@ -46,7 +46,7 @@
 		large: 'gap-12'
 	};
 
-	const containerClasses = 'py-16 px-4 sm:px-6 lg:px-8 bg-white';
+	const containerClasses = 'py-16 px-4 sm:px-6 lg:px-8 bg-bg';
 	const gridClasses = `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ${gapMap['medium']}`;
 	const titleClasses = 'mb-12 space-y-4 text-center';
 </script>
@@ -56,12 +56,12 @@
 		{#if title || description}
 			<div class={titleClasses}>
 				{#if title}
-					<Heading level={2} size="4xl" weight="bold" class="text-slate-900">
+					<Heading level={2} size="4xl" weight="bold" class="text-fg">
 						{title}
 					</Heading>
 				{/if}
 				{#if description}
-					<Paragraph size="xl" color="text-slate-600" class="max-w-3xl mx-auto">
+					<Paragraph size="xl" color="text-fg-muted" class="max-w-3xl mx-auto">
 						{description}
 					</Paragraph>
 				{/if}
@@ -71,17 +71,12 @@
 		<div class={gridClasses}>
 			{#each products as item}
 				<Card
-					variant="mac"
 					title={item.title}
-					tagline={item.tagline}
-					image={item.image}
-					imageAlt={item.imageAlt}
-					price={item.price}
-					isNew={item.isNew}
-					colors={item.colors}
-					learnMoreHref={item.learnMoreHref}
-					buyHref={item.buyHref}
-					className={item.className}
+					subtitle={item.tagline}
+					imgSrc={item.image}
+					buttonName={item.learnMoreHref ? 'Learn more' : ''}
+					buttonLink={item.learnMoreHref || item.buyHref}
+					class={item.className}
 				/>
 			{/each}
 		</div>

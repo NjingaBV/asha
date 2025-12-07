@@ -9,24 +9,34 @@
 		category = '',
 		overview = '',
 		color = '#6b6b6b',
-		cards = []
+		cards = [],
+		ariaLabel = 'Carousel'
 	}: {
 		title: string;
 		category: string;
 		overview: string;
 		color?: `#${string}`;
 		cards?: Array<CardType>;
+		/** Accessible label for the carousel region */
+		ariaLabel?: string;
 	} = $props();
 
 	let scrollContainer: HTMLElement;
 	let canScrollLeft = $state(false);
 	let canScrollRight = $state(false);
+	let currentSlideIndex = $state(0);
 
 	function checkScroll() {
 		if (!scrollContainer) return;
 		const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
 		canScrollLeft = scrollLeft > 0;
 		canScrollRight = scrollLeft < scrollWidth - clientWidth - 10;
+
+		// Calculate current slide index based on scroll position
+		if (cards.length > 0) {
+			const cardWidth = scrollContainer.clientWidth * 0.8;
+			currentSlideIndex = Math.round(scrollLeft / cardWidth);
+		}
 	}
 
 	function scroll(direction: 'left' | 'right') {
@@ -43,9 +53,14 @@
 		window.addEventListener('resize', checkScroll);
 		return () => window.removeEventListener('resize', checkScroll);
 	});
+
+	// Announcement for screen readers when slide changes
+	let slideAnnouncement = $derived(
+		cards.length > 0 ? `Slide ${currentSlideIndex + 1} of ${cards.length}` : ''
+	);
 </script>
 
-<section class="py-8 px-4 sm:px-6 lg:px-8 bg-white">
+<section class="py-8 px-4 sm:px-6 lg:px-8 bg-bg" role="region" aria-label={ariaLabel}>
 	<div class="max-w-[90rem] mx-auto">
 		<div class="flex flex-col items-start mb-6 gap-6">
 			{#if title}
@@ -89,6 +104,9 @@
 		<div class="flex justify-end mt-2">
 			<CarouselControls {canScrollLeft} {canScrollRight} onScroll={scroll} />
 		</div>
+
+		<!-- Live region for screen reader announcements -->
+		<span class="sr-only" aria-live="polite" aria-atomic="true">{slideAnnouncement}</span>
 	</div>
 </section>
 

@@ -1,15 +1,20 @@
 <script lang="ts">
+	/** Semantic tone for promo badges */
+	export type PromoBadgeTone = 'accent' | 'neutral';
+
 	interface Props {
+		/** Badge text */
 		label: string;
-		tone?: 'accent' | 'neutral';
+		/** Semantic color tone */
+		tone?: PromoBadgeTone;
 	}
 
 	let { label, tone = 'accent' }: Props = $props();
 
 	const toneClasses = $derived(
 		tone === 'accent'
-			? 'text-orange-600 border-orange-200 bg-orange-50'
-			: 'text-slate-600 border-slate-200 bg-slate-50'
+			? 'text-warning border-warning/30 bg-warning-subtle'
+			: 'text-fg-muted border-border bg-bg-muted'
 	);
 </script>
 

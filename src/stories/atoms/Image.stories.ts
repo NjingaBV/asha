@@ -101,7 +101,7 @@ export const Single: Story = {
 	},
 	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
 		Component: Image,
-		props: { src, alt, className, objectFit, loading, width, height }
+		props: { src, alt, class: className, objectFit, loading, width, height }
 	})
 };
 
@@ -127,7 +127,7 @@ export const Responsive: Story = {
 		height
 	}: any) => ({
 		Component: Image,
-		props: { desktop, tablet, mobile, alt, className, objectFit, loading, width, height }
+		props: { desktop, tablet, mobile, alt, class: className, objectFit, loading, width, height }
 	})
 };
 
@@ -140,7 +140,7 @@ export const Cover: Story = {
 	},
 	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
 		Component: Image,
-		props: { src, alt, className, objectFit, loading, width, height }
+		props: { src, alt, class: className, objectFit, loading, width, height }
 	})
 };
 
@@ -153,7 +153,7 @@ export const Contain: Story = {
 	},
 	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
 		Component: Image,
-		props: { src, alt, className, objectFit, loading, width, height }
+		props: { src, alt, class: className, objectFit, loading, width, height }
 	})
 };
 
@@ -166,7 +166,7 @@ export const Fill: Story = {
 	},
 	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
 		Component: Image,
-		props: { src, alt, className, objectFit, loading, width, height }
+		props: { src, alt, class: className, objectFit, loading, width, height }
 	})
 };
 
@@ -179,7 +179,7 @@ export const ScaleDown: Story = {
 	},
 	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
 		Component: Image,
-		props: { src, alt, className, objectFit, loading, width, height }
+		props: { src, alt, class: className, objectFit, loading, width, height }
 	})
 };
 
@@ -193,7 +193,7 @@ export const LazyLoading: Story = {
 	},
 	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
 		Component: Image,
-		props: { src, alt, className, objectFit, loading, width, height }
+		props: { src, alt, class: className, objectFit, loading, width, height }
 	})
 };
 
@@ -207,7 +207,7 @@ export const EagerLoading: Story = {
 	},
 	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
 		Component: Image,
-		props: { src, alt, className, objectFit, loading, width, height }
+		props: { src, alt, class: className, objectFit, loading, width, height }
 	})
 };
 
@@ -222,6 +222,6 @@ export const WithDimensions: Story = {
 	},
 	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
 		Component: Image,
-		props: { src, alt, className, objectFit, loading, width, height }
+		props: { src, alt, class: className, objectFit, loading, width, height }
 	})
 };

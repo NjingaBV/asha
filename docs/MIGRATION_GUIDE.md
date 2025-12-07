@@ -6,7 +6,87 @@ This guide helps migrate existing components to the new design system standards.
 
 ## 1. Breaking Changes Summary
 
-### 1.1 Button Component
+### 1.1 Prop Renaming (v0.4.0)
+
+Several components have had their props renamed for consistency:
+
+#### `className` → `class`
+
+| Component       | Old Prop    | New Prop |
+| --------------- | ----------- | -------- |
+| `Link`          | `className` | `class`  |
+| `Card`          | `className` | `class`  |
+| `Label`         | `className` | `class`  |
+| `Image`         | `className` | `class`  |
+| `NavigationBar` | `className` | `class`  |
+| `Hero`          | `className` | `class`  |
+
+**Before:**
+
+```svelte
+<Link href="/about" className="my-link">About</Link>
+<Card title="Title" className="my-card" />
+```
+
+**After:**
+
+```svelte
+<Link href="/about" class="my-link">About</Link>
+<Card title="Title" class="my-card" />
+```
+
+#### `badgeSize` → `size`
+
+| Component | Old Prop    | New Prop |
+| --------- | ----------- | -------- |
+| `Badge`   | `badgeSize` | `size`   |
+
+**Before:**
+
+```svelte
+<Badge label="New" badgeSize="lg" />
+```
+
+**After:**
+
+```svelte
+<Badge label="New" size="lg" />
+```
+
+#### `color` → `tone` (Semantic Values)
+
+| Component | Old Prop | New Prop | Old Values                                | New Values                                                        |
+| --------- | -------- | -------- | ----------------------------------------- | ----------------------------------------------------------------- |
+| `Badge`   | `color`  | `tone`   | `blue`, `slate`, `emerald`, `amber`, etc. | `primary`, `secondary`, `success`, `warning`, `danger`, `neutral` |
+| `Label`   | `color`  | `tone`   | CSS color values                          | `primary`, `secondary`, `success`, `warning`, `danger`, `neutral` |
+
+**Before:**
+
+```svelte
+<Badge label="Active" color="blue" />
+<Badge label="Warning" color="amber" />
+<Label color="emerald">Available</Label>
+```
+
+**After:**
+
+```svelte
+<Badge label="Active" tone="primary" />
+<Badge label="Warning" tone="warning" />
+<Label tone="success">Available</Label>
+```
+
+**Color → Tone Mapping:**
+
+| Old Color Value | New Tone Value |
+| --------------- | -------------- |
+| `blue`          | `primary`      |
+| `slate`         | `neutral`      |
+| `emerald/green` | `success`      |
+| `amber/orange`  | `warning`      |
+| `red`           | `danger`       |
+
+### 1.2 Button Component
 
 | Old Prop      | New Prop         | Notes                           |
 | ------------- | ---------------- | ------------------------------- |

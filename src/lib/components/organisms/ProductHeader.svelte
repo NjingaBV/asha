@@ -30,8 +30,8 @@
 		ctas = {}
 	}: Props = $props();
 
-	const textClass = $derived(tone === 'dark' ? 'text-white' : 'text-slate-900');
-	const subTextClass = $derived(tone === 'dark' ? 'text-white/80' : 'text-slate-600');
+	const textClass = $derived(tone === 'dark' ? 'text-fg-inverse' : 'text-fg');
+	const subTextClass = $derived(tone === 'dark' ? 'text-fg-inverse/80' : 'text-fg-muted');
 	const layoutClass = $derived(
 		align === 'center' ? 'items-center text-center' : 'items-start text-left'
 	);
@@ -75,7 +75,7 @@
 					fullWidth={false}
 					href={ctas.primary.href}
 					onClick={ctas.primary.onClick}
-					class={tone === 'dark' ? 'bg-white text-slate-900 hover:scale-[1.01]' : ''}
+					class={tone === 'dark' ? 'bg-fg-inverse text-fg hover:scale-[1.01]' : ''}
 				>
 					{ctas.primary.label}
 				</Button>
@@ -86,7 +86,7 @@
 					tone="secondary"
 					href={ctas.secondary.href}
 					onClick={ctas.secondary.onClick}
-					class={tone === 'dark' ? 'text-white hover:bg-white/10' : ''}
+					class={tone === 'dark' ? 'text-fg-inverse hover:bg-fg-inverse/10' : ''}
 				>
 					{ctas.secondary.label}
 				</Button>

@@ -15,11 +15,10 @@
 		disabled={!canScrollLeft}
 		onclick={() => onScroll('left')}
 		class={[
-			'w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200',
+			'w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200',
 			'disabled:opacity-30 disabled:cursor-not-allowed',
-			!canScrollLeft
-				? 'bg-gray-100 text-gray-400'
-				: 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+			'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
+			!canScrollLeft ? 'bg-bg-muted text-fg-muted' : 'bg-bg-subtle hover:bg-bg-muted text-fg'
 		].join(' ')}
 		aria-label="Previous items"
 	>
@@ -30,6 +29,7 @@
 			stroke-width="2.5"
 			stroke="currentColor"
 			class="w-5 h-5"
+			aria-hidden="true"
 		>
 			<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
 		</svg>
@@ -40,11 +40,10 @@
 		disabled={!canScrollRight}
 		onclick={() => onScroll('right')}
 		class={[
-			'w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200',
+			'w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200',
 			'disabled:opacity-30 disabled:cursor-not-allowed',
-			!canScrollRight
-				? 'bg-gray-100 text-gray-400'
-				: 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+			'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
+			!canScrollRight ? 'bg-bg-muted text-fg-muted' : 'bg-bg-subtle hover:bg-bg-muted text-fg'
 		].join(' ')}
 		aria-label="Next items"
 	>
@@ -55,6 +54,7 @@
 			stroke-width="2.5"
 			stroke="currentColor"
 			class="w-5 h-5"
+			aria-hidden="true"
 		>
 			<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
 		</svg>

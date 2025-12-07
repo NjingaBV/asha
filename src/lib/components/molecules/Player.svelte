@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Youtube from '$lib/components/molecules/Youtube.svelte';
+	import { createActor } from 'xstate';
+	import { playerMachine } from '$lib/machines/player.machine';
 
 	/**
 	 * Player component - video player with metadata display
@@ -55,8 +57,39 @@
 		class: className = ''
 	}: Props = $props();
 
-	let isPlaying = $state(false);
-	let isExpanded = $state(false);
+	// ============================================
+	// State Machine
+	// ============================================
+
+	const actor = createActor(playerMachine, {
+		input: {
+			mediaId: videoId,
+			mediaTitle: title,
+			mediaDescription: overview,
+			mediaThumbnail: thumbnail,
+			expanded: false
+		}
+	});
+	actor.start();
+
+	// Subscribe to state changes
+	let state = $state(actor.getSnapshot());
+
+	actor.subscribe((snapshot) => {
+		state = snapshot;
+	});
+
+	// Cleanup
+	$effect(() => {
+		return () => actor.stop();
+	});
+
+	// ============================================
+	// Derived State
+	// ============================================
+
+	const isPlaying = $derived(state.matches('playing'));
+	const isExpanded = $derived(state.context.expanded);
 
 	/**
 	 * Extract video ID from various YouTube URL formats
@@ -89,7 +122,7 @@
 	 * Handle play button click
 	 */
 	const handlePlayClick = () => {
-		isPlaying = true;
+		actor.send({ type: 'PLAY' });
 		onPlay?.();
 	};
 
@@ -97,8 +130,8 @@
 	 * Handle overview expand/collapse
 	 */
 	const handleToggleExpand = () => {
-		isExpanded = !isExpanded;
-		onToggleExpand?.(isExpanded);
+		actor.send({ type: 'TOGGLE_EXPAND' });
+		onToggleExpand?.(!isExpanded);
 	};
 
 	/**
@@ -142,7 +175,7 @@
 	<div class="p-4 flex flex-col gap-3">
 		<!-- Subtitle -->
 		{#if subtitle}
-			<h4 class="text-slate-700 text-lg font-bold">
+			<h4 class="text-fg-muted text-lg font-bold">
 				{subtitle}
 			</h4>
 		{/if}
@@ -163,7 +196,7 @@
 			<div class="relative">
 				<p
 					class={[
-						'text-slate-700 text-base leading-relaxed',
+						'text-fg-muted text-base leading-relaxed',
 						!isExpanded && isTruncated ? `line-clamp-${overviewLines}` : ''
 					]
 						.filter(Boolean)
@@ -175,7 +208,7 @@
 				<!-- Expand/Collapse Button -->
 				{#if isTruncated}
 					<button
-						class="mt-2 text-blue-600 hover:text-blue-800 font-semibold transition-colors"
+						class="mt-2 text-accent hover:text-accent-hover font-semibold transition-colors"
 						onclick={handleToggleExpand}
 						aria-expanded={isExpanded}
 						aria-label={isExpanded ? 'Show less' : 'Show more'}

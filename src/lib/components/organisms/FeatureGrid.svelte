@@ -38,7 +38,7 @@
 		large: 'gap-12'
 	};
 
-	const containerClasses = 'py-16 px-4 sm:px-6 lg:px-8 bg-white';
+	const containerClasses = 'py-16 px-4 sm:px-6 lg:px-8 bg-bg';
 	const gridClasses = `grid grid-cols-1 ${gapMap[gap]}`;
 </script>
 

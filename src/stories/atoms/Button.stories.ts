@@ -113,7 +113,7 @@ export const Solid: Story = {
 		tone: 'primary',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -128,7 +128,7 @@ export const Outline: Story = {
 		tone: 'primary',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -143,7 +143,7 @@ export const Ghost: Story = {
 		tone: 'primary',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -158,7 +158,7 @@ export const Link: Story = {
 		tone: 'primary',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -177,7 +177,7 @@ export const Primary: Story = {
 		tone: 'primary',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -192,7 +192,7 @@ export const Secondary: Story = {
 		tone: 'secondary',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -207,7 +207,7 @@ export const Neutral: Story = {
 		tone: 'neutral',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -222,7 +222,7 @@ export const Danger: Story = {
 		tone: 'danger',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -237,7 +237,7 @@ export const Success: Story = {
 		tone: 'success',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -256,7 +256,7 @@ export const Small: Story = {
 		tone: 'primary',
 		size: 'sm'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -271,7 +271,7 @@ export const Medium: Story = {
 		tone: 'primary',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -286,7 +286,7 @@ export const Large: Story = {
 		tone: 'primary',
 		size: 'lg'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -306,7 +306,7 @@ export const Loading: Story = {
 		size: 'md',
 		loading: true
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -322,7 +322,7 @@ export const Disabled: Story = {
 		size: 'md',
 		disabled: true
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -341,7 +341,7 @@ export const FullWidth: Story = {
 	parameters: {
 		layout: 'padded'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -361,7 +361,7 @@ export const AsLink: Story = {
 		size: 'md',
 		href: '/about'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -378,7 +378,7 @@ export const ExternalLink: Story = {
 		href: 'https://example.com',
 		target: '_blank'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -398,7 +398,7 @@ export const SubmitButton: Story = {
 		size: 'md',
 		type: 'submit'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Button,
 		props: {
 			...args,
@@ -426,6 +426,39 @@ export const AllVariants: Story = {
 			variant: 'solid',
 			tone: 'primary',
 			children: () => 'All Variants - See Docs for Grid'
+		}
+	})
+};
+
+// ============================================
+// Design Guidelines
+// ============================================
+
+/**
+ * # Design Guidelines
+ *
+ * ## Usage
+ * - Use **Solid** buttons for primary actions (e.g., "Save", "Submit").
+ * - Use **Outline** buttons for secondary actions (e.g., "Cancel", "Back").
+ * - Use **Ghost** buttons for tertiary actions or in toolbars.
+ * - Use **Link** buttons for navigation within text or less prominent actions.
+ *
+ * ## Do's
+ * - Use clear, action-oriented labels (e.g., "Create Account" instead of "Go").
+ * - Maintain hierarchy by using different variants on the same page.
+ * - Use the `loading` state for async actions to prevent double submissions.
+ *
+ * ## Don'ts
+ * - Avoid using multiple **Solid** buttons in the same group (competing attention).
+ * - Don't use **Danger** tone unless the action is destructive and irreversible.
+ * - Don't overcrowd the interface with too many buttons; group them if necessary.
+ */
+export const Guidelines: Story = {
+	tags: ['!dev'],
+	render: () => ({
+		Component: Button,
+		props: {
+			children: () => 'See Guidelines in Docs'
 		}
 	})
 };

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { useMachine } from '@xstate/svelte';
+	import { createActor } from 'xstate';
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
 	import PromoBadge from '$lib/components/atoms/PromoBadge.svelte';
@@ -170,20 +170,35 @@
 		products && products.length > 0 ? products : defaultProducts
 	);
 
-	const { snapshot, send } = useMachine(macLineupMachine, {
+	const actor = createActor(macLineupMachine, {
 		input: { products: actualProducts }
+	});
+	actor.start();
+
+	// Helper function to send events to the actor
+	const send = (event: Parameters<typeof actor.send>[0]) => actor.send(event);
+
+	// Subscribe to state changes
+	let state = $state(actor.getSnapshot());
+
+	actor.subscribe((snapshot) => {
+		state = snapshot;
+	});
+
+	// Cleanup
+	$effect(() => {
+		return () => actor.stop();
 	});
 
 	let activeProduct = $derived(
-		$snapshot.context.products.find(
-			(product) => product.slug === $snapshot.context.activeSlug
-		) || $snapshot.context.products[0]
+		state.context.products.find((product) => product.slug === state.context.activeSlug) ||
+			state.context.products[0]
 	);
 
 	let selectedColor = $derived(
-		$snapshot.context.selectedColor ||
-			($snapshot.context.products[0]?.colors
-				? $snapshot.context.products[0].colors[0]?.name
+		state.context.selectedColor ||
+			(state.context.products[0]?.colors
+				? state.context.products[0].colors[0]?.name
 				: undefined)
 	);
 
@@ -194,32 +209,32 @@
 </script>
 
 {#if !activeProduct}
-	<section class="rounded-3xl border border-dashed border-slate-200 p-10 text-center">
-		<Heading level={3} size="2xl" class="text-slate-800">Aucun produit</Heading>
-		<Paragraph size="base" class="text-slate-600">
-			Ajoutez des produits dans la prop `products` pour afficher la grille inspirée d’Apple.
+	<section class="rounded-3xl border border-dashed border-border p-10 text-center">
+		<Heading level={3} size="2xl" class="text-fg">Aucun produit</Heading>
+		<Paragraph size="base" class="text-fg-muted">
+			Ajoutez des produits dans la prop `products` pour afficher la grille inspirée d'Apple.
 		</Paragraph>
 	</section>
 {:else}
-	<section class="bg-gradient-to-b from-slate-50 via-white to-slate-100 py-16">
-		<div class="mx-auto flex max-w-7xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
+	<section class="bg-page py-16">
+		<div class="mx-auto flex max-w-360 flex-col gap-10 px-4 sm:px-6 lg:px-8">
 			<div class="flex flex-col gap-4">
-				<Heading level={2} size="4xl" weight="black" class="text-slate-900">
+				<Heading level={2} size="4xl" weight="semibold" class="text-primary">
 					{title}
 				</Heading>
-				<Paragraph size="lg" class="max-w-3xl text-slate-600">
+				<Paragraph size="lg" class="max-w-3xl text-secondary">
 					{description}
 				</Paragraph>
 
 				<div class="flex flex-wrap items-center gap-3">
-					{#each $snapshot.context.products as product}
+					{#each state.context.products as product}
 						<button
 							type="button"
 							onclick={() => send({ type: 'SELECT_PRODUCT', slug: product.slug })}
 							class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${
-								product.slug === $snapshot.context.activeSlug
-									? 'bg-slate-900 text-white shadow-lg'
-									: 'bg-white text-slate-700 ring-1 ring-slate-200 hover:-translate-y-0.5 hover:shadow'
+								product.slug === state.context.activeSlug
+									? 'bg-primary text-white shadow-md'
+									: 'bg-card text-secondary ring-1 ring-border/50 hover:-translate-y-0.5 hover:shadow-sm'
 							}`}
 						>
 							{product.name}
@@ -232,7 +247,7 @@
 					<div class="ml-auto hidden gap-2 md:flex">
 						<button
 							type="button"
-							class="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition hover:-translate-y-0.5 hover:shadow"
+							class="rounded-full border border-border/50 bg-card px-3 py-2 text-sm text-secondary transition hover:-translate-y-0.5 hover:shadow-sm"
 							onclick={() => send({ type: 'PREVIOUS' })}
 							aria-label="Modèle précédent"
 						>
@@ -240,7 +255,7 @@
 						</button>
 						<button
 							type="button"
-							class="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition hover:-translate-y-0.5 hover:shadow"
+							class="rounded-full border border-border/50 bg-card px-3 py-2 text-sm text-secondary transition hover:-translate-y-0.5 hover:shadow-sm"
 							onclick={() => send({ type: 'NEXT' })}
 							aria-label="Modèle suivant"
 						>
@@ -251,11 +266,11 @@
 			</div>
 
 			<div
-				class="relative overflow-hidden rounded-3xl border border-white/80 shadow-2xl shadow-slate-900/5"
+				class="relative overflow-hidden rounded-2xl border border-white/80 shadow-xl shadow-black/5"
 				style={`background:${heroBackground}`}
 			>
 				<div
-					class="absolute inset-0 animate-pulse bg-gradient-to-br from-white/10 via-transparent to-white/5"
+					class="absolute inset-0 animate-pulse bg-linear-to-br from-white/10 via-transparent to-white/5"
 					aria-hidden="true"
 				></div>
 				<div class="relative grid gap-10 p-8 lg:grid-cols-5 lg:items-center lg:p-12">
@@ -284,7 +299,7 @@
 
 						{#if selectedColor}
 							<div
-								class={`${tone === 'dark' ? 'text-white/70' : 'text-slate-600'} text-xs`}
+								class={`${tone === 'dark' ? 'text-fg-inverse/70' : 'text-fg-muted'} text-xs`}
 							>
 								Finition sélectionnée : {selectedColor}
 							</div>
@@ -314,7 +329,7 @@
 
 						{#if activeProduct.highlights && activeProduct.highlights.length > 0}
 							<ul
-								class={`grid gap-3 text-sm ${tone === 'dark' ? 'text-white/80' : 'text-slate-700'}`}
+								class={`grid gap-3 text-sm ${tone === 'dark' ? 'text-fg-inverse/80' : 'text-fg-muted'}`}
 							>
 								{#each activeProduct.highlights as highlight}
 									<li

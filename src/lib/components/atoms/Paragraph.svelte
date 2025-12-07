@@ -27,7 +27,7 @@
 
 	let {
 		size = 'base',
-		color = 'text-gray-700',
+		color = 'text-fg-muted',
 		leading = 'relaxed',
 		class: className = '',
 		children

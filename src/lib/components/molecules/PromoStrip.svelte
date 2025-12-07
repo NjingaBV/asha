@@ -12,7 +12,7 @@
 
 <aside
 	class={[
-		tone === 'dark' ? 'bg-black text-white' : 'bg-slate-50 text-slate-900',
+		tone === 'dark' ? 'bg-bg-inverse text-fg-inverse' : 'bg-bg-subtle text-fg',
 		'w-full text-center text-sm md:text-base py-2 px-4'
 	].join(' ')}
 >

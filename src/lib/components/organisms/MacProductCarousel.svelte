@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createActor } from 'xstate';
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import ProductCard from '$lib/components/molecules/ProductCard.svelte';
 	import Card from '$lib/components/molecules/Card.svelte';
@@ -6,6 +7,7 @@
 	import CarouselControls from '$lib/components/molecules/CarouselControls.svelte';
 	import type { AppleColor } from '$lib/models/color.type';
 	import { onMount } from 'svelte';
+	import { macMachine } from '$lib/machines/mac.machine';
 
 	interface Product {
 		id: string;
@@ -44,10 +46,41 @@
 		cardType?: 'product' | 'feature';
 	} = $props();
 
-	let activeTab = $state(tabs[0]?.id ?? 'all');
+	// ============================================
+	// State Machine
+	// ============================================
+
+	const actor = createActor(macMachine);
+	actor.start();
+
+	// Subscribe to state changes
+	let machineState = $state(actor.getSnapshot());
+
+	actor.subscribe((snapshot) => {
+		machineState = snapshot;
+	});
+
+	// Cleanup
+	$effect(() => {
+		return () => actor.stop();
+	});
+
+	// Initialize active tab if provided
+	$effect(() => {
+		if (tabs.length > 0 && !machineState.context.filteredCategory) {
+			actor.send({ type: 'FILTER_PRODUCTS', category: tabs[0].id });
+		}
+	});
+
+	// ============================================
+	// Component State
+	// ============================================
+
 	let scrollContainer: HTMLElement;
 	let canScrollLeft = $state(false);
 	let canScrollRight = $state(true);
+
+	const activeTab = $derived(machineState.context.filteredCategory || 'all');
 
 	const filteredProducts = $derived(
 		activeTab === 'all'
@@ -78,15 +111,19 @@
 	});
 </script>
 
-<section class="py-16 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+<section class="py-16 px-4 sm:px-6 lg:px-8 bg-bg overflow-hidden">
 	<div class="max-w-[90rem] mx-auto">
 		<div class="flex flex-col items-start mb-10 gap-8">
-			<Heading level={2} class="text-5xl md:text-6xl font-bold text-black tracking-tight">
+			<Heading level={2} class="text-5xl md:text-6xl font-bold text-fg tracking-tight">
 				{title}
 			</Heading>
 
 			{#if tabs.length > 0}
-				<FilterTabs {tabs} {activeTab} onSelect={(id) => (activeTab = id)} />
+				<FilterTabs
+					{tabs}
+					{activeTab}
+					onSelect={(id) => actor.send({ type: 'FILTER_PRODUCTS', category: id })}
+				/>
 			{/if}
 		</div>
 
@@ -99,7 +136,6 @@
 				<div class="flex-none w-[320px] md:w-[400px] snap-center">
 					{#if cardType === 'feature'}
 						<Card
-							variant="image"
 							title={product.title}
 							subtitle={product.subtitle}
 							overview={product.description}
@@ -108,7 +144,7 @@
 							overlayButton={true}
 							textPosition="top"
 							textColor={product.textColor || 'black'}
-							className="h-[500px]"
+							class="h-[500px]"
 							rounded={true}
 						/>
 					{:else}

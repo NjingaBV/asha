@@ -32,7 +32,7 @@
 		/** Transparent background (for use inside Header) */
 		transparent?: boolean;
 		/** Additional CSS classes */
-		className?: string;
+		class?: string;
 	}
 
 	let {
@@ -44,7 +44,7 @@
 		backgroundColor = '#ffffff',
 		sticky = true,
 		transparent = false,
-		className = ''
+		class: className = ''
 	}: Props = $props();
 
 	// Backward compatibility: if headerMenu is provided, use it to determine orientation
@@ -75,7 +75,7 @@
 		[
 			transparent
 				? 'bg-transparent backdrop-blur-none'
-				: 'bg-white/95 backdrop-blur-md border-b border-gray-200',
+				: 'bg-bg/95 backdrop-blur-md border-b border-border',
 			sticky ? 'sticky top-0' : '',
 			'z-40',
 			className
@@ -109,7 +109,7 @@
 					<Link
 						href={item.href}
 						variant={activeHref === item.href ? 'cta' : 'subtle'}
-						className={activeHref === item.href ? 'font-semibold' : ''}
+						class={activeHref === item.href ? 'font-semibold' : ''}
 					>
 						{item.label}
 					</Link>

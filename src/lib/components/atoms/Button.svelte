@@ -3,6 +3,7 @@
   
   A versatile button component with multiple variants, tones, and sizes.
   Renders as `<button>` or `<a>` depending on whether `href` is provided.
+  Uses XState for robust state management.
   
   @example Basic usage
   ```svelte
@@ -17,14 +18,6 @@
   @example With loading state
   ```svelte
   <Button loading={isSubmitting}>Submit</Button>
-  ```
-  
-  @example With icons
-  ```svelte
-  <Button>
-    {#snippet iconLeft()}<Icon name="plus" />{/snippet}
-    Add item
-  </Button>
   ```
 -->
 <script lang="ts" module>
@@ -66,6 +59,13 @@
 
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { createActor } from 'xstate';
+	import {
+		buttonMachine,
+		getButtonDataAttributes,
+		getButtonStateClasses,
+		type ButtonState
+	} from '$lib/machines/button.machine';
 
 	// ============================================
 	// Props
@@ -144,11 +144,52 @@
 	}: Props = $props();
 
 	// ============================================
+	// State Machine
+	// ============================================
+
+	const actor = createActor(buttonMachine);
+	actor.start();
+
+	// Subscribe to state changes
+	let state = $state(actor.getSnapshot());
+
+	actor.subscribe((snapshot) => {
+		state = snapshot;
+	});
+
+	// Sync props with machine
+	$effect(() => {
+		if (loading) {
+			actor.send({ type: 'START_LOADING' });
+		} else {
+			actor.send({ type: 'STOP_LOADING' });
+		}
+	});
+
+	$effect(() => {
+		if (disabled) {
+			actor.send({ type: 'DISABLE' });
+		} else {
+			actor.send({ type: 'ENABLE' });
+		}
+	});
+
+	// Cleanup
+	$effect(() => {
+		return () => actor.stop();
+	});
+
+	// ============================================
 	// Derived State
 	// ============================================
 
-	const isDisabled = $derived(disabled || loading);
+	const currentState = $derived(state.value as ButtonState);
+	const context = $derived(state.context);
+	const isDisabled = $derived(context.isDisabled || context.isLoading);
 	const isLink = $derived(!!href && !isDisabled);
+
+	const dataAttributes = $derived(getButtonDataAttributes(currentState, context));
+	const stateClasses = $derived(getButtonStateClasses(currentState));
 
 	// ============================================
 	// Style Classes
@@ -162,8 +203,8 @@
 		'font-medium leading-none whitespace-nowrap',
 		// Transitions
 		'transition-all duration-fast ease-standard',
-		// Focus ring
-		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+		// Focus ring (handled by machine state + focus-visible)
+		'outline-none',
 		// Disabled state
 		'disabled:pointer-events-none disabled:opacity-disabled',
 		// Cursor
@@ -181,110 +222,125 @@
 	const variantToneClasses: Record<ButtonVariant, Record<ButtonTone, string>> = {
 		solid: {
 			primary: [
-				'bg-accent text-fg-on-accent',
+				'bg-accent text-fg-on-accent shadow-sm',
 				'hover:bg-accent-hover active:bg-accent-active',
-				'focus-visible:ring-accent'
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			secondary: [
-				'bg-secondary text-fg-on-accent',
+				'bg-secondary text-fg-on-accent shadow-sm',
 				'hover:bg-secondary-hover active:bg-secondary-active',
-				'focus-visible:ring-secondary'
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-secondary data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			neutral: [
-				'bg-fg text-bg',
+				'bg-fg text-bg shadow-sm',
 				'hover:opacity-90 active:opacity-80',
-				'focus-visible:ring-fg'
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-fg data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			danger: [
-				'bg-error text-fg-on-accent',
+				'bg-error text-fg-on-accent shadow-sm',
 				'hover:opacity-90 active:opacity-80',
-				'focus-visible:ring-error'
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-error data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			success: [
-				'bg-success text-fg-on-accent',
+				'bg-success text-fg-on-accent shadow-sm',
 				'hover:opacity-90 active:opacity-80',
-				'focus-visible:ring-success'
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
 			].join(' ')
 		},
 		outline: {
 			primary: [
 				'border border-accent text-accent bg-transparent',
 				'hover:bg-accent hover:text-fg-on-accent',
-				'focus-visible:ring-accent'
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			secondary: [
 				'border border-secondary text-secondary bg-transparent',
 				'hover:bg-secondary hover:text-fg-on-accent',
-				'focus-visible:ring-secondary'
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-secondary data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			neutral: [
 				'border border-border text-fg bg-transparent',
-				'hover:bg-bg-muted',
-				'focus-visible:ring-border-focus'
+				'hover:bg-bg-muted hover:border-fg',
+				'active:bg-bg-subtle',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-border-focus data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			danger: [
 				'border border-error text-error bg-transparent',
 				'hover:bg-error hover:text-fg-on-accent',
-				'focus-visible:ring-error'
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-error data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			success: [
 				'border border-success text-success bg-transparent',
 				'hover:bg-success hover:text-fg-on-accent',
-				'focus-visible:ring-success'
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
 			].join(' ')
 		},
 		ghost: {
 			primary: [
 				'text-accent bg-transparent',
 				'hover:bg-accent-subtle',
-				'focus-visible:ring-accent'
+				'active:bg-accent-subtle/80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			secondary: [
 				'text-secondary bg-transparent',
 				'hover:bg-bg-muted',
-				'focus-visible:ring-secondary'
+				'active:bg-bg-subtle',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-secondary data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			neutral: [
 				'text-fg bg-transparent',
 				'hover:bg-bg-muted',
-				'focus-visible:ring-border-focus'
+				'active:bg-bg-subtle',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-border-focus data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			danger: [
 				'text-error bg-transparent',
 				'hover:bg-error-subtle',
-				'focus-visible:ring-error'
+				'active:bg-error-subtle/80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-error data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			success: [
 				'text-success bg-transparent',
 				'hover:bg-success-subtle',
-				'focus-visible:ring-success'
+				'active:bg-success-subtle/80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
 			].join(' ')
 		},
 		link: {
 			primary: [
 				'text-accent bg-transparent underline-offset-4',
 				'hover:underline',
-				'focus-visible:ring-accent'
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			secondary: [
 				'text-secondary bg-transparent underline-offset-4',
 				'hover:underline',
-				'focus-visible:ring-secondary'
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-secondary data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			neutral: [
 				'text-fg bg-transparent underline-offset-4',
 				'hover:underline',
-				'focus-visible:ring-border-focus'
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-border-focus data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			danger: [
 				'text-error bg-transparent underline-offset-4',
 				'hover:underline',
-				'focus-visible:ring-error'
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-error data-[focus-visible]:ring-offset-2'
 			].join(' '),
 			success: [
 				'text-success bg-transparent underline-offset-4',
 				'hover:underline',
-				'focus-visible:ring-success'
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
 			].join(' ')
 		}
 	};
@@ -295,6 +351,7 @@
 			baseClasses,
 			sizeClasses[size],
 			variantToneClasses[variant][tone],
+			stateClasses,
 			fullWidth ? 'w-full' : '',
 			loading ? 'cursor-wait' : '',
 			className
@@ -307,22 +364,58 @@
 	// Event Handlers
 	// ============================================
 
+	function handleMouseEnter() {
+		actor.send({ type: 'HOVER' });
+	}
+
+	function handleMouseLeave() {
+		actor.send({ type: 'UNHOVER' });
+	}
+
+	function handleMouseDown() {
+		actor.send({ type: 'PRESS' });
+	}
+
+	function handleMouseUp() {
+		actor.send({ type: 'RELEASE' });
+	}
+
+	function handleFocus(event: FocusEvent) {
+		// Simple heuristic for keyboard focus - can be improved with useFocusVisible
+		const fromKeyboard = (event.target as HTMLElement).matches(':focus-visible');
+		actor.send({ type: 'FOCUS', fromKeyboard });
+		onfocus?.(event);
+	}
+
+	function handleBlur(event: FocusEvent) {
+		actor.send({ type: 'BLUR' });
+		onblur?.(event);
+	}
+
 	function handleClick(event: MouseEvent) {
 		if (isDisabled) {
 			event.preventDefault();
 			return;
 		}
+		actor.send({ type: 'CLICK' });
 		onclick?.(event);
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
 		// Handle Enter/Space for link-like behavior on buttons
 		if (event.key === 'Enter' || event.key === ' ') {
+			actor.send({ type: 'PRESS' });
 			if (isLink && event.key === ' ') {
 				event.preventDefault(); // Prevent scroll on space
 			}
 		}
 		onkeydown?.(event);
+	}
+
+	function handleKeyup(event: KeyboardEvent) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			actor.send({ type: 'RELEASE' });
+		}
 	}
 </script>
 
@@ -336,12 +429,18 @@
 		aria-disabled={disabled ? 'true' : undefined}
 		rel={target === '_blank' ? 'noopener noreferrer' : undefined}
 		onclick={handleClick}
-		{onfocus}
-		{onblur}
+		onmouseenter={handleMouseEnter}
+		onmouseleave={handleMouseLeave}
+		onmousedown={handleMouseDown}
+		onmouseup={handleMouseUp}
+		onfocus={handleFocus}
+		onblur={handleBlur}
 		onkeydown={handleKeydown}
+		onkeyup={handleKeyup}
 		data-variant={variant}
 		data-tone={tone}
 		data-size={size}
+		{...dataAttributes}
 	>
 		{#if iconLeft}
 			<span class="shrink-0" aria-hidden="true">
@@ -371,13 +470,18 @@
 		aria-label={ariaLabel}
 		aria-busy={loading ? 'true' : undefined}
 		onclick={handleClick}
-		{onfocus}
-		{onblur}
+		onmouseenter={handleMouseEnter}
+		onmouseleave={handleMouseLeave}
+		onmousedown={handleMouseDown}
+		onmouseup={handleMouseUp}
+		onfocus={handleFocus}
+		onblur={handleBlur}
 		onkeydown={handleKeydown}
+		onkeyup={handleKeyup}
 		data-variant={variant}
 		data-tone={tone}
 		data-size={size}
-		data-loading={loading ? '' : undefined}
+		{...dataAttributes}
 	>
 		{#if loading}
 			<!-- Spinner -->

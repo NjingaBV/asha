@@ -30,11 +30,11 @@ Un composant d'étiquette compact et polyvalent pour mettre en évidence des sta
 			description:
 				'Text content for the badge. Use for simple string labels. Omit to use children slot for custom content.'
 		},
-		color: {
+		tone: {
 			control: { type: 'select' },
 			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral'],
 			description:
-				'Semantic color scheme: "primary" (blue) for brand/main actions, "secondary" (slate) for less prominent info, "success" (emerald) for positive states, "warning" (amber) for caution, "danger" (red) for errors/critical, "neutral" (gray) for general labels. Default is "primary".'
+				'Semantic color tone: "primary" (accent) for brand/main actions, "secondary" for less prominent info, "success" for positive states, "warning" for caution, "danger" for errors/critical, "neutral" for general labels. Default is "primary".'
 		},
 		variant: {
 			control: { type: 'select' },
@@ -42,7 +42,7 @@ Un composant d'étiquette compact et polyvalent pour mettre en évidence des sta
 			description:
 				'Visual style: "solid" for filled backgrounds (high emphasis), "outline" for bordered badges (medium emphasis), "ghost" for text-only (low emphasis). Default is "solid".'
 		},
-		badgeSize: {
+		size: {
 			control: { type: 'select' },
 			options: ['sm', 'base', 'lg'],
 			description:
@@ -66,9 +66,9 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
 	args: {
 		label: 'New',
-		color: 'primary',
+		tone: 'primary',
 		variant: 'solid',
-		badgeSize: 'base',
+		size: 'base',
 		children: null
 	}
 };
@@ -76,7 +76,7 @@ export const Primary: Story = {
 export const Secondary: Story = {
 	args: {
 		...Primary.args,
-		color: 'secondary'
+		tone: 'secondary'
 	}
 };
 
@@ -84,7 +84,7 @@ export const Success: Story = {
 	args: {
 		...Primary.args,
 		label: 'Available',
-		color: 'success'
+		tone: 'success'
 	}
 };
 
@@ -92,7 +92,7 @@ export const Warning: Story = {
 	args: {
 		...Primary.args,
 		label: 'Limited',
-		color: 'warning'
+		tone: 'warning'
 	}
 };
 
@@ -100,7 +100,7 @@ export const Danger: Story = {
 	args: {
 		...Primary.args,
 		label: 'Sold Out',
-		color: 'danger'
+		tone: 'danger'
 	}
 };
 
@@ -108,8 +108,8 @@ export const Neutral: Story = {
 	args: {
 		...Primary.args,
 		label: 'Edition',
-		color: 'neutral',
-		badgeSize: 'sm'
+		tone: 'neutral',
+		size: 'sm'
 	}
 };
 

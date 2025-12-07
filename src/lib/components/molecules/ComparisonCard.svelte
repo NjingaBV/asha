@@ -38,7 +38,7 @@
 	const cardClasses = $derived(
 		[
 			'flex flex-col items-center p-6 rounded-xl border-2 transition-all',
-			highlighted ? 'border-blue-600 bg-blue-50/50' : 'border-gray-200 bg-white',
+			highlighted ? 'border-accent bg-accent/5' : 'border-border bg-surface',
 			className
 		]
 			.filter(Boolean)
@@ -49,28 +49,28 @@
 <div class={cardClasses}>
 	<!-- Image -->
 	<div class="w-full aspect-square mb-4">
-		<Image src={image} alt={imageAlt || name} className="w-full h-full object-contain" />
+		<Image src={image} alt={imageAlt || name} class="w-full h-full object-contain" />
 	</div>
 
 	<!-- Name -->
-	<Heading level={4} size="xl" weight="bold" class="text-slate-900 mb-2 text-center">
+	<Heading level={4} size="xl" weight="bold" class="text-fg mb-2 text-center">
 		{name}
 	</Heading>
 
 	<!-- Price -->
 	{#if price}
-		<Paragraph size="sm" color="text-slate-600" class="mb-4">
+		<Paragraph size="sm" color="text-fg-muted" class="mb-4">
 			{price}
 		</Paragraph>
 	{/if}
 
 	<!-- Features -->
 	{#if features.length > 0}
-		<ul class="w-full space-y-2 text-sm text-slate-600">
+		<ul class="w-full space-y-2 text-sm text-fg-muted">
 			{#each features as feature}
 				<li class="flex items-start gap-2">
 					<svg
-						class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5"
+						class="w-5 h-5 text-success flex-shrink-0 mt-0.5"
 						fill="currentColor"
 						viewBox="0 0 20 20"
 					>

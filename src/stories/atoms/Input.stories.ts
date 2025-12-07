@@ -321,3 +321,36 @@ export const FormFieldExample: Story = {
 		}
 	}
 };
+
+// ============================================
+// Design Guidelines
+// ============================================
+
+/**
+ * # Design Guidelines
+ *
+ * ## Usage
+ * - Use **Outline** inputs for standard forms (default).
+ * - Use **Filled** inputs for less emphasis or on colored backgrounds.
+ * - Use **Ghost** inputs for inline editing or minimal interfaces.
+ *
+ * ## Do's
+ * - Always provide a visible label or `aria-label`.
+ * - Use helper text for instructions or formatting requirements.
+ * - Show inline validation errors immediately after interaction (on blur).
+ *
+ * ## Don'ts
+ * - Don't use placeholder text as a replacement for labels.
+ * - Don't hide required field indicators.
+ * - Avoid using too many different input sizes in the same form.
+ */
+export const Guidelines: Story = {
+	tags: ['!dev'],
+	render: () => ({
+		Component: Input,
+		props: {
+			label: 'See Guidelines in Docs',
+			placeholder: 'Read the docs tab'
+		}
+	})
+};

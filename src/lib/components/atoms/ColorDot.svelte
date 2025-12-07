@@ -84,19 +84,18 @@
 	};
 
 	const colorValue = $derived(getColorValue());
-	const isGradient = $derived(colorValue.includes('linear-gradient'));
 </script>
 
 <button
 	type="button"
 	class={[
-		'rounded-full border-2 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
+		'rounded-full border-2 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent',
 		selected
-			? 'ring-2 ring-offset-2 ring-black shadow-md scale-105'
-			: 'hover:ring-2 hover:ring-offset-2 hover:ring-gray-400 shadow-sm',
+			? 'ring-2 ring-offset-2 ring-fg shadow-md scale-105'
+			: 'hover:ring-2 hover:ring-offset-2 hover:ring-border-strong shadow-sm',
 		className
 	].join(' ')}
-	style={`width:${pixelSize}px;height:${pixelSize}px;background:${colorValue};border-color:${selected ? '#000' : '#e5e7eb'}`}
+	style={`width:${pixelSize}px;height:${pixelSize}px;background:${colorValue};border-color:${selected ? 'rgb(var(--ds-color-fg))' : 'rgb(var(--ds-color-border))'}`}
 	aria-pressed={selected}
 	aria-label={finalLabel}
 	title={finalLabel}

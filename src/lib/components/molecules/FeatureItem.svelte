@@ -20,7 +20,7 @@
 	{/if}
 	<div>
 		<h4 class="text-lg font-semibold">{title}</h4>
-		<p class="text-slate-600 text-sm">{description}</p>
+		<p class="text-fg-muted text-sm">{description}</p>
 	</div>
 	{@render children?.()}
 </div>

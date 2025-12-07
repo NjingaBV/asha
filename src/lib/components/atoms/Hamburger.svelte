@@ -65,10 +65,10 @@
 	const colorMap: Record<HamburgerColor, string> = {
 		currentColor: 'text-current',
 		inherit: 'text-inherit',
-		primary: 'text-blue-600',
+		primary: 'text-accent',
 		white: 'text-white',
 		black: 'text-black',
-		'gray-600': 'text-gray-600'
+		'gray-600': 'text-fg-muted'
 	};
 
 	const iconSize = sizeMap[size];
@@ -125,7 +125,7 @@
 		'relative flex items-center justify-center overflow-hidden md:hidden',
 		'transition-opacity duration-200',
 		disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:opacity-75',
-		'focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500',
+		'focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent',
 		colorMap[color],
 		className
 	]

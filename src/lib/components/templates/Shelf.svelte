@@ -20,11 +20,11 @@
 		alternateColor?: boolean;
 	} = $props();
 
-	const bgColor = (index: number) => {
+	const getBgClass = (index: number) => {
 		if (alternateColor) {
-			return index % 2 === 1 ? '#f5f5f5' : '#ffffff';
+			return index % 2 === 1 ? 'bg-page-alt' : 'bg-page';
 		}
-		return '#ffffff';
+		return 'bg-page';
 	};
 
 	// Relaxed typing to accommodate varying component prop types
@@ -52,7 +52,7 @@
 	{/if}
 	{#each slices as slice, index}
 		{@const Component = getComponent(slice)}
-		<section class="w-full h-full" style="background-color:{bgColor(index)}">
+		<section class="w-full h-full {getBgClass(index)}">
 			{#if Component}
 				<Component {...slice} />
 			{/if}

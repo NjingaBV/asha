@@ -51,12 +51,12 @@
 	{#if title || subtitle}
 		<div class="text-center mb-12">
 			{#if subtitle}
-				<div class="text-blue-600 font-semibold text-sm uppercase tracking-wide mb-4">
+				<div class="text-accent font-semibold text-sm uppercase tracking-wide mb-4">
 					{subtitle}
 				</div>
 			{/if}
 			{#if title}
-				<h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+				<h2 class="text-3xl md:text-4xl font-bold text-fg">
 					{title}
 				</h2>
 			{/if}

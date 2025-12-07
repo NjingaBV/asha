@@ -5,9 +5,19 @@
 		name?: IconName;
 		size?: number;
 		class?: string;
+		/** When false, the icon will have an accessible label. Default is true (decorative icon). */
+		decorative?: boolean;
+		/** Accessible label for the icon (only used when decorative is false) */
+		label?: string;
 	}
 
-	let { name = 'chevron-right', size = 20, class: className = '' }: Props = $props();
+	let {
+		name = 'chevron-right',
+		size = 20,
+		class: className = '',
+		decorative = true,
+		label = ''
+	}: Props = $props();
 
 	const paths: Record<string, string> = {
 		search: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm7-1-4.35-4.35',
@@ -31,6 +41,9 @@
 	stroke-linecap="round"
 	stroke-linejoin="round"
 	class={className}
+	aria-hidden={decorative}
+	aria-label={!decorative ? label : undefined}
+	role={!decorative ? 'img' : undefined}
 >
 	<path d={paths[name]} />
 </svg>

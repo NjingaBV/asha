@@ -60,9 +60,9 @@
 </script>
 
 <section class="py-20 px-4 sm:px-6 lg:px-8">
-	<div class="max-w-7xl mx-auto">
+	<div class="max-w-360 mx-auto">
 		<div class="text-center mb-16">
-			<Heading level={2} class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+			<Heading level={2} class="text-3xl md:text-4xl font-bold text-primary mb-4">
 				Get to know Mac.
 			</Heading>
 		</div>
@@ -71,17 +71,17 @@
 			{#each features as feature}
 				<a
 					href="?focus={feature.focusParam}"
-					class="group block bg-gray-50 hover:bg-gray-100 rounded-3xl p-8 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
+					class="group block bg-page-alt hover:bg-card-hover rounded-3xl p-8 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
 				>
 					<div class="text-center">
 						<Heading
 							level={3}
-							class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors"
+							class="text-xl font-bold text-primary mb-3 group-hover:text-accent-blue transition-colors"
 						>
 							{feature.title}
 						</Heading>
 						<Paragraph
-							class="text-gray-600 group-hover:text-gray-700 transition-colors"
+							class="text-secondary group-hover:text-primary transition-colors"
 						>
 							{feature.description}
 						</Paragraph>

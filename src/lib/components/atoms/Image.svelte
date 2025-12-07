@@ -19,7 +19,7 @@
 		/** Alt text for accessibility */
 		alt: string;
 		/** Additional CSS classes */
-		className?: string;
+		class?: string;
 		/** Object fit style */
 		objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
 		/** Loading strategy */
@@ -36,7 +36,7 @@
 		tablet = undefined,
 		mobile = undefined,
 		alt,
-		className = '',
+		class: className = '',
 		objectFit = 'cover',
 		loading = 'lazy',
 		width = undefined,

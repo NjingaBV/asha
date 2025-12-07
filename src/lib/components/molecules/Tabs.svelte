@@ -66,7 +66,16 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { createActor } from 'xstate';
-	import { tabsMachine, createTabsKeyboardHandler, type Tab } from '$lib/machines/tabs.machine';
+	import {
+		tabsMachine,
+		createTabsKeyboardHandler,
+		getTabDataAttributes,
+		getTabAriaAttributes,
+		type Tab as TabType
+	} from '$lib/machines/tabs.machine';
+
+	// Use imported type locally
+	type Tab = TabType;
 
 	// ============================================
 	// Props
@@ -209,15 +218,15 @@
 					'-mb-px', // Overlap with border
 					isActive
 						? 'text-accent border-b-2 border-accent'
-						: 'text-fg-muted hover:text-fg border-b-2 border-transparent'
+						: 'text-fg-muted hover:text-fg border-b-2 border-transparent hover:border-border-strong'
 				);
 				break;
 
 			case 'pills':
 				baseClasses.push(
-					'rounded-lg',
+					'rounded-full', // Apple-like pills are usually fully rounded
 					isActive
-						? 'bg-accent text-fg-on-accent'
+						? 'bg-accent text-fg-on-accent shadow-sm'
 						: 'text-fg-muted hover:text-fg hover:bg-bg-muted'
 				);
 				break;
@@ -225,7 +234,9 @@
 			case 'enclosed':
 				baseClasses.push(
 					'rounded-md',
-					isActive ? 'bg-surface text-fg shadow-sm' : 'text-fg-muted hover:text-fg'
+					isActive
+						? 'bg-surface text-fg shadow-sm'
+						: 'text-fg-muted hover:text-fg hover:bg-bg-subtle'
 				);
 				break;
 		}
@@ -252,21 +263,16 @@
 		onkeydown={handleKeydown}
 	>
 		{#each tabs as tab (tab.id)}
-			{@const isActive = tab.id === activeId}
 			{@const panelId = `panel-${tab.id}`}
 
 			<button
 				type="button"
 				id={`tab-${tab.id}`}
 				class={getTabClasses(tab)}
-				role="tab"
-				aria-selected={isActive}
-				aria-controls={panelId}
-				aria-disabled={tab.disabled || undefined}
-				tabindex={isActive ? 0 : -1}
 				disabled={tab.disabled}
 				onclick={() => selectTab(tab.id)}
-				data-state={isActive ? 'active' : 'inactive'}
+				{...getTabDataAttributes(tab, activeId)}
+				{...getTabAriaAttributes(tab, activeId, panelId)}
 			>
 				{tab.label}
 			</button>

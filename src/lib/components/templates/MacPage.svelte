@@ -8,6 +8,7 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Heading from '$lib/components/atoms/Heading.svelte';
 	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
+	import SkipLink from '$lib/components/atoms/SkipLink.svelte';
 	import type { MacProduct, LinkType, LogoType } from '$lib/models';
 
 	// Header navigation links
@@ -302,39 +303,42 @@
 	};
 </script>
 
-<div class="min-h-screen bg-white">
+<SkipLink href="#main-content" />
+
+<div class="min-h-screen bg-page">
 	<!-- Global Header -->
 	<Header logo={headerLogo} navLinks={headerNavLinks} />
 
 	<!-- Promo Banner -->
-	<div class="bg-[#f5f5f7] py-3 text-center">
-		<p class="text-sm text-gray-900">
+	<div class="bg-page-alt py-3 text-center">
+		<p class="text-sm text-primary">
 			Now through 12/1, get an Apple Gift Card up to $250 when you buy an eligible Mac.
-			<a href="/shop/gifts" class="text-blue-600 hover:underline">Shop</a>
+			<a href="/shop/gifts" class="text-accent-blue hover:underline">Shop</a>
 		</p>
 	</div>
 
 	<!-- Hero Title -->
-	<section class="bg-white py-16 text-center">
-		<Heading level={1} size="6xl" weight="bold" class="text-gray-900">Mac</Heading>
+	<section class="bg-page py-16 text-center">
+		<Heading level={1} size="6xl" weight="semibold" class="text-primary">Mac</Heading>
 	</section>
 
 	<!-- Chapter Navigation (Horizontal product icons) -->
 	<ChapterNav items={chapterNavItems} />
 
 	<!-- Product Filter Tabs -->
-	<section class="border-b border-gray-200 bg-white">
-		<div class="mx-auto max-w-7xl px-4">
+	<section class="border-b border-border/50 bg-page">
+		<div class="mx-auto max-w-360 px-4">
 			<nav class="flex gap-8" aria-label="Product filter">
 				{#each filterTabs as tab}
 					<button
 						type="button"
 						onclick={() => (activeFilter = tab.value)}
 						class={[
-							'border-b-2 py-4 text-sm font-medium transition-colors',
+							'border-b-2 py-4 text-sm font-medium transition-colors min-h-touch',
+							'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
 							activeFilter === tab.value
-								? 'border-gray-900 text-gray-900'
-								: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+								? 'border-primary text-primary'
+								: 'border-transparent text-secondary hover:border-border hover:text-primary'
 						].join(' ')}
 					>
 						{tab.label}
@@ -344,19 +348,19 @@
 		</div>
 	</section>
 
-	<main>
+	<main id="main-content">
 		<!-- Product Grid -->
-		<section class="bg-[#f5f5f7] py-16">
-			<div class="mx-auto max-w-7xl px-4">
+		<section class="bg-page-alt py-16">
+			<div class="mx-auto max-w-360 px-4">
 				<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 					{#each filteredProducts() as product}
 						<article
-							class="group relative flex flex-col overflow-hidden rounded-3xl bg-white p-6 transition-shadow hover:shadow-xl"
+							class="group relative flex flex-col overflow-hidden rounded-3xl bg-card p-6 transition-shadow hover:shadow-xl"
 							style={`background: ${product.background}`}
 						>
 							{#if product.badge}
 								<span
-									class="absolute left-6 top-6 rounded-full bg-orange-500 px-3 py-1 text-xs font-medium text-white"
+									class="absolute left-6 top-6 rounded-full bg-accent-orange px-3 py-1 text-xs font-medium text-white"
 								>
 									{product.badge}
 								</span>
@@ -366,7 +370,7 @@
 								<h3
 									class={[
 										'text-2xl font-semibold',
-										product.textOnDark ? 'text-white' : 'text-gray-900'
+										product.textOnDark ? 'text-white' : 'text-primary'
 									].join(' ')}
 								>
 									{product.name}
@@ -380,7 +384,7 @@
 									<p
 										class={[
 											'mt-1 text-sm',
-											product.textOnDark ? 'text-gray-300' : 'text-gray-600'
+											product.textOnDark ? 'text-white/80' : 'text-secondary'
 										].join(' ')}
 									>
 										{product.chip}
@@ -399,9 +403,9 @@
 									/>
 								{:else}
 									<div
-										class="flex h-full w-full items-center justify-center rounded-2xl bg-gray-100"
+										class="flex h-full w-full items-center justify-center rounded-2xl bg-card-hover"
 									>
-										<span class="text-gray-400">Image</span>
+										<span class="text-tertiary">Image</span>
 									</div>
 								{/if}
 							</div>
@@ -411,7 +415,7 @@
 								<div class="mb-4 flex justify-center gap-2">
 									{#each product.colors as color}
 										<span
-											class="h-3 w-3 rounded-full border border-gray-300"
+											class="h-3 w-3 rounded-full border border-border"
 											style={`background-color: ${color.swatch}`}
 											title={color.name}
 										></span>
@@ -423,7 +427,7 @@
 							<p
 								class={[
 									'mb-6 text-center text-sm leading-relaxed',
-									product.textOnDark ? 'text-gray-300' : 'text-gray-600'
+									product.textOnDark ? 'text-secondary' : 'text-secondary'
 								].join(' ')}
 							>
 								{product.description}
@@ -434,7 +438,7 @@
 								{#if product.ctas?.primary}
 									<a
 										href={product.ctas.primary.href}
-										class="text-sm font-medium text-blue-600 hover:underline"
+										class="text-sm font-medium text-accent-blue hover:underline"
 									>
 										{product.ctas.primary.label}
 									</a>
@@ -442,7 +446,7 @@
 								{#if product.ctas?.secondary}
 									<a
 										href={product.ctas.secondary.href}
-										class="text-sm font-medium text-blue-600 hover:underline"
+										class="text-sm font-medium text-accent-blue hover:underline"
 									>
 										{product.ctas.secondary.label}
 									</a>
@@ -467,9 +471,9 @@
 		<HelpMeChooseSection />
 
 		<!-- Switch to Mac Section -->
-		<section class="bg-white py-20">
-			<div class="mx-auto max-w-7xl px-4">
-				<Heading level={2} size="4xl" weight="bold" class="mb-12 text-center text-gray-900">
+		<section class="bg-page py-20">
+			<div class="mx-auto max-w-360 px-4">
+				<Heading level={2} size="4xl" weight="bold" class="mb-12 text-center text-primary">
 					Switch to Mac.
 				</Heading>
 
@@ -477,11 +481,11 @@
 					<!-- Trade In Card -->
 					<a
 						href="/trade-in"
-						class="group flex flex-col overflow-hidden rounded-3xl bg-[#f5f5f7] p-8 transition-shadow hover:shadow-lg"
+						class="group flex flex-col overflow-hidden rounded-3xl bg-page-alt p-8 transition-shadow hover:shadow-lg"
 					>
 						<div class="mb-6 text-8xl">
 							<svg
-								class="mx-auto h-24 w-24 text-green-500"
+								class="mx-auto h-24 w-24 text-green-600"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -494,15 +498,15 @@
 								/>
 							</svg>
 						</div>
-						<Heading level={3} size="2xl" weight="bold" class="mb-3 text-gray-900">
+						<Heading level={3} size="2xl" weight="bold" class="mb-3 text-primary">
 							Give us the old. Save on the new.
 						</Heading>
-						<Paragraph class="mb-6 text-gray-600">
+						<Paragraph class="mb-6 text-secondary">
 							With Apple Trade In, you can get a great value for your current device
 							and apply it toward a new one. If your device isn't eligible for credit,
 							we'll recycle it for free.
 						</Paragraph>
-						<span class="mt-auto text-blue-600 group-hover:underline">
+						<span class="mt-auto text-accent-blue group-hover:underline">
 							See what your device is worth
 						</span>
 					</a>
@@ -510,11 +514,11 @@
 					<!-- Mac Does That Card -->
 					<a
 						href="/mac/mac-does-that"
-						class="group flex flex-col overflow-hidden rounded-3xl bg-[#f5f5f7] p-8 transition-shadow hover:shadow-lg"
+						class="group flex flex-col overflow-hidden rounded-3xl bg-page-alt p-8 transition-shadow hover:shadow-lg"
 					>
 						<div class="mb-6 text-8xl">
 							<svg
-								class="mx-auto h-24 w-24 text-blue-500"
+								class="mx-auto h-24 w-24 text-accent-blue"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -527,22 +531,24 @@
 								/>
 							</svg>
 						</div>
-						<Heading level={3} size="2xl" weight="bold" class="mb-3 text-gray-900">
+						<Heading level={3} size="2xl" weight="bold" class="mb-3 text-primary">
 							Mac does that.
 						</Heading>
-						<Paragraph class="mb-6 text-gray-600">
+						<Paragraph class="mb-6 text-secondary">
 							See how easy it is to switch to Mac.
 						</Paragraph>
-						<span class="mt-auto text-blue-600 group-hover:underline">Learn more</span>
+						<span class="mt-auto text-accent-blue group-hover:underline"
+							>Learn more</span
+						>
 					</a>
 				</div>
 			</div>
 		</section>
 
 		<!-- Mac Essentials Section -->
-		<section class="bg-[#f5f5f7] py-20">
-			<div class="mx-auto max-w-7xl px-4">
-				<Heading level={2} size="4xl" weight="bold" class="mb-12 text-center text-gray-900">
+		<section class="bg-page-alt py-20">
+			<div class="mx-auto max-w-360 px-4">
+				<Heading level={2} size="4xl" weight="bold" class="mb-12 text-center text-primary">
 					Mac essentials.
 				</Heading>
 
@@ -550,18 +556,18 @@
 					<!-- Accessories Card -->
 					<a
 						href="/mac/accessories"
-						class="group relative flex min-h-[400px] flex-col overflow-hidden rounded-3xl bg-white p-8 transition-shadow hover:shadow-lg"
+						class="group relative flex min-h-[400px] flex-col overflow-hidden rounded-3xl bg-card p-8 transition-shadow hover:shadow-lg"
 					>
 						<div class="relative z-10">
-							<Heading level={3} size="2xl" weight="bold" class="mb-3 text-gray-900">
+							<Heading level={3} size="2xl" weight="bold" class="mb-3 text-primary">
 								Mac accessories
 							</Heading>
-							<Paragraph class="text-gray-600">
+							<Paragraph class="text-secondary">
 								Explore keyboards, mice, and other essentials.
 							</Paragraph>
 						</div>
 						<div class="mt-auto">
-							<span class="text-blue-600 group-hover:underline"
+							<span class="text-accent-blue group-hover:underline"
 								>Shop Mac accessories</span
 							>
 						</div>
@@ -570,18 +576,18 @@
 					<!-- Studio Display Card -->
 					<a
 						href="/studio-display"
-						class="group relative flex min-h-[400px] flex-col overflow-hidden rounded-3xl bg-white p-8 transition-shadow hover:shadow-lg"
+						class="group relative flex min-h-[400px] flex-col overflow-hidden rounded-3xl bg-card p-8 transition-shadow hover:shadow-lg"
 					>
 						<div class="relative z-10">
-							<Heading level={3} size="2xl" weight="bold" class="mb-3 text-gray-900">
+							<Heading level={3} size="2xl" weight="bold" class="mb-3 text-primary">
 								Studio Display
 							</Heading>
-							<Paragraph class="text-gray-600">
+							<Paragraph class="text-secondary">
 								The 27-inch 5K Retina display pairs beautifully with any Mac.
 							</Paragraph>
 						</div>
 						<div class="mt-auto">
-							<span class="text-blue-600 group-hover:underline">Learn more</span>
+							<span class="text-accent-blue group-hover:underline">Learn more</span>
 						</div>
 					</a>
 				</div>
@@ -589,13 +595,13 @@
 		</section>
 
 		<!-- Unlock the World of Apple (Ecosystem) Section -->
-		<section class="bg-white py-20">
-			<div class="mx-auto max-w-7xl px-4">
-				<Heading level={2} size="4xl" weight="bold" class="mb-6 text-center text-gray-900">
+		<section class="bg-page py-20">
+			<div class="mx-auto max-w-360 px-4">
+				<Heading level={2} size="4xl" weight="bold" class="mb-6 text-center text-primary">
 					Unlock the world of Apple.
 				</Heading>
 				<div class="mb-12 text-center">
-					<a href="/macos/continuity" class="text-blue-600 hover:underline">
+					<a href="/macos/continuity" class="text-accent-blue hover:underline">
 						Learn how Apple devices work better together
 					</a>
 				</div>
@@ -608,10 +614,11 @@
 								type="button"
 								onclick={() => (activeEcosystemTab = index)}
 								class={[
-									'rounded-full px-6 py-2 text-sm font-medium transition-colors',
+									'rounded-full px-6 py-2 text-sm font-medium transition-colors min-h-touch',
+									'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
 									activeEcosystemTab === index
-										? 'bg-gray-900 text-white'
-										: 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+										? 'bg-primary text-white'
+										: 'bg-secondary text-secondary hover:bg-tertiary'
 								].join(' ')}
 							>
 								{feature.title}
@@ -619,11 +626,11 @@
 						{/each}
 					</div>
 
-					<div class="rounded-3xl bg-[#f5f5f7] p-8 text-center">
-						<Heading level={3} size="2xl" weight="bold" class="mb-4 text-gray-900">
+					<div class="rounded-3xl bg-page-alt p-8 text-center">
+						<Heading level={3} size="2xl" weight="bold" class="mb-4 text-primary">
 							{ecosystemFeatures[activeEcosystemTab].title}
 						</Heading>
-						<Paragraph class="mx-auto max-w-2xl text-gray-600">
+						<Paragraph class="mx-auto max-w-2xl text-secondary">
 							{ecosystemFeatures[activeEcosystemTab].description}
 						</Paragraph>
 					</div>
@@ -632,62 +639,62 @@
 		</section>
 
 		<!-- Mac Footer Navigation -->
-		<section class="border-t border-gray-200 bg-[#f5f5f7] py-16">
-			<div class="mx-auto max-w-7xl px-4">
+		<section class="border-t border-border bg-page-alt py-16">
+			<div class="mx-auto max-w-360 px-4">
 				<div class="grid gap-8 md:grid-cols-3">
 					<!-- Explore Mac -->
 					<div>
-						<Heading level={3} size="lg" weight="semibold" class="mb-4 text-gray-900">
+						<Heading level={3} size="lg" weight="semibold" class="mb-4 text-primary">
 							Explore Mac
 						</Heading>
 						<ul class="space-y-2 text-sm">
 							<li>
-								<a href="/mac" class="text-gray-600 hover:text-gray-900"
+								<a href="/mac" class="text-secondary hover:text-primary"
 									>Explore All Mac</a
 								>
 							</li>
 							<li>
-								<a href="/macbook-air" class="text-gray-600 hover:text-gray-900"
+								<a href="/macbook-air" class="text-secondary hover:text-primary"
 									>MacBook Air</a
 								>
 							</li>
 							<li>
-								<a href="/macbook-pro" class="text-gray-600 hover:text-gray-900"
+								<a href="/macbook-pro" class="text-secondary hover:text-primary"
 									>MacBook Pro</a
 								>
 							</li>
 							<li>
-								<a href="/imac" class="text-gray-600 hover:text-gray-900">iMac</a>
+								<a href="/imac" class="text-secondary hover:text-primary">iMac</a>
 							</li>
 							<li>
-								<a href="/mac-mini" class="text-gray-600 hover:text-gray-900"
+								<a href="/mac-mini" class="text-secondary hover:text-primary"
 									>Mac mini</a
 								>
 							</li>
 							<li>
-								<a href="/mac-studio" class="text-gray-600 hover:text-gray-900"
+								<a href="/mac-studio" class="text-secondary hover:text-primary"
 									>Mac Studio</a
 								>
 							</li>
 							<li>
-								<a href="/mac-pro" class="text-gray-600 hover:text-gray-900"
+								<a href="/mac-pro" class="text-secondary hover:text-primary"
 									>Mac Pro</a
 								>
 							</li>
 							<li>
-								<a href="/displays" class="text-gray-600 hover:text-gray-900"
+								<a href="/displays" class="text-secondary hover:text-primary"
 									>Displays</a
 								>
 							</li>
 							<li>
-								<a href="/mac/compare" class="text-gray-600 hover:text-gray-900"
+								<a href="/mac/compare" class="text-secondary hover:text-primary"
 									>Compare Mac</a
 								>
 							</li>
 							<li>
 								<a
 									href="/mac/mac-does-that"
-									class="text-gray-600 hover:text-gray-900"
+									class="text-secondary hover:text-primary"
 									>Switch from PC to Mac</a
 								>
 							</li>
@@ -696,37 +703,37 @@
 
 					<!-- Shop Mac -->
 					<div>
-						<Heading level={3} size="lg" weight="semibold" class="mb-4 text-gray-900">
+						<Heading level={3} size="lg" weight="semibold" class="mb-4 text-primary">
 							Shop Mac
 						</Heading>
 						<ul class="space-y-2 text-sm">
 							<li>
-								<a href="/shop/buy-mac" class="text-gray-600 hover:text-gray-900"
+								<a href="/shop/buy-mac" class="text-secondary hover:text-primary"
 									>Shop Mac</a
 								>
 							</li>
 							<li>
-								<a href="/shop/gifts" class="text-gray-600 hover:text-gray-900"
+								<a href="/shop/gifts" class="text-secondary hover:text-primary"
 									>Apple Store Shopping Event</a
 								>
 							</li>
 							<li>
-								<a href="/mac/best-mac" class="text-gray-600 hover:text-gray-900"
+								<a href="/mac/best-mac" class="text-secondary hover:text-primary"
 									>Help Me Choose</a
 								>
 							</li>
 							<li>
-								<a href="/mac/accessories" class="text-gray-600 hover:text-gray-900"
+								<a href="/mac/accessories" class="text-secondary hover:text-primary"
 									>Mac Accessories</a
 								>
 							</li>
 							<li>
-								<a href="/trade-in" class="text-gray-600 hover:text-gray-900"
+								<a href="/trade-in" class="text-secondary hover:text-primary"
 									>Apple Trade In</a
 								>
 							</li>
 							<li>
-								<a href="/shop/financing" class="text-gray-600 hover:text-gray-900"
+								<a href="/shop/financing" class="text-secondary hover:text-primary"
 									>Financing</a
 								>
 							</li>
@@ -735,54 +742,54 @@
 
 					<!-- More from Mac -->
 					<div>
-						<Heading level={3} size="lg" weight="semibold" class="mb-4 text-gray-900">
+						<Heading level={3} size="lg" weight="semibold" class="mb-4 text-primary">
 							More from Mac
 						</Heading>
 						<ul class="space-y-2 text-sm">
 							<li>
-								<a href="/support/mac" class="text-gray-600 hover:text-gray-900"
+								<a href="/support/mac" class="text-secondary hover:text-primary"
 									>Mac Support</a
 								>
 							</li>
 							<li>
-								<a href="/applecare" class="text-gray-600 hover:text-gray-900"
+								<a href="/applecare" class="text-secondary hover:text-primary"
 									>AppleCare</a
 								>
 							</li>
 							<li>
-								<a href="/macos" class="text-gray-600 hover:text-gray-900"
+								<a href="/macos" class="text-secondary hover:text-primary"
 									>macOS Tahoe</a
 								>
 							</li>
 							<li>
 								<a
 									href="/apple-intelligence"
-									class="text-gray-600 hover:text-gray-900">Apple Intelligence</a
+									class="text-secondary hover:text-primary">Apple Intelligence</a
 								>
 							</li>
 							<li>
-								<a href="/apps" class="text-gray-600 hover:text-gray-900"
+								<a href="/apps" class="text-secondary hover:text-primary"
 									>Apps by Apple</a
 								>
 							</li>
 							<li>
 								<a
 									href="/macos/continuity"
-									class="text-gray-600 hover:text-gray-900">Better with iPhone</a
+									class="text-secondary hover:text-primary">Better with iPhone</a
 								>
 							</li>
 							<li>
-								<a href="/icloud" class="text-gray-600 hover:text-gray-900"
+								<a href="/icloud" class="text-secondary hover:text-primary"
 									>iCloud+</a
 								>
 							</li>
 							<li>
-								<a href="/business/mac" class="text-gray-600 hover:text-gray-900"
+								<a href="/business/mac" class="text-secondary hover:text-primary"
 									>Mac for Business</a
 								>
 							</li>
 							<li>
-								<a href="/education" class="text-gray-600 hover:text-gray-900"
+								<a href="/education" class="text-secondary hover:text-primary"
 									>Education</a
 								>
 							</li>

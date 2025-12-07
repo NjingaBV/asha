@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/svelte-vite';
-import tailwindcss from '@tailwindcss/vite';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -23,7 +22,7 @@ const config: StorybookConfig = {
 	},
 	async viteFinal(config) {
 		config.plugins = config.plugins || [];
-		config.plugins.push(tailwindcss());
+		// config.plugins.push(tailwindcss()); // Already in vite.config.ts
 
 		// Configure SvelteKit aliases for Storybook
 		config.resolve = config.resolve || {};

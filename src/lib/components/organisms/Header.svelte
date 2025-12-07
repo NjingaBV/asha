@@ -33,13 +33,20 @@
 	};
 	let scrollDirection = $derived(deriveDirection(currentY));
 	let offscreen = $derived(scrollDirection === 'down' && currentY > clientHeight * 4);
+
+	// Handle Escape key to close mobile navigation
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape' && open) {
+			open = false;
+		}
+	}
 </script>
 
-<svelte:window bind:scrollY={currentY} />
+<svelte:window bind:scrollY={currentY} onkeydown={handleKeydown} />
 
 <header
 	class={[
-		`sticky top-0 z-50 w-full bg-white/80 text-lg backdrop-blur-md transition-transform ease-in`,
+		`sticky top-0 z-50 w-full bg-bg/80 text-lg backdrop-blur-md transition-transform ease-in`,
 		'h-[var(--header-height)]'
 	].join(' ')}
 	class:motion-safe:-translate-y-full={offscreen}

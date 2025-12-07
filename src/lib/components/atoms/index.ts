@@ -13,3 +13,4 @@ export * from './Linkable.svelte';
 export * from './Paragraph.svelte';
 export * from './PathLine.svelte';
 export * from './PromoBadge.svelte';
+export * from './SkipLink.svelte';

@@ -113,7 +113,7 @@ export const Default: Story = {
 	args: {
 		tabs: sampleTabs
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -131,7 +131,7 @@ export const Underline: Story = {
 		tabs: sampleTabs,
 		variant: 'underline'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -146,7 +146,7 @@ export const Pills: Story = {
 		tabs: sampleTabs,
 		variant: 'pills'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -161,7 +161,7 @@ export const Enclosed: Story = {
 		tabs: sampleTabs,
 		variant: 'enclosed'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -180,7 +180,7 @@ export const Small: Story = {
 		tabs: sampleTabs,
 		size: 'sm'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -194,7 +194,7 @@ export const Medium: Story = {
 		tabs: sampleTabs,
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -208,7 +208,7 @@ export const Large: Story = {
 		tabs: sampleTabs,
 		size: 'lg'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -227,7 +227,7 @@ export const Vertical: Story = {
 		orientation: 'vertical',
 		variant: 'pills'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -244,7 +244,7 @@ export const WithDisabledTab: Story = {
 	args: {
 		tabs: tabsWithDisabled
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -259,7 +259,7 @@ export const FullWidth: Story = {
 		tabs: sampleTabs,
 		fullWidth: true
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -280,7 +280,7 @@ export const DefaultActive: Story = {
 			}
 		}
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
@@ -311,11 +311,48 @@ export const ManyTabs: Story = {
 			}
 		}
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Tabs,
 		props: {
 			...args,
 			panel: (tab: { id: string; label: string }) => `Content for ${tab.label}.`
+		}
+	})
+};
+
+// ============================================
+// Design Guidelines
+// ============================================
+
+/**
+ * # Design Guidelines
+ *
+ * ## Usage
+ * - Use **Underline** tabs for standard page navigation or content switching.
+ * - Use **Pills** tabs for switching between views or filters.
+ * - Use **Enclosed** tabs for contained content areas or settings.
+ *
+ * ## Do's
+ * - Keep tab labels short and consistent (1-2 words).
+ * - Order tabs logically (e.g., General, Advanced, Settings).
+ * - Ensure the active tab is clearly distinguishable.
+ *
+ * ## Don'ts
+ * - Don't use tabs for sequential steps (use a Stepper instead).
+ * - Don't overload tabs with too many items (consider a dropdown or vertical tabs).
+ * - Avoid nesting tabs within tabs if possible.
+ */
+export const Guidelines: Story = {
+	tags: ['!dev'],
+	render: () => ({
+		Component: Tabs,
+		props: {
+			tabs: [
+				{ id: 'usage', label: 'Usage' },
+				{ id: 'dos', label: "Do's" },
+				{ id: 'donts', label: "Don'ts" }
+			],
+			panel: (tab: { id: string; label: string }) => `See ${tab.label} guidelines in Docs.`
 		}
 	})
 };

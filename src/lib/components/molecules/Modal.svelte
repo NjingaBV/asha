@@ -43,7 +43,13 @@
 
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { createFocusTrap } from '$lib/machines/modal.machine';
+	import { createActor } from 'xstate';
+	import {
+		modalMachine,
+		createFocusTrap,
+		getModalDataAttributes,
+		type ModalState
+	} from '$lib/machines/modal.machine';
 
 	// ============================================
 	// Props
@@ -98,20 +104,67 @@
 	}: Props = $props();
 
 	// ============================================
-	// State
+	// State Machine
+	// ============================================
+
+	const actor = createActor(modalMachine, {
+		input: {
+			closeOnEscape,
+			closeOnBackdrop
+		}
+	});
+	actor.start();
+
+	// Subscribe to state changes
+	let machineState = $state(actor.getSnapshot());
+
+	actor.subscribe((snapshot) => {
+		machineState = snapshot;
+		const newState = snapshot.value as ModalState;
+
+		// Sync external open prop with machine state
+		if (newState === 'open' && !open) {
+			open = true;
+			onopen?.();
+		} else if (newState === 'closed' && open) {
+			open = false;
+			onclose?.();
+		}
+	});
+
+	// Sync props with machine
+	$effect(() => {
+		if (open && machineState.value === 'closed') {
+			actor.send({ type: 'OPEN' });
+		} else if (!open && (machineState.value === 'open' || machineState.value === 'opening')) {
+			actor.send({ type: 'CLOSE' });
+		}
+	});
+
+	// Cleanup
+	$effect(() => {
+		return () => actor.stop();
+	});
+
+	// ============================================
+	// Internal State
 	// ============================================
 
 	let dialogRef: HTMLDialogElement | undefined = $state();
 	let focusTrap: ReturnType<typeof createFocusTrap> | null = $state(null);
-	let previousActiveElement: HTMLElement | null = $state(null);
 
 	// ============================================
 	// Derived
 	// ============================================
 
+	const currentState = $derived(machineState.value as ModalState);
+	const context = $derived(machineState.context);
+
 	const modalId = $derived(id || `modal-${Math.random().toString(36).slice(2, 9)}`);
 	const titleId = $derived(`${modalId}-title`);
 	const descId = $derived(`${modalId}-desc`);
+
+	const dataAttributes = $derived(getModalDataAttributes(currentState, context));
 
 	// ============================================
 	// Size Classes
@@ -132,36 +185,25 @@
 	$effect(() => {
 		if (!dialogRef) return;
 
-		if (open) {
-			// Save current focus
-			previousActiveElement = document.activeElement as HTMLElement;
+		if (currentState === 'opening' || currentState === 'open') {
+			if (!dialogRef.open) {
+				dialogRef.showModal();
+				// Prevent body scroll
+				document.body.style.overflow = 'hidden';
 
-			// Show modal
-			dialogRef.showModal();
+				// Setup focus trap
+				focusTrap = createFocusTrap(dialogRef);
+			}
+		} else if (currentState === 'closed') {
+			if (dialogRef.open) {
+				dialogRef.close();
+				// Restore body scroll
+				document.body.style.overflow = '';
 
-			// Setup focus trap
-			focusTrap = createFocusTrap(dialogRef);
-
-			// Prevent body scroll
-			document.body.style.overflow = 'hidden';
-
-			onopen?.();
-		} else {
-			// Close modal
-			dialogRef.close();
-
-			// Cleanup focus trap
-			focusTrap?.destroy();
-			focusTrap = null;
-
-			// Restore body scroll
-			document.body.style.overflow = '';
-
-			// Restore focus
-			previousActiveElement?.focus();
-			previousActiveElement = null;
-
-			onclose?.();
+				// Cleanup focus trap
+				focusTrap?.destroy();
+				focusTrap = null;
+			}
 		}
 	});
 
@@ -170,26 +212,34 @@
 	// ============================================
 
 	function handleClose() {
-		open = false;
+		actor.send({ type: 'CLOSE' });
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
-		if (event.key === 'Escape' && closeOnEscape) {
-			event.preventDefault();
-			handleClose();
+		if (event.key === 'Escape') {
+			actor.send({ type: 'ESCAPE_KEY' });
 		}
 	}
 
 	function handleBackdropClick(event: MouseEvent) {
-		if (closeOnBackdrop && event.target === dialogRef) {
-			handleClose();
+		if (event.target === dialogRef) {
+			actor.send({ type: 'BACKDROP_CLICK' });
 		}
 	}
 
 	function handleDialogClose(event: Event) {
 		// Handle native dialog close (e.g., from form submission)
 		event.preventDefault();
-		handleClose();
+		actor.send({ type: 'CLOSE' });
+	}
+
+	function handleAnimationEnd(event: AnimationEvent) {
+		if (
+			event.target === dialogRef ||
+			(event.target as HTMLElement).classList.contains('bg-surface')
+		) {
+			actor.send({ type: 'ANIMATION_END' });
+		}
 	}
 </script>
 
@@ -202,6 +252,7 @@
 		bg-transparent
 		backdrop:bg-bg-overlay backdrop:opacity-overlay
 		open:animate-fade-in
+		closed:animate-fade-out
 	"
 	aria-labelledby={title ? titleId : undefined}
 	aria-describedby={description ? descId : undefined}
@@ -209,14 +260,17 @@
 	onclick={handleBackdropClick}
 	onkeydown={handleKeydown}
 	onclose={handleDialogClose}
+	onanimationend={handleAnimationEnd}
 	data-size={size}
+	{...dataAttributes}
 >
 	<div
 		class="
 			flex flex-col
 			w-full {sizeClasses[size]}
-			bg-surface rounded-xl shadow-overlay
+			bg-surface rounded-2xl shadow-overlay
 			animate-scale-in
+			border border-border-subtle
 			{className}
 		"
 		role="document"
@@ -243,7 +297,7 @@
 					type="button"
 					class="
 						flex items-center justify-center
-						w-8 h-8 -mr-2 -mt-1
+						w-11 h-11 -mr-2 -mt-1
 						rounded-lg
 						text-fg-muted
 						hover:text-fg hover:bg-bg-muted

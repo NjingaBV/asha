@@ -42,7 +42,7 @@
 	}: Props = $props();
 
 	const comparisonClasses = $derived(
-		['py-16 px-4 sm:px-6 lg:px-8 bg-gray-50', className].filter(Boolean).join(' ')
+		['py-16 px-4 sm:px-6 lg:px-8 bg-bg-subtle', className].filter(Boolean).join(' ')
 	);
 </script>
 
@@ -51,12 +51,12 @@
 		{#if title || description}
 			<div class="text-center mb-12 space-y-4">
 				{#if title}
-					<Heading level={2} size="4xl" weight="bold" class="text-slate-900">
+					<Heading level={2} size="4xl" weight="bold" class="text-fg">
 						{title}
 					</Heading>
 				{/if}
 				{#if description}
-					<Paragraph size="xl" color="text-slate-600" class="max-w-3xl mx-auto">
+					<Paragraph size="xl" color="text-fg-muted" class="max-w-3xl mx-auto">
 						{description}
 					</Paragraph>
 				{/if}

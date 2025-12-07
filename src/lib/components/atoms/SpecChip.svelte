@@ -8,10 +8,10 @@
 
 	let { label, value, emphasize = false, tone = 'light' }: Props = $props();
 
-	const bgClass = $derived(tone === 'dark' ? 'bg-white/10' : 'bg-slate-50');
-	const textClass = $derived(tone === 'dark' ? 'text-white' : 'text-slate-900');
-	const labelClass = $derived(tone === 'dark' ? 'text-white/60' : 'text-slate-500');
-	const borderClass = $derived(tone === 'dark' ? 'border-white/10' : 'border-slate-200');
+	const bgClass = $derived(tone === 'dark' ? 'bg-white/10' : 'bg-bg-muted');
+	const textClass = $derived(tone === 'dark' ? 'text-white' : 'text-fg');
+	const labelClass = $derived(tone === 'dark' ? 'text-white/60' : 'text-fg-muted');
+	const borderClass = $derived(tone === 'dark' ? 'border-white/10' : 'border-border');
 </script>
 
 <div class={`flex flex-col justify-center rounded-xl border px-4 py-3 ${bgClass} ${borderClass}`}>

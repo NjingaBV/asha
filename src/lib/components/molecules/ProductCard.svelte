@@ -84,7 +84,7 @@
 		[
 			'group relative transition-all duration-300',
 			variant === 'default' &&
-				'bg-white rounded-3xl p-8 shadow-sm hover:shadow-lg border border-gray-200 hover:border-gray-300',
+				'bg-surface rounded-3xl p-8 shadow-sm hover:shadow-lg border border-border hover:border-border-hover',
 			variant === 'minimal' && 'bg-transparent',
 			layout === 'center' ? 'text-center' : 'text-left',
 			'flex flex-col',
@@ -98,10 +98,10 @@
 		[
 			'text-xs font-medium z-10',
 			layout === 'center' ? 'flex justify-center' : '',
-			badgeColor === 'blue' && 'bg-blue-600 text-white px-3 py-1 rounded-full inline-block',
-			badgeColor === 'orange' && 'text-orange-600 uppercase tracking-wide inline-block',
-			badgeColor === 'neutral' &&
-				'bg-gray-100 text-gray-800 px-3 py-1 rounded-full inline-block'
+			badgeColor === 'blue' &&
+				'bg-accent text-fg-on-accent px-3 py-1 rounded-full inline-block',
+			badgeColor === 'orange' && 'text-warning uppercase tracking-wide inline-block',
+			badgeColor === 'neutral' && 'bg-bg-subtle text-fg px-3 py-1 rounded-full inline-block'
 		]
 			.filter(Boolean)
 			.join(' ')
@@ -136,29 +136,29 @@
 			</div>
 		{/if}
 
-		<Heading level={3} align="center" class="text-3xl font-bold text-gray-900">
+		<Heading level={3} align="center" class="text-3xl font-bold text-fg">
 			{title}
 		</Heading>
 
 		{#if subtitle}
-			<div class="text-gray-900 font-medium text-sm">
+			<div class="text-fg font-medium text-sm">
 				{subtitle}
 			</div>
 		{/if}
 
-		<Paragraph class="text-gray-600 leading-relaxed text-sm">
+		<Paragraph class="text-fg-muted leading-relaxed text-sm">
 			{description}
 		</Paragraph>
 
 		{#if priceDetail}
-			<p class="text-xs text-gray-500 font-medium">
+			<p class="text-xs text-fg-muted font-medium">
 				{priceDetail}
 			</p>
 		{/if}
 
 		{#if colors.length > 0 && layout === 'left'}
 			<div class="flex items-center gap-2">
-				<span class="text-sm text-gray-500 mr-2">Available in:</span>
+				<span class="text-sm text-fg-muted mr-2">Available in:</span>
 				<div class="flex gap-2">
 					{#each colors as color}
 						<ColorDot {color} type={colorType} size="sm" />
@@ -190,7 +190,7 @@
 				{#if secondaryAction}
 					<a
 						href={secondaryAction.href}
-						class="text-blue-600 hover:underline text-sm font-medium flex items-center gap-1"
+						class="text-accent hover:underline text-sm font-medium flex items-center gap-1"
 						onclick={secondaryAction.onClick}
 					>
 						{secondaryAction.label}

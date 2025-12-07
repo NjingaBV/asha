@@ -1,20 +1,16 @@
-<script lang="ts">
-	import Button from '$lib/components/atoms/Button.svelte';
-	import Linkable from '$lib/components/atoms/Linkable.svelte';
+<script lang="ts" module>
+	// ============================================
+	// Type Exports
+	// ============================================
+
 	import type { ImageType } from '$lib/models';
 
-	/**
-	 * Unified Card component
-	 * Variants: image (default)
-	 * @example
-	 * <Card title="Title" imgSrc={{mobile: '...'}} />
-	 */
+	export type CardTextPosition = 'top' | 'bottom';
+	export type CardTextColor = 'white' | 'black';
+	export type CardTitleSize = 'sm' | 'md' | 'lg' | 'xl';
 
-	type TextPosition = 'top' | 'bottom';
-	type TextColor = 'white' | 'black';
-	type TitleSize = 'sm' | 'md' | 'lg' | 'xl';
-
-	interface Props {
+	/** Props interface for Card component */
+	export interface CardProps {
 		title?: string;
 		subtitle?: string;
 		overview?: string;
@@ -26,15 +22,62 @@
 		textOnImage?: boolean;
 		rounded?: boolean;
 		isVideo?: boolean;
-		textPosition?: TextPosition;
-		textColor?: TextColor;
+		textPosition?: CardTextPosition;
+		textColor?: CardTextColor;
 		overlayButton?: boolean;
 		duration?: string;
-		titleSize?: TitleSize;
+		titleSize?: CardTitleSize;
 		showExpandButton?: boolean;
 		onExpandClick?: () => void;
-		className?: string;
+		class?: string;
 	}
+
+	/** Prop definitions for documentation */
+	export const propDefs = {
+		title: { type: 'string', default: '', description: 'Card title' },
+		subtitle: { type: 'string', default: '', description: 'Card subtitle/category' },
+		overview: { type: 'string', default: '', description: 'Card description text' },
+		imgSrc: { type: 'ImageType | string', description: 'Image source(s)' },
+		buttonName: { type: 'string', default: '', description: 'CTA button text' },
+		buttonLink: { type: 'string', default: '', description: 'CTA button or card link' },
+		backgroundColor: {
+			type: 'string',
+			default: '#000000',
+			description: 'Background color (hex)'
+		},
+		textPosition: {
+			type: 'string',
+			options: ['top', 'bottom'],
+			default: 'bottom',
+			description: 'Text overlay position'
+		},
+		textColor: {
+			type: 'string',
+			options: ['white', 'black'],
+			default: 'white',
+			description: 'Text color'
+		},
+		titleSize: {
+			type: 'string',
+			options: ['sm', 'md', 'lg', 'xl'],
+			default: 'lg',
+			description: 'Title size'
+		},
+		rounded: { type: 'boolean', default: true, description: 'Rounded corners' },
+		showExpandButton: { type: 'boolean', default: false, description: 'Show expand button' }
+	} as const;
+</script>
+
+<script lang="ts">
+	import Button from '$lib/components/atoms/Button.svelte';
+	import Linkable from '$lib/components/atoms/Linkable.svelte';
+
+	/**
+	 * Unified Card component
+	 * Variants: image (default)
+	 * @example
+	 * <Card title="Title" imgSrc={{mobile: '...'}} />
+	 */
 
 	let {
 		title = '',
@@ -55,8 +98,8 @@
 		titleSize = 'lg',
 		showExpandButton = false,
 		onExpandClick = undefined,
-		className = ''
-	}: Props = $props();
+		class: className = ''
+	}: CardProps = $props();
 
 	// Title size mapping
 	const titleSizeClasses = {
@@ -144,7 +187,7 @@
 							class={[
 								'font-semibold tracking-wide uppercase opacity-90',
 								titleSize === 'sm' ? 'text-xs md:text-sm' : 'text-sm md:text-base',
-								textColor === 'white' ? 'text-slate-200' : 'text-slate-900'
+								textColor === 'white' ? 'text-fg-inverse/80' : 'text-fg'
 							]
 								.filter(Boolean)
 								.join(' ')}
@@ -158,7 +201,7 @@
 								titleClass,
 								'font-black leading-tight',
 								subtitle ? 'text-left' : 'text-center',
-								textColor === 'white' ? 'text-white' : 'text-slate-900'
+								textColor === 'white' ? 'text-fg-inverse' : 'text-fg'
 							]
 								.filter(Boolean)
 								.join(' ')}
@@ -172,7 +215,7 @@
 								'font-light text-left leading-relaxed opacity-90',
 								titleSize === 'sm' ? 'text-xs md:text-sm' : 'text-sm md:text-base',
 								'line-clamp-3 md:line-clamp-4',
-								textColor === 'white' ? 'text-slate-300' : 'text-slate-700'
+								textColor === 'white' ? 'text-fg-inverse/70' : 'text-fg-muted'
 							]
 								.filter(Boolean)
 								.join(' ')}
@@ -184,7 +227,7 @@
 						<div class="flex items-center gap-2 md:gap-3 mt-3 md:mt-4">
 							<button
 								type="button"
-								class="shrink-0 transition-opacity hover:opacity-70"
+								class="shrink-0 transition-opacity hover:opacity-70 min-w-touch min-h-touch flex items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
 								aria-label="Play"
 							>
 								<svg
@@ -194,7 +237,7 @@
 									class={[
 										'w-4 md:w-5 h-4 md:h-5',
 										titleSize === 'sm' && 'w-4 h-4',
-										textColor === 'white' ? 'text-white' : 'text-slate-900'
+										textColor === 'white' ? 'text-fg-inverse' : 'text-fg'
 									]
 										.filter(Boolean)
 										.join(' ')}
@@ -207,7 +250,9 @@
 									class={[
 										'font-medium',
 										titleSize === 'sm' ? 'text-xs' : 'text-sm',
-										textColor === 'white' ? 'text-slate-200' : 'text-slate-700'
+										textColor === 'white'
+											? 'text-fg-inverse/80'
+											: 'text-fg-muted'
 									]
 										.filter(Boolean)
 										.join(' ')}
@@ -238,11 +283,12 @@
 				type="button"
 				class={[
 					'absolute bottom-4 right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8',
-					'w-10 h-10 md:w-12 md:h-12 rounded-full',
+					'w-11 h-11 md:w-12 md:h-12 rounded-full',
 					'bg-white/10 backdrop-blur-md',
 					'hover:bg-white/20 transition-all duration-300',
 					'flex items-center justify-center',
-					'group z-10'
+					'group z-10',
+					'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2'
 				]
 					.filter(Boolean)
 					.join(' ')}
@@ -266,13 +312,13 @@
 {#if (buttonName || title) && !textOnImage}
 	<div class="p-6 md:p-8 rounded-b-2xl flex flex-col gap-3 bg-surface">
 		{#if subtitle}
-			<p class="text-slate-600 text-sm md:text-base font-semibold tracking-wide uppercase">
+			<p class="text-fg-muted text-sm md:text-base font-semibold tracking-wide uppercase">
 				{subtitle}
 			</p>
 		{/if}
 		{#if title}
 			<h2
-				class="text-text text-xl md:text-2xl lg:text-3xl font-black leading-tight"
+				class="text-fg text-xl md:text-2xl lg:text-3xl font-black leading-tight"
 				class:text-left={subtitle}
 				class:text-center={!subtitle}
 			>
@@ -281,7 +327,7 @@
 		{/if}
 		{#if overview}
 			<p
-				class="text-slate-600 font-light text-left text-sm md:text-base leading-relaxed line-clamp-4"
+				class="text-fg-muted font-light text-left text-sm md:text-base leading-relaxed line-clamp-4"
 			>
 				{overview}
 			</p>

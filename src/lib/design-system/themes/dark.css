@@ -42,6 +42,7 @@
 	--ds-color-secondary: 94 92 230;
 	--ds-color-secondary-hover: 114 112 240;
 	--ds-color-secondary-active: 134 132 250;
+	--ds-color-secondary-subtle: 25 25 60; /* Dark variant for secondary subtle backgrounds */
 
 	/* State Colors - Adjusted for dark backgrounds */
 	--ds-color-success: 48 209 88;
@@ -101,6 +102,12 @@
 		--ds-color-accent-hover: 26 214 205;
 		--ds-color-accent-active: 51 224 216;
 		--ds-color-accent-subtle: 0 40 38;
+
+		/* Secondary */
+		--ds-color-secondary: 94 92 230;
+		--ds-color-secondary-hover: 114 112 240;
+		--ds-color-secondary-active: 134 132 250;
+		--ds-color-secondary-subtle: 25 25 60;
 
 		/* State Colors */
 		--ds-color-success: 48 209 88;

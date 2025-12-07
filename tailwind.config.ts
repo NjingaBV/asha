@@ -76,7 +76,8 @@ export default {
 				secondary: {
 					DEFAULT: 'rgb(var(--ds-color-secondary) / <alpha-value>)',
 					hover: 'rgb(var(--ds-color-secondary-hover) / <alpha-value>)',
-					active: 'rgb(var(--ds-color-secondary-active) / <alpha-value>)'
+					active: 'rgb(var(--ds-color-secondary-active) / <alpha-value>)',
+					subtle: 'rgb(var(--ds-color-secondary-subtle) / <alpha-value>)'
 				},
 
 				// State colors
@@ -170,14 +171,19 @@ export default {
 				'4': 'var(--ds-space-4)',
 				'5': 'var(--ds-space-5)',
 				'6': 'var(--ds-space-6)',
+				'7': 'var(--ds-space-7)',
 				'8': 'var(--ds-space-8)',
+				'9': 'var(--ds-space-9)',
 				'10': 'var(--ds-space-10)',
+				'11': 'var(--ds-space-11)',
 				'12': 'var(--ds-space-12)',
+				'14': 'var(--ds-space-14)',
 				'16': 'var(--ds-space-16)',
 				'20': 'var(--ds-space-20)',
 				'24': 'var(--ds-space-24)',
 				'32': 'var(--ds-space-32)',
-				gutter: 'var(--ds-gutter)'
+				gutter: 'var(--ds-gutter)',
+				touch: 'var(--ds-touch-target-min)'
 			},
 
 			maxWidth: {
@@ -186,6 +192,14 @@ export default {
 				'container-lg': 'var(--ds-container-lg)',
 				'container-xl': 'var(--ds-container-xl)',
 				'container-2xl': 'var(--ds-container-2xl)'
+			},
+
+			minWidth: {
+				touch: 'var(--ds-touch-target-min)'
+			},
+
+			minHeight: {
+				touch: 'var(--ds-touch-target-min)'
 			},
 
 			/* =========================================

@@ -1,42 +1,77 @@
+<script lang="ts" module>
+	// ============================================
+	// Type Exports
+	// ============================================
+
+	/** Semantic tone values */
+	export type LabelTone = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral';
+
+	/** Props interface for Label component */
+	export interface LabelProps {
+		/** Label text */
+		text?: string;
+		/** Semantic color tone */
+		tone?: LabelTone;
+		/** Additional CSS classes */
+		class?: string;
+		/** Slot for content */
+		children?: any;
+	}
+
+	/** Prop definitions for documentation */
+	export const propDefs = {
+		text: {
+			type: 'string',
+			default: undefined,
+			description: 'Label text'
+		},
+		tone: {
+			type: 'string',
+			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral'],
+			default: 'warning',
+			description: 'Semantic color tone'
+		},
+		class: {
+			type: 'string',
+			default: '',
+			description: 'Additional CSS classes'
+		}
+	} as const;
+</script>
+
 <script lang="ts">
 	/**
 	 * Label component - Small badge/tag for highlighting new products or features
 	 *
 	 * @example
 	 * <Label>New</Label>
-	 * <Label color="orange">Limited</Label>
+	 * <Label tone="warning">Limited</Label>
 	 */
 
-	interface Props {
-		/** Label text */
-		text?: string;
-		/** Color scheme */
-		color?: 'blue' | 'orange' | 'red' | 'green' | 'purple' | 'slate';
-		/** Additional CSS classes */
-		className?: string;
-		/** Slot for content */
-		children?: any;
-	}
+	let {
+		text = undefined,
+		tone = 'warning',
+		class: className = '',
+		children
+	}: LabelProps = $props();
 
-	let { text = undefined, color = 'orange', className = '', children }: Props = $props();
-
-	const getColorClasses = (): string => {
-		const colors = {
-			blue: 'bg-blue-600 text-white',
-			orange: 'bg-orange-600 text-white',
-			red: 'bg-red-600 text-white',
-			green: 'bg-green-600 text-white',
-			purple: 'bg-purple-600 text-white',
-			slate: 'bg-slate-600 text-white'
+	const getToneClasses = (): string => {
+		const tones = {
+			primary: 'bg-accent text-fg-on-accent',
+			secondary: 'bg-secondary text-fg-on-accent',
+			success: 'bg-success text-white',
+			warning: 'bg-warning text-white',
+			danger: 'bg-error text-white',
+			neutral: 'bg-fg-muted text-white'
 		};
-		return colors[color];
+		return tones[tone];
 	};
 
 	const baseClasses =
 		'inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wide';
 
 	const labelClasses = $derived(
-		[baseClasses, getColorClasses(), className].filter(Boolean).join(' ')
+		[baseClasses, getToneClasses(), className].filter(Boolean).join(' ')
 	);
 </script>
 

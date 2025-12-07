@@ -67,7 +67,6 @@
 		description = undefined,
 		items = [],
 		layout = 'grid',
-		variant = 'default',
 		columns = 3,
 		backgroundColor = undefined,
 		gap = 'medium',
@@ -101,7 +100,7 @@
 	};
 
 	const containerClasses = $derived(
-		['py-20 px-4 sm:px-6 lg:px-8', backgroundColor || 'bg-white', className]
+		['py-20 px-4 sm:px-6 lg:px-8', backgroundColor || 'bg-bg', className]
 			.filter(Boolean)
 			.join(' ')
 	);
@@ -118,12 +117,12 @@
 		{#if title || description || headerCta}
 			<div class={titleClasses}>
 				{#if title}
-					<Heading level={2} size="4xl" weight="bold" class="text-gray-900">
+					<Heading level={2} size="4xl" weight="bold" class="text-fg">
 						{title}
 					</Heading>
 				{/if}
 				{#if description}
-					<Paragraph size="lg" color="text-gray-600">
+					<Paragraph size="lg" color="text-fg-muted">
 						{description}
 					</Paragraph>
 				{/if}
@@ -145,7 +144,7 @@
 							<!-- Linkable feature item -->
 							<a
 								href={item.link}
-								class="block bg-gray-50 hover:bg-gray-100 rounded-3xl p-8 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
+								class="block bg-bg-subtle hover:bg-bg-muted rounded-3xl p-8 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
 							>
 								<div class="text-center">
 									{#if item.iconSvg}
@@ -155,12 +154,12 @@
 									{/if}
 									<Heading
 										level={3}
-										class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors"
+										class="text-xl font-bold text-fg mb-3 group-hover:text-accent transition-colors"
 									>
 										{item.title}
 									</Heading>
 									<Paragraph
-										class="text-gray-600 group-hover:text-gray-700 transition-colors"
+										class="text-fg-muted group-hover:text-fg transition-colors"
 									>
 										{item.description}
 									</Paragraph>
@@ -169,7 +168,7 @@
 						{:else}
 							<!-- Regular feature item -->
 							<div
-								class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow"
+								class="bg-surface rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow"
 							>
 								{#if item.iconSvg}
 									<div class="flex justify-center mb-6">
@@ -178,11 +177,11 @@
 								{/if}
 								<Heading
 									level={3}
-									class="text-xl font-bold text-gray-900 mb-4 text-center"
+									class="text-xl font-bold text-fg mb-4 text-center"
 								>
 									{item.title}
 								</Heading>
-								<Paragraph class="text-gray-600 mb-6 text-center">
+								<Paragraph class="text-fg-muted mb-6 text-center">
 									{item.description}
 								</Paragraph>
 								{#if item.cta}
@@ -201,11 +200,11 @@
 			<!-- Stacked layout -->
 			<div class="space-y-8">
 				{#each items as item}
-					<div class="bg-white rounded-3xl p-8 shadow-sm">
-						<Heading level={3} class="text-2xl font-bold text-gray-900 mb-4">
+					<div class="bg-surface rounded-3xl p-8 shadow-sm">
+						<Heading level={3} class="text-2xl font-bold text-fg mb-4">
 							{item.title}
 						</Heading>
-						<Paragraph class="text-gray-600">
+						<Paragraph class="text-fg-muted">
 							{item.description}
 						</Paragraph>
 					</div>

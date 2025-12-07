@@ -99,7 +99,7 @@ export const Default: Story = {
 		title: 'Modal Title',
 		description: 'This is a modal dialog'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -114,7 +114,7 @@ export const WithFooter: Story = {
 		title: 'Confirm Action',
 		description: 'Please confirm your action'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -139,7 +139,7 @@ export const Small: Story = {
 		title: 'Small Modal',
 		size: 'sm'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -154,7 +154,7 @@ export const Medium: Story = {
 		title: 'Medium Modal',
 		size: 'md'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -169,7 +169,7 @@ export const Large: Story = {
 		title: 'Large Modal',
 		size: 'lg'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -185,7 +185,7 @@ export const ExtraLarge: Story = {
 		title: 'Extra Large Modal',
 		size: 'xl'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -201,7 +201,7 @@ export const FullScreen: Story = {
 		title: 'Full Screen Modal',
 		size: 'full'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -221,7 +221,7 @@ export const NoCloseButton: Story = {
 		title: 'Focused Modal',
 		hideCloseButton: true
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -236,7 +236,7 @@ export const NoBackdropClose: Story = {
 		title: 'Important Notice',
 		closeOnBackdrop: false
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -253,7 +253,7 @@ export const NoEscapeClose: Story = {
 		closeOnEscape: false,
 		closeOnBackdrop: false
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -273,7 +273,7 @@ export const LongContent: Story = {
 		title: 'Terms of Service',
 		size: 'lg'
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
@@ -304,11 +304,45 @@ export const AlertModal: Story = {
 			}
 		}
 	},
-	render: (args) => ({
+	render: (args: any) => ({
 		Component: Modal,
 		props: {
 			...args,
 			children: () => 'This action cannot be undone. Are you sure you want to continue?'
+		}
+	})
+};
+
+// ============================================
+// Design Guidelines
+// ============================================
+
+/**
+ * # Design Guidelines
+ *
+ * ## Usage
+ * - Use Modals for critical actions that require focus (e.g., confirmations, complex forms).
+ * - Use **Small** modals for simple alerts or confirmations.
+ * - Use **Large** or **Extra Large** modals for complex content.
+ *
+ * ## Do's
+ * - Keep titles clear and concise.
+ * - Always provide a way to close the modal (close button, escape key, backdrop click).
+ * - Focus the primary action or the first input field when the modal opens.
+ *
+ * ## Don'ts
+ * - Don't nest modals (modals within modals).
+ * - Don't use modals for non-critical information that could be shown in-line.
+ * - Avoid extremely long content that requires excessive scrolling within the modal.
+ */
+export const Guidelines: Story = {
+	tags: ['!dev'],
+	render: () => ({
+		Component: Modal,
+		props: {
+			open: true,
+			title: 'Design Guidelines',
+			children: () => 'See guidelines in the Docs tab.'
 		}
 	})
 };

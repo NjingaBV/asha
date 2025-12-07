@@ -1,6 +1,59 @@
-<script lang="ts">
-	import type { Snippet } from 'svelte';
+<script lang="ts" module>
+	// ============================================
+	// Type Exports
+	// ============================================
 
+	export type LinkVariant = 'default' | 'cta' | 'subtle';
+
+	/** Props interface for Link component */
+	export interface LinkProps {
+		/** Link destination */
+		href: string;
+		/** Visual style variant */
+		variant?: LinkVariant;
+		/** Additional CSS classes */
+		class?: string;
+		/** ARIA label for accessibility */
+		ariaLabel?: string;
+		/** Open in new tab */
+		target?: '_blank' | '_self';
+		/** Slot for content (text, html, or Svelte snippet) */
+		children?: import('svelte').Snippet | any;
+	}
+
+	/** Prop definitions for documentation */
+	export const propDefs = {
+		href: {
+			type: 'string',
+			required: true,
+			description: 'Link destination'
+		},
+		variant: {
+			type: 'string',
+			options: ['default', 'cta', 'subtle'],
+			default: 'default',
+			description: 'Visual style variant'
+		},
+		class: {
+			type: 'string',
+			default: '',
+			description: 'Additional CSS classes'
+		},
+		ariaLabel: {
+			type: 'string',
+			default: undefined,
+			description: 'ARIA label for accessibility'
+		},
+		target: {
+			type: 'string',
+			options: ['_blank', '_self'],
+			default: '_self',
+			description: 'Open in new tab'
+		}
+	} as const;
+</script>
+
+<script lang="ts">
 	/**
 	 * Link component - Apple-style link with optional icon
 	 *
@@ -9,42 +62,26 @@
 	 * <Link href="/buy" variant="cta">Buy</Link>
 	 */
 
-	export type LinkVariant = 'default' | 'cta' | 'subtle';
-
-	interface Props {
-		/** Link destination */
-		href: string;
-		/** Visual style variant */
-		variant?: LinkVariant;
-		/** Additional CSS classes */
-		className?: string;
-		/** ARIA label for accessibility */
-		ariaLabel?: string;
-		/** Open in new tab */
-		target?: '_blank' | '_self';
-		/** Slot for content (text, html, or Svelte snippet) */
-		children?: Snippet | any;
-	}
-
 	let {
 		href,
 		variant = 'default',
-		className = '',
+		class: className = '',
 		ariaLabel = undefined,
 		target = '_self',
 		children
-	}: Props = $props();
+	}: LinkProps = $props();
 
 	const getVariantClasses = (): string => {
 		const variants = {
-			default: 'text-blue-600 hover:text-blue-700 hover:underline',
-			cta: 'text-blue-600 hover:text-blue-700 font-medium hover:underline',
-			subtle: 'text-slate-600 hover:text-slate-900 hover:underline'
+			default: 'text-accent hover:text-accent-hover hover:underline',
+			cta: 'text-accent hover:text-accent-hover font-medium hover:underline',
+			subtle: 'text-fg-muted hover:text-fg hover:underline'
 		};
 		return variants[variant];
 	};
 
-	const baseClasses = 'inline-flex items-center gap-1 transition-colors';
+	const baseClasses =
+		'inline-flex items-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm';
 
 	const linkClasses = $derived(
 		[baseClasses, getVariantClasses(), className].filter(Boolean).join(' ')

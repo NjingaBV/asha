@@ -14,7 +14,7 @@ const meta = {
 Petite étiquette/badge pour mettre en avant les nouveaux produits ou fonctionnalités, inspiré par le design d'Apple.
 
 ## Caractéristiques
-- Plusieurs schémas de couleurs.
+- Plusieurs schémas de couleurs sémantiques.
 - Design compact.
 - Style de texte en majuscules.
 - Utilisé pour les badges "Nouveau".
@@ -27,10 +27,10 @@ Petite étiquette/badge pour mettre en avant les nouveaux produits ou fonctionna
 			control: 'text',
 			description: 'Label text'
 		},
-		color: {
+		tone: {
 			control: 'select',
-			options: ['blue', 'orange', 'red', 'green', 'purple', 'slate'],
-			description: 'Color scheme'
+			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral'],
+			description: 'Semantic color tone'
 		}
 	}
 } satisfies Meta<typeof Label>;
@@ -38,30 +38,37 @@ Petite étiquette/badge pour mettre en avant les nouveaux produits ou fonctionna
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const New: Story = {
+export const Warning: Story = {
 	args: {
 		text: 'New',
-		color: 'orange'
+		tone: 'warning'
 	}
 };
 
-export const Blue: Story = {
+export const Primary: Story = {
 	args: {
 		text: 'Featured',
-		color: 'blue'
+		tone: 'primary'
 	}
 };
 
-export const Green: Story = {
+export const Success: Story = {
 	args: {
 		text: 'Available',
-		color: 'green'
+		tone: 'success'
 	}
 };
 
-export const Red: Story = {
+export const Danger: Story = {
 	args: {
 		text: 'Limited',
-		color: 'red'
+		tone: 'danger'
+	}
+};
+
+export const Neutral: Story = {
+	args: {
+		text: 'Default',
+		tone: 'neutral'
 	}
 };

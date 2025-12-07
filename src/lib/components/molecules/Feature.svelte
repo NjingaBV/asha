@@ -32,7 +32,7 @@
 		{subtitle}
 	</div>
 	<div
-		class="text-left text-slate-600 md:text-center mx-auto max-w-3xl mb-12 md:mb-16 pb-4 md:pb-6 text-base md:text-lg leading-relaxed"
+		class="text-left text-fg-muted md:text-center mx-auto max-w-3xl mb-12 md:mb-16 pb-4 md:pb-6 text-base md:text-lg leading-relaxed"
 	>
 		{description}
 	</div>
@@ -49,7 +49,7 @@
 					/>
 				</div>
 				<div
-					class="w-full md:w-1/2 text-left text-slate-600 space-y-4 md:space-y-6 leading-relaxed"
+					class="w-full md:w-1/2 text-left text-fg-muted space-y-4 md:space-y-6 leading-relaxed"
 				>
 					{@html details.description}
 				</div>
@@ -64,7 +64,7 @@
 					/>
 				</div>
 			{:else}
-				<div class="w-full text-left text-slate-600 space-y-4 md:space-y-6 leading-relaxed">
+				<div class="w-full text-left text-fg-muted space-y-4 md:space-y-6 leading-relaxed">
 					{@html details.description}
 				</div>
 			{/if}

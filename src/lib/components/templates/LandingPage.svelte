@@ -3,6 +3,7 @@
 	import Heading from '../atoms/Heading.svelte';
 	import Paragraph from '../atoms/Paragraph.svelte';
 	import Button from '../atoms/Button.svelte';
+	import SkipLink from '../atoms/SkipLink.svelte';
 	import type { Product, Action } from '../../models/product.type';
 
 	interface Props {
@@ -36,20 +37,20 @@
 	}: Props = $props();
 </script>
 
-<main class="min-h-screen bg-white {className}">
+<SkipLink href="#main-content" />
+
+<main id="main-content" class="min-h-screen bg-page {className}">
 	<!-- Hero Section -->
 	{#if heroTitle || heroDescription || primaryAction || secondaryAction}
-		<section
-			class="relative bg-gradient-to-br from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8"
-		>
-			<div class="max-w-7xl mx-auto text-center">
+		<section class="relative bg-page-alt py-20 px-4 sm:px-6 lg:px-8">
+			<div class="max-w-360 mx-auto text-center">
 				{#if heroTitle}
-					<Heading level={1} class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+					<Heading level={1} class="text-5xl md:text-7xl font-semibold text-primary mb-6">
 						{heroTitle}
 					</Heading>
 				{/if}
 				{#if heroDescription}
-					<Paragraph class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+					<Paragraph class="text-xl text-secondary mb-8 max-w-2xl mx-auto">
 						{heroDescription}
 					</Paragraph>
 				{/if}
@@ -60,7 +61,7 @@
 								tone="primary"
 								size="lg"
 								href={primaryAction.href}
-								onClick={primaryAction.onClick}
+								onclick={primaryAction.onClick}
 							>
 								{primaryAction.label}
 							</Button>
@@ -70,7 +71,7 @@
 								tone="secondary"
 								size="lg"
 								href={secondaryAction.href}
-								onClick={secondaryAction.onClick}
+								onclick={secondaryAction.onClick}
 							>
 								{secondaryAction.label}
 							</Button>
@@ -89,21 +90,21 @@
 	<!-- Features Section -->
 	{#if featuresTitle}
 		<section class="py-16 px-4 sm:px-6 lg:px-8">
-			<div class="max-w-7xl mx-auto">
+			<div class="max-w-360 mx-auto">
 				<div class="text-center mb-12">
-					<Heading level={2} class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+					<Heading level={2} class="text-3xl md:text-4xl font-semibold text-primary mb-4">
 						{featuresTitle}
 					</Heading>
 				</div>
 
 				<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 					<!-- Feature cards can be added here via slot or additional props -->
-					<div class="bg-gray-50 rounded-3xl p-8 text-center">
+					<div class="bg-bg-subtle rounded-3xl p-8 text-center">
 						<div
-							class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6"
+							class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6"
 						>
 							<svg
-								class="w-8 h-8 text-blue-600"
+								class="w-8 h-8 text-accent"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -116,18 +117,18 @@
 								></path>
 							</svg>
 						</div>
-						<Heading level={3} class="text-xl font-bold text-gray-900 mb-4">
+						<Heading level={3} class="text-xl font-bold text-fg mb-4">
 							Performance
 						</Heading>
-						<Paragraph class="text-gray-600">Go fast. Go far.</Paragraph>
+						<Paragraph class="text-fg-muted">Go fast. Go far.</Paragraph>
 					</div>
 
-					<div class="bg-gray-50 rounded-3xl p-8 text-center">
+					<div class="bg-bg-subtle rounded-3xl p-8 text-center">
 						<div
-							class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6"
+							class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6"
 						>
 							<svg
-								class="w-8 h-8 text-blue-600"
+								class="w-8 h-8 text-accent"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -140,18 +141,18 @@
 								></path>
 							</svg>
 						</div>
-						<Heading level={3} class="text-xl font-bold text-gray-900 mb-4">
+						<Heading level={3} class="text-xl font-bold text-fg mb-4">
 							Smart Features
 						</Heading>
-						<Paragraph class="text-gray-600">Powered by AI.</Paragraph>
+						<Paragraph class="text-fg-muted">Powered by AI.</Paragraph>
 					</div>
 
-					<div class="bg-gray-50 rounded-3xl p-8 text-center">
+					<div class="bg-bg-subtle rounded-3xl p-8 text-center">
 						<div
-							class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6"
+							class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6"
 						>
 							<svg
-								class="w-8 h-8 text-blue-600"
+								class="w-8 h-8 text-accent"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -164,10 +165,10 @@
 								></path>
 							</svg>
 						</div>
-						<Heading level={3} class="text-xl font-bold text-gray-900 mb-4">
+						<Heading level={3} class="text-xl font-bold text-fg mb-4">
 							User Friendly
 						</Heading>
-						<Paragraph class="text-gray-600">Easy to use. Easy to love.</Paragraph>
+						<Paragraph class="text-fg-muted">Easy to use. Easy to love.</Paragraph>
 					</div>
 				</div>
 			</div>

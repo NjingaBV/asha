@@ -4,12 +4,12 @@
 	let {
 		href = '#',
 		variant = 'default',
-		className = '',
+		class: className = '',
 		target = '_self',
 		text = ''
 	}: any = $props();
 </script>
 
-<Link {href} {variant} {className} {target}>
+<Link {href} {variant} class={className} {target}>
 	{text}
 </Link>

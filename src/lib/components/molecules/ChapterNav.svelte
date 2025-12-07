@@ -14,14 +14,14 @@
 	let { items = [] }: { items: NavItem[] } = $props();
 </script>
 
-<nav class="w-full overflow-x-auto bg-white py-8 no-scrollbar">
+<nav class="w-full overflow-x-auto bg-surface py-8 no-scrollbar" aria-label="Page sections">
 	<div class="mx-auto max-w-7xl px-4">
 		<ul class="flex min-w-max items-start justify-center gap-8 md:gap-12">
 			{#each items as item}
 				<li>
 					<a
 						href={item.href}
-						class="group flex flex-col items-center gap-3 text-center no-underline"
+						class="group flex flex-col items-center gap-3 text-center no-underline rounded-lg p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
 					>
 						<div class="relative h-12 w-16 md:h-14 md:w-20">
 							<img
@@ -32,12 +32,12 @@
 							/>
 						</div>
 						<span
-							class="text-xs font-medium text-slate-900 group-hover:text-blue-600 md:text-sm"
+							class="text-xs font-medium text-fg group-hover:text-accent md:text-sm"
 						>
 							{item.label}
 						</span>
 						{#if item.isNew}
-							<span class="text-[10px] font-medium text-orange-600">New</span>
+							<span class="text-[10px] font-medium text-warning">New</span>
 						{/if}
 					</a>
 				</li>

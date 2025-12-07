@@ -90,7 +90,7 @@
 
 <!-- 0. CHAPTER NAV -->
 {#if chapterNavItems.length > 0}
-	<div class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
+	<div class="sticky top-0 z-40 bg-page/80 backdrop-blur-md border-b border-border">
 		<ChapterNav items={chapterNavItems} />
 	</div>
 {/if}
@@ -100,14 +100,12 @@
 
 <!-- 2. PRODUCT SHOWCASE -->
 {#if productsData.length > 0}
-	<section class="py-16 md:py-24 bg-white">
-		<div class="max-w-[90rem] mx-auto px-4 md:px-6">
+	<section class="py-16 md:py-24 bg-page">
+		<div class="max-w-360 mx-auto px-4 md:px-6">
 			<div class="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
-				<Heading level={2} size="5xl" weight="bold" class="text-slate-900">
-					Explore.
-				</Heading>
+				<Heading level={2} size="5xl" weight="bold" class="text-primary">Explore.</Heading>
 				<div class="flex gap-6 text-lg font-medium">
-					<a href="/compare" class="text-blue-600 hover:underline">Compare ></a>
+					<a href="/compare" class="text-accent-blue hover:underline">Compare ></a>
 				</div>
 			</div>
 
@@ -131,13 +129,13 @@
 {#if variant !== 'compact'}
 	<!-- 3. BENEFITS SECTION -->
 	{#if benefitsData.length > 0}
-		<section class="py-16 md:py-24 bg-slate-50">
-			<div class="max-w-[90rem] mx-auto px-4 md:px-6">
+		<section class="py-16 md:py-24 bg-page-alt">
+			<div class="max-w-360 mx-auto px-4 md:px-6">
 				<Heading
 					level={2}
 					size="4xl"
 					weight="bold"
-					class="text-slate-900 mb-16 text-center md:text-left"
+					class="text-primary mb-16 text-center md:text-left"
 				>
 					{@html benefitsTitle.replace(/\n/g, '<br/>')}
 				</Heading>
@@ -145,22 +143,22 @@
 				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
 					{#each benefitsData as benefit}
 						<div
-							class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full"
+							class="bg-card rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full"
 						>
 							<Heading
 								level={4}
 								size="xl"
 								weight="semibold"
-								class="text-slate-900 mb-4"
+								class="text-primary mb-4"
 							>
 								{benefit.title}
 							</Heading>
-							<Paragraph class="text-slate-600 text-sm mb-6 flex-grow">
+							<Paragraph class="text-secondary text-sm mb-6 flex-grow">
 								{benefit.description}
 							</Paragraph>
 							<a
 								href={benefit.learnMoreHref}
-								class="text-blue-600 hover:underline text-sm font-medium mt-auto inline-flex items-center gap-1"
+								class="text-accent-blue hover:underline text-sm font-medium mt-auto inline-flex items-center gap-1"
 							>
 								Learn more <span class="text-xs">↗</span>
 							</a>
@@ -173,16 +171,16 @@
 
 	<!-- 4. FEATURES SECTION -->
 	{#if featuresData.length > 0}
-		<section class="py-16 md:py-24 bg-white">
-			<div class="max-w-[90rem] mx-auto px-4 md:px-6">
-				<Heading level={2} size="5xl" weight="bold" class="text-slate-900 mb-16">
+		<section class="py-16 md:py-24 bg-page">
+			<div class="max-w-360 mx-auto px-4 md:px-6">
+				<Heading level={2} size="5xl" weight="bold" class="text-primary mb-16">
 					{featuresTitle}
 				</Heading>
 
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 					{#each featuresData as feature}
 						<div
-							class="group relative overflow-hidden rounded-3xl bg-slate-100 aspect-[4/5]"
+							class="group relative overflow-hidden rounded-3xl bg-card-hover aspect-4/5"
 						>
 							<img
 								src={feature.image}
@@ -190,7 +188,7 @@
 								class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 							/>
 							<div
-								class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent p-8 flex flex-col justify-end"
+								class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent p-8 flex flex-col justify-end"
 							>
 								<Heading level={3} size="2xl" weight="bold" class="text-white mb-2">
 									{feature.title}
@@ -207,12 +205,12 @@
 	{/if}
 
 	<!-- 5. HELP ME CHOOSE SECTION -->
-	<section class="py-16 md:py-24 bg-slate-50">
+	<section class="py-16 md:py-24 bg-page-alt">
 		<div class="max-w-4xl mx-auto px-4 text-center">
-			<Heading level={2} size="5xl" weight="bold" class="text-slate-900 mb-6">
+			<Heading level={2} size="5xl" weight="bold" class="text-primary mb-6">
 				{helpMeChooseTitle}
 			</Heading>
-			<Paragraph size="xl" class="text-slate-600 mb-10 max-w-2xl mx-auto">
+			<Paragraph size="xl" class="text-secondary mb-10 max-w-2xl mx-auto">
 				{helpMeChooseDescription}
 			</Paragraph>
 			<Button size="xl" tone="primary" rounded>{helpMeChooseButtonLabel}</Button>

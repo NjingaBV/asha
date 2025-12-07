@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/svelte';
+import type { Meta, StoryObj } from '@storybook/sveltekit';
 import Home from '$lib/components/pages/Home.svelte';
 import type { SliceType } from '$lib/models';
 
