@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, within } from '@storybook/test';
 import Image from '$lib/components/atoms/Image.svelte';
 
 const meta = {
@@ -224,4 +225,155 @@ export const WithDimensions: Story = {
 		Component: Image,
 		props: { src, alt, class: className, objectFit, loading, width, height }
 	})
+};
+
+// ============================================
+// Play Tests - Rendering & Accessibility
+// ============================================
+
+export const TestImageRendering: Story = {
+	args: {
+		src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
+		alt: 'Test image rendering',
+		className: 'w-full h-64 rounded-lg',
+		objectFit: 'cover'
+	},
+	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
+		Component: Image,
+		props: { src, alt, class: className, objectFit, loading, width, height }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const img = canvasElement.querySelector('img');
+		expect(img).toBeInTheDocument();
+		expect(img).toHaveAttribute('src');
+	}
+};
+
+export const TestAltText: Story = {
+	args: {
+		src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
+		alt: 'MacBook Pro on wooden desk',
+		className: 'w-full h-64 rounded-lg',
+		objectFit: 'cover'
+	},
+	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
+		Component: Image,
+		props: { src, alt, class: className, objectFit, loading, width, height }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const img = canvasElement.querySelector('img');
+		expect(img).toBeInTheDocument();
+		expect(img).toHaveAttribute('alt', 'MacBook Pro on wooden desk');
+	}
+};
+
+export const TestLazyLoading: Story = {
+	args: {
+		src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
+		alt: 'Lazy loaded image',
+		className: 'w-full h-64 rounded-lg',
+		objectFit: 'cover',
+		loading: 'lazy'
+	},
+	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
+		Component: Image,
+		props: { src, alt, class: className, objectFit, loading, width, height }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const img = canvasElement.querySelector('img');
+		expect(img).toBeInTheDocument();
+		expect(img).toHaveAttribute('loading', 'lazy');
+	}
+};
+
+export const TestEagerLoading: Story = {
+	args: {
+		src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
+		alt: 'Eagerly loaded image',
+		className: 'w-full h-64 rounded-lg',
+		objectFit: 'cover',
+		loading: 'eager'
+	},
+	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
+		Component: Image,
+		props: { src, alt, class: className, objectFit, loading, width, height }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const img = canvasElement.querySelector('img');
+		expect(img).toBeInTheDocument();
+		expect(img).toHaveAttribute('loading', 'eager');
+	}
+};
+
+export const TestObjectFitCover: Story = {
+	args: {
+		src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
+		alt: 'Cover image',
+		className: 'w-full h-64 rounded-lg',
+		objectFit: 'cover'
+	},
+	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
+		Component: Image,
+		props: { src, alt, class: className, objectFit, loading, width, height }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const img = canvasElement.querySelector('img');
+		expect(img).toBeInTheDocument();
+		expect(img).toHaveClass('object-cover');
+	}
+};
+
+export const TestObjectFitContain: Story = {
+	args: {
+		src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
+		alt: 'Contained image',
+		className: 'w-full h-64 rounded-lg bg-gray-100',
+		objectFit: 'contain'
+	},
+	render: ({ src, alt, className, objectFit, loading, width, height }: any) => ({
+		Component: Image,
+		props: { src, alt, class: className, objectFit, loading, width, height }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const img = canvasElement.querySelector('img');
+		expect(img).toBeInTheDocument();
+		expect(img).toHaveClass('object-contain');
+	}
+};
+
+export const TestResponsiveImages: Story = {
+	args: {
+		desktop:
+			'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=800&fit=crop',
+		tablet: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
+		mobile: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop',
+		alt: 'Responsive image',
+		className: 'w-full h-64 rounded-lg',
+		objectFit: 'cover'
+	},
+	render: ({
+		desktop,
+		tablet,
+		mobile,
+		alt,
+		className,
+		objectFit,
+		loading,
+		width,
+		height
+	}: any) => ({
+		Component: Image,
+		props: { desktop, tablet, mobile, alt, class: className, objectFit, loading, width, height }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const picture = canvasElement.querySelector('picture');
+		expect(picture).toBeInTheDocument();
+	}
 };

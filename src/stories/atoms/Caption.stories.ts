@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, within } from '@storybook/test';
 import Caption from '$lib/components/atoms/Caption.svelte';
 
 const meta = {
@@ -74,5 +75,90 @@ export const Category: Story = {
 	args: {
 		text: 'MacBook Pro',
 		align: 'left'
+	}
+};
+
+// ============================================
+// Play Tests - Rendering & Styling
+// ============================================
+
+export const TestDefaultRender: Story = {
+	args: {
+		text: 'Featured Product',
+		align: 'center'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const caption = canvas.getByText('Featured Product');
+		expect(caption).toBeInTheDocument();
+		expect(caption.tagName).toBe('P');
+	}
+};
+
+export const TestCenterAlignment: Story = {
+	args: {
+		text: 'Centered Caption',
+		align: 'center'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const caption = canvas.getByText('Centered Caption');
+		expect(caption).toBeInTheDocument();
+		expect(caption).toHaveClass('text-center');
+	}
+};
+
+export const TestLeftAlignment: Story = {
+	args: {
+		text: 'Left Aligned Caption',
+		align: 'left'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const caption = canvas.getByText('Left Aligned Caption');
+		expect(caption).toBeInTheDocument();
+		expect(caption).toHaveClass('text-left');
+	}
+};
+
+export const TestTextContent: Story = {
+	args: {
+		text: 'SERIES 10 LAUNCH',
+		align: 'center'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const caption = canvas.getByText('SERIES 10 LAUNCH');
+		expect(caption).toBeInTheDocument();
+		// Caption should render the text
+		expect(caption.textContent).toBe('SERIES 10 LAUNCH');
+	}
+};
+
+export const TestUppercaseStyle: Story = {
+	args: {
+		text: 'new release',
+		align: 'center'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const caption = canvas.getByText('new release');
+		expect(caption).toBeInTheDocument();
+		// Verify uppercase styling is applied
+		expect(caption).toHaveClass('uppercase');
+	}
+};
+
+export const TestLetterSpacing: Story = {
+	args: {
+		text: 'PREMIUM PRODUCT',
+		align: 'left'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const caption = canvas.getByText('PREMIUM PRODUCT');
+		expect(caption).toBeInTheDocument();
+		// Verify letter spacing (tracking) is applied
+		expect(caption).toHaveClass('tracking-wider');
 	}
 };

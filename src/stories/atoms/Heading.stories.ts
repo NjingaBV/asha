@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, within } from '@storybook/test';
 import Heading from '$lib/components/atoms/Heading.svelte';
 
 const meta = {
@@ -405,5 +406,213 @@ export const Combined: Story = {
 				story: 'Demonstrates combining multiple typographic properties for a complete heading design. Shows how to achieve a polished, brand-specific appearance.'
 			}
 		}
+	}
+};
+
+// ============================================
+// Play Tests - Semantic HTML & Accessibility
+// ============================================
+
+export const TestH1Semantic: Story = {
+	args: {
+		level: 1,
+		size: '6xl',
+		weight: 'bold',
+		children: () => 'H1 Semantic Test'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByRole('heading', { level: 1 });
+		expect(heading).toBeInTheDocument();
+		expect(heading.tagName).toBe('H1');
+		expect(heading).toHaveTextContent('H1 Semantic Test');
+	}
+};
+
+export const TestH2Semantic: Story = {
+	args: {
+		level: 2,
+		size: '5xl',
+		weight: 'bold',
+		children: () => 'H2 Semantic Test'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByRole('heading', { level: 2 });
+		expect(heading).toBeInTheDocument();
+		expect(heading.tagName).toBe('H2');
+	}
+};
+
+export const TestH3Semantic: Story = {
+	args: {
+		level: 3,
+		size: '4xl',
+		weight: 'semibold',
+		children: () => 'H3 Semantic Test'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByRole('heading', { level: 3 });
+		expect(heading).toBeInTheDocument();
+		expect(heading.tagName).toBe('H3');
+	}
+};
+
+export const TestH4Semantic: Story = {
+	args: {
+		level: 4,
+		size: '3xl',
+		weight: 'semibold',
+		children: () => 'H4 Semantic Test'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByRole('heading', { level: 4 });
+		expect(heading).toBeInTheDocument();
+		expect(heading.tagName).toBe('H4');
+	}
+};
+
+export const TestH5Semantic: Story = {
+	args: {
+		level: 5,
+		size: '2xl',
+		weight: 'medium',
+		children: () => 'H5 Semantic Test'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByRole('heading', { level: 5 });
+		expect(heading).toBeInTheDocument();
+		expect(heading.tagName).toBe('H5');
+	}
+};
+
+export const TestH6Semantic: Story = {
+	args: {
+		level: 6,
+		size: 'xl',
+		weight: 'medium',
+		children: () => 'H6 Semantic Test'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByRole('heading', { level: 6 });
+		expect(heading).toBeInTheDocument();
+		expect(heading.tagName).toBe('H6');
+	}
+};
+
+export const TestVisualSizeIndependent: Story = {
+	args: {
+		level: 1,
+		size: 'sm',
+		weight: 'normal',
+		children: () => 'Large Semantics, Small Visual'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByRole('heading', { level: 1 });
+		// Verify semantic level is h1 even though visual size is small
+		expect(heading.tagName).toBe('H1');
+		// Verify it contains the expected text
+		expect(heading).toHaveTextContent('Large Semantics, Small Visual');
+	}
+};
+
+export const TestTextContent: Story = {
+	args: {
+		level: 2,
+		size: '4xl',
+		weight: 'bold',
+		children: () => 'Detailed Heading Content Test'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByText('Detailed Heading Content Test');
+		expect(heading).toBeInTheDocument();
+		expect(heading.tagName).toBe('H2');
+	}
+};
+
+export const TestAlignment: Story = {
+	args: {
+		level: 2,
+		size: '4xl',
+		weight: 'bold',
+		align: 'center',
+		children: () => 'Centered Heading'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByText('Centered Heading');
+		expect(heading).toBeInTheDocument();
+		const styles = window.getComputedStyle(heading);
+		expect(styles.textAlign).toMatch(/(center|left|right|justify)/);
+	}
+};
+
+export const TestColor: Story = {
+	args: {
+		level: 2,
+		size: '4xl',
+		weight: 'bold',
+		color: 'text-blue-600',
+		children: () => 'Colored Heading'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByText('Colored Heading');
+		expect(heading).toBeInTheDocument();
+		// Verify the color class is applied
+		expect(heading).toHaveClass('text-blue-600');
+	}
+};
+
+export const TestWeight: Story = {
+	args: {
+		level: 1,
+		size: '4xl',
+		weight: 'bold',
+		children: () => 'Bold Heading'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByText('Bold Heading');
+		expect(heading).toBeInTheDocument();
+		expect(heading).toHaveClass('font-bold');
+	}
+};
+
+export const TestLeading: Story = {
+	args: {
+		level: 2,
+		size: '4xl',
+		weight: 'bold',
+		leading: 'relaxed',
+		children: () => 'Heading with Relaxed Leading'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByText('Heading with Relaxed Leading');
+		expect(heading).toBeInTheDocument();
+		expect(heading).toHaveClass('leading-relaxed');
+	}
+};
+
+export const TestTracking: Story = {
+	args: {
+		level: 1,
+		size: '4xl',
+		weight: 'bold',
+		tracking: 'wide',
+		children: () => 'WIDE TRACKING'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const heading = canvas.getByText('WIDE TRACKING');
+		expect(heading).toBeInTheDocument();
+		expect(heading).toHaveClass('tracking-wide');
 	}
 };

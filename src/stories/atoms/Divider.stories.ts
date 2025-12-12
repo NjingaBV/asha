@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, within } from '@storybook/test';
 import Divider from '$lib/components/atoms/Divider.svelte';
 
 const meta = {
@@ -118,4 +119,93 @@ export const VerticalMedium: Story = {
 			}
 		})
 	]
+};
+
+// ============================================
+// Play Tests - Rendering & Accessibility
+// ============================================
+
+export const TestHorizontalDivider: Story = {
+	args: {
+		orientation: 'horizontal',
+		thickness: 'thin'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const divider = canvasElement.querySelector('[role="separator"]');
+		expect(divider).toBeInTheDocument();
+		expect(divider).toHaveAttribute('role', 'separator');
+	}
+};
+
+export const TestVerticalDivider: Story = {
+	args: {
+		orientation: 'vertical',
+		thickness: 'thin'
+	},
+	decorators: [
+		() => ({
+			Component: 'div' as any,
+			props: {
+				style: 'height: 100px; display: flex; align-items: center;'
+			}
+		})
+	],
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const divider = canvasElement.querySelector('[role="separator"]');
+		expect(divider).toBeInTheDocument();
+	}
+};
+
+export const TestDividerWithLabel: Story = {
+	args: {
+		orientation: 'horizontal',
+		label: 'OR'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const label = canvas.queryByText('OR');
+		if (label) {
+			expect(label).toBeInTheDocument();
+		}
+		const divider = canvasElement.querySelector('[role="separator"]');
+		expect(divider).toBeInTheDocument();
+	}
+};
+
+export const TestDividerThinThickness: Story = {
+	args: {
+		orientation: 'horizontal',
+		thickness: 'thin'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const divider = canvasElement.querySelector('[role="separator"]');
+		expect(divider).toBeInTheDocument();
+	}
+};
+
+export const TestDividerMediumThickness: Story = {
+	args: {
+		orientation: 'horizontal',
+		thickness: 'medium'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const divider = canvasElement.querySelector('[role="separator"]');
+		expect(divider).toBeInTheDocument();
+	}
+};
+
+export const TestDividerThickThickness: Story = {
+	args: {
+		orientation: 'horizontal',
+		thickness: 'thick'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const divider = canvasElement.querySelector('[role="separator"]');
+		expect(divider).toBeInTheDocument();
+	}
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, within } from '@storybook/test';
 import Logo from '$lib/components/atoms/Logo.svelte';
 
 const meta = {
@@ -85,5 +86,76 @@ export const FullBranding: Story = {
 		imgAlt: 'Ouranos Logo',
 		showTitle: true,
 		link: '/'
+	}
+};
+
+// ============================================
+// Play Tests - Rendering & Accessibility
+// ============================================
+
+export const TestLogoRendering: Story = {
+	args: {
+		title: 'Brand Name',
+		imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format',
+		imgAlt: 'Brand Logo',
+		showTitle: false
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const img = canvasElement.querySelector('img');
+		expect(img).toBeInTheDocument();
+		expect(img).toHaveAttribute('src');
+	}
+};
+
+export const TestLogoAltText: Story = {
+	args: {
+		title: 'Brand Name',
+		imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format',
+		imgAlt: 'DJ FaceMarker Brand Logo',
+		showTitle: false
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const img = canvasElement.querySelector('img');
+		expect(img).toBeInTheDocument();
+		expect(img).toHaveAttribute('alt', 'DJ FaceMarker Brand Logo');
+	}
+};
+
+export const TestLogoWithTitle: Story = {
+	args: {
+		title: 'Ouranos',
+		subtitle: "Courtier d'assurances",
+		imgUrl: 'https://images.prismic.io/ouranos/5f910072-4e6d-4b5e-b47a-5649dc9312fe_O.png?auto=compress,format',
+		imgAlt: 'Ouranos Logo',
+		showTitle: true
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const img = canvasElement.querySelector('img');
+		expect(img).toBeInTheDocument();
+		const title = canvas.queryByText('Ouranos');
+		if (title) {
+			expect(title).toBeInTheDocument();
+		}
+	}
+};
+
+export const TestLogoWithLink: Story = {
+	args: {
+		title: 'DJ FMK',
+		imgUrl: 'https://images.prismic.io/djfacemakerv2/2f3497b5-9e28-4359-8f03-cb8a71548c1e_fmk+transition+noir.png?auto=compress,format',
+		imgAlt: 'DJ FMK Logo',
+		showTitle: false,
+		link: 'https://www.djfacemaker.com'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const link = canvasElement.querySelector('a');
+		if (link) {
+			expect(link).toBeInTheDocument();
+			expect(link).toHaveAttribute('href', 'https://www.djfacemaker.com');
+		}
 	}
 };

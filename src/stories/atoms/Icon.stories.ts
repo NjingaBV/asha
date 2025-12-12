@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, within } from '@storybook/test';
 import Icon from '$lib/components/atoms/Icon.svelte';
 
 const meta = {
@@ -160,4 +161,111 @@ export const Catalog: Story = {
 		}),
 		props: {}
 	})
+};
+
+// ============================================
+// Play Tests - Rendering & Accessibility
+// ============================================
+
+export const TestSearchIcon: Story = {
+	args: { name: 'search', size: 24 },
+	render: ({ name, size, class: className }) => ({
+		Component: Icon,
+		props: { name, size, class: className }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const svg = canvasElement.querySelector('svg');
+		expect(svg).toBeInTheDocument();
+		expect(svg).toHaveAttribute('aria-hidden', 'true');
+	}
+};
+
+export const TestIconRendering: Story = {
+	args: { name: 'sun', size: 32 },
+	render: ({ name, size, class: className }) => ({
+		Component: Icon,
+		props: { name, size, class: className }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const svg = canvasElement.querySelector('svg');
+		expect(svg).toBeInTheDocument();
+		expect(svg).toBeVisible();
+	}
+};
+
+export const TestSmallSize: Story = {
+	args: { name: 'search', size: 16 },
+	render: ({ name, size, class: className }) => ({
+		Component: Icon,
+		props: { name, size, class: className }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const svg = canvasElement.querySelector('svg');
+		expect(svg).toBeInTheDocument();
+		expect(svg).toHaveAttribute('width', '16');
+		expect(svg).toHaveAttribute('height', '16');
+	}
+};
+
+export const TestLargeSize: Story = {
+	args: { name: 'search', size: 48 },
+	render: ({ name, size, class: className }) => ({
+		Component: Icon,
+		props: { name, size, class: className }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const svg = canvasElement.querySelector('svg');
+		expect(svg).toBeInTheDocument();
+		expect(svg).toHaveAttribute('width', '48');
+		expect(svg).toHaveAttribute('height', '48');
+	}
+};
+
+export const TestColoredIcon: Story = {
+	args: { name: 'sun', size: 32, class: 'text-yellow-500' },
+	render: ({ name, size, class: className }) => ({
+		Component: Icon,
+		props: { name, size, class: className }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const svg = canvasElement.querySelector('svg');
+		expect(svg).toBeInTheDocument();
+		// Verify the color class is applied to the icon
+		expect(svg).toHaveClass('text-yellow-500');
+	}
+};
+
+export const TestIconAriaHidden: Story = {
+	args: { name: 'moon', size: 24 },
+	render: ({ name, size, class: className }) => ({
+		Component: Icon,
+		props: { name, size, class: className }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const svg = canvasElement.querySelector('svg');
+		expect(svg).toBeInTheDocument();
+		// Icons should be aria-hidden by default (decorative)
+		expect(svg).toHaveAttribute('aria-hidden', 'true');
+	}
+};
+
+export const TestChevronIcon: Story = {
+	args: { name: 'chevron-right', size: 24 },
+	render: ({ name, size, class: className }) => ({
+		Component: Icon,
+		props: { name, size, class: className }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const svg = canvasElement.querySelector('svg');
+		expect(svg).toBeInTheDocument();
+		expect(svg).toHaveAttribute('width', '24');
+		expect(svg).toHaveAttribute('height', '24');
+	}
 };

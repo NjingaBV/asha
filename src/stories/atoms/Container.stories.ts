@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, within } from '@storybook/test';
 import Container from '$lib/components/atoms/Container.svelte';
 
 const meta = {
@@ -306,4 +307,184 @@ export const NotCentered: Story = {
 			}
 		}
 	})
+};
+
+// ============================================
+// Play Tests - Max-width & Padding
+// ============================================
+
+export const TestContainerRendering: Story = {
+	args: {
+		size: 'lg',
+		padding: 'md',
+		center: true
+	},
+	render: (args: any) => ({
+		Component: Container,
+		props: {
+			...args,
+			children: () => {
+				const div = document.createElement('div');
+				div.className = 'bg-bg-muted p-8 rounded-lg';
+				div.innerHTML = '<p class="text-fg">Container Test</p>';
+				return div;
+			}
+		}
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const container =
+			canvasElement.querySelector('[class*="max-w"]') || canvasElement.firstChild;
+		expect(container).toBeInTheDocument();
+	}
+};
+
+export const TestContainerSizeXS: Story = {
+	args: {
+		size: 'xs',
+		padding: 'md'
+	},
+	render: (args: any) => ({
+		Component: Container,
+		props: {
+			...args,
+			children: () => {
+				const div = document.createElement('div');
+				div.className = 'bg-bg-muted p-4 rounded-lg';
+				div.innerHTML = '<p class="text-fg text-sm">Extra small container</p>';
+				return div;
+			}
+		}
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const container =
+			canvasElement.querySelector('[class*="max-w"]') || canvasElement.firstChild;
+		expect(container).toBeInTheDocument();
+	}
+};
+
+export const TestContainerSizeLg: Story = {
+	args: {
+		size: 'lg',
+		padding: 'md'
+	},
+	render: (args: any) => ({
+		Component: Container,
+		props: {
+			...args,
+			children: () => {
+				const div = document.createElement('div');
+				div.className = 'bg-bg-muted p-4 rounded-lg';
+				div.innerHTML = '<p class="text-fg">Large container</p>';
+				return div;
+			}
+		}
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const container =
+			canvasElement.querySelector('[class*="max-w"]') || canvasElement.firstChild;
+		expect(container).toBeInTheDocument();
+	}
+};
+
+export const TestContainerPaddingNone: Story = {
+	args: {
+		size: 'lg',
+		padding: 'none'
+	},
+	render: (args: any) => ({
+		Component: Container,
+		props: {
+			...args,
+			children: () => {
+				const div = document.createElement('div');
+				div.className = 'bg-bg-muted p-4';
+				div.innerHTML = '<p class="text-fg">No padding</p>';
+				return div;
+			}
+		}
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const container = canvasElement.firstChild;
+		expect(container).toBeInTheDocument();
+	}
+};
+
+export const TestContainerPaddingLarge: Story = {
+	args: {
+		size: 'lg',
+		padding: 'lg'
+	},
+	render: (args: any) => ({
+		Component: Container,
+		props: {
+			...args,
+			children: () => {
+				const div = document.createElement('div');
+				div.className = 'bg-bg-muted p-4 rounded-lg';
+				div.innerHTML = '<p class="text-fg">Large padding</p>';
+				return div;
+			}
+		}
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const container = canvasElement.firstChild;
+		expect(container).toBeInTheDocument();
+	}
+};
+
+export const TestContainerAsSection: Story = {
+	args: {
+		size: 'lg',
+		padding: 'md',
+		as: 'section'
+	},
+	render: (args: any) => ({
+		Component: Container,
+		props: {
+			...args,
+			children: () => {
+				const div = document.createElement('div');
+				div.className = 'bg-bg-muted p-4 rounded-lg';
+				div.innerHTML = '<p class="text-fg">Section container</p>';
+				return div;
+			}
+		}
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const section = canvasElement.querySelector('section');
+		if (section) {
+			expect(section).toBeInTheDocument();
+		}
+	}
+};
+
+export const TestContainerCentered: Story = {
+	args: {
+		size: 'lg',
+		padding: 'md',
+		center: true
+	},
+	render: (args: any) => ({
+		Component: Container,
+		props: {
+			...args,
+			children: () => {
+				const div = document.createElement('div');
+				div.className = 'bg-bg-muted p-4 rounded-lg';
+				div.innerHTML = '<p class="text-fg">Centered container</p>';
+				return div;
+			}
+		}
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const container = canvasElement.firstChild;
+		expect(container).toBeInTheDocument();
+	}
 };

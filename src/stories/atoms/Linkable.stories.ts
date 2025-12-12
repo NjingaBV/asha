@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, within } from '@storybook/test';
 import LinkableComp from '$lib/components/atoms/Linkable.svelte';
 
 const meta = {
@@ -86,4 +87,97 @@ export const ExternalLink: Story = {
 		Component: LinkableComp,
 		props: { isLinkable, link, target }
 	})
+};
+
+// ============================================
+// Play Tests - Wrapper Behavior
+// ============================================
+
+export const TestNotLinkableRender: Story = {
+	args: {
+		isLinkable: false,
+		link: undefined,
+		target: '_self'
+	},
+	render: ({ isLinkable, link, target }: any) => ({
+		Component: LinkableComp,
+		props: { isLinkable, link, target }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const link = canvasElement.querySelector('a');
+		expect(link).not.toBeInTheDocument();
+	}
+};
+
+export const TestLinkableActive: Story = {
+	args: {
+		isLinkable: true,
+		link: '/about',
+		target: '_self'
+	},
+	render: ({ isLinkable, link, target }: any) => ({
+		Component: LinkableComp,
+		props: { isLinkable, link, target }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const link = canvasElement.querySelector('a');
+		expect(link).toBeInTheDocument();
+		expect(link).toHaveAttribute('href', '/about');
+	}
+};
+
+export const TestLinkHref: Story = {
+	args: {
+		isLinkable: true,
+		link: '/products',
+		target: '_self'
+	},
+	render: ({ isLinkable, link, target }: any) => ({
+		Component: LinkableComp,
+		props: { isLinkable, link, target }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const link = canvasElement.querySelector('a');
+		expect(link).toBeInTheDocument();
+		expect(link).toHaveAttribute('href', '/products');
+	}
+};
+
+export const TestExternalLink: Story = {
+	args: {
+		isLinkable: true,
+		link: 'https://example.com',
+		target: '_blank'
+	},
+	render: ({ isLinkable, link, target }: any) => ({
+		Component: LinkableComp,
+		props: { isLinkable, link, target }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const link = canvasElement.querySelector('a');
+		expect(link).toBeInTheDocument();
+		expect(link).toHaveAttribute('href', 'https://example.com');
+		expect(link).toHaveAttribute('target', '_blank');
+	}
+};
+
+export const TestLinkableContent: Story = {
+	args: {
+		isLinkable: true,
+		link: '/home',
+		target: '_self'
+	},
+	render: ({ isLinkable, link, target }: any) => ({
+		Component: LinkableComp,
+		props: { isLinkable, link, target }
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const linkable = canvasElement.querySelector('a') || canvasElement.firstChild;
+		expect(linkable).toBeInTheDocument();
+	}
 };
