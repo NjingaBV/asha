@@ -1,8 +1,7 @@
 @import 'tailwindcss';
 
-@import './lib/design-system/tokens/base.css';
-@import './lib/design-system/themes/light.css';
-@import './lib/design-system/themes/dark.css';
+@import './lib/tokens/base.css';
+@import './lib/tokens/themes/dark.css';
 
 @layer utilities {
 	.animation-delay-2000 {

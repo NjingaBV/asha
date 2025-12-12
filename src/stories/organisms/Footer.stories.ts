@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Footer from '@/lib/components/organisms/Footer.svelte';
+import Footer from '$lib/components/organisms/Footer.svelte';
 
 const meta = {
 	title: 'Organisms/Footer',

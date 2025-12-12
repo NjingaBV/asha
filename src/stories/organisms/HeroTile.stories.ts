@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import HeroTile from '@/lib/components/organisms/HeroTile.svelte';
+import HeroTile from '$lib/components/organisms/HeroTile.svelte';
 
 const meta = {
 	title: 'Organisms/HeroTile',

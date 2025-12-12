@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Carousel from '$lib/components/organisms/Carousel.svelte';
-	import Features from '$lib/components/organisms/Features.svelte';
-	import Hero from '$lib/components/organisms/Hero.svelte';
-	import HeroTile from '$lib/components/organisms/HeroTile.svelte';
-	import NavigationBar from '$lib/components/molecules/NavigationBar.svelte';
-	import Slogan from '$lib/components/organisms/Slogan.svelte';
-	import TextAnimation from '$lib/components/organisms/TextAnimation.svelte';
-	import type { LinkType, SliceType } from '$lib/models';
+	import Carousel from '$lib/organisms/Carousel.svelte';
+	import FeatureSection from '$lib/organisms/FeatureSection.svelte';
+	import Hero from '$lib/organisms/Hero.svelte';
+	import HeroTile from '$lib/organisms/HeroTile.svelte';
+	import NavigationBar from '$lib/molecules/NavigationBar.svelte';
+	import Slogan from '$lib/organisms/Slogan.svelte';
+	import TextAnimation from '$lib/organisms/TextAnimation.svelte';
+	import type { LinkType, SliceType } from 'src/lib/models';
 
 	let {
 		navLinks = [],
@@ -37,7 +37,7 @@
 			case 'slogan':
 				return Slogan;
 			case 'features':
-				return Features;
+				return FeatureSection;
 			case 'text-animation':
 				return TextAnimation;
 			case 'tiles':

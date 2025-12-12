@@ -1,13 +1,11 @@
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button.svelte';
-	import Heading from '$lib/components/atoms/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
-	import Link from '$lib/components/atoms/Link.svelte';
-	import Label from '$lib/components/atoms/Label.svelte';
-	import Image from '$lib/components/atoms/Image.svelte';
-	import Eyebrow from '$lib/components/atoms/Eyebrow.svelte';
-	import CTAGroup from '$lib/components/molecules/CTAGroup.svelte';
-	import type { ImageType } from '$lib/models';
+	import Button from '$lib/atoms/Button.svelte';
+	import Heading from '$lib/atoms/Heading.svelte';
+	import Text from '$lib/atoms/Text.svelte';
+	import Link from '$lib/atoms/Link.svelte';
+	import Label from '$lib/atoms/Label.svelte';
+	import Image from '$lib/atoms/Image.svelte';
+	import type { ImageType } from 'src/lib/models';
 
 	/**
 	 * Hero component - Unified hero banner with multiple variants
@@ -256,15 +254,15 @@
 				</Heading>
 
 				{#if subtitle}
-					<Paragraph size="2xl" class="{subtextColorClass} font-semibold">
+					<Text size="2xl" class="{subtextColorClass} font-semibold">
 						{subtitle}
-					</Paragraph>
+					</Text>
 				{/if}
 
 				{#if description}
-					<Paragraph size="lg" class={subtextColorClass}>
+					<Text size="lg" class={subtextColorClass}>
 						{description}
-					</Paragraph>
+					</Text>
 				{/if}
 			</div>
 
@@ -349,14 +347,14 @@
 
 					<!-- Description -->
 					{#if description}
-						<Paragraph
+						<Text
 							size="lg"
 							color="text-fg-muted"
 							leading="relaxed"
 							class="max-w-lg md:text-lg"
 						>
 							{description}
-						</Paragraph>
+						</Text>
 					{/if}
 
 					<!-- Actions -->
@@ -422,26 +420,27 @@
 	<section class="relative w-full overflow-hidden" style={`background:${backgroundColor}`}>
 		<div class="container mx-auto px-6 py-16 md:py-24 text-center text-white">
 			{#if eyebrow}
-				<Eyebrow text={eyebrow} />
+				<span
+					class="inline-block text-sm font-semibold uppercase tracking-widest text-white/80 mb-2"
+				>
+					{eyebrow}
+				</span>
 			{/if}
 			<h1 class="mt-3 text-4xl md:text-6xl font-extrabold tracking-tight">{title}</h1>
 			{#if subtitle}
 				<p class="mt-4 text-lg md:text-xl text-white/80">{subtitle}</p>
 			{/if}
-			<div class="mt-8">
-				<CTAGroup
-					align="center"
-					primary={primaryAction && {
-						label: primaryAction.label,
-						href: primaryAction.href,
-						tone: 'primary'
-					}}
-					secondary={secondaryAction && {
-						label: secondaryAction.label,
-						href: secondaryAction.href,
-						tone: 'secondary'
-					}}
-				/>
+			<div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+				{#if primaryAction}
+					<Button tone="primary" size="lg" href={primaryAction.href}>
+						{primaryAction.label}
+					</Button>
+				{/if}
+				{#if secondaryAction}
+					<Button variant="outline" tone="neutral" size="lg" href={secondaryAction.href}>
+						{secondaryAction.label}
+					</Button>
+				{/if}
 			</div>
 		</div>
 		{#if image && image.src}

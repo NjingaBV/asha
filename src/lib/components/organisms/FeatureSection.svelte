@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Heading from '../atoms/Heading.svelte';
-	import Paragraph from '../atoms/Paragraph.svelte';
+	import Text from '../atoms/Text.svelte';
 	import Button from '../atoms/Button.svelte';
 
 	/**
@@ -122,9 +122,9 @@
 					</Heading>
 				{/if}
 				{#if description}
-					<Paragraph size="lg" color="text-fg-muted">
+					<Text size="lg" color="text-fg-muted">
 						{description}
-					</Paragraph>
+					</Text>
 				{/if}
 				{#if headerCta}
 					<div class="flex justify-center pt-4">
@@ -158,11 +158,11 @@
 									>
 										{item.title}
 									</Heading>
-									<Paragraph
+									<Text
 										class="text-fg-muted group-hover:text-fg transition-colors"
 									>
 										{item.description}
-									</Paragraph>
+									</Text>
 								</div>
 							</a>
 						{:else}
@@ -181,9 +181,9 @@
 								>
 									{item.title}
 								</Heading>
-								<Paragraph class="text-fg-muted mb-6 text-center">
+								<Text class="text-fg-muted mb-6 text-center">
 									{item.description}
-								</Paragraph>
+								</Text>
 								{#if item.cta}
 									<div class="text-center">
 										<Button tone="secondary" href={item.cta.href}>
@@ -204,9 +204,9 @@
 						<Heading level={3} class="text-2xl font-bold text-fg mb-4">
 							{item.title}
 						</Heading>
-						<Paragraph class="text-fg-muted">
+						<Text class="text-fg-muted">
 							{item.description}
-						</Paragraph>
+						</Text>
 					</div>
 				{/each}
 			</div>

@@ -3,7 +3,7 @@
 	// Type Exports
 	// ============================================
 
-	import type { ImageType } from '$lib/models';
+	import type { ImageType } from 'src/lib/models';
 
 	export type CardTextPosition = 'top' | 'bottom';
 	export type CardTextColor = 'white' | 'black';
@@ -69,8 +69,8 @@
 </script>
 
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button.svelte';
-	import Linkable from '$lib/components/atoms/Linkable.svelte';
+	import Button from '$lib/atoms/Button.svelte';
+	import Linkable from '$lib/atoms/Linkable.svelte';
 
 	/**
 	 * Unified Card component

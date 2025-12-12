@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Showcase from '@/lib/components/organisms/Showcase.svelte';
+import Showcase from '$lib/components/organisms/Showcase.svelte';
 
 const meta = {
 	title: 'Organisms/Showcase',

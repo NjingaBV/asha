@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Player from '@/lib/components/molecules/Player.svelte';
+import Player from '$lib/components/molecules/Player.svelte';
 
 const meta = {
 	title: 'Molecules/Player',

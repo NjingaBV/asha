@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SpecChip from '$lib/components/atoms/SpecChip.svelte';
-	import type { MacSpec } from '$lib/models';
+	import Chip from '$lib/atoms/Chip.svelte';
+	import type { MacSpec } from 'src/lib/models';
 
 	interface Props {
 		specs?: MacSpec[];
@@ -13,7 +13,7 @@
 {#if specs.length > 0}
 	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
 		{#each specs as spec}
-			<SpecChip label={spec.label} value={spec.value} emphasize={spec.emphasize} {tone} />
+			<Chip label={spec.label} value={spec.value} emphasize={spec.emphasize} {tone} />
 		{/each}
 	</div>
 {/if}

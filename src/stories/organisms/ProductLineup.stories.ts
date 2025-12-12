@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import ProductLineup from '../../lib/components/organisms/ProductLineup.svelte';
+import ProductLineup from '$lib/components/organisms/ProductLineup.svelte';
 
 const meta = {
 	title: 'Organisms/ProductLineup',

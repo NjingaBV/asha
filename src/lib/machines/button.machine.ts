@@ -228,7 +228,7 @@ export const buttonMachine = setup({
 /**
  * Get data attributes for button based on current state
  */
-export function getButtonDataAttributes(state: ButtonState, context: ButtonContext) {
+export function getButtonDataAttributes(state: ButtonState, context: unknown) {
 	return {
 		'data-state': state,
 		'data-loading': context.isLoading || undefined,

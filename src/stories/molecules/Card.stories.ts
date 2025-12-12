@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Card from '@/lib/components/molecules/Card.svelte';
+import Card from '$lib/components/molecules/Card.svelte';
 
 const meta = {
 	title: 'Molecules/Card',
@@ -9,17 +9,17 @@ const meta = {
 		docs: {
 			description: {
 				component: `
-# Carte (Card)
+# Card
 
-Une molécule de carte polyvalente pour afficher du contenu, des produits ou des médias avec des images optionnelles, des superpositions de texte et des boutons d'action.
+A versatile card molecule for displaying content, products, or media with optional images, text overlays, and action buttons.
 
-## Caractéristiques Clés
+## Key Features
 
-- **Mises en Page Flexibles**: Texte superposé sur l'image ou en dessous.
-- **Images Réactives**: Élément \`<picture>\` avec des sources pour mobile, tablette et ordinateur.
-- **Contrôle du Format d'Image**: S'ajuste automatiquement en fonction du contenu (4:5, carré, vidéo).
-- **Effets de Survol**: Animation de mise à l'échelle subtile au survol.
-- **Enveloppe Cliquable**: La carte entière devient cliquable lorsque le bouton est omis.
+- **Flexible Layouts**: Text overlay on image or below image.
+- **Responsive Images**: \`<picture>\` element with sources for mobile, tablet, and desktop.
+- **Aspect Ratio Control**: Automatically adjusts based on content (4:5, square, video).
+- **Hover Effects**: Subtle scaling animation on hover.
+- **Clickable Wrapper**: The entire card becomes clickable when the button name is omitted.
 `
 			}
 		}
@@ -275,4 +275,39 @@ export const AppleStylePerformance: Story = {
 			defaultViewport: 'responsive'
 		}
 	}
+};
+
+// ============================================
+// Design Guidelines
+// ============================================
+
+/**
+ * # Design Guidelines
+ *
+ * ## Usage
+ * - Use **Text Overlay** cards (textOnImage=true) for high-impact visual content like hero cards or featured items.
+ * - Use **Standard** cards (textOnImage=false) for editorial content, news, or lists where readability is paramount.
+ * - Use **Video** cards (isVideo=true) for media content.
+ *
+ * ## Do's
+ * - Ensure high-quality images are used, especially for overlay cards.
+ * - Keep titles concise to prevent wrapping issues on smaller screens.
+ * - Use the "Mix Color" effect sparingly for artistic direction.
+ *
+ * ## Don'ts
+ * - Don't use text overlay on busy images without ensuring sufficient contrast.
+ * - Don't overload the card with too much text in the "overview" section.
+ * - Avoid mixing rounded and non-rounded cards in the same grid.
+ */
+export const Guidelines: Story = {
+	tags: ['!dev'],
+	render: () => ({
+		Component: Card,
+		props: {
+			...Primary.args,
+			title: 'Design Guidelines',
+			overview: 'See guidelines in the Docs tab.',
+			textOnImage: false
+		}
+	})
 };

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Heading from '$lib/components/atoms/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
-	import Image from '$lib/components/atoms/Image.svelte';
+	import Heading from '$lib/atoms/Heading.svelte';
+	import Text from '$lib/atoms/Text.svelte';
+	import Image from '$lib/atoms/Image.svelte';
 
 	/**
 	 * ComparisonCard component - Side-by-side feature comparison
@@ -59,9 +59,9 @@
 
 	<!-- Price -->
 	{#if price}
-		<Paragraph size="sm" color="text-fg-muted" class="mb-4">
+		<Text size="sm" color="text-fg-muted" class="mb-4">
 			{price}
-		</Paragraph>
+		</Text>
 	{/if}
 
 	<!-- Features -->

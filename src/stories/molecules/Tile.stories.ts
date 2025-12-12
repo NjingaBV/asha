@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Tile from '@/lib/components/molecules/Tile.svelte';
+import Tile from '$lib/components/molecules/Tile.svelte';
 
 const meta = {
 	title: 'Molecules/Tile',

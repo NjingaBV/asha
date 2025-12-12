@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Modal from '@/lib/components/molecules/Modal.svelte';
-import Button from '@/lib/components/atoms/Button.svelte';
+import Modal from '$lib/components/molecules/Modal.svelte';
+import Button from '$lib/components/atoms/Button.svelte';
 
 /**
  * # Modal

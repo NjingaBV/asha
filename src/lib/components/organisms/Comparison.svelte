@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ComparisonCard from '$lib/components/molecules/ComparisonCard.svelte';
-	import Heading from '$lib/components/atoms/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
+	import ComparisonCard from '$lib/molecules/ComparisonCard.svelte';
+	import Heading from '$lib/atoms/Heading.svelte';
+	import Text from '$lib/atoms/Text.svelte';
 
 	/**
 	 * Comparison component - Side-by-side comparison section
@@ -56,9 +56,9 @@
 					</Heading>
 				{/if}
 				{#if description}
-					<Paragraph size="xl" color="text-fg-muted" class="max-w-3xl mx-auto">
+					<Text size="xl" color="text-fg-muted" class="max-w-3xl mx-auto">
 						{description}
-					</Paragraph>
+					</Text>
 				{/if}
 			</div>
 		{/if}

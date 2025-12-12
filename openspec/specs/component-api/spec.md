@@ -1,6 +1,6 @@
 # Specification: Component API Standards
 
-## Overview
+## Purpose
 
 This specification defines the standardized props, variants, and API patterns that all Asha components MUST follow for consistency and predictability.
 
@@ -10,31 +10,19 @@ This specification defines the standardized props, variants, and API patterns th
 
 All components SHALL use consistent prop names for common functionality across the design system.
 
-#### Scenario: CSS class prop naming
-
-- **WHEN** a component accepts custom CSS classes
-- **THEN** the prop MUST be named `class` (not `className`)
-- **AND** it MUST have type `string` with default `''`
-
-#### Scenario: Size prop naming
+#### Scenario: Size prop values consistency
 
 - **WHEN** a component has size variants
 - **THEN** the prop MUST be named `size` (not `badgeSize`, `buttonSize`, etc.)
-- **AND** values MUST be from: `'sm' | 'md' | 'lg'` unless documented otherwise
+- **AND** values MUST be from: `'sm' | 'md' | 'lg'` (not `'base'`)
+- **AND** the default MUST be `'md'` for consistency
 
-#### Scenario: Color scheme prop naming
+#### Scenario: Badge size standardization
 
-- **WHEN** a component has semantic color variants
-- **THEN** the prop MUST be named `tone` (not `color`)
-- **AND** values MUST be from: `'primary' | 'secondary' | 'neutral' | 'success' | 'warning' | 'danger'`
-
-#### Scenario: Visual style prop naming
-
-- **WHEN** a component has visual style variants
-- **THEN** the prop MUST be named `variant`
-- **AND** standard values are: `'solid' | 'outline' | 'ghost'` with component-specific additions documented
-
----
+- **WHEN** using the Badge component
+- **THEN** size prop MUST accept `'sm' | 'md' | 'lg'`
+- **AND** `size="base"` MUST NOT be accepted (removed)
+- **AND** default value MUST be `'md'`
 
 ### Requirement: Button Component API
 
@@ -230,19 +218,15 @@ All components SHALL export TypeScript interfaces for their props.
 
 All components SHALL use design system tokens for colors, not hardcoded values.
 
-#### Scenario: No hardcoded colors
+#### Scenario: Badge color tokens
 
-- **WHEN** implementing component styles
-- **THEN** colors MUST reference design tokens (e.g., `text-fg`, `bg-accent`)
-- **AND** hardcoded Tailwind colors (e.g., `text-blue-600`) MUST NOT be used
+- **WHEN** Badge renders in any tone/variant
+- **THEN** all colors MUST reference design tokens
+- **AND** `text-white` MUST be replaced with `text-fg-on-accent`
+- **AND** background colors MUST use semantic tokens (`bg-accent`, `bg-success`, etc.)
 
-#### Scenario: Token mapping
+#### Scenario: Token usage validation
 
-- **WHEN** mapping semantic colors
-- **THEN** the following mappings MUST apply:
-    - Primary/accent: `--ds-color-accent` / `bg-accent`, `text-accent`
-    - Secondary: `--ds-color-secondary` / `bg-secondary`
-    - Success: `--ds-color-success` / `bg-success`, `text-success`
-    - Warning: `--ds-color-warning` / `bg-warning`
-    - Danger/Error: `--ds-color-error` / `bg-error`, `text-error`
-    - Neutral: `--ds-color-fg-muted` / `text-fg-muted`
+- **WHEN** reviewing component implementations
+- **THEN** hardcoded Tailwind colors (e.g., `text-white`, `bg-blue-600`) MUST NOT be present
+- **AND** all colors MUST use design system semantic tokens

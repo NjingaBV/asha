@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Tabs from '@/lib/components/molecules/Tabs.svelte';
+import Tabs from '$lib/components/molecules/Tabs.svelte';
 
 /**
  * # Tabs

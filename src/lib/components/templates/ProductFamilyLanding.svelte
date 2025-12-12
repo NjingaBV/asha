@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Hero from '$lib/components/organisms/Hero.svelte';
-	import Footer from '$lib/components/organisms/Footer.svelte';
-	import Card from '$lib/components/molecules/Card.svelte';
-	import ChapterNav from '$lib/components/molecules/ChapterNav.svelte';
-	import Button from '$lib/components/atoms/Button.svelte';
-	import Heading from '$lib/components/atoms/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
+	import Hero from '$lib/organisms/Hero.svelte';
+	import Footer from '$lib/organisms/Footer.svelte';
+	import Card from '$lib/molecules/Card.svelte';
+	import ChapterNav from '$lib/molecules/ChapterNav.svelte';
+	import Button from '$lib/atoms/Button.svelte';
+	import Heading from '$lib/atoms/Heading.svelte';
+	import Text from '$lib/atoms/Text.svelte';
 
 	/**
 	 * ProductFamilyLanding Template
@@ -112,13 +112,21 @@
 			{#if variant === 'compact'}
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{#each productsData.slice(0, 3) as product}
-						<Card variant="mac" {...product} />
+						<Card
+							title={product.title}
+							imgSrc={product.image}
+							overview={product.description}
+						/>
 					{/each}
 				</div>
 			{:else}
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{#each productsData as product}
-						<Card variant="mac" {...product} />
+						<Card
+							title={product.title}
+							imgSrc={product.image}
+							overview={product.description}
+						/>
 					{/each}
 				</div>
 			{/if}
@@ -153,9 +161,9 @@
 							>
 								{benefit.title}
 							</Heading>
-							<Paragraph class="text-secondary text-sm mb-6 flex-grow">
+							<Text class="text-secondary text-sm mb-6 flex-grow">
 								{benefit.description}
-							</Paragraph>
+							</Text>
 							<a
 								href={benefit.learnMoreHref}
 								class="text-accent-blue hover:underline text-sm font-medium mt-auto inline-flex items-center gap-1"
@@ -193,9 +201,9 @@
 								<Heading level={3} size="2xl" weight="bold" class="text-white mb-2">
 									{feature.title}
 								</Heading>
-								<Paragraph class="text-white/90 font-medium">
+								<Text class="text-white/90 font-medium">
 									{feature.description}
-								</Paragraph>
+								</Text>
 							</div>
 						</div>
 					{/each}
@@ -210,10 +218,10 @@
 			<Heading level={2} size="5xl" weight="bold" class="text-primary mb-6">
 				{helpMeChooseTitle}
 			</Heading>
-			<Paragraph size="xl" class="text-secondary mb-10 max-w-2xl mx-auto">
+			<Text size="xl" class="text-secondary mb-10 max-w-2xl mx-auto">
 				{helpMeChooseDescription}
-			</Paragraph>
-			<Button size="xl" tone="primary" rounded>{helpMeChooseButtonLabel}</Button>
+			</Text>
+			<Button size="lg" tone="primary">{helpMeChooseButtonLabel}</Button>
 		</div>
 	</section>
 {/if}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/atoms/Button.svelte';
+	import Button from '$lib/atoms/Button.svelte';
 
 	let {
 		cta = { url: '', label: '', color: '', onClick: undefined },
@@ -32,7 +32,7 @@
 		</div>
 		<div>
 			<a href={cta.url || '#'} class="contents">
-				<Button size="lg" tone="primary" onClick={cta.onClick}>
+				<Button size="lg" tone="primary" onclick={cta.onClick}>
 					{cta.label}
 				</Button>
 			</a>

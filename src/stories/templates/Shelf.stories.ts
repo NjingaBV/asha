@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Shelf from '@/lib/components/templates/Shelf.svelte';
+import Shelf from '$lib/components/templates/Shelf.svelte';
 
 const meta = {
 	title: 'Templates/Shelf',

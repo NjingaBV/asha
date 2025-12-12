@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createActor } from 'xstate';
-	import { colorPickerMachine } from '$lib/machines/colorPicker.machine';
-	import ColorDot from '../atoms/ColorDot.svelte';
+	import { colorPickerMachine } from '$lib/components/machines/colorPicker.machine';
+	import ColorSwatch from '../atoms/ColorSwatch.svelte';
 
 	interface Props {
 		options?: string[];
@@ -82,6 +82,7 @@
 	let announcement = $derived(selected ? `${selected} selected` : '');
 </script>
 
+<!-- svelte-ignore a11y_interactive_supports_focus -->
 <div class="flex items-center gap-2" role="radiogroup" aria-label={label} onkeydown={handleKeydown}>
 	{#each options as c, i}
 		<button
@@ -96,7 +97,7 @@
 				focusedIndex = i;
 			}}
 		>
-			<ColorDot color={c} selected={selected === c} size={22} />
+			<ColorSwatch color={c} selected={selected === c} size={22} />
 		</button>
 	{/each}
 	<button

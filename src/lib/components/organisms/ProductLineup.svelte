@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { createActor } from 'xstate';
-	import Heading from '$lib/components/atoms/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
-	import PromoBadge from '$lib/components/atoms/PromoBadge.svelte';
-	import ProductHeader from '$lib/components/organisms/ProductHeader.svelte';
-	import VariantSelector from '$lib/components/molecules/VariantSelector.svelte';
-	import SpecGrid from '$lib/components/molecules/SpecGrid.svelte';
-	import { macLineupMachine } from '$lib/machines/macLineup.machine';
-	import type { MacProduct } from '$lib/models';
+	import Heading from '$lib/atoms/Heading.svelte';
+	import Text from '$lib/atoms/Text.svelte';
+	import Badge from '$lib/atoms/Badge.svelte';
+	import Button from '$lib/atoms/Button.svelte';
+	import SpecGrid from '$lib/molecules/SpecGrid.svelte';
+	import { macLineupMachine } from '$lib/components/machines/macLineup.machine';
+	import type { MacProduct } from 'src/lib/models';
 
 	interface Props {
 		title?: string;
@@ -211,9 +210,9 @@
 {#if !activeProduct}
 	<section class="rounded-3xl border border-dashed border-border p-10 text-center">
 		<Heading level={3} size="2xl" class="text-fg">Aucun produit</Heading>
-		<Paragraph size="base" class="text-fg-muted">
+		<Text size="base" class="text-fg-muted">
 			Ajoutez des produits dans la prop `products` pour afficher la grille inspirée d'Apple.
-		</Paragraph>
+		</Text>
 	</section>
 {:else}
 	<section class="bg-page py-16">
@@ -222,9 +221,9 @@
 				<Heading level={2} size="4xl" weight="semibold" class="text-primary">
 					{title}
 				</Heading>
-				<Paragraph size="lg" class="max-w-3xl text-secondary">
+				<Text size="lg" class="max-w-3xl text-secondary">
 					{description}
-				</Paragraph>
+				</Text>
 
 				<div class="flex flex-wrap items-center gap-3">
 					{#each state.context.products as product}
@@ -239,7 +238,7 @@
 						>
 							{product.name}
 							{#if product.badge}
-								<PromoBadge label={product.badge} tone="neutral" />
+								<Badge label={product.badge} tone="neutral" size="sm" />
 							{/if}
 						</button>
 					{/each}
@@ -276,9 +275,9 @@
 				<div class="relative grid gap-10 p-8 lg:grid-cols-5 lg:items-center lg:p-12">
 					<div class="flex flex-col gap-3 lg:col-span-3">
 						{#if activeProduct.badge}
-							<PromoBadge
+							<Badge
 								label={activeProduct.badge}
-								tone={tone === 'dark' ? 'neutral' : 'accent'}
+								tone={tone === 'dark' ? 'neutral' : 'primary'}
 							/>
 						{/if}
 
@@ -307,23 +306,98 @@
 					</div>
 
 					<div class="flex flex-col gap-6 lg:col-span-2">
-						<ProductHeader
-							name={activeProduct.name}
-							tagline={activeProduct.tagline}
-							description={activeProduct.description}
-							price={activeProduct.startingPrice}
-							badge={undefined}
-							{tone}
-							align="left"
-							ctas={activeProduct.ctas}
-						/>
+						<!-- Product Header (inline replacement for ProductHeader) -->
+						<div class="flex flex-col gap-3 items-start text-left">
+							<Heading
+								level={1}
+								size="4xl"
+								weight="black"
+								class={tone === 'dark' ? 'text-fg-inverse' : 'text-fg'}
+							>
+								{activeProduct.name}
+							</Heading>
+							{#if activeProduct.tagline}
+								<Text
+									size="lg"
+									class={`font-semibold ${tone === 'dark' ? 'text-fg-inverse/80' : 'text-fg-muted'}`}
+								>
+									{activeProduct.tagline}
+								</Text>
+							{/if}
+							{#if activeProduct.description}
+								<Text
+									size="base"
+									class={`max-w-2xl ${tone === 'dark' ? 'text-fg-inverse/80' : 'text-fg-muted'}`}
+								>
+									{activeProduct.description}
+								</Text>
+							{/if}
+							{#if activeProduct.startingPrice}
+								<Text
+									size="sm"
+									class={`font-semibold ${tone === 'dark' ? 'text-fg-inverse/80' : 'text-fg-muted'}`}
+								>
+									{activeProduct.startingPrice}
+								</Text>
+							{/if}
+							{#if activeProduct.ctas?.primary || activeProduct.ctas?.secondary}
+								<div class="flex flex-wrap items-center gap-3 mt-2">
+									{#if activeProduct.ctas?.primary}
+										<Button
+											tone="primary"
+											href={activeProduct.ctas.primary.href}
+											onclick={activeProduct.ctas.primary.onClick}
+										>
+											{activeProduct.ctas.primary.label}
+										</Button>
+									{/if}
+									{#if activeProduct.ctas?.secondary}
+										<Button
+											variant="ghost"
+											tone="neutral"
+											href={activeProduct.ctas.secondary.href}
+											onclick={activeProduct.ctas.secondary.onClick}
+										>
+											{activeProduct.ctas.secondary.label}
+										</Button>
+									{/if}
+								</div>
+							{/if}
+						</div>
 
-						<VariantSelector
-							colors={activeProduct.colors}
-							selected={selectedColor}
-							{tone}
-							onChange={(color) => send({ type: 'SELECT_COLOR', color })}
-						/>
+						<!-- Variant Selector (inline replacement for VariantSelector) -->
+						{#if activeProduct.colors && activeProduct.colors.length > 0}
+							<div class="flex flex-col gap-2">
+								<Text
+									size="sm"
+									class={tone === 'dark' ? 'text-fg-inverse/70' : 'text-fg-muted'}
+								>
+									Couleur
+								</Text>
+								<div
+									class="flex flex-wrap gap-2"
+									role="radiogroup"
+									aria-label="Couleur"
+								>
+									{#each activeProduct.colors as color}
+										<button
+											type="button"
+											role="radio"
+											aria-checked={selectedColor === color.name}
+											aria-label={color.name}
+											class={`w-8 h-8 rounded-full border-2 transition-all ${
+												selectedColor === color.name
+													? 'border-accent ring-2 ring-accent ring-offset-2'
+													: 'border-transparent hover:border-border'
+											}`}
+											style={`background-color: ${color.swatch}`}
+											onclick={() =>
+												send({ type: 'SELECT_COLOR', color: color.name })}
+										></button>
+									{/each}
+								</div>
+							</div>
+						{/if}
 
 						<SpecGrid specs={activeProduct.specs} {tone} />
 

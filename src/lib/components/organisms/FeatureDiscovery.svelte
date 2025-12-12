@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Heading from '../atoms/Heading.svelte';
-	import Paragraph from '../atoms/Paragraph.svelte';
+	import Text from '../atoms/Text.svelte';
 
 	/**
 	 * FeatureDiscovery component - displays "Get to know" features section
@@ -80,11 +80,9 @@
 						>
 							{feature.title}
 						</Heading>
-						<Paragraph
-							class="text-secondary group-hover:text-primary transition-colors"
-						>
+						<Text class="text-secondary group-hover:text-primary transition-colors">
 							{feature.description}
-						</Paragraph>
+						</Text>
 					</div>
 				</a>
 			{/each}

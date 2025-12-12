@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Image from '@/lib/components/atoms/Image.svelte';
+import Image from '$lib/components/atoms/Image.svelte';
 
 const meta = {
 	title: 'Atoms/Image',

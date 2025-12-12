@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Slogan from '@/lib/components/organisms/Slogan.svelte';
+import Slogan from '$lib/components/organisms/Slogan.svelte';
 
 const meta = {
 	title: 'Organisms/Slogan',

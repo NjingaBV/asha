@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import LinkableComp from '@/lib/components/atoms/Linkable.svelte';
+import LinkableComp from '$lib/components/atoms/Linkable.svelte';
 
 const meta = {
 	title: 'Atoms/Linkable',

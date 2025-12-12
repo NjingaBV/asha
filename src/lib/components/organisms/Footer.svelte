@@ -1,15 +1,15 @@
 <script lang="ts">
-	import Logo from '$lib/components/molecules/Logo.svelte';
-	import type { LogoType } from '$lib/models';
+	import Logo from '$lib/molecules/Logo.svelte';
+	import type { LogoType } from 'src/lib/models';
 
 	let {
 		logo = { title: '', imgUrl: '', imgAlt: '' },
 		link = '/',
-		brandName = ''
+		brandName = 'Company'
 	}: {
-		logo: LogoType;
+		logo?: LogoType;
 		link?: string;
-		brandName: string;
+		brandName?: string;
 	} = $props();
 </script>
 

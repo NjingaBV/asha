@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Carousel from '@/lib/components/organisms/Carousel.svelte';
+import Carousel from '$lib/components/organisms/Carousel.svelte';
 
 const meta = {
 	title: 'Organisms/Carousel',

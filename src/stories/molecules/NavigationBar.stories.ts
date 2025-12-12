@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import NavigationBar from '@/lib/components/molecules/NavigationBar.svelte';
+import NavigationBar from '$lib/components/molecules/NavigationBar.svelte';
 
 const meta = {
 	title: 'Molecules/NavigationBar',

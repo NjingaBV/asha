@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Card from '$lib/components/molecules/Card.svelte';
-	import Heading from '$lib/components/atoms/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
+	import Card from '$lib/molecules/Card.svelte';
+	import Heading from '$lib/atoms/Heading.svelte';
+	import Text from '$lib/atoms/Text.svelte';
 
 	/**
 	 * Showcase - Displays Mac product cards in a responsive grid
@@ -61,9 +61,9 @@
 					</Heading>
 				{/if}
 				{#if description}
-					<Paragraph size="xl" color="text-fg-muted" class="max-w-3xl mx-auto">
+					<Text size="xl" color="text-fg-muted" class="max-w-3xl mx-auto">
 						{description}
-					</Paragraph>
+					</Text>
 				{/if}
 			</div>
 		{/if}

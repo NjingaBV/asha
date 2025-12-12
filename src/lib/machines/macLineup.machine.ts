@@ -1,5 +1,5 @@
 import { setup, assign } from 'xstate';
-import type { MacProduct } from '$lib/models';
+import type { MacProduct } from 'src/lib/models';
 
 const getProductIndex = (products: MacProduct[], slug: string) =>
 	products.findIndex((product) => product.slug === slug);

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Button from '@/lib/components/atoms/Button.svelte';
+import { expect, userEvent, within } from '@storybook/test';
+import Button from '$lib/components/atoms/Button.svelte';
 
 /**
  * # Button
@@ -56,10 +57,12 @@ const meta = {
 		},
 		tone: {
 			control: { type: 'select' },
-			options: ['primary', 'secondary', 'neutral', 'danger', 'success'],
+			options: ['primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info'],
 			description: 'Color tone/scheme',
 			table: {
-				type: { summary: 'primary | secondary | neutral | danger | success' },
+				type: {
+					summary: 'primary | secondary | neutral | danger | success | warning | info'
+				},
 				defaultValue: { summary: 'primary' }
 			}
 		},
@@ -242,6 +245,36 @@ export const Success: Story = {
 		props: {
 			...args,
 			children: () => 'Success'
+		}
+	})
+};
+
+export const Warning: Story = {
+	args: {
+		variant: 'solid',
+		tone: 'warning',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Warning'
+		}
+	})
+};
+
+export const Info: Story = {
+	args: {
+		variant: 'solid',
+		tone: 'info',
+		size: 'md'
+	},
+	render: (args: any) => ({
+		Component: Button,
+		props: {
+			...args,
+			children: () => 'Info'
 		}
 	})
 };

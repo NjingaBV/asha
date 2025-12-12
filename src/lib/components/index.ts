@@ -1,5 +1,6 @@
-export * from './atoms';
-export * from './molecules';
-export * from './organisms';
-export * from './templates';
-export * from './pages';
+import * as Atoms from './atoms';
+import * as Molecules from './molecules';
+import * as Organisms from './organisms';
+import * as Templates from './templates';
+
+export { Atoms, Molecules, Organisms, Templates };

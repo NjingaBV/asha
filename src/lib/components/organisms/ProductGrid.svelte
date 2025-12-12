@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ProductCard from '../molecules/ProductCard.svelte';
-	import type { Product } from '../../models/product.type';
+	import ProductCard from '$lib/organisms/ProductCard.svelte';
+	import type { Product } from '$lib/models/product.type';
 
 	/**
 	 * ProductGrid component - displays a responsive grid of product cards

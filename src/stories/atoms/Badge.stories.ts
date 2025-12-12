@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, within } from '@storybook/test';
 import Badge from '$lib/components/atoms/Badge.svelte';
 
 const meta = {
@@ -63,6 +64,10 @@ A compact and versatile label component for highlighting status, categories, or 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// ============================================
+// Default Story with Play Test
+// ============================================
+
 export const Primary: Story = {
 	args: {
 		label: 'New',
@@ -70,13 +75,58 @@ export const Primary: Story = {
 		variant: 'solid',
 		size: 'md',
 		children: null
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('New');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test base classes are applied
+		await expect(badge).toHaveClass('inline-flex');
+		await expect(badge).toHaveClass('items-center');
+		await expect(badge).toHaveClass('font-medium');
+
+		// Test label content
+		await expect(badge).toHaveTextContent('New');
+
+		// Test tone and variant specific classes
+		await expect(badge).toHaveClass('bg-accent');
+		await expect(badge).toHaveClass('text-fg-on-accent');
+
+		// Test size classes (md default)
+		await expect(badge).toHaveClass('px-2.5');
+		await expect(badge).toHaveClass('py-0.5');
+		await expect(badge).toHaveClass('text-xs');
+
+		// Test rounded shape (default true)
+		await expect(badge).toHaveClass('rounded-full');
 	}
 };
+
+// ============================================
+// Tone Variants with Play Tests
+// ============================================
 
 export const Secondary: Story = {
 	args: {
 		...Primary.args,
 		tone: 'secondary'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('New');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test secondary tone classes
+		await expect(badge).toHaveClass('bg-secondary');
+		await expect(badge).toHaveClass('text-fg-on-accent');
+
+		// Verify accent classes are not applied
+		await expect(badge).not.toHaveClass('bg-accent');
 	}
 };
 
@@ -85,6 +135,21 @@ export const Success: Story = {
 		...Primary.args,
 		label: 'Available',
 		tone: 'success'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Available');
+
+		// Test badge renders with correct content
+		await expect(badge).toBeInTheDocument();
+		await expect(badge).toHaveTextContent('Available');
+
+		// Test success tone classes
+		await expect(badge).toHaveClass('bg-success');
+		await expect(badge).toHaveClass('text-fg-on-accent');
+
+		// Verify it's solid variant (background color present)
+		await expect(badge).toHaveClass('bg-success');
 	}
 };
 
@@ -93,6 +158,20 @@ export const Warning: Story = {
 		...Primary.args,
 		label: 'Limited',
 		tone: 'warning'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Limited');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test warning tone classes
+		await expect(badge).toHaveClass('bg-warning');
+		await expect(badge).toHaveClass('text-fg-on-accent');
+
+		// Test label content
+		await expect(badge).toHaveTextContent('Limited');
 	}
 };
 
@@ -101,6 +180,20 @@ export const Danger: Story = {
 		...Primary.args,
 		label: 'Sold Out',
 		tone: 'danger'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Sold Out');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test danger tone classes (uses error token)
+		await expect(badge).toHaveClass('bg-error');
+		await expect(badge).toHaveClass('text-fg-on-accent');
+
+		// Test text content
+		await expect(badge).toHaveTextContent('Sold Out');
 	}
 };
 
@@ -109,6 +202,20 @@ export const Info: Story = {
 		...Primary.args,
 		label: 'Update',
 		tone: 'info'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Update');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test info tone classes
+		await expect(badge).toHaveClass('bg-info');
+		await expect(badge).toHaveClass('text-fg-on-accent');
+
+		// Test label content
+		await expect(badge).toHaveTextContent('Update');
 	}
 };
 
@@ -118,13 +225,124 @@ export const Neutral: Story = {
 		label: 'Edition',
 		tone: 'neutral',
 		size: 'sm'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Edition');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test neutral tone classes
+		await expect(badge).toHaveClass('bg-fg');
+		await expect(badge).toHaveClass('text-bg');
+
+		// Test size is sm
+		await expect(badge).toHaveClass('px-2');
+		await expect(badge).toHaveClass('py-0.5');
+		await expect(badge).toHaveClass('text-xs');
 	}
 };
+
+// ============================================
+// Size Variants with Play Tests
+// ============================================
+
+export const SizeSmall: Story = {
+	args: {
+		...Primary.args,
+		label: 'Small',
+		size: 'sm'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Small');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test sm size classes
+		await expect(badge).toHaveClass('px-2');
+		await expect(badge).toHaveClass('py-0.5');
+		await expect(badge).toHaveClass('text-xs');
+
+		// Verify md classes are not applied
+		await expect(badge).not.toHaveClass('px-2.5');
+		await expect(badge).not.toHaveClass('px-3');
+	}
+};
+
+export const SizeMedium: Story = {
+	args: {
+		...Primary.args,
+		label: 'Medium',
+		size: 'md'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Medium');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test md size classes (default)
+		await expect(badge).toHaveClass('px-2.5');
+		await expect(badge).toHaveClass('py-0.5');
+		await expect(badge).toHaveClass('text-xs');
+
+		// Verify other size classes are not applied
+		await expect(badge).not.toHaveClass('px-2');
+		await expect(badge).not.toHaveClass('px-3');
+	}
+};
+
+export const SizeLarge: Story = {
+	args: {
+		...Primary.args,
+		label: 'Large',
+		size: 'lg'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Large');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test lg size classes
+		await expect(badge).toHaveClass('px-3');
+		await expect(badge).toHaveClass('py-1');
+		await expect(badge).toHaveClass('text-sm');
+
+		// Verify other size classes are not applied
+		await expect(badge).not.toHaveClass('px-2');
+		await expect(badge).not.toHaveClass('px-2.5');
+	}
+};
+
+// ============================================
+// Variant Styles with Play Tests
+// ============================================
 
 export const Outline: Story = {
 	args: {
 		...Primary.args,
 		variant: 'outline'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('New');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test outline variant classes
+		await expect(badge).toHaveClass('border');
+		await expect(badge).toHaveClass('border-accent');
+		await expect(badge).toHaveClass('text-accent');
+
+		// Verify solid variant classes are not applied
+		await expect(badge).not.toHaveClass('bg-accent');
 	}
 };
 
@@ -132,6 +350,180 @@ export const Ghost: Story = {
 	args: {
 		...Primary.args,
 		variant: 'ghost'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('New');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test ghost variant classes
+		await expect(badge).toHaveClass('text-accent');
+
+		// Verify solid and outline variant classes are not applied
+		await expect(badge).not.toHaveClass('bg-accent');
+		await expect(badge).not.toHaveClass('border');
+	}
+};
+
+// ============================================
+// Variant + Tone Combinations with Play Tests
+// ============================================
+
+export const OutlineSuccess: Story = {
+	args: {
+		...Primary.args,
+		label: 'Approved',
+		tone: 'success',
+		variant: 'outline'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Approved');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test outline variant with success tone
+		await expect(badge).toHaveClass('border');
+		await expect(badge).toHaveClass('border-success');
+		await expect(badge).toHaveClass('text-success');
+
+		// Verify solid classes are not applied
+		await expect(badge).not.toHaveClass('bg-success');
+	}
+};
+
+export const GhostDanger: Story = {
+	args: {
+		...Primary.args,
+		label: 'Error',
+		tone: 'danger',
+		variant: 'ghost'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Error');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test ghost variant with danger tone
+		await expect(badge).toHaveClass('text-error');
+
+		// Verify solid and outline classes are not applied
+		await expect(badge).not.toHaveClass('bg-error');
+		await expect(badge).not.toHaveClass('border');
+	}
+};
+
+export const OutlineNeutral: Story = {
+	args: {
+		...Primary.args,
+		label: 'Tag',
+		tone: 'neutral',
+		variant: 'outline'
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Tag');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test outline variant with neutral tone
+		await expect(badge).toHaveClass('border');
+		await expect(badge).toHaveClass('border-fg');
+		await expect(badge).toHaveClass('text-fg');
+
+		// Verify solid classes are not applied
+		await expect(badge).not.toHaveClass('bg-fg');
+	}
+};
+
+// ============================================
+// Shape Variants with Play Tests
+// ============================================
+
+export const RoundedPill: Story = {
+	args: {
+		...Primary.args,
+		label: 'Pill Shape',
+		rounded: true
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Pill Shape');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test rounded pill shape
+		await expect(badge).toHaveClass('rounded-full');
+
+		// Verify subtle rounded class is not applied
+		await expect(badge).not.toHaveClass('rounded');
+	}
+};
+
+export const RoundedCorners: Story = {
+	args: {
+		...Primary.args,
+		label: 'Rounded Corners',
+		rounded: false
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Rounded Corners');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test subtle rounded corners
+		await expect(badge).toHaveClass('rounded');
+
+		// Verify full pill shape is not applied
+		await expect(badge).not.toHaveClass('rounded-full');
+	}
+};
+
+// ============================================
+// Comprehensive Variant Test (All Tones)
+// ============================================
+
+export const AllTonesSolid: Story = {
+	render: () => ({
+		Component: Badge,
+		props: {
+			label: 'Badge',
+			variant: 'solid'
+		}
+	}),
+	argTypes: {
+		tone: {
+			control: { type: 'select' },
+			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'info']
+		}
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Display all tone variants with solid style. Select different tones from the controls.'
+			}
+		}
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const badge = canvas.getByText('Badge');
+
+		// Test badge renders
+		await expect(badge).toBeInTheDocument();
+
+		// Test base classes are always applied
+		await expect(badge).toHaveClass('inline-flex');
+		await expect(badge).toHaveClass('items-center');
+		await expect(badge).toHaveClass('font-medium');
 	}
 };
 

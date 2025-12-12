@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import SkipLink from '@/lib/components/atoms/SkipLink.svelte';
+import SkipLink from '$lib/components/atoms/SkipLink.svelte';
 
 const meta = {
 	title: 'Atoms/SkipLink',

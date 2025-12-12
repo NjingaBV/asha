@@ -1,6 +1,6 @@
 # Specification: Accessibility
 
-## Overview
+## Purpose
 
 This specification defines the accessibility requirements for all Asha components, ensuring WCAG 2.2 AA compliance. All interactive components MUST be usable by keyboard, screen readers, and assistive technologies.
 
@@ -35,25 +35,28 @@ All interactive elements SHALL have visible focus indicators that meet WCAG 2.4.
 
 All interactive elements SHALL meet WCAG 2.5.5 Target Size requirements with minimum 44x44 CSS pixels.
 
-#### Scenario: Minimum touch target
+#### Scenario: Button touch targets
 
-- **WHEN** an element is clickable/tappable
+- **WHEN** a Button component is rendered in any size
 - **THEN** the clickable area MUST be at least 44x44 pixels
-- **AND** if visual size is smaller, padding or pseudo-elements MUST extend the hit area
+- **AND** the `sm` size MUST use `h-11` (44px) not `h-8` (32px)
+- **AND** the `md` size MUST use `h-11` (44px) minimum
+- **AND** the `lg` size MUST use `h-12` (48px) minimum
 
-#### Scenario: Small visual elements
+#### Scenario: Input touch targets
 
-- **WHEN** a visual element (icon, color dot) is smaller than 44px
-- **THEN** the interactive wrapper MUST be at least 44px
-- **AND** `min-w-touch min-h-touch` (or equivalent) MUST be applied
+- **WHEN** an Input component is rendered in any size
+- **THEN** the input field height MUST be at least 44px
+- **AND** the `sm` size MUST use `h-11` (44px) not `h-8` (32px)
+- **AND** the `md` size MUST use `h-11` (44px) not `h-10` (40px)
+- **AND** the `lg` size MUST use `h-12` (48px) minimum
 
-#### Scenario: Touch target spacing
+#### Scenario: Touch target verification
 
-- **WHEN** multiple touch targets are adjacent
-- **THEN** there MUST be at least 8px spacing between targets
-- **OR** each target MUST individually meet the 44px requirement
-
----
+- **WHEN** components are tested for accessibility
+- **THEN** automated tools MUST verify touch target sizes
+- **AND** manual testing MUST confirm actual clickable areas
+- **AND** responsive views MUST maintain minimum sizes
 
 ### Requirement: Keyboard Navigation
 

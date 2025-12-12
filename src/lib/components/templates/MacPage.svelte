@@ -1,15 +1,12 @@
 <script lang="ts">
-	import Header from '$lib/components/organisms/Header.svelte';
-	import ChapterNav from '$lib/components/molecules/ChapterNav.svelte';
-	import VideoHero from '$lib/components/organisms/VideoHero.svelte';
-	import WhyAppleSection from '$lib/components/organisms/WhyAppleSection.svelte';
-	import FeatureDiscovery from '$lib/components/organisms/FeatureDiscovery.svelte';
-	import HelpMeChooseSection from '$lib/components/organisms/HelpMeChooseSection.svelte';
-	import Footer from '$lib/components/organisms/Footer.svelte';
-	import Heading from '$lib/components/atoms/Heading.svelte';
-	import Paragraph from '$lib/components/atoms/Paragraph.svelte';
-	import SkipLink from '$lib/components/atoms/SkipLink.svelte';
-	import type { MacProduct, LinkType, LogoType } from '$lib/models';
+	import Navbar from '$lib/organisms/Navbar.svelte';
+	import ChapterNav from '$lib/molecules/ChapterNav.svelte';
+	import FeatureDiscovery from '$lib/organisms/FeatureDiscovery.svelte';
+	import Footer from '$lib/organisms/Footer.svelte';
+	import Heading from '$lib/atoms/Heading.svelte';
+	import Text from '$lib/atoms/Text.svelte';
+	import SkipLink from '$lib/atoms/SkipLink.svelte';
+	import type { MacProduct, LinkType, LogoType } from 'src/lib/models';
 
 	// Header navigation links
 	const headerNavLinks: LinkType[] = [
@@ -501,11 +498,11 @@
 						<Heading level={3} size="2xl" weight="bold" class="mb-3 text-primary">
 							Give us the old. Save on the new.
 						</Heading>
-						<Paragraph class="mb-6 text-secondary">
+						<Text class="mb-6 text-secondary">
 							With Apple Trade In, you can get a great value for your current device
 							and apply it toward a new one. If your device isn't eligible for credit,
 							we'll recycle it for free.
-						</Paragraph>
+						</Text>
 						<span class="mt-auto text-accent-blue group-hover:underline">
 							See what your device is worth
 						</span>
@@ -534,9 +531,9 @@
 						<Heading level={3} size="2xl" weight="bold" class="mb-3 text-primary">
 							Mac does that.
 						</Heading>
-						<Paragraph class="mb-6 text-secondary">
+						<Text class="mb-6 text-secondary">
 							See how easy it is to switch to Mac.
-						</Paragraph>
+						</Text>
 						<span class="mt-auto text-accent-blue group-hover:underline"
 							>Learn more</span
 						>
@@ -562,9 +559,9 @@
 							<Heading level={3} size="2xl" weight="bold" class="mb-3 text-primary">
 								Mac accessories
 							</Heading>
-							<Paragraph class="text-secondary">
+							<Text class="text-secondary">
 								Explore keyboards, mice, and other essentials.
-							</Paragraph>
+							</Text>
 						</div>
 						<div class="mt-auto">
 							<span class="text-accent-blue group-hover:underline"
@@ -582,9 +579,9 @@
 							<Heading level={3} size="2xl" weight="bold" class="mb-3 text-primary">
 								Studio Display
 							</Heading>
-							<Paragraph class="text-secondary">
+							<Text class="text-secondary">
 								The 27-inch 5K Retina display pairs beautifully with any Mac.
-							</Paragraph>
+							</Text>
 						</div>
 						<div class="mt-auto">
 							<span class="text-accent-blue group-hover:underline">Learn more</span>
@@ -630,9 +627,9 @@
 						<Heading level={3} size="2xl" weight="bold" class="mb-4 text-primary">
 							{ecosystemFeatures[activeEcosystemTab].title}
 						</Heading>
-						<Paragraph class="mx-auto max-w-2xl text-secondary">
+						<Text class="mx-auto max-w-2xl text-secondary">
 							{ecosystemFeatures[activeEcosystemTab].description}
-						</Paragraph>
+						</Text>
 					</div>
 				</div>
 			</div>

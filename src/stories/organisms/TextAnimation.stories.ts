@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import TextAnimation from '@/lib/components/organisms/TextAnimation.svelte';
+import TextAnimation from '$lib/components/organisms/TextAnimation.svelte';
 
 const meta = {
 	title: 'Organisms/TextAnimation',
