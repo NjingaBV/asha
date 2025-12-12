@@ -29,7 +29,14 @@
 	export type ButtonVariant = 'solid' | 'outline' | 'ghost' | 'link';
 
 	/** Button color tone */
-	export type ButtonTone = 'primary' | 'secondary' | 'neutral' | 'danger' | 'success';
+	export type ButtonTone =
+		| 'primary'
+		| 'secondary'
+		| 'neutral'
+		| 'danger'
+		| 'success'
+		| 'warning'
+		| 'info';
 
 	/** Button size */
 	export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -44,7 +51,7 @@
 		},
 		tone: {
 			type: 'string',
-			options: ['primary', 'secondary', 'neutral', 'danger', 'success'],
+			options: ['primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info'],
 			default: 'primary',
 			description: 'Color tone/scheme'
 		},
@@ -110,6 +117,8 @@
 		children?: Snippet;
 		/** Click handler */
 		onclick?: (event: MouseEvent) => void;
+		/** Click handler (alias for onclick) */
+		onClick?: () => void;
 		/** Focus handler */
 		onfocus?: (event: FocusEvent) => void;
 		/** Blur handler */
@@ -138,6 +147,7 @@
 		iconRight,
 		children,
 		onclick,
+		onClick,
 		onfocus,
 		onblur,
 		onkeydown
@@ -213,9 +223,9 @@
 
 	/** Size-specific classes */
 	const sizeClasses: Record<ButtonSize, string> = {
-		sm: 'h-8 px-3 text-sm rounded-md',
-		md: 'h-10 px-4 text-base rounded-lg',
-		lg: 'h-12 px-6 text-lg rounded-lg'
+		sm: 'h-11 min-h-touch px-3 text-sm rounded-md',
+		md: 'h-11 min-h-touch px-4 text-base rounded-lg',
+		lg: 'h-12 min-h-touch px-6 text-lg rounded-lg'
 	};
 
 	/** Variant + Tone combinations */
@@ -245,6 +255,16 @@
 				'bg-success text-fg-on-accent shadow-sm',
 				'hover:opacity-90 active:opacity-80',
 				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			warning: [
+				'bg-warning text-fg-on-accent shadow-sm',
+				'hover:opacity-90 active:opacity-80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-warning data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			info: [
+				'bg-info text-fg-on-accent shadow-sm',
+				'hover:opacity-90 active:opacity-80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-info data-[focus-visible]:ring-offset-2'
 			].join(' ')
 		},
 		outline: {
@@ -277,6 +297,18 @@
 				'hover:bg-success hover:text-fg-on-accent',
 				'active:opacity-70',
 				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			warning: [
+				'border border-warning text-warning bg-transparent',
+				'hover:bg-warning hover:text-fg-on-accent',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-warning data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			info: [
+				'border border-info text-info bg-transparent',
+				'hover:bg-info hover:text-fg-on-accent',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-info data-[focus-visible]:ring-offset-2'
 			].join(' ')
 		},
 		ghost: {
@@ -309,6 +341,18 @@
 				'hover:bg-success-subtle',
 				'active:bg-success-subtle/80',
 				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			warning: [
+				'text-warning bg-transparent',
+				'hover:bg-warning-subtle',
+				'active:bg-warning-subtle/80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-warning data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			info: [
+				'text-info bg-transparent',
+				'hover:bg-info-subtle',
+				'active:bg-info-subtle/80',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-info data-[focus-visible]:ring-offset-2'
 			].join(' ')
 		},
 		link: {
@@ -341,6 +385,18 @@
 				'hover:underline',
 				'active:opacity-70',
 				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-success data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			warning: [
+				'text-warning bg-transparent underline-offset-4',
+				'hover:underline',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-warning data-[focus-visible]:ring-offset-2'
+			].join(' '),
+			info: [
+				'text-info bg-transparent underline-offset-4',
+				'hover:underline',
+				'active:opacity-70',
+				'data-[focus-visible]:ring-2 data-[focus-visible]:ring-info data-[focus-visible]:ring-offset-2'
 			].join(' ')
 		}
 	};
@@ -399,6 +455,7 @@
 		}
 		actor.send({ type: 'CLICK' });
 		onclick?.(event);
+		onClick?.();
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
@@ -486,7 +543,7 @@
 		{#if loading}
 			<!-- Spinner -->
 			<svg
-				class="h-4 w-4 animate-spin"
+				class="h-4 w-4 animate-spin motion-reduce:animate-none"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"

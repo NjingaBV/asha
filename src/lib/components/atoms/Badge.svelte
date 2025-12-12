@@ -4,9 +4,16 @@
 	// ============================================
 
 	/** Semantic tone values for Badge */
-	export type BadgeTone = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral';
+	export type BadgeTone =
+		| 'primary'
+		| 'secondary'
+		| 'success'
+		| 'warning'
+		| 'danger'
+		| 'neutral'
+		| 'info';
 	export type BadgeVariant = 'solid' | 'outline' | 'ghost';
-	export type BadgeSize = 'sm' | 'base' | 'lg';
+	export type BadgeSize = 'sm' | 'md' | 'lg';
 
 	/** Props interface for Badge component */
 	export interface BadgeProps {
@@ -39,14 +46,14 @@
 		},
 		tone: {
 			type: 'string',
-			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral'],
+			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'info'],
 			default: 'primary',
 			description: 'Semantic color tone'
 		},
 		size: {
 			type: 'string',
-			options: ['sm', 'base', 'lg'],
-			default: 'base',
+			options: ['sm', 'md', 'lg'],
+			default: 'md',
 			description: 'Size variant'
 		},
 		rounded: {
@@ -62,7 +69,7 @@
 		label = undefined,
 		variant = 'solid',
 		tone = 'primary',
-		size = 'base',
+		size = 'md',
 		rounded = true,
 		children
 	}: BadgeProps = $props();
@@ -80,17 +87,17 @@
 			ghost: 'text-secondary'
 		},
 		success: {
-			solid: 'bg-success text-white',
+			solid: 'bg-success text-fg-on-accent',
 			outline: 'border border-success text-success',
 			ghost: 'text-success'
 		},
 		warning: {
-			solid: 'bg-warning text-white',
+			solid: 'bg-warning text-fg-on-accent',
 			outline: 'border border-warning text-warning',
 			ghost: 'text-warning'
 		},
 		danger: {
-			solid: 'bg-error text-white',
+			solid: 'bg-error text-fg-on-accent',
 			outline: 'border border-error text-error',
 			ghost: 'text-error'
 		},
@@ -98,6 +105,11 @@
 			solid: 'bg-fg text-bg',
 			outline: 'border border-fg text-fg',
 			ghost: 'text-fg'
+		},
+		info: {
+			solid: 'bg-info text-fg-on-accent',
+			outline: 'border border-info text-info',
+			ghost: 'text-info'
 		}
 	};
 
@@ -107,7 +119,7 @@
 			? 'px-2 py-0.5 text-xs'
 			: size === 'lg'
 				? 'px-3 py-1 text-sm'
-				: 'px-2.5 py-0.5 text-xs'
+				: 'px-2.5 py-0.5 text-xs' // md default
 	);
 	let roundedClass = $derived(rounded ? 'rounded-full' : 'rounded');
 	const baseClasses = 'inline-flex items-center font-medium';

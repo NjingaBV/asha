@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Badge from '@/lib/components/atoms/Badge.svelte';
+import Badge from '$lib/components/atoms/Badge.svelte';
 
 const meta = {
 	title: 'Atoms/Badge',
@@ -11,14 +11,14 @@ const meta = {
 				component: `
 # Badge
 
-Un composant d'étiquette compact et polyvalent pour mettre en évidence des statuts, des catégories ou des informations supplémentaires.
+A compact and versatile label component for highlighting status, categories, or additional information.
 
-## Caractéristiques Clés
+## Key Features
 
-- **Variantes Multiples**: Styles _solid_, _outline_, et _ghost_ pour différents niveaux d'emphase.
-- **Couleurs Sémantiques**: Options de couleur pour représenter le succès, l'avertissement, le danger, etc.
-- **Tailles Flexibles**: Plusieurs tailles pour s'adapter à divers contextes d'interface.
-- **Contenu Personnalisable**: Utilisez la prop \`label\` pour du texte simple ou le slot par défaut pour du contenu riche (icônes, etc.).
+- **Multiple Variants**: _solid_, _outline_, and _ghost_ styles for different emphasis levels.
+- **Semantic Colors**: Color options to represent success, warning, danger, etc.
+- **Flexible Sizes**: Multiple sizes to adapt to various UI contexts.
+- **Customizable Content**: Use the \`label\` prop for simple text or the default slot for rich content (icons, etc.).
 `
 			}
 		}
@@ -32,7 +32,7 @@ Un composant d'étiquette compact et polyvalent pour mettre en évidence des sta
 		},
 		tone: {
 			control: { type: 'select' },
-			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral'],
+			options: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'info'],
 			description:
 				'Semantic color tone: "primary" (accent) for brand/main actions, "secondary" for less prominent info, "success" for positive states, "warning" for caution, "danger" for errors/critical, "neutral" for general labels. Default is "primary".'
 		},
@@ -44,9 +44,9 @@ Un composant d'étiquette compact et polyvalent pour mettre en évidence des sta
 		},
 		size: {
 			control: { type: 'select' },
-			options: ['sm', 'base', 'lg'],
+			options: ['sm', 'md', 'lg'],
 			description:
-				'Size variant: "sm" (text-xs, compact padding) for inline use, "base" (text-xs, standard padding) for general use, "lg" (text-sm, larger padding) for prominent displays. Default is "base".'
+				'Size variant: "sm" (text-xs, compact padding) for inline use, "md" (text-xs, standard padding) for general use, "lg" (text-sm, larger padding) for prominent displays. Default is "md".'
 		},
 		rounded: {
 			control: 'boolean',
@@ -68,7 +68,7 @@ export const Primary: Story = {
 		label: 'New',
 		tone: 'primary',
 		variant: 'solid',
-		size: 'base',
+		size: 'md',
 		children: null
 	}
 };
@@ -104,6 +104,14 @@ export const Danger: Story = {
 	}
 };
 
+export const Info: Story = {
+	args: {
+		...Primary.args,
+		label: 'Update',
+		tone: 'info'
+	}
+};
+
 export const Neutral: Story = {
 	args: {
 		...Primary.args,
@@ -125,4 +133,38 @@ export const Ghost: Story = {
 		...Primary.args,
 		variant: 'ghost'
 	}
+};
+
+// ============================================
+// Design Guidelines
+// ============================================
+
+/**
+ * # Design Guidelines
+ *
+ * ## Usage
+ * - Use **Solid** badges for high-priority status indicators (e.g., "New", "Sold Out").
+ * - Use **Outline** badges for secondary attributes (e.g., "Beta", "v1.0").
+ * - Use **Ghost** badges for subtle metadata (e.g., tags, counts).
+ *
+ * ## Do's
+ * - Keep label text short (1-2 words).
+ * - Use semantic tones (Success, Warning) appropriately for their meaning.
+ * - Use the rounded pill shape for standard status indicators.
+ *
+ * ## Don'ts
+ * - Don't use badges for interactive elements (use Buttons or Chips instead).
+ * - Avoid using too many badges in a single view (clutter).
+ * - Don't mix different badge sizes in the same context.
+ */
+export const Guidelines: Story = {
+	tags: ['!dev'],
+	render: () => ({
+		Component: Badge,
+		props: {
+			label: 'See Guidelines in Docs',
+			tone: 'primary',
+			variant: 'solid'
+		}
+	})
 };

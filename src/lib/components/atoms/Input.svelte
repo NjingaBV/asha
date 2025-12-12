@@ -69,7 +69,7 @@
 		getInputDataAttributes,
 		getInputAriaAttributes,
 		type InputState
-	} from '$lib/machines/input.machine';
+	} from '$lib/components/machines/input.machine';
 
 	// ============================================
 	// Props
@@ -103,7 +103,7 @@
 		/** Autofocus on mount */
 		autofocus?: boolean;
 		/** Autocomplete attribute */
-		autocomplete?: string;
+		autocomplete?: HTMLInputElement['autocomplete'];
 		/** ID for the input */
 		id?: string;
 		/** Name attribute */
@@ -264,9 +264,9 @@
 
 	/** Size-specific container classes */
 	const containerSizeClasses: Record<InputSize, string> = {
-		sm: 'h-8 text-sm',
-		md: 'h-10 text-base',
-		lg: 'h-12 text-lg'
+		sm: 'h-11 min-h-touch text-sm',
+		md: 'h-11 min-h-touch text-base',
+		lg: 'h-12 min-h-touch text-lg'
 	};
 
 	/** Variant-specific container classes */
@@ -328,8 +328,8 @@
 	/** Icon wrapper classes */
 	const iconWrapperClasses = 'flex items-center justify-center shrink-0 text-fg-muted';
 	const iconSizeClasses: Record<InputSize, string> = {
-		sm: 'w-8 h-8',
-		md: 'w-10 h-10',
+		sm: 'w-11 h-11',
+		md: 'w-11 h-11',
 		lg: 'w-12 h-12'
 	};
 

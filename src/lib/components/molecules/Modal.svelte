@@ -32,11 +32,46 @@
 
 	/** Prop definitions for documentation */
 	export const propDefs = {
+		open: {
+			type: 'boolean',
+			default: false,
+			description: 'Controls modal visibility (bindable)'
+		},
+		title: {
+			type: 'string',
+			default: undefined,
+			description: 'Modal title text'
+		},
+		description: {
+			type: 'string',
+			default: undefined,
+			description: 'Modal description for screen readers'
+		},
 		size: {
 			type: 'string',
 			options: ['sm', 'md', 'lg', 'xl', 'full'],
 			default: 'md',
 			description: 'Modal width size'
+		},
+		closeOnEscape: {
+			type: 'boolean',
+			default: true,
+			description: 'Allow closing modal with Escape key'
+		},
+		closeOnBackdrop: {
+			type: 'boolean',
+			default: true,
+			description: 'Allow closing modal by clicking backdrop'
+		},
+		hideCloseButton: {
+			type: 'boolean',
+			default: false,
+			description: 'Hide the close button in header'
+		},
+		class: {
+			type: 'string',
+			default: '',
+			description: 'Custom CSS classes for dialog element'
 		}
 	} as const;
 </script>
@@ -49,7 +84,7 @@
 		createFocusTrap,
 		getModalDataAttributes,
 		type ModalState
-	} from '$lib/machines/modal.machine';
+	} from '$lib/components/machines/modal.machine';
 
 	// ============================================
 	// Props
@@ -251,8 +286,8 @@
 		m-auto p-0
 		bg-transparent
 		backdrop:bg-bg-overlay backdrop:opacity-overlay
-		open:animate-fade-in
-		closed:animate-fade-out
+		open:animate-fade-in motion-reduce:open:animate-none
+		closed:animate-fade-out motion-reduce:closed:animate-none
 	"
 	aria-labelledby={title ? titleId : undefined}
 	aria-describedby={description ? descId : undefined}
@@ -269,7 +304,7 @@
 			flex flex-col
 			w-full {sizeClasses[size]}
 			bg-surface rounded-2xl shadow-overlay
-			animate-scale-in
+			animate-scale-in motion-reduce:animate-none
 			border border-border-subtle
 			{className}
 		"
