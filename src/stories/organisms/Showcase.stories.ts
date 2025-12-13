@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, userEvent, within } from '@storybook/test';
 import Showcase from '$lib/components/organisms/Showcase.svelte';
 
 const meta = {
@@ -143,7 +144,84 @@ export const AllMacs: Story = {
 	render: ({ title, description, products, className }: any) => ({
 		Component: Showcase,
 		props: { title, description, products, className }
-	})
+	}),
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		// Test 1: Verify showcase renders
+		const showcase = canvas.getByRole('region', { name: /showcase/i });
+		await expect(showcase).toBeInTheDocument();
+		await expect(showcase).toBeVisible();
+
+		// Test 2: Verify title and description
+		const title = canvas.getByRole('heading', { name: /which mac is right for you/i });
+		await expect(title).toBeInTheDocument();
+
+		const description = canvas.getByText('Choose the perfect Mac for your needs');
+		await expect(description).toBeInTheDocument();
+
+		// Test 3: Verify products are displayed
+		const macbookAir = canvas.getByText('MacBook Air');
+		await expect(macbookAir).toBeInTheDocument();
+
+		const macbookPro = canvas.getByText('MacBook Pro 14"');
+		await expect(macbookPro).toBeInTheDocument();
+
+		const imac = canvas.getByText('iMac');
+		await expect(imac).toBeInTheDocument();
+
+		// Test 4: Verify product taglines
+		const airTagline = canvas.getByText('Supercharged by M3');
+		await expect(airTagline).toBeInTheDocument();
+
+		const proTagline = canvas.getByText('Mind-blowing performance');
+		await expect(proTagline).toBeInTheDocument();
+
+		const imacTagline = canvas.getByText('A statement. Instantly.');
+		await expect(imacTagline).toBeInTheDocument();
+
+		// Test 5: Verify prices are displayed
+		const airPrice = canvas.getByText('From $1,099');
+		await expect(airPrice).toBeInTheDocument();
+
+		const proPrice = canvas.getByText('From $1,999');
+		await expect(proPrice).toBeInTheDocument();
+
+		const imacPrice = canvas.getByText('From $1,299');
+		await expect(imacPrice).toBeInTheDocument();
+
+		// Test 6: Verify action buttons
+		const learnMoreButtons = canvas.getAllByRole('link', { name: /learn more/i });
+		expect(learnMoreButtons.length).toBeGreaterThanOrEqual(3);
+
+		const buyButtons = canvas.getAllByRole('link', { name: /buy/i });
+		expect(buyButtons.length).toBeGreaterThanOrEqual(3);
+
+		// Test 7: Verify images with alt text
+		const images = canvas.getAllByRole('img');
+		expect(images.length).toBeGreaterThanOrEqual(3);
+
+		images.forEach((img) => {
+			expect(img).toHaveAttribute('alt');
+			expect(img.getAttribute('alt')).not.toBe('');
+		});
+
+		// Test 8: Verify "New" badge for MacBook Air
+		const newBadge = canvas.getByText('New');
+		await expect(newBadge).toBeInTheDocument();
+
+		// Test 9: Verify grid layout structure
+		const productCards = canvas.getAllByRole('article');
+		expect(productCards.length).toBe(3);
+
+		// Test 10: Test keyboard navigation
+		await userEvent.tab();
+		// Should be able to navigate through interactive elements
+
+		// Test 11: Verify proper heading hierarchy
+		const headings = canvas.getAllByRole('heading');
+		expect(headings.length).toBeGreaterThanOrEqual(1);
+	}
 };
 
 export const ThreeProducts: Story = {

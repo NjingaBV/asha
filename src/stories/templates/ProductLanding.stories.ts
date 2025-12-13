@@ -116,6 +116,66 @@ export const Default: Story = {
 		productsTitle: 'Our Products',
 		products: sampleProducts,
 		featuresTitle: 'Why Mac'
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render skip link', async () => {
+			const skipLink = canvas.getByRole('link', { name: /skip to main content/i });
+			expect(skipLink).toBeInTheDocument();
+			expect(skipLink).toHaveAttribute('href', '#main-content');
+		});
+
+		await step('Render hero section with title', async () => {
+			expect(
+				canvas.getByRole('heading', { level: 1, name: 'Welcome to Mac' })
+			).toBeInTheDocument();
+		});
+
+		await step('Render hero description', async () => {
+			expect(canvas.getByText(/Discover our amazing lineup/)).toBeInTheDocument();
+		});
+
+		await step('Render primary CTA button', async () => {
+			const primaryButton = canvas.getByRole('link', { name: 'Shop Mac' });
+			expect(primaryButton).toBeInTheDocument();
+			expect(primaryButton).toHaveAttribute('href', '#products');
+		});
+
+		await step('Render secondary CTA button', async () => {
+			const secondaryButton = canvas.getByRole('link', { name: 'Learn More' });
+			expect(secondaryButton).toBeInTheDocument();
+			expect(secondaryButton).toHaveAttribute('href', '#features');
+		});
+
+		await step('Render products section', async () => {
+			expect(
+				canvas.getByRole('heading', { level: 2, name: 'Our Products' })
+			).toBeInTheDocument();
+		});
+
+		await step('Render product grid with items', async () => {
+			// Check for product names
+			expect(canvas.getByText('MacBook Pro')).toBeInTheDocument();
+			expect(canvas.getByText('MacBook Air')).toBeInTheDocument();
+		});
+
+		await step('Render features section', async () => {
+			expect(canvas.getByRole('heading', { level: 2, name: 'Why Mac' })).toBeInTheDocument();
+		});
+
+		await step('Features section has content', async () => {
+			expect(canvas.getByText('Performance')).toBeInTheDocument();
+			expect(canvas.getByText('Smart Features')).toBeInTheDocument();
+			expect(canvas.getByText('User Friendly')).toBeInTheDocument();
+		});
+
+		await step('Main content has proper ID', async () => {
+			const main = canvas.getByRole('main');
+			expect(main).toHaveAttribute('id', 'main-content');
+		});
 	}
 };
 

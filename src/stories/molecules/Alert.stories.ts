@@ -106,6 +106,23 @@ export const Default: Story = {
 		title: 'Information',
 		showIcon: true,
 		dismissible: false
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, getByRole } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render alert with proper role', async () => {
+			expect(canvas.getByRole('alert')).toBeInTheDocument();
+		});
+
+		await step('Display title', async () => {
+			expect(canvas.getByText('Information')).toBeInTheDocument();
+		});
+
+		await step('Alert has proper ARIA attributes', async () => {
+			const alert = canvas.getByRole('alert');
+			expect(alert).toHaveAttribute('role', 'alert');
+		});
 	}
 };
 

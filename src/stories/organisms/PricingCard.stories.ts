@@ -40,6 +40,48 @@ export const Default: Story = {
 			{ text: 'API access', included: false },
 			{ text: 'Custom domain', included: false }
 		]
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render pricing card name', async () => {
+			expect(canvas.getByText('Basic')).toBeInTheDocument();
+		});
+
+		await step('Display pricing card description', async () => {
+			expect(canvas.getByText('Perfect for getting started')).toBeInTheDocument();
+		});
+
+		await step('Show pricing information', async () => {
+			expect(canvas.getByText('$9')).toBeInTheDocument();
+			expect(canvas.getByText('/month')).toBeInTheDocument();
+		});
+
+		await step('Render CTA button', async () => {
+			const button = canvas.getByRole('link', { name: 'Get Started' });
+			expect(button).toBeInTheDocument();
+			expect(button).toHaveAttribute('href', '#');
+		});
+
+		await step('Display features list', async () => {
+			expect(canvas.getByText('5 projects')).toBeInTheDocument();
+			expect(canvas.getByText('10GB storage')).toBeInTheDocument();
+			expect(canvas.getByText('Email support')).toBeInTheDocument();
+		});
+
+		await step('Show included/excluded features', async () => {
+			// Check for checkmarks and x marks indicating included/excluded
+			const includedFeatures = canvas.getAllByText('5 projects');
+			expect(includedFeatures.length).toBeGreaterThan(0);
+		});
+
+		await step('Pricing card has proper accessibility structure', async () => {
+			const heading = canvas.getByRole('heading', { level: 3 });
+			expect(heading).toBeInTheDocument();
+			expect(heading).toHaveAccessibleName('Basic');
+		});
 	}
 };
 

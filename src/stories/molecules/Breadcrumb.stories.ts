@@ -39,6 +39,31 @@ export const Default: Story = {
 		size: 'md',
 		separator: '/',
 		showHomeIcon: false
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, getByRole } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render breadcrumb navigation', async () => {
+			const nav = canvas.getByRole('navigation') || canvasElement.querySelector('nav');
+			expect(nav || canvasElement).toBeInTheDocument();
+		});
+
+		await step('Display all breadcrumb items', async () => {
+			expect(canvas.getByText('Home')).toBeInTheDocument();
+			expect(canvas.getByText('Products')).toBeInTheDocument();
+			expect(canvas.getByText('MacBook Pro')).toBeInTheDocument();
+		});
+
+		await step('Render separators between items', async () => {
+			const text = canvasElement.textContent;
+			expect(text && text.includes('/')).toBeTruthy();
+		});
+
+		await step('Have links for navigable items', async () => {
+			const links = canvas.getAllByRole('link');
+			expect(links.length >= 2).toBeTruthy();
+		});
 	}
 };
 

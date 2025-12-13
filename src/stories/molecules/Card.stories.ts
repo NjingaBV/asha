@@ -116,6 +116,28 @@ export const Primary: Story = {
 		rounded: true,
 		titleSize: 'sm',
 		isVideo: false
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render card with title', async () => {
+			expect(canvas.getByText('Simples Thérapies')).toBeInTheDocument();
+		});
+
+		await step('Display card overview text', async () => {
+			expect(canvas.getByText(/Leurs succès/)).toBeInTheDocument();
+		});
+
+		await step('Render card with action button', async () => {
+			const button =
+				canvas.getByRole('button') || canvas.getByText('Boostez votre quotidien');
+			expect(button).toBeInTheDocument();
+		});
+
+		await step('Card has proper structure', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
 	}
 };
 

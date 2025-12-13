@@ -109,6 +109,43 @@ export const Default: Story = {
 				story: 'Default centered layout with the form card in the middle of the page.'
 			}
 		}
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render page title', async () => {
+			expect(canvas.getByRole('heading', { level: 1, name: 'Sign In' })).toBeInTheDocument();
+		});
+
+		await step('Render page subtitle', async () => {
+			expect(
+				canvas.getByText('Welcome back! Please enter your credentials.')
+			).toBeInTheDocument();
+		});
+
+		await step('Main content area is present', async () => {
+			const main = canvas.getByRole('main');
+			expect(main).toBeInTheDocument();
+		});
+
+		await step('Layout has proper structure for centered variant', async () => {
+			// Check that the form area is centered
+			const formContainer = canvasElement.querySelector('.max-w-md');
+			expect(formContainer).toBeInTheDocument();
+		});
+
+		await step('Background pattern is applied when enabled', async () => {
+			// Check for pattern elements
+			const patternElements = canvasElement.querySelectorAll('svg, .opacity-5, .opacity-10');
+			expect(patternElements.length).toBeGreaterThan(0);
+		});
+
+		await step('Skip link is present', async () => {
+			const skipLink = canvas.getByRole('link', { name: /skip to main content/i });
+			expect(skipLink).toBeInTheDocument();
+		});
 	}
 };
 

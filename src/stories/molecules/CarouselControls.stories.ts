@@ -55,6 +55,38 @@ export const BothEnabled: Story = {
 	args: {
 		canScrollLeft: true,
 		canScrollRight: true
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render carousel controls', async () => {
+			const buttons = canvas.getAllByRole('button');
+			expect(buttons.length).toBeGreaterThanOrEqual(2);
+		});
+
+		await step('Previous button is enabled', async () => {
+			const buttons = canvas.getAllByRole('button');
+			expect(buttons[0]).not.toBeDisabled();
+		});
+
+		await step('Next button is enabled', async () => {
+			const buttons = canvas.getAllByRole('button');
+			expect(buttons[1]).not.toBeDisabled();
+		});
+
+		await step('Buttons have proper ARIA labels', async () => {
+			const buttons = canvas.getAllByRole('button');
+			buttons.forEach((button) => {
+				expect(button).toHaveAccessibleName();
+			});
+		});
+
+		await step('Can click to navigate', async () => {
+			const buttons = canvas.getAllByRole('button');
+			await userEvent.click(buttons[0]);
+			expect(buttons[0]).toBeInTheDocument();
+		});
 	}
 };
 

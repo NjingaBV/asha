@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, userEvent, within } from '@storybook/test';
 import ProductGrid from '$lib/components/organisms/ProductGrid.svelte';
 
 const meta = {
@@ -64,5 +65,69 @@ export const Default: Story = {
 				secondaryAction: { label: 'Learn more', onClick: () => {} }
 			}
 		]
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		// Test 1: Verify grid renders
+		const grid = canvas.getByRole('region', { name: /product grid/i });
+		await expect(grid).toBeInTheDocument();
+		await expect(grid).toBeVisible();
+
+		// Test 2: Verify title and subtitle
+		const title = canvas.getByRole('heading', { name: /our products/i });
+		await expect(title).toBeInTheDocument();
+
+		const subtitle = canvas.getByText('Shop Now');
+		await expect(subtitle).toBeInTheDocument();
+
+		// Test 3: Verify products are displayed
+		const macbookAir = canvas.getByText('MacBook Air');
+		await expect(macbookAir).toBeInTheDocument();
+
+		const macbookPro = canvas.getByText('MacBook Pro');
+		await expect(macbookPro).toBeInTheDocument();
+
+		const imac = canvas.getByText('iMac');
+		await expect(imac).toBeInTheDocument();
+
+		// Test 4: Verify product descriptions
+		const airDesc = canvas.getByText('Strikingly thin and fast.');
+		await expect(airDesc).toBeInTheDocument();
+
+		const proDesc = canvas.getByText('Mind-blowing. Head-turning.');
+		await expect(proDesc).toBeInTheDocument();
+
+		// Test 5: Verify action buttons
+		const buyButtons = canvas.getAllByRole('button', { name: /buy/i });
+		expect(buyButtons.length).toBeGreaterThanOrEqual(3);
+
+		const learnMoreButtons = canvas.getAllByRole('button', { name: /learn more/i });
+		expect(learnMoreButtons.length).toBeGreaterThanOrEqual(3);
+
+		// Test 6: Test button interactions
+		await userEvent.click(buyButtons[0]);
+		// Verify button is clickable and doesn't throw errors
+
+		// Test 7: Verify images with alt text
+		const images = canvas.getAllByRole('img');
+		expect(images.length).toBeGreaterThanOrEqual(3);
+
+		images.forEach((img) => {
+			expect(img).toHaveAttribute('alt');
+			expect(img.getAttribute('alt')).not.toBe('');
+		});
+
+		// Test 8: Verify grid layout (3 columns)
+		// This would depend on CSS grid implementation
+		const productCards = canvas.getAllByRole('article');
+		expect(productCards.length).toBe(3);
+
+		// Test 9: Test keyboard navigation
+		await userEvent.tab();
+		// Should focus first interactive element
+
+		// Test 10: Verify color swatches if present
+		// Color swatches might be present for products with multiple colors
 	}
 };

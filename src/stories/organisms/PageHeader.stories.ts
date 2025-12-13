@@ -39,6 +39,49 @@ export const Default: Story = {
 			primary: { label: 'Buy', href: '#' },
 			secondary: { label: 'Learn more', href: '#' }
 		}
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render page title', async () => {
+			expect(canvas.getByText('MacBook Air')).toBeInTheDocument();
+		});
+
+		await step('Display page tagline', async () => {
+			expect(canvas.getByText('Thin, light, and incredibly powerful.')).toBeInTheDocument();
+		});
+
+		await step('Show page description', async () => {
+			expect(canvas.getByText(/M3 chip/)).toBeInTheDocument();
+		});
+
+		await step('Display price information', async () => {
+			expect(canvas.getByText('From $1,299')).toBeInTheDocument();
+		});
+
+		await step('Show badge', async () => {
+			expect(canvas.getByText('New')).toBeInTheDocument();
+		});
+
+		await step('Render primary CTA button', async () => {
+			const primaryButton = canvas.getByRole('link', { name: 'Buy' });
+			expect(primaryButton).toBeInTheDocument();
+			expect(primaryButton).toHaveAttribute('href', '#');
+		});
+
+		await step('Render secondary CTA button', async () => {
+			const secondaryButton = canvas.getByRole('link', { name: 'Learn more' });
+			expect(secondaryButton).toBeInTheDocument();
+			expect(secondaryButton).toHaveAttribute('href', '#');
+		});
+
+		await step('Page header has proper heading hierarchy', async () => {
+			const heading = canvas.getByRole('heading', { level: 1 });
+			expect(heading).toBeInTheDocument();
+			expect(heading).toHaveAccessibleName('MacBook Air');
+		});
 	}
 };
 

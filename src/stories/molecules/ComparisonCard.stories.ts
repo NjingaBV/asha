@@ -56,6 +56,33 @@ export const MacBookAir: Story = {
 			'MagSafe charging'
 		],
 		highlighted: false
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Display product name', async () => {
+			expect(canvas.getByText('MacBook Air')).toBeInTheDocument();
+		});
+
+		await step('Display product price', async () => {
+			expect(canvas.getByText('From $1,099')).toBeInTheDocument();
+		});
+
+		await step('Display all features', async () => {
+			expect(canvas.getByText('M3 chip')).toBeInTheDocument();
+			expect(canvas.getByText(/Liquid Retina display/)).toBeInTheDocument();
+		});
+
+		await step('Render product image', async () => {
+			const images = canvasElement.querySelectorAll('img');
+			expect(images.length > 0).toBeTruthy();
+		});
+
+		await step('Display feature list with checkmarks', async () => {
+			const listItems = canvasElement.querySelectorAll('li, [role="listitem"]');
+			expect(listItems.length).toBeGreaterThanOrEqual(5);
+		});
 	}
 };
 

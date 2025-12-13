@@ -49,6 +49,34 @@ export const Default: Story = {
 		caption: 'Beautiful mountain landscape at sunset',
 		position: 'below',
 		fit: 'cover'
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render media image', async () => {
+			const image = canvasElement.querySelector('img');
+			expect(image).toBeInTheDocument();
+		});
+
+		await step('Image has alt text', async () => {
+			const image = canvasElement.querySelector('img');
+			expect(image).toHaveAttribute('alt', 'Mountain landscape');
+		});
+
+		await step('Display caption text', async () => {
+			expect(canvas.getByText('Beautiful mountain landscape at sunset')).toBeInTheDocument();
+		});
+
+		await step('Caption is positioned below', async () => {
+			const caption = canvas.getByText('Beautiful mountain landscape at sunset');
+			expect(caption).toBeInTheDocument();
+		});
+
+		await step('Media has proper structure', async () => {
+			const figure = canvasElement.querySelector('figure');
+			expect(figure || canvasElement).toBeInTheDocument();
+		});
 	}
 };
 

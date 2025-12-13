@@ -63,6 +63,34 @@ export const Primary: Story = {
 				story: 'Default footer configuration with complete logo information including title, subtitle, and image. Demonstrates the standard implementation for corporate or business sites with full branding.'
 			}
 		}
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @storybook/no-import-module-by-path
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render footer with semantic footer element', async () => {
+			const footer = canvasElement.querySelector('footer');
+			expect(footer).toBeInTheDocument();
+		});
+
+		await step('Display brand name in logo', async () => {
+			expect(canvas.getByText('uranos')).toBeInTheDocument();
+		});
+
+		await step('Display brand subtitle', async () => {
+			expect(canvas.getByText("Courtier d'assurances")).toBeInTheDocument();
+		});
+
+		await step('Render copyright notice with current year', async () => {
+			const currentYear = new Date().getFullYear().toString();
+			expect(canvas.getByText(new RegExp(`© ${currentYear} Ouranos`))).toBeInTheDocument();
+		});
+
+		await step('Logo image is present with alt text', async () => {
+			const logoImg = canvasElement.querySelector('img[alt="Ouranos logo"]');
+			expect(logoImg).toBeInTheDocument();
+		});
 	}
 };
 

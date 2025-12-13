@@ -40,6 +40,35 @@ export const Default: Story = {
 			{ value: '24/7', label: 'Support' },
 			{ value: '150+', label: 'Countries' }
 		]
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render section title', async () => {
+			expect(canvas.getByText('Trusted by developers worldwide')).toBeInTheDocument();
+		});
+
+		await step('Display statistics values', async () => {
+			expect(canvas.getByText('10K+')).toBeInTheDocument();
+			expect(canvas.getByText('99.9%')).toBeInTheDocument();
+			expect(canvas.getByText('24/7')).toBeInTheDocument();
+			expect(canvas.getByText('150+')).toBeInTheDocument();
+		});
+
+		await step('Show statistics labels', async () => {
+			expect(canvas.getByText('Active Users')).toBeInTheDocument();
+			expect(canvas.getByText('Uptime')).toBeInTheDocument();
+			expect(canvas.getByText('Support')).toBeInTheDocument();
+			expect(canvas.getByText('Countries')).toBeInTheDocument();
+		});
+
+		await step('Stats section has proper accessibility structure', async () => {
+			const heading = canvas.getByRole('heading', { level: 2 });
+			expect(heading).toBeInTheDocument();
+			expect(heading).toHaveAccessibleName('Trusted by developers worldwide');
+		});
 	}
 };
 

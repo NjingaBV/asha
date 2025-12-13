@@ -105,7 +105,31 @@ export const Default: Story = {
 			...args,
 			children: () => 'This is the modal content. You can put any content here.'
 		}
-	})
+	}),
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, getByRole } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render modal as dialog element', async () => {
+			const dialog = canvasElement.querySelector('dialog');
+			expect(dialog || canvasElement).toBeInTheDocument();
+		});
+
+		await step('Display modal title', async () => {
+			expect(canvas.getByText('Modal Title')).toBeInTheDocument();
+		});
+
+		await step('Modal content is visible', async () => {
+			expect(canvas.getByText(/This is the modal content/)).toBeInTheDocument();
+		});
+
+		await step('Modal has proper role and ARIA attributes', async () => {
+			const dialog = canvasElement.querySelector('dialog');
+			if (dialog) {
+				expect(dialog).toHaveAttribute('open');
+			}
+		});
+	}
 };
 
 export const WithFooter: Story = {

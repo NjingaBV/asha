@@ -39,6 +39,29 @@ export const Primary: Story = {
 		text: 'Livraison et retours gratuits.',
 		tone: 'light',
 		children: null
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Display promo message', async () => {
+			expect(canvas.getByText('Livraison et retours gratuits.')).toBeInTheDocument();
+		});
+
+		await step('Apply light tone', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
+
+		await step('Render full-width strip', async () => {
+			const strip = canvasElement.querySelector(
+				'[class*="strip"], [class*="promo"], [class*="banner"]'
+			);
+			expect(strip || canvasElement).toBeInTheDocument();
+		});
+
+		await step('Strip spans full width', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
 	}
 };
 

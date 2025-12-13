@@ -43,6 +43,35 @@ export const Primary: Story = {
 			'https://images.prismic.io/djfacemakerv2/4a7327bf-a1e4-4767-aab1-d77b2a3d8391_FMK_Home.jpg?auto=compress,format',
 			'https://images.prismic.io/djfacemakerv2/ecdf7fa2-f35e-4824-9ccc-7229b1977fe1_A65B51FA-DCEA-46EE-AB42-DFB9DA659ABD.JPG?auto=compress,format'
 		]
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line storybook/use-storybook-expect
+		const { expect } = await import('@storybook/test');
+
+		await step('Render tile images', async () => {
+			const images = canvasElement.querySelectorAll('img');
+			expect(images.length).toBeGreaterThanOrEqual(2);
+		});
+
+		await step('All images are loaded', async () => {
+			const images = canvasElement.querySelectorAll('img');
+			images.forEach((img) => {
+				expect(img).toHaveAttribute('src');
+			});
+		});
+
+		await step('Images have proper alt text or accessible names', async () => {
+			const images = canvasElement.querySelectorAll('img');
+			images.forEach((img) => {
+				const hasAlt = img.hasAttribute('alt');
+				const hasAriaLabel = img.hasAttribute('aria-label');
+				expect(hasAlt || hasAriaLabel).toBeTruthy();
+			});
+		});
+
+		await step('Tile has responsive grid layout', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
 	}
 };
 

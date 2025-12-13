@@ -174,6 +174,55 @@ export const MacLanding: Story = {
 		featuresData: macFeaturesData,
 		benefitsTitle: 'Why Apple is the best\nplace to buy Mac.',
 		featuresTitle: 'Get to know Mac.'
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render chapter navigation', async () => {
+			expect(canvas.getByText('MacBook Air')).toBeInTheDocument();
+			expect(canvas.getByText('MacBook Pro')).toBeInTheDocument();
+			expect(canvas.getByText('iMac')).toBeInTheDocument();
+		});
+
+		await step('Render hero section with title', async () => {
+			expect(canvas.getByText(/If you can dream it/)).toBeInTheDocument();
+		});
+
+		await step('Render hero actions', async () => {
+			expect(canvas.getByRole('link', { name: 'Watch the film' })).toBeInTheDocument();
+			expect(canvas.getByRole('link', { name: 'Learn more' })).toBeInTheDocument();
+		});
+
+		await step('Render product showcase', async () => {
+			expect(canvas.getByText('MacBook Air 13" and 15"')).toBeInTheDocument();
+			expect(canvas.getByText('MacBook Pro 14" and 16"')).toBeInTheDocument();
+			expect(canvas.getByText('iMac')).toBeInTheDocument();
+		});
+
+		await step('Product cards have pricing', async () => {
+			expect(canvas.getByText('From $999')).toBeInTheDocument();
+			expect(canvas.getByText('From $1599')).toBeInTheDocument();
+		});
+
+		await step('Render benefits section', async () => {
+			expect(canvas.getByText(/Why Apple is the best/)).toBeInTheDocument();
+		});
+
+		await step('Benefits have descriptions', async () => {
+			expect(canvas.getByText(/Save on a new Mac/)).toBeInTheDocument();
+			expect(canvas.getByText(/Customize your Mac/)).toBeInTheDocument();
+		});
+
+		await step('Render features section', async () => {
+			expect(canvas.getByText('Get to know Mac.')).toBeInTheDocument();
+		});
+
+		await step('Features have content', async () => {
+			expect(canvas.getByText('Performance and Battery Life')).toBeInTheDocument();
+			expect(canvas.getByText('Mac + iPhone')).toBeInTheDocument();
+		});
 	}
 };
 

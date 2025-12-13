@@ -40,6 +40,50 @@ export const Info: Story = {
 		position: 'top-right',
 		dismissible: true,
 		duration: 0
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @storybook/no-import-module-by-path
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Toast is visible when visible prop is true', async () => {
+			const toast = canvas.getByRole('status');
+			expect(toast).toBeInTheDocument();
+			expect(toast).toBeVisible();
+		});
+
+		await step('Toast displays correct message', async () => {
+			expect(canvas.getByText('This is an informational message.')).toBeInTheDocument();
+		});
+
+		await step('Toast has correct type styling', async () => {
+			const toast = canvas.getByRole('status');
+			// Check for info type classes or attributes
+			expect(toast).toBeInTheDocument();
+		});
+
+		await step('Dismiss button is present when dismissible', async () => {
+			const dismissButton = canvas.getByRole('button', { name: /close|dismiss|×/i });
+			expect(dismissButton).toBeInTheDocument();
+		});
+
+		await step('Can dismiss toast manually', async () => {
+			const dismissButton = canvas.getByRole('button', { name: /close|dismiss|×/i });
+			await userEvent.click(dismissButton);
+			// Toast should disappear
+			expect(dismissButton).not.toBeVisible();
+		});
+
+		await step('Toast has proper ARIA attributes', async () => {
+			const toast = canvas.getByRole('status');
+			expect(toast).toHaveAttribute('aria-live', 'polite');
+		});
+
+		await step('Toast position classes applied', async () => {
+			const toast = canvas.getByRole('status');
+			// Position classes should be applied
+			expect(toast).toBeInTheDocument();
+		});
 	}
 };
 

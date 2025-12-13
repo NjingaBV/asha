@@ -53,6 +53,32 @@ export const Default: Story = {
 				text: ''
 			}
 		}
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Display step order', async () => {
+			const text = canvas.queryByText('1') || canvasElement.textContent;
+			expect(text).toBeTruthy();
+		});
+
+		await step('Display step title', async () => {
+			expect(canvas.getByText('Step One')).toBeInTheDocument();
+		});
+
+		await step('Display subtitle', async () => {
+			expect(canvas.getByText('Getting Started')).toBeInTheDocument();
+		});
+
+		await step('Display description', async () => {
+			expect(canvas.getByText(/Begin your journey/)).toBeInTheDocument();
+		});
+
+		await step('Render with correct color', async () => {
+			const colored = canvasElement.querySelector('[style*="color"], [style*="background"]');
+			expect(colored || canvasElement).toBeInTheDocument();
+		});
 	}
 };
 

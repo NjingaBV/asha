@@ -43,5 +43,29 @@ export const Default: Story = {
 				href: '#'
 			}
 		]
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render chapter navigation', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
+
+		await step('Display all chapter items', async () => {
+			expect(canvas.getByText('MacBook Air')).toBeInTheDocument();
+			expect(canvas.getByText('MacBook Pro')).toBeInTheDocument();
+			expect(canvas.getByText('iMac')).toBeInTheDocument();
+		});
+
+		await step('Render navigation links', async () => {
+			const links = canvas.getAllByRole('link');
+			expect(links.length).toBeGreaterThanOrEqual(5);
+		});
+
+		await step('Render product icons', async () => {
+			const images = canvasElement.querySelectorAll('img');
+			expect(images.length).toBeGreaterThanOrEqual(5);
+		});
 	}
 };

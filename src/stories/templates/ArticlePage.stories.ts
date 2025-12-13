@@ -75,6 +75,54 @@ export const Default: Story = {
 		},
 		publishedAt: new Date('2024-01-15'),
 		readingTime: 8
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render article title', async () => {
+			expect(
+				canvas.getByRole('heading', { level: 1, name: 'The Future of Web Development' })
+			).toBeInTheDocument();
+		});
+
+		await step('Render article subtitle', async () => {
+			expect(canvas.getByText(/Exploring the latest trends/)).toBeInTheDocument();
+		});
+
+		await step('Render category tag', async () => {
+			expect(canvas.getByText('Technology')).toBeInTheDocument();
+		});
+
+		await step('Render author information', async () => {
+			expect(canvas.getByText('Jane Smith')).toBeInTheDocument();
+			expect(canvas.getByText('Senior Developer')).toBeInTheDocument();
+		});
+
+		await step('Render publication date', async () => {
+			expect(canvas.getByText(/January 15, 2024/)).toBeInTheDocument();
+		});
+
+		await step('Render reading time', async () => {
+			expect(canvas.getByText('8')).toBeInTheDocument();
+		});
+
+		await step('Render breadcrumb navigation', async () => {
+			expect(canvas.getByText('Home')).toBeInTheDocument();
+			expect(canvas.getByText('Blog')).toBeInTheDocument();
+			expect(canvas.getByText('Technology')).toBeInTheDocument();
+		});
+
+		await step('Featured image is present', async () => {
+			const images = canvasElement.querySelectorAll('img');
+			expect(images.length).toBeGreaterThan(0);
+		});
+
+		await step('Main content has proper structure', async () => {
+			const main = canvasElement.querySelector('main');
+			expect(main).toBeInTheDocument();
+		});
 	}
 };
 

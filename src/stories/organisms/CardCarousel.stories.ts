@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, userEvent, within } from '@storybook/test';
 import CardCarousel from '$lib/components/organisms/CardCarousel.svelte';
 
 const meta = {
@@ -89,6 +90,71 @@ export const Default: Story = {
 			{ id: 'laptops', label: 'Laptops' },
 			{ id: 'desktops', label: 'Desktops' }
 		]
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		// Test 1: Verify carousel renders
+		const carousel = canvas.getByRole('region', { name: /card carousel/i });
+		await expect(carousel).toBeInTheDocument();
+		await expect(carousel).toBeVisible();
+
+		// Test 2: Verify title is displayed
+		const title = canvas.getByRole('heading', { name: /mac/i });
+		await expect(title).toBeInTheDocument();
+
+		// Test 3: Verify tabs are rendered
+		const allTab = canvas.getByRole('tab', { name: /all products/i });
+		await expect(allTab).toBeInTheDocument();
+
+		const laptopsTab = canvas.getByRole('tab', { name: /laptops/i });
+		await expect(laptopsTab).toBeInTheDocument();
+
+		const desktopsTab = canvas.getByRole('tab', { name: /desktops/i });
+		await expect(desktopsTab).toBeInTheDocument();
+
+		// Test 4: Verify products are displayed
+		const macbookAir = canvas.getByText('MacBook Air 13" and 15"');
+		await expect(macbookAir).toBeInTheDocument();
+
+		const macbookPro = canvas.getByText('MacBook Pro 14" and 16"');
+		await expect(macbookPro).toBeInTheDocument();
+
+		// Test 5: Test tab navigation
+		await userEvent.click(laptopsTab);
+		await expect(laptopsTab).toHaveAttribute('aria-selected', 'true');
+
+		// Verify laptops are still visible after tab switch
+		await expect(macbookAir).toBeInTheDocument();
+		await expect(macbookPro).toBeInTheDocument();
+
+		// Test 6: Test desktops tab
+		await userEvent.click(desktopsTab);
+		await expect(desktopsTab).toHaveAttribute('aria-selected', 'true');
+
+		const imac = canvas.getByText('iMac');
+		await expect(imac).toBeInTheDocument();
+
+		const macMini = canvas.getByText('Mac mini');
+		await expect(macMini).toBeInTheDocument();
+
+		// Test 7: Test keyboard navigation between tabs
+		await userEvent.keyboard('{ArrowRight}');
+		// Should move to next tab
+
+		// Test 8: Verify action buttons
+		const learnMoreButtons = canvas.getAllByRole('link', { name: /learn more/i });
+		expect(learnMoreButtons.length).toBeGreaterThan(0);
+
+		const buyButtons = canvas.getAllByRole('link', { name: /buy/i });
+		expect(buyButtons.length).toBeGreaterThan(0);
+
+		// Test 9: Verify images are present
+		const images = canvas.getAllByRole('img');
+		expect(images.length).toBeGreaterThan(0);
+
+		// Test 10: Test infinite scroll behavior (if implemented)
+		// This would depend on the actual carousel implementation
 	}
 };
 

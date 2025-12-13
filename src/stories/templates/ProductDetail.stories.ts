@@ -75,6 +75,46 @@ export const Default: Story = {
 		currency: '$',
 		rating: 4.8,
 		reviewCount: 1247
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render product title', async () => {
+			expect(
+				canvas.getByRole('heading', { level: 1, name: 'MacBook Pro 16"' })
+			).toBeInTheDocument();
+		});
+
+		await step('Render product description', async () => {
+			expect(canvas.getByText(/The most powerful MacBook Pro ever/)).toBeInTheDocument();
+		});
+
+		await step('Render product price', async () => {
+			expect(canvas.getByText('$2,499')).toBeInTheDocument();
+		});
+
+		await step('Render product rating and reviews', async () => {
+			expect(canvas.getByText('4.8')).toBeInTheDocument();
+			expect(canvas.getByText('1247')).toBeInTheDocument();
+		});
+
+		await step('Render breadcrumb navigation', async () => {
+			expect(canvas.getByText('Home')).toBeInTheDocument();
+			expect(canvas.getByText('Products')).toBeInTheDocument();
+			expect(canvas.getByText('MacBook Pro')).toBeInTheDocument();
+		});
+
+		await step('Product images are present', async () => {
+			const images = canvasElement.querySelectorAll('img');
+			expect(images.length).toBeGreaterThan(0);
+		});
+
+		await step('Main content has proper structure', async () => {
+			const main = canvasElement.querySelector('main');
+			expect(main).toBeInTheDocument();
+		});
 	}
 };
 

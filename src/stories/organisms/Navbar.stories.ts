@@ -105,6 +105,42 @@ export const Default: Story = {
 			{ label: 'About', href: '/about' },
 			{ label: 'Contact', href: '/contact' }
 		]
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @storybook/no-import-module-by-path
+		const { expect, within, userEvent, getByRole } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render navbar with semantic nav element', async () => {
+			const nav = canvasElement.querySelector('nav');
+			expect(nav).toBeInTheDocument();
+		});
+
+		await step('Display logo/brand name', async () => {
+			expect(canvas.getByText('Brand')).toBeInTheDocument();
+		});
+
+		await step('Render all navigation links', async () => {
+			expect(canvas.getByText('Home')).toBeInTheDocument();
+			expect(canvas.getByText('Products')).toBeInTheDocument();
+			expect(canvas.getByText('About')).toBeInTheDocument();
+			expect(canvas.getByText('Contact')).toBeInTheDocument();
+		});
+
+		await step('Navigation links are proper anchor elements', async () => {
+			const links = canvas.getAllByRole('link');
+			expect(links.length).toBeGreaterThanOrEqual(4); // logo + nav links
+		});
+
+		await step('Mobile menu button is present', async () => {
+			const menuButton = canvasElement.querySelector('button[aria-expanded]');
+			expect(menuButton).toBeInTheDocument();
+		});
+
+		await step('Navbar has proper accessibility attributes', async () => {
+			const nav = canvasElement.querySelector('nav');
+			expect(nav).toHaveAttribute('aria-label');
+		});
 	}
 };
 

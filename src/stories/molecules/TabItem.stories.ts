@@ -37,6 +37,34 @@ export const Default: Story = {
 		],
 		activeTab: 'all',
 		label: 'Product categories'
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render tab items', async () => {
+			const tabs = canvas.getAllByRole('tab');
+			expect(tabs.length).toBeGreaterThanOrEqual(3);
+		});
+
+		await step('Display all tab labels', async () => {
+			expect(canvas.getByText('All')).toBeInTheDocument();
+			expect(canvas.getByText('Laptops')).toBeInTheDocument();
+			expect(canvas.getByText('Desktops')).toBeInTheDocument();
+		});
+
+		await step('First tab is active by default', async () => {
+			const tabs = canvas.getAllByRole('tab');
+			expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
+		});
+
+		await step('Can click to select different tab', async () => {
+			const tabs = canvas.getAllByRole('tab');
+			if (tabs.length > 1) {
+				await userEvent.click(tabs[1]);
+				expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
+			}
+		});
 	}
 };
 

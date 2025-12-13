@@ -29,6 +29,41 @@ export const Default: Story = {
 	},
 	parameters: {
 		backgrounds: { default: 'dark' }
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @storybook/no-import-module-by-path
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render sticky navigation container', async () => {
+			const nav = canvasElement.querySelector('nav');
+			expect(nav).toBeInTheDocument();
+		});
+
+		await step('Display logo title', async () => {
+			expect(canvas.getByText('MacBook Pro')).toBeInTheDocument();
+		});
+
+		await step('Render all navigation links', async () => {
+			expect(canvas.getByText('Overview')).toBeInTheDocument();
+			expect(canvas.getByText('Tech Specs')).toBeInTheDocument();
+			expect(canvas.getByText('Compare')).toBeInTheDocument();
+		});
+
+		await step('Render CTA button', async () => {
+			expect(canvas.getByText('Buy')).toBeInTheDocument();
+		});
+
+		await step('CTA is a proper link element', async () => {
+			const ctaLink = canvas.getByRole('link', { name: 'Buy' });
+			expect(ctaLink).toBeInTheDocument();
+			expect(ctaLink).toHaveAttribute('href', '#');
+		});
+
+		await step('Navigation has sticky positioning', async () => {
+			const nav = canvasElement.querySelector('nav');
+			expect(nav).toHaveClass('sticky');
+		});
 	}
 };
 

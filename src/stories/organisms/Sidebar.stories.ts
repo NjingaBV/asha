@@ -28,6 +28,40 @@ export const Default: Story = {
 		position: 'left',
 		width: '16rem',
 		overlay: true
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @storybook/no-import-module-by-path
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render sidebar container when open', async () => {
+			const sidebar = canvasElement.querySelector('[data-sidebar]');
+			expect(sidebar).toBeInTheDocument();
+		});
+
+		await step('Sidebar has correct position class', async () => {
+			const sidebar = canvasElement.querySelector('[data-sidebar]');
+			expect(sidebar).toHaveClass('left-0');
+		});
+
+		await step('Overlay is present when enabled', async () => {
+			const overlay = canvasElement.querySelector('.bg-black\\/50');
+			expect(overlay).toBeInTheDocument();
+		});
+
+		await step('Sidebar has proper width', async () => {
+			const sidebar = canvasElement.querySelector('[data-sidebar]');
+			expect(sidebar).toHaveStyle({ width: '16rem' });
+		});
+
+		await step('Can close sidebar via overlay click', async () => {
+			const overlay = canvasElement.querySelector('.bg-black\\/50');
+			if (overlay) {
+				await userEvent.click(overlay);
+				// Note: In Storybook, the state change might not be reflected immediately
+				// but the click event should be testable
+			}
+		});
 	}
 };
 

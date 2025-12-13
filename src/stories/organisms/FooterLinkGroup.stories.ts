@@ -23,6 +23,37 @@ export const Default: Story = {
 			{ label: 'Press', href: '/press' },
 			{ label: 'Blog', href: '/blog' }
 		]
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @storybook/no-import-module-by-path
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render group title as heading', async () => {
+			expect(canvas.getByText('Company')).toBeInTheDocument();
+			const heading = canvasElement.querySelector('h3');
+			expect(heading).toBeInTheDocument();
+		});
+
+		await step('Render all footer links', async () => {
+			expect(canvas.getByText('About Us')).toBeInTheDocument();
+			expect(canvas.getByText('Careers')).toBeInTheDocument();
+			expect(canvas.getByText('Press')).toBeInTheDocument();
+			expect(canvas.getByText('Blog')).toBeInTheDocument();
+		});
+
+		await step('Links are proper anchor elements', async () => {
+			const links = canvas.getAllByRole('link');
+			expect(links.length).toBe(4);
+		});
+
+		await step('Links have correct href attributes', async () => {
+			const aboutLink = canvas.getByRole('link', { name: 'About Us' });
+			expect(aboutLink).toHaveAttribute('href', '/about');
+
+			const careersLink = canvas.getByRole('link', { name: 'Careers' });
+			expect(careersLink).toHaveAttribute('href', '/careers');
+		});
 	}
 };
 

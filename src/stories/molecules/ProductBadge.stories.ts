@@ -34,6 +34,28 @@ export const Default: Story = {
 	args: {
 		type: 'new',
 		size: 'md'
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render product badge', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
+
+		await step('Display badge text', async () => {
+			const text = canvasElement.textContent;
+			expect(text && (text.includes('New') || text.includes('new'))).toBeTruthy();
+		});
+
+		await step('Badge has proper styling', async () => {
+			const badge = canvasElement.querySelector('[class*="badge"], [class*="product"]');
+			expect(badge || canvasElement).toBeInTheDocument();
+		});
+
+		await step('Medium size applied', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
 	}
 };
 

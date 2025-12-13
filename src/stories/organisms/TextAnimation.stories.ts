@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, userEvent, within } from '@storybook/test';
 import TextAnimation from '$lib/components/organisms/TextAnimation.svelte';
 
 const meta = {
@@ -59,6 +60,63 @@ export const Primary: Story = {
 				story: 'Default animated text showcase with three value propositions in distinct colors (green, yellow, blue). Each word animates in sequence to create a dynamic, attention-grabbing effect. Perfect example of emphasizing multiple brand attributes or product benefits.'
 			}
 		}
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		// Test 1: Verify text animation component renders
+		const animationContainer = canvas.getByRole('region', { name: /text animation/i });
+		await expect(animationContainer).toBeInTheDocument();
+		await expect(animationContainer).toBeVisible();
+
+		// Test 2: Verify all text labels are displayed
+		const simpleText = canvas.getByText('Simple');
+		await expect(simpleText).toBeInTheDocument();
+
+		const transparenteText = canvas.getByText('Transparente');
+		await expect(transparenteText).toBeInTheDocument();
+
+		const revolutionnaireText = canvas.getByText('Révolutionnaire');
+		await expect(revolutionnaireText).toBeInTheDocument();
+
+		// Test 3: Verify text elements are properly structured
+		// Each text should be in its own container or have proper styling
+		const textElements = [simpleText, transparenteText, revolutionnaireText];
+		textElements.forEach((element) => {
+			expect(element).toBeVisible();
+			expect(element.offsetWidth).toBeGreaterThan(0);
+			expect(element.offsetHeight).toBeGreaterThan(0);
+		});
+
+		// Test 4: Test animation effects (if testable)
+		// Note: Animation timing might be difficult to test deterministically
+		// We can verify the elements exist and have expected classes
+
+		// Test 5: Verify color styling is applied
+		// The colors should be applied via CSS custom properties or inline styles
+		// This depends on the implementation
+
+		// Test 6: Verify proper text hierarchy
+		// All text should be visible and properly sized
+		const allTextElements = canvas.getAllByText(/.+/);
+		expect(allTextElements.length).toBeGreaterThanOrEqual(3);
+
+		// Test 7: Test keyboard navigation (if interactive)
+		await userEvent.tab();
+		// Should not break focus flow
+
+		// Test 8: Verify accessibility
+		// Text should be readable and properly structured
+		textElements.forEach((element) => {
+			expect(element).toBeVisible();
+			// Check for proper contrast (this would require more advanced testing)
+		});
+
+		// Test 9: Verify animation sequence (if testable)
+		// This might require waiting for animation cycles or checking CSS classes
+
+		// Test 10: Verify responsive behavior
+		// Text should scale appropriately on different screen sizes
 	}
 };
 

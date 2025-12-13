@@ -57,6 +57,25 @@ export const Default: Story = {
 		interactive: false,
 		allowHalf: true,
 		showValue: false
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render rating stars', async () => {
+			const stars = canvasElement.querySelectorAll('svg, [data-testid*="star"]');
+			expect(stars.length > 0).toBeTruthy();
+		});
+
+		await step('Display correct rating value', async () => {
+			const starFilled = canvasElement.querySelectorAll('[class*="fill"]');
+			expect(starFilled.length > 0).toBeTruthy();
+		});
+
+		await step('Correct number of stars rendered', async () => {
+			const allStars = canvasElement.querySelectorAll('svg');
+			expect(allStars.length >= 4).toBeTruthy();
+		});
 	}
 };
 

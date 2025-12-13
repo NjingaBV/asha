@@ -119,7 +119,45 @@ export const Default: Story = {
 			...args,
 			panel: (tab: { id: string; label: string }) => `Content for ${tab.label} tab.`
 		}
-	})
+	}),
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line storybook/use-storybook-expect
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render tablist with proper role', async () => {
+			expect(canvas.getByRole('tablist')).toBeInTheDocument();
+		});
+
+		await step('Render all tabs', async () => {
+			const tabs = canvas.getAllByRole('tab');
+			expect(tabs.length).toBe(3);
+		});
+
+		await step('First tab is selected by default', async () => {
+			const tabs = canvas.getAllByRole('tab');
+			expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
+		});
+
+		await step('Other tabs are not selected by default', async () => {
+			const tabs = canvas.getAllByRole('tab');
+			expect(tabs[1]).toHaveAttribute('aria-selected', 'false');
+		});
+
+		await step('Can click to switch tabs', async () => {
+			const tabs = canvas.getAllByRole('tab');
+			await userEvent.click(tabs[1]);
+			expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
+			expect(tabs[0]).toHaveAttribute('aria-selected', 'false');
+		});
+
+		await step('Tab panels are linked via aria-controls', async () => {
+			const tabs = canvas.getAllByRole('tab');
+			tabs.forEach((tab) => {
+				expect(tab).toHaveAttribute('aria-controls');
+			});
+		});
+	}
 };
 
 // ============================================

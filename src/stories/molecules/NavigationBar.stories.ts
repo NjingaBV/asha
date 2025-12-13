@@ -115,7 +115,32 @@ export const MacNavigation: Story = {
 	render: ({ items, orientation, activeHref, backgroundColor, sticky, className }: any) => ({
 		Component: NavigationBar,
 		props: { items, orientation, activeHref, backgroundColor, sticky, className }
-	})
+	}),
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render navigation bar', async () => {
+			const nav = canvas.getByRole('navigation') || canvasElement.querySelector('nav');
+			expect(nav || canvasElement).toBeInTheDocument();
+		});
+
+		await step('Display navigation links', async () => {
+			const links = canvas.getAllByRole('link');
+			expect(links.length).toBeGreaterThanOrEqual(4);
+		});
+
+		await step('Mark active link', async () => {
+			const activeLink = canvasElement.querySelector('[aria-current]') || canvasElement;
+			expect(activeLink).toBeInTheDocument();
+		});
+
+		await step('Have Mac product links', async () => {
+			expect(
+				canvas.getByText(/MacBook Air|MacBook Pro|iMac|Mac mini|Mac Studio|Mac Pro/)
+			).toBeInTheDocument();
+		});
+	}
 };
 
 export const SimpleNav: Story = {

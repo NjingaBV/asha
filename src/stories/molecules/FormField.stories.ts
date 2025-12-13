@@ -50,6 +50,28 @@ export const Default: Story = {
 		label: 'Email',
 		size: 'md',
 		helperText: 'Enter your email address'
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, getByRole } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render label', async () => {
+			expect(canvas.getByText('Email')).toBeInTheDocument();
+		});
+
+		await step('Render input field', async () => {
+			const input = canvas.getByRole('textbox');
+			expect(input).toBeInTheDocument();
+		});
+
+		await step('Display helper text', async () => {
+			expect(canvas.getByText('Enter your email address')).toBeInTheDocument();
+		});
+
+		await step('Input has proper accessibility', async () => {
+			const input = canvas.getByRole('textbox');
+			expect(input).toHaveAccessibleName();
+		});
 	}
 };
 

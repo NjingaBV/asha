@@ -116,6 +116,42 @@ export const MoleculePrimary: Story = {
 				color: '#0a84ff'
 			}
 		]
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render hero title', async () => {
+			expect(canvas.getByText('Simples Thérapies')).toBeInTheDocument();
+		});
+
+		await step('Display hero description', async () => {
+			expect(canvas.getByText(/Leurs succès/)).toBeInTheDocument();
+		});
+
+		await step('Show hero details', async () => {
+			expect(canvas.getByText('2 Avril 2020 • 53min')).toBeInTheDocument();
+		});
+
+		await step('Render CTA button', async () => {
+			const button = canvas.getByRole('link', { name: 'Regarder' });
+			expect(button).toBeInTheDocument();
+			expect(button).toHaveAttribute('href', 'https://www.youtube.com/watch?v=7e90gBu4pas');
+		});
+
+		await step('Apply background color', async () => {
+			const heroElement =
+				canvasElement.querySelector('[data-testid="hero"]') ||
+				canvasElement.firstElementChild;
+			expect(heroElement).toBeInTheDocument();
+		});
+
+		await step('Hero has proper accessibility structure', async () => {
+			const heading = canvas.getByRole('heading', { level: 1 });
+			expect(heading).toBeInTheDocument();
+			expect(heading).toHaveAccessibleName('Simples Thérapies');
+		});
 	}
 };
 

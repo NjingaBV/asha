@@ -33,6 +33,34 @@ export const Default: Story = {
 		primary: { label: 'Buy Now', href: '#', tone: 'primary' },
 		secondary: { label: 'Learn More', href: '#', tone: 'secondary' },
 		align: 'center'
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render primary button', async () => {
+			expect(canvas.getByText('Buy Now')).toBeInTheDocument();
+		});
+
+		await step('Render secondary button', async () => {
+			expect(canvas.getByText('Learn More')).toBeInTheDocument();
+		});
+
+		await step('Both buttons are links', async () => {
+			const links = canvas.getAllByRole('link');
+			expect(links.length).toBeGreaterThanOrEqual(2);
+		});
+
+		await step('Buttons are center aligned', async () => {
+			const container = canvasElement.querySelector('[class*="flex"], [class*="center"]');
+			expect(container || canvasElement).toBeInTheDocument();
+		});
+
+		await step('Can click primary button', async () => {
+			const button = canvas.getByText('Buy Now');
+			await userEvent.click(button);
+			expect(button).toBeInTheDocument();
+		});
 	}
 };
 

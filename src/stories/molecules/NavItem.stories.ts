@@ -48,6 +48,36 @@ export const Default: Story = {
 		size: 'md',
 		active: false,
 		disabled: false
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render navigation item as link', async () => {
+			const link = canvas.getByRole('link');
+			expect(link).toBeInTheDocument();
+		});
+
+		await step('Link has correct href', async () => {
+			const link = canvas.getByRole('link');
+			expect(link).toHaveAttribute('href', '/products');
+		});
+
+		await step('Item is not active by default', async () => {
+			const link = canvas.getByRole('link');
+			expect(link).not.toHaveClass('active');
+		});
+
+		await step('Item is not disabled by default', async () => {
+			const link = canvas.getByRole('link');
+			expect(link).not.toBeDisabled();
+		});
+
+		await step('Can click navigation item', async () => {
+			const link = canvas.getByRole('link');
+			await userEvent.click(link);
+			expect(link).toBeInTheDocument();
+		});
 	}
 };
 

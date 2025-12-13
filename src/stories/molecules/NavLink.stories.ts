@@ -50,6 +50,36 @@ export const Default: Story = {
 		size: 'md',
 		active: false,
 		disabled: false
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render navigation link', async () => {
+			const link = canvas.getByRole('link');
+			expect(link).toBeInTheDocument();
+		});
+
+		await step('Link has correct href', async () => {
+			const link = canvas.getByRole('link');
+			expect(link).toHaveAttribute('href', '/about');
+		});
+
+		await step('Link is not active by default', async () => {
+			const link = canvas.getByRole('link');
+			expect(link).not.toHaveAttribute('aria-current');
+		});
+
+		await step('Link is not disabled', async () => {
+			const link = canvas.getByRole('link');
+			expect(link).not.toBeDisabled();
+		});
+
+		await step('Can interact with link', async () => {
+			const link = canvas.getByRole('link');
+			await userEvent.click(link);
+			expect(link).toBeInTheDocument();
+		});
 	}
 };
 

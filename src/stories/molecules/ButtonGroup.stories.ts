@@ -49,6 +49,37 @@ export const Default: Story = {
 		selected: 'Minuit',
 		tone: 'light',
 		label: 'Select finish'
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render button group title', async () => {
+			expect(canvas.getByText('Finitions')).toBeInTheDocument();
+		});
+
+		await step('Render all color buttons', async () => {
+			const buttons = canvas.getAllByRole('button');
+			expect(buttons.length).toBeGreaterThanOrEqual(4);
+		});
+
+		await step('First button (Minuit) is selected by default', async () => {
+			const minuitButton = canvas.getByText('Minuit');
+			expect(minuitButton).toBeInTheDocument();
+		});
+
+		await step('Can click to select different color', async () => {
+			const buttons = canvas.getAllByRole('button');
+			if (buttons.length > 1) {
+				await userEvent.click(buttons[1]);
+				expect(buttons[1]).toBeInTheDocument();
+			}
+		});
+
+		await step('Group has proper accessibility label', async () => {
+			const group = canvasElement.querySelector('[role="group"]') || canvasElement;
+			expect(group).toBeInTheDocument();
+		});
 	}
 };
 

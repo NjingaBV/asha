@@ -25,6 +25,26 @@ export const Default: Story = {
 	args: {
 		size: 'md',
 		disabled: false
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render input group', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
+
+		await step('Input group has medium size class', async () => {
+			const group = canvasElement.querySelector('[class*="size"]');
+			expect(group).toBeInTheDocument();
+		});
+
+		await step('Group is not disabled by default', async () => {
+			const inputs = canvasElement.querySelectorAll('input');
+			inputs.forEach((input) => {
+				expect(input).not.toBeDisabled();
+			});
+		});
 	}
 };
 

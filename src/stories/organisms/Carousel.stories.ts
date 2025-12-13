@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
+import { expect, userEvent, within } from '@storybook/test';
 import Carousel from '$lib/components/organisms/Carousel.svelte';
 
 const meta = {
@@ -75,6 +76,60 @@ export const Primary: Story = {
 				textOnImage: true
 			}
 		]
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		// Test 1: Verify carousel renders
+		const carousel = canvas.getByRole('region', { name: /carousel/i });
+		await expect(carousel).toBeInTheDocument();
+		await expect(carousel).toBeVisible();
+
+		// Test 2: Verify title and category are displayed
+		const title = canvas.getByRole('heading', { name: /les dernières sorties/i });
+		await expect(title).toBeInTheDocument();
+
+		const category = canvas.getByText('Music');
+		await expect(category).toBeInTheDocument();
+
+		// Test 3: Verify cards are rendered
+		const firstCard = canvas.getByText("L'Afro Club");
+		await expect(firstCard).toBeInTheDocument();
+
+		const secondCard = canvas.getByText('Urban Xra');
+		await expect(secondCard).toBeInTheDocument();
+
+		// Test 4: Verify card buttons are present
+		const firstButton = canvas.getByRole('link', { name: /entrez dans le club/i });
+		await expect(firstButton).toBeInTheDocument();
+		await expect(firstButton).toHaveAttribute(
+			'href',
+			'https://musique.rfi.fr/tag/auteur/herve-mandina'
+		);
+
+		const secondButton = canvas.getByRole('link', { name: /entrez dans la danse/i });
+		await expect(secondButton).toBeInTheDocument();
+
+		// Test 5: Test keyboard navigation (if navigation buttons exist)
+		const allButtons = canvas.getAllByRole('button');
+		if (allButtons.length > 0) {
+			// Test navigation buttons if present
+			await userEvent.tab();
+			// Verify focus moves to first focusable element
+		}
+
+		// Test 6: Verify accessibility - cards should be in a proper list or region
+		const cards = canvas.getAllByRole('article');
+		await expect(cards).toHaveLength(2);
+
+		// Test 7: Verify images have alt text or are decorative
+		const images = canvas.getAllByRole('img');
+		// Images should either have alt text or be marked as decorative
+		images.forEach((img) => {
+			const hasAlt = img.hasAttribute('alt') && img.getAttribute('alt') !== '';
+			const isDecorative = img.getAttribute('aria-hidden') === 'true';
+			expect(hasAlt || isDecorative).toBe(true);
+		});
 	}
 };
 

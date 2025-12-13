@@ -74,5 +74,50 @@ export const CompareModels: Story = {
 				highlighted: false
 			}
 		]
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render comparison title', async () => {
+			expect(canvas.getByText('Compare Mac models')).toBeInTheDocument();
+		});
+
+		await step('Display comparison description', async () => {
+			expect(
+				canvas.getByText('Find the perfect Mac that fits your workflow')
+			).toBeInTheDocument();
+		});
+
+		await step('Render product names', async () => {
+			expect(canvas.getByText('MacBook Air')).toBeInTheDocument();
+			expect(canvas.getByText('MacBook Pro 14"')).toBeInTheDocument();
+			expect(canvas.getByText('iMac')).toBeInTheDocument();
+		});
+
+		await step('Display product prices', async () => {
+			expect(canvas.getByText('From $1,099')).toBeInTheDocument();
+			expect(canvas.getByText('From $1,999')).toBeInTheDocument();
+			expect(canvas.getByText('From $1,299')).toBeInTheDocument();
+		});
+
+		await step('Show product features', async () => {
+			expect(canvas.getByText('M3 chip')).toBeInTheDocument();
+			expect(canvas.getByText('13.6" Liquid Retina display')).toBeInTheDocument();
+			expect(canvas.getByText('M3 Pro or M3 Max chip')).toBeInTheDocument();
+		});
+
+		await step('Render product images', async () => {
+			const images = canvas.getAllByRole('img');
+			expect(images.length).toBeGreaterThan(0);
+			expect(images[0]).toHaveAttribute('alt', 'MacBook Air');
+		});
+
+		await step('Comparison has proper accessibility structure', async () => {
+			const heading = canvas.getByRole('heading', { level: 2 });
+			expect(heading).toBeInTheDocument();
+			expect(heading).toHaveAccessibleName('Compare Mac models');
+		});
 	}
 };

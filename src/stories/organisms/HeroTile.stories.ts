@@ -49,6 +49,42 @@ export const Primary: Story = {
 			imgAlt: 'DJ FMK logo',
 			showTitle: false
 		}
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render hero tile grid', async () => {
+			const images = canvas.getAllByRole('img');
+			expect(images.length).toBeGreaterThan(0);
+		});
+
+		await step('Display logo image', async () => {
+			const logo = canvas.getByAltText('DJ FMK logo');
+			expect(logo).toBeInTheDocument();
+		});
+
+		await step('Show logo title when enabled', async () => {
+			// Note: showTitle is false in this story, so title should not be visible
+			const titleElement = canvas.queryByText('DJ FMK');
+			expect(titleElement).not.toBeInTheDocument();
+		});
+
+		await step('Hero tile has proper structure', async () => {
+			const heroTile =
+				canvasElement.querySelector('[data-testid="hero-tile"]') ||
+				canvasElement.firstElementChild;
+			expect(heroTile).toBeInTheDocument();
+		});
+
+		await step('Images are properly loaded', async () => {
+			const images = canvas.getAllByRole('img');
+			images.forEach((img) => {
+				expect(img).toHaveAttribute('src');
+				expect(img).toHaveAttribute('alt');
+			});
+		});
 	}
 };
 

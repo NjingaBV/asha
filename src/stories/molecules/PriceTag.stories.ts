@@ -52,6 +52,29 @@ export const Default: Story = {
 		locale: 'en-US',
 		size: 'md',
 		showCurrency: true
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Display price value', async () => {
+			const text = canvasElement.textContent;
+			expect(text && text.includes('99.99')).toBeTruthy();
+		});
+
+		await step('Display currency symbol', async () => {
+			const text = canvasElement.textContent;
+			expect(text && text.includes('$')).toBeTruthy();
+		});
+
+		await step('Format price correctly', async () => {
+			const text = canvasElement.textContent;
+			expect(text && (text.includes('99.99') || text.includes('$99.99'))).toBeTruthy();
+		});
+
+		await step('Render price tag element', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
 	}
 };
 

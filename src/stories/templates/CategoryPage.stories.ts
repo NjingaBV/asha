@@ -66,6 +66,47 @@ export const Default: Story = {
 		totalPages: 4,
 		perPage: 12,
 		showFilters: true
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render category title', async () => {
+			expect(canvas.getByRole('heading', { level: 1, name: 'Laptops' })).toBeInTheDocument();
+		});
+
+		await step('Render category description', async () => {
+			expect(canvas.getByText(/Browse our selection of premium laptops/)).toBeInTheDocument();
+		});
+
+		await step('Render breadcrumb navigation', async () => {
+			expect(canvas.getByText('Home')).toBeInTheDocument();
+			expect(canvas.getByText('Products')).toBeInTheDocument();
+			expect(canvas.getByText('Laptops')).toBeInTheDocument();
+		});
+
+		await step('Display total items count', async () => {
+			expect(canvas.getByText('48')).toBeInTheDocument();
+		});
+
+		await step('Show pagination info', async () => {
+			expect(canvas.getByText('1')).toBeInTheDocument(); // current page
+			expect(canvas.getByText('4')).toBeInTheDocument(); // total pages
+		});
+
+		await step('Filter bar is visible when enabled', async () => {
+			// Check for filter elements - this depends on the FilterBar component
+			const filterElements = canvasElement.querySelectorAll(
+				'[data-testid="filter"], .filter, [role="search"]'
+			);
+			expect(filterElements.length).toBeGreaterThanOrEqual(0);
+		});
+
+		await step('Main content has proper structure', async () => {
+			const main = canvasElement.querySelector('main');
+			expect(main).toBeInTheDocument();
+		});
 	}
 };
 

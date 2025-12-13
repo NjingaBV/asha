@@ -44,6 +44,45 @@ export const Default: Story = {
 			}
 		],
 		selected: {}
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @storybook/no-import-module-by-path
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render filter bar container', async () => {
+			const filterBar = canvasElement.querySelector('[data-filter-bar]');
+			expect(filterBar).toBeInTheDocument();
+		});
+
+		await step('Display filter labels', async () => {
+			expect(canvas.getByText('Category')).toBeInTheDocument();
+			expect(canvas.getByText('Price')).toBeInTheDocument();
+		});
+
+		await step('Render filter options with counts', async () => {
+			expect(canvas.getByText('Electronics (42)')).toBeInTheDocument();
+			expect(canvas.getByText('Clothing (28)')).toBeInTheDocument();
+			expect(canvas.getByText('Books (15)')).toBeInTheDocument();
+		});
+
+		await step('Render clear button when enabled', async () => {
+			const clearButton = canvas.getByRole('button', { name: /clear|reset/i });
+			expect(clearButton).toBeInTheDocument();
+		});
+
+		await step('Filter options are interactive buttons', async () => {
+			const electronicsButton = canvas.getByRole('button', { name: 'Electronics (42)' });
+			expect(electronicsButton).toBeInTheDocument();
+
+			// Test clicking a filter option
+			await userEvent.click(electronicsButton);
+		});
+
+		await step('Horizontal layout applied', async () => {
+			const filterBar = canvasElement.querySelector('[data-filter-bar]');
+			expect(filterBar).toHaveClass('flex-row');
+		});
 	}
 };
 

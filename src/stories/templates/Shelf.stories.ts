@@ -96,6 +96,45 @@ export const Primary: Story = {
 				story: 'Basic example of the Shelf template with a single HeroTile slice. Demonstrates the tile-based layout with logo and image grid, perfect for portfolio or gallery homepages. The alternating color feature is enabled to showcase the background color alternation capability.'
 			}
 		}
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render shelf layout structure', async () => {
+			const main = canvasElement.querySelector('main');
+			expect(main).toBeInTheDocument();
+		});
+
+		await step('Navigation links are present', async () => {
+			expect(canvas.getByText('Home')).toBeInTheDocument();
+			expect(canvas.getByText('About')).toBeInTheDocument();
+			expect(canvas.getByText('Contact')).toBeInTheDocument();
+		});
+
+		await step('Shelf content slices are rendered', async () => {
+			// Check for slice content - depends on the slice components
+			const sliceElements = canvasElement.querySelectorAll(
+				'[data-testid="slice"], .slice, section'
+			);
+			expect(sliceElements.length).toBeGreaterThan(0);
+		});
+
+		await step('Logo is displayed', async () => {
+			const logoElements = canvasElement.querySelectorAll('img[alt*="DJ FMK"]');
+			expect(logoElements.length).toBeGreaterThan(0);
+		});
+
+		await step('Images are present in shelf', async () => {
+			const images = canvasElement.querySelectorAll('img');
+			expect(images.length).toBeGreaterThan(1); // Logo + content images
+		});
+
+		await step('Skip link is accessible', async () => {
+			const skipLink = canvas.getByRole('link', { name: /skip to main content/i });
+			expect(skipLink).toBeInTheDocument();
+		});
 	}
 };
 

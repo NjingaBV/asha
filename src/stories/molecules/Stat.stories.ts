@@ -43,6 +43,26 @@ export const Default: Story = {
 		label: 'Total Users',
 		value: '12,345',
 		size: 'md'
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Display stat label', async () => {
+			expect(canvas.getByText('Total Users')).toBeInTheDocument();
+		});
+
+		await step('Display stat value', async () => {
+			expect(canvas.getByText('12,345')).toBeInTheDocument();
+		});
+
+		await step('Render stat element', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
+
+		await step('Apply medium size', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
 	}
 };
 

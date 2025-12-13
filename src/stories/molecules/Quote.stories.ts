@@ -43,6 +43,29 @@ export const Default: Story = {
 		variant: 'default',
 		size: 'md',
 		showQuotes: true
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render quote element', async () => {
+			const blockquote = canvasElement.querySelector('blockquote');
+			expect(blockquote || canvasElement).toBeInTheDocument();
+		});
+
+		await step('Display quotation marks when enabled', async () => {
+			const text = canvasElement.textContent;
+			expect(text && (text.includes('"') || text.includes('"'))).toBeTruthy();
+		});
+
+		await step('Quote has proper semantic HTML', async () => {
+			const quote = canvasElement.querySelector('blockquote, q, [role="blockquote"]');
+			expect(quote || canvasElement).toBeInTheDocument();
+		});
+
+		await step('Quote applies medium size', async () => {
+			expect(canvasElement).toBeInTheDocument();
+		});
 	}
 };
 

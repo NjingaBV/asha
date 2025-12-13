@@ -73,6 +73,31 @@ export const Default: Story = {
 		variant: 'outline',
 		showSubmit: false,
 		showClear: true
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within, userEvent } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render search input', async () => {
+			const input = canvas.getByRole('textbox') || canvas.getByPlaceholderText(/Search/i);
+			expect(input).toBeInTheDocument();
+		});
+
+		await step('Input has correct placeholder', async () => {
+			const input = canvas.getByPlaceholderText('Search...');
+			expect(input).toBeInTheDocument();
+		});
+
+		await step('Can type in search input', async () => {
+			const input = canvas.getByRole('textbox') || canvas.getByPlaceholderText(/Search/i);
+			await userEvent.type(input, 'MacBook Pro');
+			expect(input).toHaveValue('MacBook Pro');
+		});
+
+		await step('Input has proper accessibility', async () => {
+			const input = canvas.getByRole('textbox') || canvas.getByPlaceholderText(/Search/i);
+			expect(input).toHaveAttribute('type', 'text');
+		});
 	}
 };
 

@@ -36,6 +36,43 @@ export const Default: Story = {
 		level: 2,
 		align: 'center',
 		size: 'md'
+	},
+	play: async ({ canvasElement, step }) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render eyebrow text', async () => {
+			expect(canvas.getByText('Features')).toBeInTheDocument();
+		});
+
+		await step('Display section title', async () => {
+			expect(canvas.getByText('Everything you need to succeed')).toBeInTheDocument();
+		});
+
+		await step('Show section description', async () => {
+			expect(canvas.getByText(/Our platform provides/)).toBeInTheDocument();
+		});
+
+		await step('Section header has proper heading hierarchy', async () => {
+			const heading = canvas.getByRole('heading', { level: 2 });
+			expect(heading).toBeInTheDocument();
+			expect(heading).toHaveAccessibleName('Everything you need to succeed');
+		});
+
+		await step('Apply correct alignment', async () => {
+			const headerElement =
+				canvasElement.querySelector('[data-testid="section-header"]') ||
+				canvasElement.firstElementChild;
+			expect(headerElement).toBeInTheDocument();
+			// Note: alignment testing would require checking CSS classes or styles
+		});
+
+		await step('Apply correct size styling', async () => {
+			const titleElement = canvas.getByRole('heading', { level: 2 });
+			expect(titleElement).toBeInTheDocument();
+			// Note: size testing would require checking CSS classes
+		});
 	}
 };
 
