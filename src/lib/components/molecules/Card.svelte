@@ -69,8 +69,8 @@
 </script>
 
 <script lang="ts">
-	import Button from '$lib/atoms/Button.svelte';
-	import Linkable from '$lib/atoms/Linkable.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
+	import Linkable from '$lib/components/atoms/Linkable.svelte';
 
 	/**
 	 * Unified Card component

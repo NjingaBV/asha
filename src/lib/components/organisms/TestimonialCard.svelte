@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Image from '$lib/atoms/Image.svelte';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import Text from '$lib/atoms/Text.svelte';
-	import Rating from '$lib/molecules/Rating.svelte';
+	import Image from '$lib/components/atoms/Image.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Text from '$lib/components/atoms/Text.svelte';
+	import Rating from '$lib/components/molecules/Rating.svelte';
 
 	interface Props {
 		/** Testimonial quote text */

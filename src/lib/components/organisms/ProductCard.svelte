@@ -1,83 +1,55 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
 	import Button from '../atoms/Button.svelte';
 	import ColorSwatch from '../atoms/ColorSwatch.svelte';
 	import Heading from '../atoms/Heading.svelte';
 	import Text from '../atoms/Text.svelte';
-	import type { AppleColor, ColorType } from '../../models/color.type';
+	import type { ProductDetail } from '../../models/product.type';
 
 	/**
 	 * ProductCard component - displays product cards with colors, badges, and actions
 	 *
 	 * @example
 	 * <ProductCard
-	 *   title="Product Name"
-	 *   subtitle="Product subtitle"
-	 *   description="Product description text."
-	 *   colors={['blue', 'silver', 'black']}
-	 *   primaryAction={{ label: 'Learn more', href: '/product' }}
-	 *   secondaryAction={{ label: 'Buy', href: '/buy' }}
+	 *   product={acmeLaptop}
+	 *   layout="center"
 	 * />
 	 */
 
-	interface Action {
-		label: string;
-		href?: string;
-		onClick?: () => void;
-	}
-
 	interface Props {
-		/** Product title */
-		title: string;
-		/** Product subtitle (chip info, etc.) */
-		subtitle?: string;
-		/** Product description */
-		description: string;
-		/** Available colors */
-		colors?: AppleColor[];
-		/** Color type for indicators */
-		colorType?: ColorType;
-		/** Primary action button */
-		primaryAction?: Action;
-		/** Secondary action button */
-		secondaryAction?: Action;
-		/** Product image/thumbnail */
-		image?: string;
-		/** Image alt text */
-		imageAlt?: string;
+		/** Product data */
+		product: ProductDetail;
+		/** Layout style */
+		layout?: 'left' | 'center';
+		/** Visual variant */
+		variant?: 'default' | 'minimal';
+		/** Badge color theme */
+		badgeColor?: 'blue' | 'orange' | 'neutral';
 		/** Custom CSS classes */
 		className?: string;
-		/** Highlight badge (e.g., "New") */
-		badge?: string;
-		/** Slot for custom content (text, html, or Svelte snippet) */
-		children?: Snippet | any;
+		/** Image container custom classes */
+		imageContainerClass?: string;
 	}
 
 	let {
-		title,
-		subtitle,
-		description,
-		colors = [],
-		colorType = 'solid',
-		primaryAction,
-		secondaryAction,
-		image,
-		imageAlt,
-		className = '',
-		badge,
-		badgeColor = 'blue',
+		product,
 		layout = 'center',
-		priceDetail,
 		variant = 'default',
-		imageContainerClass = '',
-		children
-	}: Props & {
-		badgeColor?: 'blue' | 'orange' | 'neutral';
-		layout?: 'left' | 'center';
-		priceDetail?: string;
-		variant?: 'default' | 'minimal';
-		imageContainerClass?: string;
-	} = $props();
+		badgeColor = 'blue',
+		className = '',
+		imageContainerClass = ''
+	}: Props = $props();
+
+	// Extract product data with fallbacks
+	const title = $derived(product.title || product.name || '');
+	const subtitle = $derived(product.subtitle || product.tagline);
+	const description = $derived(product.description);
+	const colors = $derived(product.colors || []);
+	const primaryAction = $derived(product.primaryAction || product.ctas?.primary);
+	const secondaryAction = $derived(product.secondaryAction || product.ctas?.secondary);
+	const image = $derived(product.image || product.heroImage);
+	const imageAlt = $derived(product.imageAlt || product.heroAlt || title);
+	const badge = $derived(product.badge);
+	const priceDetail = $derived(product.startingPrice);
 
 	// Card container classes
 	const cardClasses = $derived(
@@ -125,7 +97,7 @@
 		{#if colors.length > 0 && layout === 'center'}
 			<div class="flex justify-center gap-2 pb-2">
 				{#each colors as color}
-					<ColorSwatch {color} type={colorType} size="sm" />
+					<ColorSwatch color={color.swatch} label={color.name} size="sm" />
 				{/each}
 			</div>
 		{/if}
@@ -161,7 +133,7 @@
 				<span class="text-sm text-fg-muted mr-2">Available in:</span>
 				<div class="flex gap-2">
 					{#each colors as color}
-						<ColorSwatch {color} type={colorType} size="sm" />
+						<ColorSwatch color={color.swatch} label={color.name} size="sm" />
 					{/each}
 				</div>
 			</div>
@@ -203,16 +175,6 @@
 							/>
 						</svg>
 					</a>
-				{/if}
-			</div>
-		{/if}
-
-		{#if children}
-			<div class="pt-4">
-				{#if typeof children === 'function'}
-					{@render children()}
-				{:else}
-					{children}
 				{/if}
 			</div>
 		{/if}

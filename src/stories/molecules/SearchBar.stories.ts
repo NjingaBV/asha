@@ -90,8 +90,8 @@ export const Default: Story = {
 
 		await step('Can type in search input', async () => {
 			const input = canvas.getByRole('textbox') || canvas.getByPlaceholderText(/Search/i);
-			await userEvent.type(input, 'MacBook Pro');
-			expect(input).toHaveValue('MacBook Pro');
+			await userEvent.type(input, 'Acme Laptop Pro');
+			expect(input).toHaveValue('Acme Laptop Pro');
 		});
 
 		await step('Input has proper accessibility', async () => {
@@ -103,7 +103,7 @@ export const Default: Story = {
 
 export const WithValue: Story = {
 	args: {
-		value: 'MacBook Pro',
+		value: 'Acme Laptop Pro',
 		placeholder: 'Search products...',
 		size: 'md',
 		showClear: true
@@ -172,7 +172,7 @@ export const FilledWithSubmit: Story = {
 
 export const ProductSearch: Story = {
 	args: {
-		placeholder: 'Search for iPhone, MacBook, iPad...',
+		placeholder: 'Search for laptops, tablets, phones...',
 		size: 'lg',
 		variant: 'outline',
 		showSubmit: true,

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ColorSwatch from '$lib/atoms/ColorSwatch.svelte';
+	import ColorSwatch from '$lib/components/atoms/ColorSwatch.svelte';
 	import type { MacColorOption } from '$lib/models';
 
 	interface Props {

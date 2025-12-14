@@ -275,11 +275,11 @@ export const TurbanMalaboVariant: Story = {
 	}
 };
 
-export const AppleStylePerformance: Story = {
+export const AcmeStylePerformance: Story = {
 	args: {
 		title: 'Go fast. Go far.',
 		subtitle: 'Performance and Battery Life',
-		imgSrc: 'https://www.apple.com/v/macbook-pro/ai/images/overview/hero/hero_static__bpt7y5o1cgqe_large.jpg',
+		imgSrc: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&h=600&fit=crop',
 		textOnImage: true,
 		textPosition: 'top',
 		textColor: 'white',

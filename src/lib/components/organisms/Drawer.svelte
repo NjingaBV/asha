@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import IconButton from '$lib/atoms/IconButton.svelte';
-	import Heading from '$lib/atoms/Heading.svelte';
+	import IconButton from '$lib/components/atoms/IconButton.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
 
 	interface Props {
 		/** Whether the drawer is open */

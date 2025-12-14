@@ -38,7 +38,7 @@
 	// Type Exports
 	// ============================================
 
-	export type { Tab } from '$lib/components/machines/tabs.machine';
+	export type { Tab } from '$lib/machines/tabs.machine';
 
 	/** Tabs visual variant */
 	export type TabsVariant = 'underline' | 'pills' | 'enclosed';
@@ -72,7 +72,7 @@
 		getTabDataAttributes,
 		getTabAriaAttributes,
 		type Tab as TabType
-	} from '$lib/components/machines/tabs.machine';
+	} from '$lib/machines/tabs.machine';
 
 	// Use imported type locally
 	type Tab = TabType;

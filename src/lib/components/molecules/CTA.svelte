@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/atoms/Button.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	let {
 		primary = null,
 		secondary = null,

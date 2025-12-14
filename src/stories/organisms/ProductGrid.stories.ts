@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
 import { expect, userEvent, within } from '@storybook/test';
 import ProductGrid from '$lib/components/organisms/ProductGrid.svelte';
+import { ACME_LAPTOPS, ACME_PHONE_PRO, ACME_TABLET_PRO } from '$lib/fixtures/products';
 
 const meta = {
 	title: 'Organisms/ProductGrid',
@@ -27,42 +28,37 @@ export const Default: Story = {
 		columns: 3,
 		products: [
 			{
-				title: 'MacBook Air',
-				subtitle: 'M2 chip',
-				description: 'Strikingly thin and fast.',
-				image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80',
-				imageAlt: 'MacBook Air',
-				colors: ['#2e3642', '#e0e2e0', '#f0e5d3', '#353a42'],
+				title: ACME_LAPTOPS[0].title,
+				subtitle: ACME_LAPTOPS[0].tagline,
+				description: ACME_LAPTOPS[0].description,
+				image: ACME_LAPTOPS[0].heroImage,
+				imageAlt: ACME_LAPTOPS[0].heroAlt,
+				colors: ACME_LAPTOPS[0].colors?.map((c) => c.hex || c.swatch),
 				primaryAction: { label: 'Buy', onClick: () => {} },
-				secondaryAction: { label: 'Learn more', onClick: () => {} }
+				secondaryAction: { label: 'Learn more', onClick: () => {} },
+				badge: ACME_LAPTOPS[0].badge
 			},
 			{
-				title: 'MacBook Pro',
-				subtitle: 'M3 chip',
-				description: 'Mind-blowing. Head-turning.',
-				image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80',
-				imageAlt: 'MacBook Pro',
-				colors: ['#0b0c0e', '#e0e2e0'],
+				title: ACME_LAPTOPS[1].title,
+				subtitle: ACME_LAPTOPS[1].tagline,
+				description: ACME_LAPTOPS[1].description,
+				image: ACME_LAPTOPS[1].heroImage,
+				imageAlt: ACME_LAPTOPS[1].heroAlt,
+				colors: ACME_LAPTOPS[1].colors?.map((c) => c.hex || c.swatch),
 				primaryAction: { label: 'Buy', onClick: () => {} },
-				secondaryAction: { label: 'Learn more', onClick: () => {} }
+				secondaryAction: { label: 'Learn more', onClick: () => {} },
+				badge: ACME_LAPTOPS[1].badge
 			},
 			{
-				title: 'iMac',
-				subtitle: 'M3 chip',
-				description: 'Packed with more juice.',
-				image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80',
-				imageAlt: 'iMac',
-				colors: [
-					'#4477ce',
-					'#8c52ff',
-					'#ff66c4',
-					'#ff9f1c',
-					'#ffcd3c',
-					'#55d6be',
-					'#e0e2e0'
-				],
+				title: ACME_PHONE_PRO.title,
+				subtitle: ACME_PHONE_PRO.tagline,
+				description: ACME_PHONE_PRO.description,
+				image: ACME_PHONE_PRO.heroImage,
+				imageAlt: ACME_PHONE_PRO.heroAlt,
+				colors: ACME_PHONE_PRO.colors?.map((c) => c.hex || c.swatch),
 				primaryAction: { label: 'Buy', onClick: () => {} },
-				secondaryAction: { label: 'Learn more', onClick: () => {} }
+				secondaryAction: { label: 'Learn more', onClick: () => {} },
+				badge: ACME_PHONE_PRO.badge
 			}
 		]
 	},
@@ -82,20 +78,20 @@ export const Default: Story = {
 		await expect(subtitle).toBeInTheDocument();
 
 		// Test 3: Verify products are displayed
-		const macbookAir = canvas.getByText('MacBook Air');
-		await expect(macbookAir).toBeInTheDocument();
+		const laptopAir = canvas.getByText(ACME_LAPTOPS[0].title);
+		await expect(laptopAir).toBeInTheDocument();
 
-		const macbookPro = canvas.getByText('MacBook Pro');
-		await expect(macbookPro).toBeInTheDocument();
+		const laptopPro = canvas.getByText(ACME_LAPTOPS[1].title);
+		await expect(laptopPro).toBeInTheDocument();
 
-		const imac = canvas.getByText('iMac');
-		await expect(imac).toBeInTheDocument();
+		const phonePro = canvas.getByText(ACME_PHONE_PRO.title);
+		await expect(phonePro).toBeInTheDocument();
 
 		// Test 4: Verify product descriptions
-		const airDesc = canvas.getByText('Strikingly thin and fast.');
+		const airDesc = canvas.getByText(ACME_LAPTOPS[0].description);
 		await expect(airDesc).toBeInTheDocument();
 
-		const proDesc = canvas.getByText('Mind-blowing. Head-turning.');
+		const proDesc = canvas.getByText(ACME_LAPTOPS[1].description);
 		await expect(proDesc).toBeInTheDocument();
 
 		// Test 5: Verify action buttons

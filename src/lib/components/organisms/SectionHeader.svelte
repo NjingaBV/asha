@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import Text from '$lib/atoms/Text.svelte';
-	import Caption from '$lib/atoms/Caption.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Text from '$lib/components/atoms/Text.svelte';
+	import Caption from '$lib/components/atoms/Caption.svelte';
 
 	interface Props {
 		/** Eyebrow/label text above the title */

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import SkipLink from '$lib/atoms/SkipLink.svelte';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import Text from '$lib/atoms/Text.svelte';
-	import Image from '$lib/atoms/Image.svelte';
-	import Breadcrumb from '$lib/molecules/Breadcrumb.svelte';
-	import PriceTag from '$lib/molecules/PriceTag.svelte';
-	import Rating from '$lib/molecules/Rating.svelte';
+	import SkipLink from '$lib/components/atoms/SkipLink.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Text from '$lib/components/atoms/Text.svelte';
+	import Image from '$lib/components/atoms/Image.svelte';
+	import Breadcrumb from '$lib/components/molecules/Breadcrumb.svelte';
+	import PriceTag from '$lib/components/molecules/PriceTag.svelte';
+	import Rating from '$lib/components/molecules/Rating.svelte';
 
 	interface BreadcrumbItem {
 		label: string;

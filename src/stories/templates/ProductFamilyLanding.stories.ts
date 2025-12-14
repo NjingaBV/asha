@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
 import ProductFamilyLanding from '$lib/components/templates/ProductFamilyLanding.svelte';
+import { ACME_LAPTOPS } from '$lib/fixtures/products';
 
 /**
  * Product Family Landing Template
  *
- * A comprehensive template for product family landing pages (like Mac, iPad, etc.),
+ * A comprehensive template for product family landing pages (like Laptop, Tablet, etc.),
  * featuring sticky navigation, hero section, product grid, benefits, and feature highlights.
  */
 
@@ -18,7 +19,7 @@ const meta = {
 				component: `
 # Product Family Landing Template
 
-A flexible template designed to showcase a family of products. It replicates the structure of high-quality marketing pages like Apple's Mac page.
+A flexible template designed to showcase a family of products. It replicates the structure of high-quality marketing pages.
 
 ## Features
 - **Sticky Chapter Navigation**: Quick links to specific products.
@@ -48,132 +49,121 @@ A flexible template designed to showcase a family of products. It replicates the
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Data for the Mac-like example
-const macChapterNavItems = [
+// Data for the Laptop family example
+const laptopChapterNavItems = [
 	{
-		label: 'MacBook Air',
-		icon: 'https://www.apple.com/v/mac/home/ca/images/chapternav/macbookair_light__dfypt7o35y6q_large.svg',
-		href: '/macbook-air'
+		label: 'Laptop Air',
+		icon: '/images/laptop-air-icon.svg',
+		href: '/laptop-air'
 	},
 	{
-		label: 'MacBook Pro',
-		icon: 'https://www.apple.com/v/mac/home/ca/images/chapternav/macbookpro_light__catcn1btfr6q_large.svg',
-		href: '/macbook-pro',
+		label: 'Laptop Pro 14"',
+		icon: '/images/laptop-pro-14-icon.svg',
+		href: '/laptop-pro-14',
 		isNew: true
 	},
 	{
-		label: 'iMac',
-		icon: 'https://www.apple.com/v/mac/home/ca/images/chapternav/imac_light__colyztscbeeu_large.svg',
-		href: '/imac'
-	},
-	{
-		label: 'Mac mini',
-		icon: 'https://www.apple.com/v/mac/home/ca/images/chapternav/macmini_light__ndsz6p44ol2y_large.svg',
-		href: '/mac-mini'
-	},
-	{
-		label: 'Mac Studio',
-		icon: 'https://www.apple.com/v/mac/home/ca/images/chapternav/macstudio_light__dt1p4074j96q_large.svg',
-		href: '/mac-studio'
+		label: 'Laptop Pro 16"',
+		icon: '/images/laptop-pro-16-icon.svg',
+		href: '/laptop-pro-16'
 	}
 ];
 
-const macHeroData = {
-	title: 'If you can dream it,\nMac can do it.',
+const laptopHeroData = {
+	title: 'Power meets portability.\nLaptops that perform.',
 	subtitle: 'Great ideas start here.',
-	description: 'See how Mac helps ideas come to life.',
+	description: 'See how our laptops help ideas come to life.',
 	backgroundColor: '#000000',
 	textColor: 'light' as const,
 	image: {
-		src: 'https://www.apple.com/v/mac/home/ca/images/overview/hero/hero_mac_dream_it__c6uv70k6j04i_large.jpg',
-		alt: 'Mac hero image'
+		src: '/images/laptop-hero.jpg',
+		alt: 'Laptop hero image'
 	},
-	primaryAction: { label: 'Watch the film', href: '#film' },
+	primaryAction: { label: 'Explore laptops', href: '#products' },
 	secondaryAction: { label: 'Learn more', href: '#learn-more' }
 };
 
-const macProductsData = [
+const laptopProductsData = [
 	{
-		title: 'MacBook Air 13” and 15”',
-		tagline: 'M3 chip',
+		title: 'Laptop Air',
+		tagline: 'Lightweight and powerful',
 		description: 'Strikingly thin and fast so you can work, play, or create anywhere.',
-		image: 'https://www.apple.com/v/mac/home/ca/images/overview/select/product_tile_mba_13_15__fx2g3r7cvbo2_large.png',
-		price: 'From $999',
+		image: '/images/laptop-air.jpg',
+		price: 'From $1,199',
 		colors: ['#2e3642', '#e0e2e0', '#f0e5d3', '#353a42'],
-		learnMoreHref: '/macbook-air',
-		buyHref: '/shop/buy-mac/macbook-air'
+		learnMoreHref: '/laptop-air',
+		buyHref: '/buy/laptop-air'
 	},
 	{
-		title: 'MacBook Pro 14” and 16”',
-		tagline: 'M3, M3 Pro, or M3 Max chip',
-		description: 'The most advanced Mac laptops for demanding workflows.',
-		image: 'https://www.apple.com/v/mac/home/ca/images/overview/select/product_tile_mbp_14_16__bkl8zusnkpw2_large.png',
-		price: 'From $1599',
+		title: 'Laptop Pro 14"',
+		tagline: 'Professional performance',
+		description: 'The most advanced laptop for demanding workflows.',
+		image: '/images/laptop-pro-14.jpg',
+		price: 'From $1,999',
 		isNew: true,
 		colors: ['#0b0c0e', '#e0e2e0'],
-		learnMoreHref: '/macbook-pro',
-		buyHref: '/shop/buy-mac/macbook-pro'
+		learnMoreHref: '/laptop-pro-14',
+		buyHref: '/buy/laptop-pro-14'
 	},
 	{
-		title: 'iMac',
-		tagline: 'M3 chip',
-		description: 'A stunning all-in-one desktop for creativity and productivity.',
-		image: 'https://www.apple.com/v/mac/home/ca/images/overview/select/product_tile_imac_24__inq0od011wuq_large.png',
-		price: 'From $1299',
-		colors: ['#4477ce', '#8c52ff', '#ff66c4', '#ff9f1c', '#ffcd3c', '#55d6be', '#e0e2e0'],
-		learnMoreHref: '/imac',
-		buyHref: '/shop/buy-mac/imac'
+		title: 'Laptop Pro 16"',
+		tagline: 'Maximum power',
+		description: 'Ultimate performance for professionals.',
+		image: '/images/laptop-pro-16.jpg',
+		price: 'From $2,499',
+		colors: ['#0b0c0e', '#e0e2e0'],
+		learnMoreHref: '/laptop-pro-16',
+		buyHref: '/buy/laptop-pro-16'
 	}
 ];
 
-const macBenefitsData = [
+const laptopBenefitsData = [
 	{
-		title: 'Save on a new Mac with education pricing.',
-		description: 'Available to college students and educators.',
+		title: 'Save on laptops with education pricing.',
+		description: 'Available to students and educators.',
 		learnMoreHref: '/education'
 	},
 	{
-		title: 'Customize your Mac.',
-		description: 'Choose your chip, memory, storage, even color.',
-		learnMoreHref: '/shop'
+		title: 'Customize your laptop.',
+		description: 'Choose your processor, memory, storage, even color.',
+		learnMoreHref: '/customize'
 	},
 	{
 		title: 'Get flexible delivery and easy pickup.',
-		description:
-			'Choose from two-hour delivery from an Apple Store, free delivery, or easy pickup options.',
+		description: 'Choose from delivery options or easy pickup locations.',
 		learnMoreHref: '/shipping'
 	}
 ];
 
-const macFeaturesData = [
+const laptopFeaturesData = [
 	{
 		title: 'Performance and Battery Life',
 		description: 'Go fast. Go far.',
-		image: 'https://www.apple.com/v/mac/home/ca/images/overview/consider/mac_performance__d193s9e5e902_large.jpg',
-		learnMore: '#'
+		image: '/images/laptop-performance.jpg',
+		learnMore: '#performance'
 	},
 	{
-		title: 'Mac + iPhone',
-		description: 'Together they work wonders.',
-		image: 'https://www.apple.com/v/mac/home/ca/images/overview/consider/mac_iphone__d193s9e5e902_large.jpg',
-		learnMore: '#'
+		title: 'Powerful Ecosystem',
+		description: 'Works seamlessly together.',
+		image: '/images/laptop-ecosystem.jpg',
+		learnMore: '#ecosystem'
 	}
 ];
 
 /**
- * Mac Landing Page Example
- * Replicates the Apple Mac landing page structure.
+ * Laptop Landing Page Example
+ * Showcases the laptop family with navigation, hero, and product showcase.
  */
-export const MacLanding: Story = {
+export const LaptopLanding: Story = {
 	args: {
 		variant: 'full',
-		chapterNavItems: macChapterNavItems,
-		heroData: macHeroData,
-		productsData: macProductsData,
-		benefitsData: macBenefitsData,
-		featuresData: macFeaturesData,
-		benefitsTitle: 'Why Apple is the best\nplace to buy Mac.',
-		featuresTitle: 'Get to know Mac.'
+		chapterNavItems: laptopChapterNavItems,
+		heroData: laptopHeroData,
+		productsData: laptopProductsData,
+		benefitsData: laptopBenefitsData,
+		featuresData: laptopFeaturesData,
+		benefitsTitle: 'Why Acme is the best\nplace to buy laptops.',
+		featuresTitle: 'Get to know our laptops.'
 	},
 	play: async ({ canvasElement, step }) => {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -181,47 +171,47 @@ export const MacLanding: Story = {
 		const canvas = within(canvasElement);
 
 		await step('Render chapter navigation', async () => {
-			expect(canvas.getByText('MacBook Air')).toBeInTheDocument();
-			expect(canvas.getByText('MacBook Pro')).toBeInTheDocument();
-			expect(canvas.getByText('iMac')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Air')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Pro 14"')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Pro 16"')).toBeInTheDocument();
 		});
 
 		await step('Render hero section with title', async () => {
-			expect(canvas.getByText(/If you can dream it/)).toBeInTheDocument();
+			expect(canvas.getByText(/Power meets portability/)).toBeInTheDocument();
 		});
 
 		await step('Render hero actions', async () => {
-			expect(canvas.getByRole('link', { name: 'Watch the film' })).toBeInTheDocument();
+			expect(canvas.getByRole('link', { name: 'Explore laptops' })).toBeInTheDocument();
 			expect(canvas.getByRole('link', { name: 'Learn more' })).toBeInTheDocument();
 		});
 
 		await step('Render product showcase', async () => {
-			expect(canvas.getByText('MacBook Air 13" and 15"')).toBeInTheDocument();
-			expect(canvas.getByText('MacBook Pro 14" and 16"')).toBeInTheDocument();
-			expect(canvas.getByText('iMac')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Air')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Pro 14"')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Pro 16"')).toBeInTheDocument();
 		});
 
 		await step('Product cards have pricing', async () => {
-			expect(canvas.getByText('From $999')).toBeInTheDocument();
-			expect(canvas.getByText('From $1599')).toBeInTheDocument();
+			expect(canvas.getByText('From $1,199')).toBeInTheDocument();
+			expect(canvas.getByText('From $1,999')).toBeInTheDocument();
 		});
 
 		await step('Render benefits section', async () => {
-			expect(canvas.getByText(/Why Apple is the best/)).toBeInTheDocument();
+			expect(canvas.getByText(/Why Acme is the best/)).toBeInTheDocument();
 		});
 
 		await step('Benefits have descriptions', async () => {
-			expect(canvas.getByText(/Save on a new Mac/)).toBeInTheDocument();
-			expect(canvas.getByText(/Customize your Mac/)).toBeInTheDocument();
+			expect(canvas.getByText(/Save on laptops/)).toBeInTheDocument();
+			expect(canvas.getByText(/Customize your laptop/)).toBeInTheDocument();
 		});
 
 		await step('Render features section', async () => {
-			expect(canvas.getByText('Get to know Mac.')).toBeInTheDocument();
+			expect(canvas.getByText('Get to know our laptops.')).toBeInTheDocument();
 		});
 
 		await step('Features have content', async () => {
 			expect(canvas.getByText('Performance and Battery Life')).toBeInTheDocument();
-			expect(canvas.getByText('Mac + iPhone')).toBeInTheDocument();
+			expect(canvas.getByText('Powerful Ecosystem')).toBeInTheDocument();
 		});
 	}
 };
@@ -233,8 +223,8 @@ export const MacLanding: Story = {
 export const Compact: Story = {
 	args: {
 		variant: 'compact',
-		chapterNavItems: macChapterNavItems,
-		heroData: macHeroData,
-		productsData: macProductsData.slice(0, 2)
+		chapterNavItems: laptopChapterNavItems,
+		heroData: laptopHeroData,
+		productsData: laptopProductsData.slice(0, 2)
 	}
 };

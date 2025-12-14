@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import SkipLink from '$lib/atoms/SkipLink.svelte';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import Text from '$lib/atoms/Text.svelte';
-	import Breadcrumb from '$lib/molecules/Breadcrumb.svelte';
-	import Pagination from '$lib/organisms/Pagination.svelte';
+	import SkipLink from '$lib/components/atoms/SkipLink.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Text from '$lib/components/atoms/Text.svelte';
+	import Breadcrumb from '$lib/components/molecules/Breadcrumb.svelte';
+	import Pagination from '$lib/components/organisms/Pagination.svelte';
 
 	interface BreadcrumbItem {
 		label: string;

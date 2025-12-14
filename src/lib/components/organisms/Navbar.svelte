@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import IconButton from '$lib/atoms/IconButton.svelte';
-	import NavigationBar from '$lib/molecules/NavigationBar.svelte';
-	import Logo from '$lib/atoms/Logo.svelte';
+	import IconButton from '$lib/components/atoms/IconButton.svelte';
+	import NavigationBar from '$lib/components/molecules/NavigationBar.svelte';
+	import Logo from '$lib/components/atoms/Logo.svelte';
 
 	import type { LinkType, LogoType } from '$lib/components/models';
 

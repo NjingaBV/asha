@@ -1,39 +1,22 @@
-export type MacCTA = {
-	label: string;
-	href?: string;
-	onClick?: () => void;
-};
+/**
+ * @deprecated This file is deprecated. Use product.type.ts instead.
+ *
+ * Mac-specific types have been moved to product.type.ts as generic types.
+ * Import directly from product.type.ts instead.
+ *
+ * Migration:
+ * ```ts
+ * // Before
+ * import { MacProduct } from '$lib/models/mac.type';
+ *
+ * // After
+ * import { ProductDetail } from '$lib/models/product.type';
+ * ```
+ *
+ * This file will be removed in v1.0.0.
+ */
 
-export type MacColorOption = {
-	name: string;
-	swatch: string;
-};
-
-export type MacSpec = {
-	label: string;
-	value: string;
-	emphasize?: boolean;
-};
-
-export type MacProduct = {
-	slug: string;
-	name: string;
-	tagline: string;
-	description?: string;
-	startingPrice?: string;
-	badge?: string;
-	heroImage?: string;
-	heroAlt?: string;
-	background?: string;
-	textOnDark?: boolean;
-	chip?: string;
-	display?: string;
-	battery?: string;
-	colors?: MacColorOption[];
-	specs?: MacSpec[];
-	highlights?: string[];
-	ctas?: {
-		primary?: MacCTA;
-		secondary?: MacCTA;
-	};
-};
+// Re-export for backward compatibility
+// Note: Aliases are already exported from product.type.ts
+// This file is kept empty to avoid duplicate exports
+export {};

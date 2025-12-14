@@ -42,16 +42,16 @@ Une carte de comparaison pour présenter les caractéristiques de modèles côte
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const MacBookAir: Story = {
+export const AcmeLaptopAir: Story = {
 	args: {
 		image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&h=300&fit=crop',
-		imageAlt: 'MacBook Air',
-		name: 'MacBook Air',
-		price: 'From $1,099',
+		imageAlt: 'Acme Laptop Air',
+		name: 'Acme Laptop Air',
+		price: 'From $1,199',
 		features: [
-			'M3 chip',
+			'Pro CPU chip',
 			'13.6" Liquid Retina display',
-			'Up to 18 hours battery',
+			'Up to 15 hours battery',
 			'1080p FaceTime HD camera',
 			'MagSafe charging'
 		],
@@ -62,15 +62,15 @@ export const MacBookAir: Story = {
 		const canvas = within(canvasElement);
 
 		await step('Display product name', async () => {
-			expect(canvas.getByText('MacBook Air')).toBeInTheDocument();
+			expect(canvas.getByText('Acme Laptop Air')).toBeInTheDocument();
 		});
 
 		await step('Display product price', async () => {
-			expect(canvas.getByText('From $1,099')).toBeInTheDocument();
+			expect(canvas.getByText('From $1,199')).toBeInTheDocument();
 		});
 
 		await step('Display all features', async () => {
-			expect(canvas.getByText('M3 chip')).toBeInTheDocument();
+			expect(canvas.getByText('Pro CPU chip')).toBeInTheDocument();
 			expect(canvas.getByText(/Liquid Retina display/)).toBeInTheDocument();
 		});
 
@@ -86,16 +86,16 @@ export const MacBookAir: Story = {
 	}
 };
 
-export const MacBookProHighlighted: Story = {
+export const AcmeLaptopProHighlighted: Story = {
 	args: {
 		image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=300&h=300&fit=crop',
-		imageAlt: 'MacBook Pro',
-		name: 'MacBook Pro 14"',
+		imageAlt: 'Acme Laptop Pro 14"',
+		name: 'Acme Laptop Pro 14"',
 		price: 'From $1,999',
 		features: [
-			'M3 Pro or M3 Max chip',
+			'Ultra CPU chip',
 			'14.2" Liquid Retina XDR display',
-			'Up to 22 hours battery',
+			'Up to 18 hours battery',
 			'Advanced thermal system',
 			'3 Thunderbolt 4 ports'
 		],

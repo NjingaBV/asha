@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
 import ProductDetail from '$lib/components/templates/ProductDetail.svelte';
+import { ACME_LAPTOP_PRO_14, ACME_LAPTOP_AIR } from '$lib/fixtures/products';
 
 const meta = {
 	title: 'Templates/ProductDetail',
@@ -60,18 +61,18 @@ export const Default: Story = {
 		breadcrumbs: [
 			{ label: 'Home', href: '/' },
 			{ label: 'Products', href: '/products' },
-			{ label: 'MacBook Pro' }
+			{ label: 'Laptop Pro 14"' }
 		],
 		images: [
-			{ src: 'https://picsum.photos/seed/mbp1/800/800', alt: 'MacBook Pro front view' },
-			{ src: 'https://picsum.photos/seed/mbp2/800/800', alt: 'MacBook Pro side view' },
-			{ src: 'https://picsum.photos/seed/mbp3/800/800', alt: 'MacBook Pro keyboard' },
-			{ src: 'https://picsum.photos/seed/mbp4/800/800', alt: 'MacBook Pro ports' }
+			{ src: '/images/laptop-pro-14-1.jpg', alt: 'Laptop Pro 14 inch front view' },
+			{ src: '/images/laptop-pro-14-2.jpg', alt: 'Laptop Pro 14 inch side view' },
+			{ src: '/images/laptop-pro-14-3.jpg', alt: 'Laptop Pro 14 inch keyboard' },
+			{ src: '/images/laptop-pro-14-4.jpg', alt: 'Laptop Pro 14 inch ports' }
 		],
-		title: 'MacBook Pro 16"',
+		title: 'Laptop Pro 14"',
 		description:
-			'The most powerful MacBook Pro ever. With M3 Pro or M3 Max chip, incredible battery life, and a stunning Liquid Retina XDR display.',
-		price: 2499,
+			'The most powerful laptop we have ever made. With Ultra CPU, incredible battery life, and a stunning Liquid Retina XDR display.',
+		price: 1999,
 		currency: '$',
 		rating: 4.8,
 		reviewCount: 1247
@@ -83,8 +84,24 @@ export const Default: Story = {
 
 		await step('Render product title', async () => {
 			expect(
-				canvas.getByRole('heading', { level: 1, name: 'MacBook Pro 16"' })
+				canvas.getByRole('heading', { level: 1, name: 'Laptop Pro 14"' })
 			).toBeInTheDocument();
+		});
+
+		await step('Render product description', async () => {
+			expect(
+				canvas.getByText(/The most powerful laptop we have ever made/)
+			).toBeInTheDocument();
+		});
+
+		await step('Render product price', async () => {
+			expect(canvas.getByText('$1,999')).toBeInTheDocument();
+		});
+
+		await step('Render breadcrumb navigation', async () => {
+			expect(canvas.getByText('Home')).toBeInTheDocument();
+			expect(canvas.getByText('Products')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Pro 14"')).toBeInTheDocument();
 		});
 
 		await step('Render product description', async () => {
@@ -123,14 +140,14 @@ export const OnSale: Story = {
 		breadcrumbs: [
 			{ label: 'Home', href: '/' },
 			{ label: 'Sale', href: '/sale' },
-			{ label: 'MacBook Air' }
+			{ label: 'Laptop Air' }
 		],
 		images: [
-			{ src: 'https://picsum.photos/seed/mba1/800/800', alt: 'MacBook Air front view' },
-			{ src: 'https://picsum.photos/seed/mba2/800/800', alt: 'MacBook Air side view' }
+			{ src: '/images/laptop-air-1.jpg', alt: 'Laptop Air front view' },
+			{ src: '/images/laptop-air-2.jpg', alt: 'Laptop Air side view' }
 		],
-		title: 'MacBook Air 13"',
-		description: 'Supercharged by M2. Strikingly thin design. Incredible all-day battery life.',
+		title: 'Laptop Air',
+		description: 'Lightweight design. Incredible all-day battery life.',
 		price: 1199,
 		salePrice: 999,
 		currency: '$',
@@ -142,9 +159,9 @@ export const OnSale: Story = {
 export const SingleImage: Story = {
 	args: {
 		breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'Accessories' }],
-		images: [{ src: 'https://picsum.photos/seed/accessory/800/800', alt: 'Product image' }],
-		title: 'Magic Keyboard',
-		description: 'A wireless keyboard with a sleek design and comfortable typing experience.',
+		images: [{ src: '/images/accessory.jpg', alt: 'Accessory product image' }],
+		title: 'Wireless Keyboard',
+		description: 'A sleek wireless keyboard with comfortable typing experience.',
 		price: 99,
 		currency: '$',
 		rating: 4.5,

@@ -1,136 +1,21 @@
-import { createMachine } from 'xstate';
+/**
+ * @deprecated Use product.machine.ts instead
+ *
+ * This file is kept for backward compatibility only.
+ * It will be removed in v1.0.0.
+ *
+ * Migration:
+ * ```ts
+ * // Before
+ * import { macMachine, MacContext, MacEvents } from '$lib/machines/mac.machine';
+ *
+ * // After
+ * import { productMachine, ProductContext, ProductEvents } from '$lib/machines/product.machine';
+ * ```
+ */
 
-export type MacEvents =
-	| { type: 'SELECT_PRODUCT'; productId: string }
-	| { type: 'VIEW_PRODUCT_DETAILS'; productId: string }
-	| { type: 'COMPARE_PRODUCTS'; productIds: string[] }
-	| { type: 'FILTER_PRODUCTS'; category: string }
-	| { type: 'SEARCH_PRODUCTS'; query: string }
-	| { type: 'CLEAR_FILTERS' }
-	| { type: 'ADD_TO_CART'; productId: string }
-	| { type: 'VIEW_CART' };
-
-export interface MacContext {
-	selectedProductId: string | null;
-	filteredCategory: string | null;
-	searchQuery: string;
-	comparedProductIds: string[];
-	cartItems: string[];
-}
-
-export const macMachine = createMachine(
-	{
-		id: 'macMachine',
-		context: {
-			selectedProductId: null,
-			filteredCategory: null,
-			searchQuery: '',
-			comparedProductIds: [],
-			cartItems: []
-		} as MacContext,
-		types: {} as {
-			context: MacContext;
-			events: MacEvents;
-		},
-		initial: 'browsing',
-		states: {
-			browsing: {
-				on: {
-					SELECT_PRODUCT: {
-						target: 'productSelected',
-						actions: ['setSelectedProduct']
-					},
-					FILTER_PRODUCTS: {
-						actions: ['setFilter']
-					},
-					SEARCH_PRODUCTS: {
-						actions: ['setSearchQuery']
-					},
-					COMPARE_PRODUCTS: {
-						target: 'comparing',
-						actions: ['setComparedProducts']
-					},
-					CLEAR_FILTERS: {
-						actions: ['clearFilters']
-					}
-				}
-			},
-			productSelected: {
-				on: {
-					VIEW_PRODUCT_DETAILS: {
-						target: 'viewingDetails',
-						actions: ['setSelectedProduct']
-					},
-					ADD_TO_CART: {
-						actions: ['addToCart']
-					},
-					SELECT_PRODUCT: {
-						actions: ['setSelectedProduct']
-					}
-				}
-			},
-			viewingDetails: {
-				on: {
-					ADD_TO_CART: {
-						actions: ['addToCart']
-					},
-					SELECT_PRODUCT: {
-						target: 'productSelected',
-						actions: ['setSelectedProduct']
-					}
-				}
-			},
-			comparing: {
-				on: {
-					SELECT_PRODUCT: {
-						target: 'productSelected',
-						actions: ['setSelectedProduct']
-					},
-					COMPARE_PRODUCTS: {
-						actions: ['setComparedProducts']
-					},
-					CLEAR_FILTERS: {
-						target: 'browsing',
-						actions: ['clearComparison']
-					}
-				}
-			}
-		}
-	},
-	{
-		actions: {
-			setSelectedProduct: ({ context, event }) => {
-				if (event.type === 'SELECT_PRODUCT' || event.type === 'VIEW_PRODUCT_DETAILS') {
-					context.selectedProductId = event.productId;
-				}
-			},
-			setFilter: ({ context, event }) => {
-				if (event.type === 'FILTER_PRODUCTS') {
-					context.filteredCategory = event.category;
-				}
-			},
-			setSearchQuery: ({ context, event }) => {
-				if (event.type === 'SEARCH_PRODUCTS') {
-					context.searchQuery = event.query;
-				}
-			},
-			setComparedProducts: ({ context, event }) => {
-				if (event.type === 'COMPARE_PRODUCTS') {
-					context.comparedProductIds = event.productIds;
-				}
-			},
-			addToCart: ({ context, event }) => {
-				if (event.type === 'ADD_TO_CART') {
-					context.cartItems.push(event.productId);
-				}
-			},
-			clearFilters: ({ context }) => {
-				context.filteredCategory = null;
-				context.searchQuery = '';
-			},
-			clearComparison: ({ context }) => {
-				context.comparedProductIds = [];
-			}
-		}
-	}
-);
+export {
+	productMachine as macMachine,
+	type ProductContext as MacContext,
+	type ProductEvents as MacEvents
+} from './product.machine';

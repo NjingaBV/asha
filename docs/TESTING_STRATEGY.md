@@ -235,20 +235,125 @@ Quand vous ajoutez des tests à un composant:
 
 ```bash
 # Exécuter Storybook localement
-npm run storybook
+pnpm storybook
 
 # Chaque story avec une play() function exécute ses tests
 # automatiquement dans Storybook
+```
+
+### Tests Unitaires
+
+```bash
+# Exécuter tous les tests unitaires
+pnpm test:unit
+
+# Exécuter les tests avec coverage
+pnpm test:coverage
+
+# Exécuter en mode watch
+pnpm test:unit -- --watch
 ```
 
 ### Tests Visuels (Chromatic)
 
 ```bash
 # Les snapshots sont générés automatiquement
-npm run build-storybook
+pnpm build-storybook
 
 # Uploadez à Chromatic pour les comparaisons
 ```
+
+## 📚 Test Helpers Disponibles
+
+Le projet fournit deux fichiers de test utilities :
+
+### `src/stories/utils/test-helpers.ts`
+
+Fonctions générales pour les tests Storybook :
+
+```typescript
+import {
+	waitFor,
+	waitForElement,
+	testKeyboardNavigation,
+	testModalBehavior
+} from '@/stories/utils/test-helpers';
+
+// Attendre une condition
+await waitFor(() => element.classList.contains('active'));
+
+// Attendre qu'un élément apparaisse
+const dialog = await waitForElement(canvas, 'dialog');
+
+// Tester la navigation au clavier
+await testKeyboardNavigation(canvas, [
+	{ role: 'button', name: 'First' },
+	{ role: 'button', name: 'Second' }
+]);
+
+// Tester le comportement d'un modal
+await testModalBehavior(canvas, 'button', /open modal/i);
+```
+
+Helpers disponibles :
+
+- `waitFor()` - Attendre une condition
+- `waitForElement()` - Attendre qu'un élément apparaisse
+- `testKeyboardNavigation()` - Tester la navigation au clavier
+- `testVariants()` - Tester les variantes visuelles
+- `testAriaAttributes()` - Tester les attributs ARIA
+- `testFormValidation()` - Tester la validation de formulaire
+- `testModalBehavior()` - Tester les modals/dialogs
+- `testLoadingState()` - Tester l'état de chargement
+- `testDisabledState()` - Tester l'état désactivé
+- `testHoverState()` - Tester les états hover
+- `testBasicAtom()` - Test standard pour les atoms
+
+### `src/stories/utils/a11y-testing.ts`
+
+Fonctions spécialisées pour les tests d'accessibilité :
+
+```typescript
+import {
+	runA11yAudit,
+	validateHeadingHierarchy,
+	validateButtonAccessibility,
+	validateFormAccessibility,
+	auditAndReport
+} from '@/stories/utils/a11y-testing';
+
+// Audit axe-core complet
+const results = await runA11yAudit(canvasElement);
+
+// Valider la hiérarchie des headings
+const { isValid, violations } = validateHeadingHierarchy(container);
+
+// Valider l'accessibilité des boutons
+const buttonResults = validateButtonAccessibility(container);
+
+// Valider l'accessibilité des formulaires
+const formResults = validateFormAccessibility(form);
+
+// Audit complet avec rapport console
+await auditAndReport(canvasElement, true);
+```
+
+Helpers disponibles :
+
+- `runA11yAudit()` - Audit axe-core complet
+- `hasAccessibleLabel()` - Vérifier les labels accessibles
+- `isKeyboardAccessible()` - Vérifier l'accessibilité clavier
+- `hasFormLabel()` - Vérifier les labels de formulaire
+- `hasAltText()` - Vérifier le texte alternatif des images
+- `getHeadingHierarchy()` - Obtenir la hiérarchie des headings
+- `validateHeadingHierarchy()` - Valider la hiérarchie
+- `validateButtonAccessibility()` - Valider les boutons
+- `hasFocusIndicator()` - Vérifier l'indicateur de focus
+- `getLiveRegions()` - Trouver les régions live
+- `validateFormAccessibility()` - Valider les formulaires
+- `getFocusableElements()` - Obtenir les éléments focusables
+- `hasSufficientSize()` - Vérifier la taille minimum (44x44px)
+- `auditAndReport()` - Audit complet avec rapport
 
 ## 📚 Exemples Complets
 

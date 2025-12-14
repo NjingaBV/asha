@@ -34,7 +34,7 @@ export const Default: Story = {
 		items: [
 			{ label: 'Home', href: '/' },
 			{ label: 'Products', href: '/products' },
-			{ label: 'MacBook Pro' }
+			{ label: 'Acme Laptop Pro' }
 		],
 		size: 'md',
 		separator: '/',
@@ -52,7 +52,7 @@ export const Default: Story = {
 		await step('Display all breadcrumb items', async () => {
 			expect(canvas.getByText('Home')).toBeInTheDocument();
 			expect(canvas.getByText('Products')).toBeInTheDocument();
-			expect(canvas.getByText('MacBook Pro')).toBeInTheDocument();
+			expect(canvas.getByText('Acme Laptop Pro')).toBeInTheDocument();
 		});
 
 		await step('Render separators between items', async () => {
@@ -122,7 +122,7 @@ export const LongPath: Story = {
 			{ label: 'Electronics', href: '/store/electronics' },
 			{ label: 'Computers', href: '/store/electronics/computers' },
 			{ label: 'Laptops', href: '/store/electronics/computers/laptops' },
-			{ label: 'MacBook Pro 16"' }
+			{ label: 'Acme Laptop Pro 16"' }
 		],
 		showHomeIcon: true
 	}

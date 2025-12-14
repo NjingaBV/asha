@@ -127,10 +127,10 @@ export const Subtle: Story = {
 
 export const ExternalLink: Story = {
 	args: {
-		href: 'https://www.apple.com',
+		href: 'https://example.com',
 		variant: 'default',
 		target: '_blank',
-		text: 'Visit Apple'
+		text: 'Visit Example'
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
@@ -144,10 +144,10 @@ export const ExternalLink: Story = {
 		expect(link).toHaveAttribute('rel', 'noopener noreferrer');
 
 		// Test href is correct
-		expect(link).toHaveAttribute('href', 'https://www.apple.com');
+		expect(link).toHaveAttribute('href', 'https://example.com');
 
 		// Test accessible name
-		expect(link).toHaveAccessibleName('Visit Apple');
+		expect(link).toHaveAccessibleName('Visit Example');
 	}
 };
 

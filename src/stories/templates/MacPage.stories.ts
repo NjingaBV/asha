@@ -11,7 +11,14 @@ const meta = {
 				component: `
 # Page Mac
 
+⚠️ **DEPRECATED**: This component is deprecated and will be removed in version 2.0.0.  
+Please use **ProductPage** instead for new implementations. See ProductPage.stories.ts for generic examples.
+
 Reproduction de la page d'accueil Mac d'Apple (https://www.apple.com/mac/).
+
+## Migration Guide
+Replace MacPage with ProductPage and provide your own product data.
+See ProductPage.stories.ts for full examples with the Acme brand.
 
 ## Composants utilisés
 - **Header**: Navigation globale.

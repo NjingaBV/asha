@@ -7,8 +7,6 @@
 	 * FeatureSection - Generic feature/benefit section organism
 	 * Flexible layout for displaying features with optional CTAs and icons
 	 *
-	 * Can replace WhyAppleSection, GetToKnowMacSection, and similar components
-	 *
 	 * @example
 	 * <FeatureSection
 	 *   title="Why Choose Us"

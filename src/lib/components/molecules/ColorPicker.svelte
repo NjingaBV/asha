@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createActor } from 'xstate';
-	import { colorPickerMachine } from '$lib/components/machines/colorPicker.machine';
+	import { colorPickerMachine } from '$lib/machines/colorPicker.machine';
 	import ColorSwatch from '../atoms/ColorSwatch.svelte';
 
 	interface Props {

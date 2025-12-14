@@ -13,3 +13,7 @@ vite.config.ts.timestamp-*
 storybook-static
 *storybook.log
 .idea
+coverage
+*.log
+.vscode
+*.swp

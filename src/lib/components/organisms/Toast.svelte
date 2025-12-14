@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Icon from '$lib/atoms/Icon.svelte';
-	import IconButton from '$lib/atoms/IconButton.svelte';
+	import Icon from '$lib/components/atoms/Icon.svelte';
+	import IconButton from '$lib/components/atoms/IconButton.svelte';
 
 	interface Props {
 		/** Toast message */

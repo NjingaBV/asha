@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import Link from '$lib/atoms/Link.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Link from '$lib/components/atoms/Link.svelte';
 
 	interface FooterLink {
 		label: string;

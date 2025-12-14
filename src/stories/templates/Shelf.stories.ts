@@ -77,16 +77,13 @@ export const Primary: Story = {
 			{
 				name: 'tiles',
 				logo: {
-					title: 'DJ FMK',
+					title: 'Acme Corp',
 					subtitle: '',
-					imgUrl: 'https://images.prismic.io/djfacemakerv2/f8e0f24e-8600-4867-9691-9efb20be9ea9_fmk+transition+blanc.png?auto=compress,format',
-					imgAlt: 'DJ FMK logo',
+					imgUrl: '/images/acme-logo.png',
+					imgAlt: 'Acme Corp logo',
 					showTitle: false
 				},
-				images: [
-					'https://images.prismic.io/djfacemakerv2/4a7327bf-a1e4-4767-aab1-d77b2a3d8391_FMK_Home.jpg?auto=compress,format',
-					'https://images.prismic.io/djfacemakerv2/ecdf7fa2-f35e-4824-9ccc-7229b1977fe1_A65B51FA-DCEA-46EE-AB42-DFB9DA659ABD.JPG?auto=compress,format'
-				]
+				images: ['/images/acme-hero-1.jpg', '/images/acme-hero-2.jpg']
 			}
 		]
 	},
@@ -122,7 +119,7 @@ export const Primary: Story = {
 		});
 
 		await step('Logo is displayed', async () => {
-			const logoElements = canvasElement.querySelectorAll('img[alt*="DJ FMK"]');
+			const logoElements = canvasElement.querySelectorAll('img[alt*="Acme Corp"]');
 			expect(logoElements.length).toBeGreaterThan(0);
 		});
 
@@ -138,58 +135,57 @@ export const Primary: Story = {
 	}
 };
 
-export const DjFmkHome: Story = {
+export const AcmeHome: Story = {
 	args: {
 		...Primary.args
 	},
 	parameters: {
 		docs: {
 			description: {
-				story: 'DJ FMK homepage example showcasing the tile-based hero layout. This demonstrates a real-world use case for a DJ/artist website with a clean, image-focused presentation. Uses the HeroTile organism to create an engaging visual entry point.'
+				story: 'Acme Corp homepage example showcasing the tile-based hero layout. This demonstrates a real-world use case for a corporate website with a clean, image-focused presentation. Uses the HeroTile organism to create an engaging visual entry point.'
 			}
 		}
 	}
 };
 
-export const NjingaHome: Story = {
+export const FashionHome: Story = {
 	args: {
 		...Primary.args,
 		navLinks: [
 			{
-				label: 'Turbans modulables',
+				label: 'Scarves',
 				href: '/'
 			},
 			{
-				label: 'Headbands modulables',
+				label: 'Headbands',
 				href: '/'
 			},
 			{
-				label: 'Turbans croisés',
+				label: 'Turbans',
 				href: '/'
 			},
 			{
-				label: 'Echarpes capuches',
+				label: 'Hooded Scarves',
 				href: '/'
 			},
 			{
-				label: 'Bijoux',
+				label: 'Jewelry',
 				href: '/'
 			}
 		],
 		slices: [
 			{
 				name: 'hero',
-				title: "Des accessoires chics et malins pour avoir de l'allure.",
-				overview: "Et si être élégante au quotidien n'était qu'une affaire de secondes?",
+				title: 'Elegant and smart accessories for everyday style.',
+				overview: 'What if looking elegant every day took just seconds?',
 				details: '',
 				imgSrc: {
-					desktop:
-						'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_102_720x.jpg?v=1645793759',
-					mobile: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_102_720x.jpg?v=1645793759',
-					tablet: 'https://cdn.shopify.com/s/files/1/0347/8392/0260/files/Welda_102_720x.jpg?v=1645793759'
+					desktop: '/images/fashion-hero.jpg',
+					mobile: '/images/fashion-hero.jpg',
+					tablet: '/images/fashion-hero.jpg'
 				},
 				backgroundColor: '#ffffff',
-				ctaLabel: 'Découvrez comment',
+				ctaLabel: 'Discover how',
 				ctaIcon: 'M 10 5.25 L 10 44.746094 L 43.570313 25 Z'
 			}
 		]
@@ -197,13 +193,13 @@ export const NjingaHome: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: 'E-commerce homepage for Njinga fashion accessories. Demonstrates using the Hero slice type for product-focused landing pages with custom navigation links for product categories. Shows responsive image handling with desktop/mobile/tablet variants and custom CTA with icon. Ideal for fashion, retail, or product-based businesses.'
+				story: 'E-commerce homepage for fashion accessories. Demonstrates using the Hero slice type for product-focused landing pages with custom navigation links for product categories. Shows responsive image handling with desktop/mobile/tablet variants and custom CTA with icon. Ideal for fashion, retail, or product-based businesses.'
 			}
 		}
 	}
 };
 
-export const OuranosHome: Story = {
+export const SaaSHome: Story = {
 	args: {
 		...Primary.args,
 		alternateColor: false,
@@ -217,11 +213,11 @@ export const OuranosHome: Story = {
 					},
 					{
 						color: '#eab308',
-						title: 'Transparente'
+						title: 'Transparent'
 					},
 					{
 						color: '#3b82f6',
-						title: 'Révolutionnaire'
+						title: 'Revolutionary'
 					}
 				]
 			}

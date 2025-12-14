@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Stat from '$lib/molecules/Stat.svelte';
+	import Stat from '$lib/components/molecules/Stat.svelte';
 	import SectionHeader from './SectionHeader.svelte';
 
 	interface StatItem {

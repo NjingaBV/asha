@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Button from '$lib/atoms/Button.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 
 	interface FilterOption {
 		label: string;

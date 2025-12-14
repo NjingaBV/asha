@@ -60,3 +60,51 @@ export const Default: Story = {
 		});
 	}
 };
+
+export const WithImageBackground: Story = {
+	args: {
+		title: 'Explore Our Products',
+		subtitle: 'Quality and Innovation',
+		description: 'Discover our range of high-quality products designed for modern lifestyles.',
+		primaryAction: { label: 'Shop Now', href: '/products' },
+		secondaryAction: { label: 'View Gallery', href: '/gallery' },
+		backgroundImage:
+			'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=800&fit=crop',
+		textColor: 'light',
+		overlayOpacity: 0.3
+	}
+};
+
+export const WithVideoBackground: Story = {
+	args: {
+		title: 'Experience the Future',
+		description: 'See how our technology transforms everyday experiences.',
+		primaryAction: { label: 'Watch Demo', href: '/demo' },
+		backgroundVideo:
+			'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+		textColor: 'light',
+		overlayOpacity: 0.5
+	}
+};
+
+export const LightTheme: Story = {
+	args: {
+		title: 'Clean and Simple',
+		subtitle: 'Minimalist Design',
+		description: 'Enjoy a clean interface that focuses on what matters most.',
+		primaryAction: { label: 'Try It Free', href: '/signup' },
+		secondaryAction: { label: 'Contact Us', href: '/contact' },
+		backgroundColor: '#ffffff',
+		textColor: 'dark'
+	}
+};
+
+export const Minimal: Story = {
+	args: {
+		title: 'Just the Essentials',
+		primaryAction: { label: 'Start Here', href: '/start' },
+		backgroundColor: '#f8f9fa',
+		textColor: 'dark',
+		showScrollIndicator: false
+	}
+};

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import SkipLink from '$lib/atoms/SkipLink.svelte';
-	import Sidebar from '$lib/organisms/Sidebar.svelte';
+	import SkipLink from '$lib/components/atoms/SkipLink.svelte';
+	import Sidebar from '$lib/components/organisms/Sidebar.svelte';
 
 	interface Props {
 		/** Sidebar width */

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Icon, { type IconName } from '$lib/atoms/Icon.svelte';
+	import Icon, { type IconName } from '$lib/components/atoms/Icon.svelte';
 
 	interface DropdownItem {
 		id: string;

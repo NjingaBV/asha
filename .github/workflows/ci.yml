@@ -96,8 +96,16 @@ jobs:
             - name: Install Playwright browsers
               run: pnpm exec playwright install --with-deps chromium
 
-            - name: Run unit tests
-              run: pnpm run test:unit -- --run
+            - name: Run unit tests with coverage
+              run: pnpm run test:coverage
+
+            - name: Upload coverage report
+              uses: actions/upload-artifact@v5
+              if: always()
+              with:
+                  name: coverage-report
+                  path: coverage/
+                  retention-days: 7
 
     build-package:
         runs-on: ubuntu-latest

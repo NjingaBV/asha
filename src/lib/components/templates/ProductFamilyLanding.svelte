@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Hero from '$lib/organisms/Hero.svelte';
-	import Footer from '$lib/organisms/Footer.svelte';
-	import Card from '$lib/molecules/Card.svelte';
-	import ChapterNav from '$lib/molecules/ChapterNav.svelte';
-	import Button from '$lib/atoms/Button.svelte';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import Text from '$lib/atoms/Text.svelte';
+	import Hero from '$lib/components/organisms/Hero.svelte';
+	import Footer from '$lib/components/organisms/Footer.svelte';
+	import Card from '$lib/components/molecules/Card.svelte';
+	import ChapterNav from '$lib/components/molecules/ChapterNav.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Text from '$lib/components/atoms/Text.svelte';
 
 	/**
 	 * ProductFamilyLanding Template

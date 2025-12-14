@@ -9,7 +9,8 @@ const meta = {
 		logo: { control: 'object' },
 		links: { control: 'object' },
 		cta: { control: 'object' },
-		dark: { control: 'boolean' }
+		dark: { control: 'boolean' },
+		active: { control: 'text' }
 	}
 } satisfies Meta<typeof StickyNav>;
 
@@ -18,14 +19,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
-		logo: { title: 'MacBook Pro' },
+		logo: { title: 'Laptop Series' },
 		links: [
 			{ label: 'Overview', href: '#' },
 			{ label: 'Tech Specs', href: '#' },
 			{ label: 'Compare', href: '#' }
 		],
 		cta: { label: 'Buy', href: '#' },
-		dark: true
+		dark: true,
+		active: 'Overview'
 	},
 	parameters: {
 		backgrounds: { default: 'dark' }
@@ -41,7 +43,7 @@ export const Default: Story = {
 		});
 
 		await step('Display logo title', async () => {
-			expect(canvas.getByText('MacBook Pro')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Series')).toBeInTheDocument();
 		});
 
 		await step('Render all navigation links', async () => {
@@ -79,16 +81,36 @@ export const Light: Story = {
 
 export const NoCTA: Story = {
 	args: {
-		logo: { title: 'Apple Watch' },
+		logo: { title: 'Smartphone Collection' },
 		links: [
 			{ label: 'Overview', href: '#' },
 			{ label: 'Features', href: '#' },
 			{ label: 'Compare', href: '#' }
 		],
 		cta: null,
-		dark: true
+		dark: true,
+		active: 'Features'
 	},
 	parameters: {
 		backgrounds: { default: 'dark' }
+	}
+};
+
+export const ExtendedNavigation: Story = {
+	args: {
+		logo: { title: 'Gaming Console' },
+		links: [
+			{ label: 'Home', href: '#' },
+			{ label: 'Games', href: '#' },
+			{ label: 'Accessories', href: '#' },
+			{ label: 'Support', href: '#' },
+			{ label: 'Community', href: '#' }
+		],
+		cta: { label: 'Shop Now', href: '#' },
+		dark: false,
+		active: 'Games'
+	},
+	parameters: {
+		backgrounds: { default: 'light' }
 	}
 };

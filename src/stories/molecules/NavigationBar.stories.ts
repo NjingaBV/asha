@@ -93,22 +93,20 @@ const sampleItems = [
 	{ label: 'Contact', href: '/contact' }
 ];
 
-const macItems = [
-	{ label: 'MacBook Air', href: '#macbook-air' },
-	{ label: 'MacBook Pro', href: '#macbook-pro' },
-	{ label: 'iMac', href: '#imac' },
-	{ label: 'Mac mini', href: '#mac-mini' },
-	{ label: 'Mac Studio', href: '#mac-studio' },
-	{ label: 'Mac Pro', href: '#mac-pro' },
+const acmeItems = [
+	{ label: 'Laptops', href: '#laptops' },
+	{ label: 'Tablets', href: '#tablets' },
+	{ label: 'Phones', href: '#phones' },
+	{ label: 'Accessories', href: '#accessories' },
 	{ label: 'Compare', href: '#compare' },
-	{ label: 'Accessories', href: '#accessories' }
+	{ label: 'Support', href: '#support' }
 ];
 
 // Horizontal Navigation (Header) Examples
-export const MacNavigation: Story = {
+export const AcmeNavigation: Story = {
 	args: {
-		items: macItems,
-		activeHref: '#macbook-air',
+		items: acmeItems,
+		activeHref: '#laptops',
 		orientation: 'horizontal',
 		sticky: true
 	},
@@ -135,10 +133,8 @@ export const MacNavigation: Story = {
 			expect(activeLink).toBeInTheDocument();
 		});
 
-		await step('Have Mac product links', async () => {
-			expect(
-				canvas.getByText(/MacBook Air|MacBook Pro|iMac|Mac mini|Mac Studio|Mac Pro/)
-			).toBeInTheDocument();
+		await step('Have Acme product links', async () => {
+			expect(canvas.getByText(/Laptops|Tablets|Phones|Accessories/)).toBeInTheDocument();
 		});
 	}
 };

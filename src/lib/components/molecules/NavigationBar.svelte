@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Link from '$lib/atoms/Link.svelte';
+	import Link from '$lib/components/atoms/Link.svelte';
 	import { fly } from 'svelte/transition';
 	import type { LinkType } from '../../models';
 

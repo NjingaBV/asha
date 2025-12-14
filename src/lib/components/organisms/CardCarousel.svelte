@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { createActor } from 'xstate';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import ProductCard from '$lib/organisms/ProductCard.svelte';
-	import Card from '$lib/molecules/Card.svelte';
-	import Button from '$lib/atoms/Button.svelte';
-	import CarouselControls from '$lib/molecules/CarouselControls.svelte';
-	import type { AppleColor } from '$lib/components/models/color.type';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import ProductCard from '$lib/components/organisms/ProductCard.svelte';
+	import Card from '$lib/components/molecules/Card.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
+	import CarouselControls from '$lib/components/molecules/CarouselControls.svelte';
+	import type { ColorOption } from '$lib/models/product.type';
 	import { onMount } from 'svelte';
-	import { macMachine } from '$lib/components/machines/mac.machine';
+	import { productMachine } from '$lib/machines/product.machine';
 
 	interface Product {
 		id: string;
@@ -16,7 +16,7 @@
 		description: string;
 		priceDetail?: string;
 		image: string;
-		colors: AppleColor[];
+		colors: ColorOption[];
 		badge?: string;
 		badgeColor?: 'blue' | 'orange' | 'neutral';
 		primaryAction: { label: string; href: string };
@@ -50,7 +50,7 @@
 	// State Machine
 	// ============================================
 
-	const actor = createActor(macMachine);
+	const actor = createActor(productMachine);
 	actor.start();
 
 	// Subscribe to state changes

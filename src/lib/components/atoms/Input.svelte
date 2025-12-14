@@ -69,7 +69,7 @@
 		getInputDataAttributes,
 		getInputAriaAttributes,
 		type InputState
-	} from '$lib/components/machines/input.machine';
+	} from '$lib/machines/input.machine';
 
 	// ============================================
 	// Props

@@ -1,38 +1,26 @@
 <script lang="ts">
-	import Card from '$lib/molecules/Card.svelte';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import Text from '$lib/atoms/Text.svelte';
+	import Card from '$lib/components/molecules/Card.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Text from '$lib/components/atoms/Text.svelte';
+	import type { Product } from '$lib/models/product.type';
 
 	/**
-	 * Showcase - Displays Mac product cards in a responsive grid
+	 * Showcase - Displays product cards in a responsive grid
 	 *
 	 * @example
 	 * <Showcase
-	 *   title="Mac Models"
+	 *   title="Our Products"
 	 *   products={[{title: '...', image: '...', price: '...'}]}
 	 * />
 	 */
-
-	interface MacProduct {
-		title: string;
-		tagline?: string;
-		image: string;
-		imageAlt?: string;
-		price?: string;
-		isNew?: boolean;
-		colors?: string[];
-		learnMoreHref?: string;
-		buyHref?: string;
-		className?: string;
-	}
 
 	interface Props {
 		/** Section title */
 		title?: string;
 		/** Section description */
 		description?: string;
-		/** Mac products to display */
-		products: MacProduct[];
+		/** Products to display */
+		products: Product[];
 		/** Additional CSS classes */
 		class?: string;
 	}
@@ -72,10 +60,10 @@
 			{#each products as item}
 				<Card
 					title={item.title}
-					subtitle={item.tagline}
+					subtitle={item.subtitle}
 					imgSrc={item.image}
-					buttonName={item.learnMoreHref ? 'Learn more' : ''}
-					buttonLink={item.learnMoreHref || item.buyHref}
+					buttonName={item.primaryAction?.label || 'Learn more'}
+					buttonLink={item.primaryAction?.href || '#'}
 					class={item.className}
 				/>
 			{/each}

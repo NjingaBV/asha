@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Button from '$lib/atoms/Button.svelte';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import Text from '$lib/atoms/Text.svelte';
-	import Link from '$lib/atoms/Link.svelte';
-	import Label from '$lib/atoms/Label.svelte';
-	import Image from '$lib/atoms/Image.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Text from '$lib/components/atoms/Text.svelte';
+	import Link from '$lib/components/atoms/Link.svelte';
+	import Label from '$lib/components/atoms/Label.svelte';
+	import Image from '$lib/components/atoms/Image.svelte';
 	import type { ImageType } from 'src/lib/models';
 
 	/**

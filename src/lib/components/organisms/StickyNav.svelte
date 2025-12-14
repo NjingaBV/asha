@@ -1,19 +1,17 @@
 <script lang="ts">
-	import Button from '$lib/atoms/Button.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 	let {
-		logo = { title: 'Apple Watch' },
-		links = [
-			{ label: 'Aperçu', href: '#' },
-			{ label: 'Caractéristiques', href: '#' },
-			{ label: 'Comparer', href: '#' }
-		],
-		cta = { label: 'Acheter', href: '#' },
-		dark = true
+		logo,
+		links = [],
+		cta = null,
+		dark = true,
+		active
 	}: {
-		logo?: { title: string };
+		logo: { title: string };
 		links?: Array<{ label: string; href: string }>;
 		cta?: { label: string; href: string } | null;
 		dark?: boolean;
+		active?: string;
 	} = $props();
 </script>
 
@@ -30,7 +28,10 @@
 			{#each links as l}
 				<li>
 					<a
-						class="hover:underline rounded px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+						class="hover:underline rounded px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 {l.label ===
+						active
+							? 'font-semibold underline'
+							: ''}"
 						href={l.href}
 					>
 						{l.label}
@@ -52,7 +53,10 @@
 			{#each links as l}
 				<li class="flex-none">
 					<a
-						class="hover:underline rounded px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+						class="hover:underline rounded px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 {l.label ===
+						active
+							? 'font-semibold underline'
+							: ''}"
 						href={l.href}
 					>
 						{l.label}

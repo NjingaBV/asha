@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Tile from '$lib/molecules/Tile.svelte';
+	import Tile from '$lib/components/molecules/Tile.svelte';
 	import type { LogoType } from 'src/lib/models';
 
 	let {

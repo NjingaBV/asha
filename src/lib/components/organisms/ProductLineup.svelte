@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { createActor } from 'xstate';
-	import Heading from '$lib/atoms/Heading.svelte';
-	import Text from '$lib/atoms/Text.svelte';
-	import Badge from '$lib/atoms/Badge.svelte';
-	import Button from '$lib/atoms/Button.svelte';
-	import SpecGrid from '$lib/molecules/SpecGrid.svelte';
-	import { macLineupMachine } from '$lib/components/machines/macLineup.machine';
-	import type { MacProduct } from 'src/lib/models';
+	import Heading from '$lib/components/atoms/Heading.svelte';
+	import Text from '$lib/components/atoms/Text.svelte';
+	import Badge from '$lib/components/atoms/Badge.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
+	import SpecGrid from '$lib/components/molecules/SpecGrid.svelte';
+	import { productLineupMachine } from '$lib/machines/productLineup.machine';
+	import type { ProductDetail } from '$lib/models';
 
 	interface Props {
 		title?: string;
 		description?: string;
-		products?: MacProduct[];
+		products?: ProductDetail[];
 	}
 
 	let {
@@ -20,156 +20,9 @@
 		products = []
 	}: Props = $props();
 
-	const defaultProducts = $state<MacProduct[]>([
-		{
-			slug: 'macbook-air',
-			name: 'MacBook Air',
-			tagline: 'Fidèle au design Air : fin, léger, silencieux.',
-			description: 'Puce M3, jusqu’à 18 h d’autonomie, écran Liquid Retina 13 ou 15 pouces.',
-			startingPrice: 'À partir de 1 299 €',
-			badge: 'Best-seller',
-			heroImage: 'https://via.placeholder.com/900x600/0f172a/ffffff?text=MacBook+Air',
-			background: 'linear-gradient(135deg, #0f172a, #1e293b)',
-			textOnDark: true,
-			colors: [
-				{ name: 'Minuit', swatch: '#0b1224' },
-				{ name: 'Lumière stellaire', swatch: '#f6e7cf' },
-				{ name: 'Argent', swatch: '#e5e7eb' },
-				{ name: 'Gris sidéral', swatch: '#4b5563' }
-			],
-			specs: [
-				{ label: 'Puce', value: 'Apple M3' },
-				{ label: 'Autonomie', value: 'Jusqu’à 18 h' },
-				{ label: 'Poids', value: 'Dès 1,24 kg' },
-				{ label: 'Écran', value: '13" ou 15" Liquid Retina' },
-				{ label: 'Ports', value: 'MagSafe + 2x Thunderbolt' },
-				{ label: 'Audio', value: '4 haut-parleurs' }
-			],
-			highlights: [
-				'Silencieux, sans ventilateur',
-				'Compatible avec deux écrans en mode fermé'
-			],
-			ctas: {
-				primary: { label: 'Acheter', href: '#' },
-				secondary: { label: 'En savoir plus', href: '#' }
-			}
-		},
-		{
-			slug: 'macbook-pro',
-			name: 'MacBook Pro',
-			tagline: 'Pensé pour les pros, propulsé par M4 Pro/Max.',
-			description: 'Performances extrêmes, autonomie record et écran Liquid Retina XDR.',
-			startingPrice: 'À partir de 1 999 €',
-			badge: 'Nouveau',
-			heroImage: 'https://via.placeholder.com/900x600/020617/ffffff?text=MacBook+Pro',
-			background: 'linear-gradient(135deg, #020617, #0b1224)',
-			textOnDark: true,
-			colors: [
-				{ name: 'Noir sidéral', swatch: '#0b1224' },
-				{ name: 'Argent', swatch: '#e5e7eb' }
-			],
-			specs: [
-				{ label: 'Puce', value: 'Apple M4 Pro ou M4 Max', emphasize: true },
-				{ label: 'Autonomie', value: 'Jusqu’à 22 h' },
-				{ label: 'Écran', value: '14" ou 16" Liquid Retina XDR' },
-				{ label: 'GPU', value: 'Jusqu’à 40 cœurs' },
-				{ label: 'Ports', value: 'HDMI, SDXC, MagSafe, 3x Thunderbolt' },
-				{ label: 'Mémoire', value: 'Jusqu’à 128 Go' }
-			],
-			highlights: ['Refroidissement actif', 'Promotion 120 Hz, technologies pros'],
-			ctas: {
-				primary: { label: 'Configurer', href: '#' },
-				secondary: { label: 'Découvrir', href: '#' }
-			}
-		},
-		{
-			slug: 'imac',
-			name: 'iMac',
-			tagline: 'Iconique, tout-en-un, 24 pouces.',
-			description: 'Fin et coloré, doté de la puce Apple M4 et d’une caméra 1080p.',
-			startingPrice: 'À partir de 1 649 €',
-			badge: 'Couleurs',
-			heroImage: 'https://via.placeholder.com/900x600/e0f2fe/0f172a?text=iMac',
-			background: 'linear-gradient(135deg, #e0f2fe, #fff1f2)',
-			textOnDark: false,
-			colors: [
-				{ name: 'Bleu', swatch: '#2563eb' },
-				{ name: 'Vert', swatch: '#10b981' },
-				{ name: 'Rose', swatch: '#ec4899' },
-				{ name: 'Jaune', swatch: '#f59e0b' }
-			],
-			specs: [
-				{ label: 'Puce', value: 'Apple M4' },
-				{ label: 'Écran', value: '24" Retina 4.5K' },
-				{ label: 'Appareil photo', value: '1080p FaceTime' },
-				{ label: 'Stockage', value: 'Jusqu’à 2 To' },
-				{ label: 'Ports', value: 'Ethernet, Thunderbolt, USB‑C' },
-				{ label: 'Magic Keyboard', value: 'avec Touch ID' }
-			],
-			highlights: ['Tout-en-un ultra fin', 'Palette de couleurs inspirée d’Apple'],
-			ctas: {
-				primary: { label: 'Choisir sa couleur', href: '#' },
-				secondary: { label: 'Détails techniques', href: '#' }
-			}
-		},
-		{
-			slug: 'mac-mini',
-			name: 'Mac mini',
-			tagline: 'Plein gaz, mini format.',
-			description: 'Format compact, efficacité énergétique et connectivité généreuse.',
-			startingPrice: 'À partir de 699 €',
-			heroImage: 'https://via.placeholder.com/900x600/f8fafc/0f172a?text=Mac+mini',
-			background: 'linear-gradient(135deg, #f8fafc, #e2e8f0)',
-			textOnDark: false,
-			colors: [
-				{ name: 'Argent', swatch: '#e5e7eb' },
-				{ name: 'Gris sidéral', swatch: '#4b5563' }
-			],
-			specs: [
-				{ label: 'Puce', value: 'Apple M4 ou M4 Pro' },
-				{ label: 'Ports', value: 'Ethernet 10 Gb, HDMI, USB‑A, Thunderbolt' },
-				{ label: 'Audio', value: 'Jack 3,5 mm avancé' },
-				{ label: 'Format', value: '19,7 cm de côté' },
-				{ label: 'Mémoire', value: 'Jusqu’à 36 Go' },
-				{ label: 'Stockage', value: 'Jusqu’à 4 To' }
-			],
-			highlights: ['Idéal pour bureau ou studio', 'Silencieux et économe'],
-			ctas: {
-				primary: { label: 'Acheter', href: '#' },
-				secondary: { label: 'Comparer', href: '#' }
-			}
-		},
-		{
-			slug: 'mac-studio',
-			name: 'Mac Studio',
-			tagline: 'Compact et radicalement puissant.',
-			description: 'Pour le rendu, la 3D, la vidéo et l’IA avec des débits fulgurants.',
-			startingPrice: 'À partir de 2 399 €',
-			heroImage: 'https://via.placeholder.com/900x600/0f172a/ffffff?text=Mac+Studio',
-			background: 'linear-gradient(135deg, #0f172a, #0b1224)',
-			textOnDark: true,
-			colors: [{ name: 'Argent', swatch: '#e5e7eb' }],
-			specs: [
-				{ label: 'Puce', value: 'Apple M4 Max ou M4 Ultra', emphasize: true },
-				{ label: 'GPU', value: 'Jusqu’à 80 cœurs' },
-				{ label: 'Mémoire', value: 'Jusqu’à 192 Go unifiée' },
-				{ label: 'Ports', value: 'Thunderbolt, HDMI, 10 Gb Ethernet, SD' },
-				{ label: 'Performance', value: 'Rendu vidéo ProRes massif' },
-				{ label: 'Thermique', value: 'Gestion silencieuse' }
-			],
-			highlights: ['Pensé pour le flux pro', 'Connectivité frontale pratique'],
-			ctas: {
-				primary: { label: 'Configurer', href: '#' },
-				secondary: { label: 'Fiche technique', href: '#' }
-			}
-		}
-	]);
+	const actualProducts = $derived<ProductDetail[]>(products || []);
 
-	const actualProducts = $derived<MacProduct[]>(
-		products && products.length > 0 ? products : defaultProducts
-	);
-
-	const actor = createActor(macLineupMachine, {
+	const actor = createActor(productLineupMachine, {
 		input: { products: actualProducts }
 	});
 	actor.start();
@@ -211,7 +64,7 @@
 	<section class="rounded-3xl border border-dashed border-border p-10 text-center">
 		<Heading level={3} size="2xl" class="text-fg">Aucun produit</Heading>
 		<Text size="base" class="text-fg-muted">
-			Ajoutez des produits dans la prop `products` pour afficher la grille inspirée d'Apple.
+			Ajoutez des produits dans la prop `products` pour afficher la grille interactive.
 		</Text>
 	</section>
 {:else}

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Youtube from '$lib/molecules/Youtube.svelte';
+	import Youtube from '$lib/components/molecules/Youtube.svelte';
 	import { createActor } from 'xstate';
-	import { playerMachine } from '$lib/components/machines/player.machine';
+	import { playerMachine } from '$lib/machines/player.machine';
 
 	/**
 	 * Player component - video player with metadata display

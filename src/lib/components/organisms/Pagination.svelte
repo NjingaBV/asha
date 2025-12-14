@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Button from '$lib/atoms/Button.svelte';
-	import Icon from '$lib/atoms/Icon.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
+	import Icon from '$lib/components/atoms/Icon.svelte';
 
 	interface Props {
 		/** Current page (1-indexed) */

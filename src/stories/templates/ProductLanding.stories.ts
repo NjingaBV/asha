@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
 import ProductLanding from '$lib/components/templates/ProductLanding.svelte';
+import { ACME_LAPTOPS } from '$lib/fixtures/products';
 
 const meta = {
 	title: 'Templates/ProductLanding',
@@ -71,42 +72,35 @@ type Story = StoryObj<typeof meta>;
 
 const sampleProducts = [
 	{
-		name: 'MacBook Pro',
-		description: 'Pro performance, pro display.',
+		name: 'Laptop Pro 14"',
+		description: 'Supercharged for productivity.',
 		price: '$1,999',
-		image: 'https://picsum.photos/seed/mbp/400/400',
+		image: '/images/laptop-pro-14.jpg',
 		href: '#'
 	},
 	{
-		name: 'MacBook Air',
-		description: 'Strikingly thin, all-day battery.',
-		price: '$1,099',
-		image: 'https://picsum.photos/seed/mba/400/400',
+		name: 'Laptop Air',
+		description: 'Light. Bright. Full of might.',
+		price: '$1,199',
+		image: '/images/laptop-air.jpg',
 		href: '#'
 	},
 	{
-		name: 'iMac',
-		description: 'All-in-one. All in color.',
-		price: '$1,299',
-		image: 'https://picsum.photos/seed/imac/400/400',
-		href: '#'
-	},
-	{
-		name: 'Mac Studio',
-		description: 'Outrageous power.',
-		price: '$1,999',
-		image: 'https://picsum.photos/seed/studio/400/400',
+		name: 'Laptop Pro 16"',
+		description: 'Maximum performance.',
+		price: '$2,499',
+		image: '/images/laptop-pro-16.jpg',
 		href: '#'
 	}
 ];
 
 export const Default: Story = {
 	args: {
-		heroTitle: 'Welcome to Mac',
+		heroTitle: 'Welcome to Acme',
 		heroDescription:
-			'Discover our amazing lineup of Mac computers. Powerful, beautiful, and designed for everyone.',
+			'Discover our amazing lineup of laptops. Powerful, beautiful, and designed for everyone.',
 		primaryAction: {
-			label: 'Shop Mac',
+			label: 'Shop Laptops',
 			href: '#products'
 		},
 		secondaryAction: {
@@ -115,7 +109,7 @@ export const Default: Story = {
 		},
 		productsTitle: 'Our Products',
 		products: sampleProducts,
-		featuresTitle: 'Why Mac'
+		featuresTitle: 'Why Acme'
 	},
 	play: async ({ canvasElement, step }) => {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -130,8 +124,28 @@ export const Default: Story = {
 
 		await step('Render hero section with title', async () => {
 			expect(
-				canvas.getByRole('heading', { level: 1, name: 'Welcome to Mac' })
+				canvas.getByRole('heading', { level: 1, name: 'Welcome to Acme' })
 			).toBeInTheDocument();
+		});
+
+		await step('Render hero description', async () => {
+			expect(canvas.getByText(/Discover our amazing lineup/)).toBeInTheDocument();
+		});
+
+		await step('Render primary CTA button', async () => {
+			const primaryButton = canvas.getByRole('link', { name: 'Shop Laptops' });
+			expect(primaryButton).toBeInTheDocument();
+			expect(primaryButton).toHaveAttribute('href', '#products');
+		});
+
+		await step('Render product grid with items', async () => {
+			// Check for product names
+			expect(canvas.getByText('Laptop Pro 14"')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Air')).toBeInTheDocument();
+		});
+
+		await step('Render features section', async () => {
+			expect(canvas.getByRole('heading', { level: 2, name: 'Why Acme' })).toBeInTheDocument();
 		});
 
 		await step('Render hero description', async () => {
@@ -195,10 +209,10 @@ export const HeroOnly: Story = {
 
 export const WithProducts: Story = {
 	args: {
-		heroTitle: 'Mac',
-		heroDescription: 'If you can dream it, Mac can do it.',
+		heroTitle: 'Laptops',
+		heroDescription: 'Power meets portability.',
 		primaryAction: {
-			label: 'Explore All Mac',
+			label: 'Explore All Laptops',
 			href: '#'
 		},
 		productsTitle: 'Explore the Lineup',
@@ -209,7 +223,7 @@ export const WithProducts: Story = {
 
 export const Minimal: Story = {
 	args: {
-		heroTitle: 'Simple. Powerful. Mac.',
+		heroTitle: 'Simple. Powerful. Acme.',
 		heroDescription: '',
 		primaryAction: {
 			label: 'Shop Now',

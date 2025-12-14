@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import SkipLink from '$lib/atoms/SkipLink.svelte';
+	import SkipLink from '$lib/components/atoms/SkipLink.svelte';
 
 	interface Props {
 		/** Custom CSS classes for main content */

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ProductCard from '$lib/organisms/ProductCard.svelte';
+	import ProductCard from '$lib/components/organisms/ProductCard.svelte';
 	import type { Product } from '$lib/models/product.type';
 
 	/**

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Chip from '$lib/atoms/Chip.svelte';
+	import Chip from '$lib/components/atoms/Chip.svelte';
 	import type { MacSpec } from 'src/lib/models';
 
 	interface Props {

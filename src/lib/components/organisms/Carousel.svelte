@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Card from '$lib/molecules/Card.svelte';
-	import CarouselControls from '$lib/molecules/CarouselControls.svelte';
+	import Card from '$lib/components/molecules/Card.svelte';
+	import CarouselControls from '$lib/components/molecules/CarouselControls.svelte';
 	import type { CardType } from 'src/lib/models';
 	import { onMount } from 'svelte';
 

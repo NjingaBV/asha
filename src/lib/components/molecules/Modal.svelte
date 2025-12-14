@@ -84,7 +84,7 @@
 		createFocusTrap,
 		getModalDataAttributes,
 		type ModalState
-	} from '$lib/components/machines/modal.machine';
+	} from '$lib/machines/modal.machine';
 
 	// ============================================
 	// Props

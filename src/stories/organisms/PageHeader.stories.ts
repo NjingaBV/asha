@@ -6,6 +6,7 @@ const meta = {
 	component: PageHeader,
 	tags: ['autodocs'],
 	argTypes: {
+		breadcrumbs: { control: 'object' },
 		name: { control: 'text' },
 		tagline: { control: 'text' },
 		description: { control: 'text' },
@@ -28,9 +29,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
-		name: 'MacBook Air',
-		tagline: 'Thin, light, and incredibly powerful.',
-		description: 'M3 chip, up to 18 hours battery life, Liquid Retina display.',
+		name: 'Laptop Pro 14"',
+		tagline: 'Powerful performance in a sleek design.',
+		description: 'Ultra CPU, up to 18 hours battery life, stunning display.',
 		price: 'From $1,299',
 		badge: 'New',
 		tone: 'light',
@@ -46,15 +47,15 @@ export const Default: Story = {
 		const canvas = within(canvasElement);
 
 		await step('Render page title', async () => {
-			expect(canvas.getByText('MacBook Air')).toBeInTheDocument();
+			expect(canvas.getByText('Laptop Pro 14"')).toBeInTheDocument();
 		});
 
 		await step('Display page tagline', async () => {
-			expect(canvas.getByText('Thin, light, and incredibly powerful.')).toBeInTheDocument();
+			expect(canvas.getByText('Powerful performance in a sleek design.')).toBeInTheDocument();
 		});
 
 		await step('Show page description', async () => {
-			expect(canvas.getByText(/M3 chip/)).toBeInTheDocument();
+			expect(canvas.getByText(/Ultra CPU/)).toBeInTheDocument();
 		});
 
 		await step('Display price information', async () => {
@@ -80,7 +81,7 @@ export const Default: Story = {
 		await step('Page header has proper heading hierarchy', async () => {
 			const heading = canvas.getByRole('heading', { level: 1 });
 			expect(heading).toBeInTheDocument();
-			expect(heading).toHaveAccessibleName('MacBook Air');
+			expect(heading).toHaveAccessibleName('Laptop Pro 14"');
 		});
 	}
 };
@@ -89,8 +90,8 @@ export const DarkMode: Story = {
 	args: {
 		...Default.args,
 		tone: 'dark',
-		name: 'MacBook Pro',
-		tagline: 'Built for pros.'
+		name: 'Laptop Pro 16"',
+		tagline: 'Built for professionals.'
 	},
 	parameters: {
 		backgrounds: { default: 'dark' }
@@ -101,5 +102,47 @@ export const Centered: Story = {
 	args: {
 		...Default.args,
 		align: 'center'
+	}
+};
+
+export const WithBreadcrumbs: Story = {
+	args: {
+		breadcrumbs: [
+			{ label: 'Home', href: '/' },
+			{ label: 'Products', href: '/products' },
+			{ label: 'Laptops' }
+		],
+		name: 'Laptop Pro 14"',
+		tagline: 'Professional performance.',
+		description: 'Ultra CPU with professional-grade features.',
+		badge: 'Best Seller',
+		tone: 'light',
+		align: 'left',
+		ctas: {
+			primary: { label: 'Configure', href: '#' },
+			secondary: { label: 'Compare', href: '#' }
+		}
+	},
+	play: async ({ canvasElement, step }) => {
+		const { expect, within } = await import('@storybook/test');
+		const canvas = within(canvasElement);
+
+		await step('Render breadcrumb navigation', async () => {
+			expect(canvas.getByRole('navigation', { name: 'Breadcrumb' })).toBeInTheDocument();
+		});
+
+		await step('Display breadcrumb items', async () => {
+			expect(canvas.getByText('Home')).toBeInTheDocument();
+			expect(canvas.getByText('Products')).toBeInTheDocument();
+			expect(canvas.getByText('Laptops')).toBeInTheDocument();
+		});
+
+		await step('Render page title', async () => {
+			expect(canvas.getByText('Laptop Pro 14"')).toBeInTheDocument();
+		});
+
+		await step('Show badge', async () => {
+			expect(canvas.getByText('Best Seller')).toBeInTheDocument();
+		});
 	}
 };

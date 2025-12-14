@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Linkable from '$lib/atoms/Linkable.svelte';
+	import Linkable from '$lib/components/atoms/Linkable.svelte';
 
 	let {
 		title = '',
