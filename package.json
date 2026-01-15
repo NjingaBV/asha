@@ -106,7 +106,7 @@
 		"react-dom": "^19.2.0",
 		"semantic-release": "^25.0.1",
 		"storybook": "^10.0.5",
-		"svelte": "^5.43.6",
+		"svelte": "^5.46.4",
 		"svelte-check": "^4.3.4",
 		"svelte-eslint-parser": "^1.4.0",
 		"svelte-loader": "^3.2.4",
